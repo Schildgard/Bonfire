@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Activate Camera",
+                    "type": "Button",
+                    "id": "cd0cb8d7-a0ed-411b-8b71-53c1f95dabb4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Camera Controls",
                     "type": "Value",
                     "id": "420c5396-5ce8-4247-a044-62e470d98f89",
@@ -110,7 +119,7 @@
                 {
                     "name": "",
                     "id": "871f2079-e2e0-4300-af7c-7dd3d6bdc27d",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -194,6 +203,17 @@
                     "action": "Camera Controls",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f1ed3f68-4985-4912-a0c5-03aa5bde13f1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

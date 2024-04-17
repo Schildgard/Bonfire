@@ -64,6 +64,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Activate Camera"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd0cb8d7-a0ed-411b-8b71-53c1f95dabb4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Camera Controls"",
                     ""type"": ""Value"",
                     ""id"": ""420c5396-5ce8-4247-a044-62e470d98f89"",
@@ -132,7 +141,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""871f2079-e2e0-4300-af7c-7dd3d6bdc27d"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -216,6 +225,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Camera Controls"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1ed3f68-4985-4912-a0c5-03aa5bde13f1"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Activate Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -228,6 +248,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_ActivateCamera = m_Player.FindAction("Activate Camera", throwIfNotFound: true);
         m_Player_CameraControls = m_Player.FindAction("Camera Controls", throwIfNotFound: true);
     }
 
@@ -294,6 +315,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_ActivateCamera;
     private readonly InputAction m_Player_CameraControls;
     public struct PlayerActions
     {
@@ -303,6 +325,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @ActivateCamera => m_Wrapper.m_Player_ActivateCamera;
         public InputAction @CameraControls => m_Wrapper.m_Player_CameraControls;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -325,6 +348,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @ActivateCamera.started += instance.OnActivateCamera;
+            @ActivateCamera.performed += instance.OnActivateCamera;
+            @ActivateCamera.canceled += instance.OnActivateCamera;
             @CameraControls.started += instance.OnCameraControls;
             @CameraControls.performed += instance.OnCameraControls;
             @CameraControls.canceled += instance.OnCameraControls;
@@ -344,6 +370,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @ActivateCamera.started -= instance.OnActivateCamera;
+            @ActivateCamera.performed -= instance.OnActivateCamera;
+            @ActivateCamera.canceled -= instance.OnActivateCamera;
             @CameraControls.started -= instance.OnCameraControls;
             @CameraControls.performed -= instance.OnCameraControls;
             @CameraControls.canceled -= instance.OnCameraControls;
@@ -370,6 +399,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnActivateCamera(InputAction.CallbackContext context);
         void OnCameraControls(InputAction.CallbackContext context);
     }
 }

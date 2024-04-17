@@ -28,7 +28,7 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float lerpSpeed;
 
 
-    [SerializeField]private Vector2 Input;
+    [SerializeField] private Vector2 Input;
     private Vector3 SmoothMovement;
     private Vector3 MovementVector;
     #endregion
@@ -51,14 +51,15 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float maxDashCooldown;
     #endregion
 
+    public bool cameraInputActivated;
+
 
     [SerializeField] private Vector2 cameraInput;
-    public Vector2 CameraInput 
+    public Vector2 CameraInput
     {
         get { return cameraInput; }
         set { cameraInput = value; }
     }
-     private Vector2 cameraVector;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +75,6 @@ public class PlayerActionScript : MonoBehaviour
         Walk();
         Run();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
-        Camera();
     }
 
 
@@ -95,10 +95,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
     }
-    public void Camera() 
-    {
-        cameraVector = cameraInput;
-    }
+
 
     public void WalkEvent(InputAction.CallbackContext _context)
     {
@@ -125,8 +122,8 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started && collisionDetection.CollisionCheck())
         {
-           playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
-            playerRigidbody.AddForce(new Vector3(playerRigidbody.velocity.x,1 * jumpPower, playerRigidbody.velocity.z), ForceMode.Impulse);
+            playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
+            playerRigidbody.AddForce(new Vector3(playerRigidbody.velocity.x, 1 * jumpPower, playerRigidbody.velocity.z), ForceMode.Impulse);
         }
 
 
@@ -141,12 +138,28 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    public void TestCamInput(InputAction.CallbackContext _context) 
-    { 
-        CameraInput = _context.ReadValue<Vector2>();
-      
+    public void CallCameraInput(InputAction.CallbackContext _context)
+    {
+        if (cameraInputActivated)
+        {
+            CameraInput = _context.ReadValue<Vector2>();
+        }
+        else CameraInput = Vector3.zero;
+
     }
 
+    public void AllowCameraInput(InputAction.CallbackContext _context) 
+    {
+        
+        if (_context.started)
+        {
+            cameraInputActivated = true;
+        }
 
+        if (_context.canceled)
+        {
+            cameraInputActivated = false;
+        }
+    }
 
 }

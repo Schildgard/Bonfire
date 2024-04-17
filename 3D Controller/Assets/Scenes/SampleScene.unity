@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,18 +156,19 @@ MonoBehaviour:
   cameraSmoothSpeed: 1
   cameraVelocity: {x: 0, y: 0, z: 0}
   playerActionScript: {fileID: 854263485}
-  rotationSpeed: 85
+  rotationSpeed: 150
   leftAndRightLookAngle: 0
   upAndDownLookAngle: 0
-  maxYRotation: 60
+  maxYRotation: 90
   minYRotation: -30
   cameraPivotTransform: {fileID: 159062588}
   CameraPosition: {fileID: 963194228}
-  cameraCollisionRadius: 2.03
-  cameraCollisionDistance: 0.1
+  cameraCollisionRadius: 1.36
+  cameraCollisionDistance: 0
   WallLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  offSetValue: -1
 --- !u!4 &156214619
 Transform:
   m_ObjectHideFlags: 0
@@ -337,7 +338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692385468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -19.58, y: 0, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -512,6 +513,7 @@ MonoBehaviour:
   dashPower: 5
   currentDashCoolDown: 0
   maxDashCooldown: 1
+  cameraInputActivated: 0
   cameraInput: {x: 0, y: 0}
 --- !u!114 &854263486
 MonoBehaviour:
@@ -606,7 +608,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 854263485}
         m_TargetAssemblyTypeName: PlayerActionScript, Assembly-CSharp
-        m_MethodName: TestCamInput
+        m_MethodName: CallCameraInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -618,6 +620,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 420c5396-5ce8-4247-a044-62e470d98f89
     m_ActionName: Player/Camera Controls
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 854263485}
+        m_TargetAssemblyTypeName: PlayerActionScript, Assembly-CSharp
+        m_MethodName: AllowCameraInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cd0cb8d7-a0ed-411b-8b71-53c1f95dabb4
+    m_ActionName: Player/Activate Camera[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
