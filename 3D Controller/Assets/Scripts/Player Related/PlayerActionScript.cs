@@ -53,6 +53,13 @@ public class PlayerActionScript : MonoBehaviour
 
     public bool cameraInputActivated;
 
+    #region Rotation
+    [SerializeField] private Transform Camera;
+    [SerializeField] private float rotationSpeed;
+    private Vector3 TargetRotationDirection;
+
+    #endregion
+
 
     [SerializeField] private Vector2 cameraInput;
     public Vector2 CameraInput
@@ -74,6 +81,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         Walk();
         Run();
+        Rotate();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
@@ -82,13 +90,32 @@ public class PlayerActionScript : MonoBehaviour
     {
         MovementVector.x = Input.x;
         MovementVector.z = Input.y;
+        //MovementVector = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0) * MovementVector; //Character moves in local Space
+
         MovementVector.Normalize();
         MovementVector *= currentWalkSpeed;
         MovementVector.y = playerRigidbody.velocity.y;
 
         SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, MovementVector, lerpSpeed * Time.deltaTime);
 
-        playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+
+    }
+
+    private void Rotate()
+    {
+        TargetRotationDirection = Vector3.zero;
+        TargetRotationDirection = Camera.forward * MovementVector.z;
+        TargetRotationDirection = TargetRotationDirection + Camera.right * MovementVector.x;
+        TargetRotationDirection.Normalize();
+        if (TargetRotationDirection == Vector3.zero)
+        {
+            TargetRotationDirection = transform.forward;
+        }
+
+        Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
+        Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = newRotation;
     }
 
     private void Run()
@@ -148,9 +175,9 @@ public class PlayerActionScript : MonoBehaviour
 
     }
 
-    public void AllowCameraInput(InputAction.CallbackContext _context) 
+    public void AllowCameraInput(InputAction.CallbackContext _context)
     {
-        
+
         if (_context.started)
         {
             cameraInputActivated = true;
