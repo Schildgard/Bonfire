@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 854263486}
   - component: {fileID: 854263485}
   - component: {fileID: 854263488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,13 +767,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 854263482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3835c17fce4a9a498fa135a45c498d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dabc962e47a26c4ab9753fc1436f109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckTransform: {fileID: 854263484}
   groundCheckDistance: 1.5
 --- !u!1 &910933937
 GameObject:
@@ -786,7 +785,7 @@ GameObject:
   - component: {fileID: 910933938}
   - component: {fileID: 910933941}
   - component: {fileID: 910933940}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +952,7 @@ GameObject:
   - component: {fileID: 1336131894}
   - component: {fileID: 1336131896}
   - component: {fileID: 1336131895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1228,6 +1227,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1801479722}
+  - component: {fileID: 1801479723}
+  - component: {fileID: 1801479724}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1251,6 +1252,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1801479723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801479721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71aa62f40cac7624c872b1594cac7ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyDetection: {fileID: 1801479724}
+--- !u!114 &1801479724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801479721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd17b5c18f0e7c14a858c30bc62ec7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSphereRadius: 13.1
+  battleSphereRadius: 4.14
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1927112461
 GameObject:
   m_ObjectHideFlags: 0

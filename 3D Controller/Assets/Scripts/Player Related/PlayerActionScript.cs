@@ -8,7 +8,7 @@ public class PlayerActionScript : MonoBehaviour
 {
 
     private Rigidbody playerRigidbody;
-    private CollisionDetection collisionDetection;
+    private GroundCheck collisionDetection;
 
     #region Walk
     [SerializeField] private float normalWalkSpeed;
@@ -72,7 +72,7 @@ public class PlayerActionScript : MonoBehaviour
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        collisionDetection = GetComponent<CollisionDetection>();
+        collisionDetection = GetComponent<GroundCheck>();
 
     }
 

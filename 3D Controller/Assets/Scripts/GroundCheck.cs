@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionDetection : MonoBehaviour
+public class GroundCheck : MonoBehaviour
 {
 
     [SerializeField] private LayerMask groundCheckLayerMask;
-    [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private float groundCheckDistance;
 
 
@@ -22,8 +21,8 @@ public class CollisionDetection : MonoBehaviour
     {
 
         bool hit;
-        hit = Physics.Raycast(groundCheckTransform.position, Vector3.down, groundCheckDistance, layerMask: groundCheckLayerMask);
-        Debug.DrawRay(groundCheckTransform.position, Vector3.down * groundCheckDistance);
+        hit = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, layerMask: groundCheckLayerMask);
+        Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance);
 
         if (hit)
         {
