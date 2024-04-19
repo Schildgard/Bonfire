@@ -110,12 +110,12 @@ public class PlayerCamera : MonoBehaviour
             //  CameraPosition.position = hitInfo.collider.ClosestPoint(player.transform.position); // blocks CameraMovement to the other Axxises
              Vector3 TargetPosition = hitInfo.collider.ClosestPoint(player.transform.position);
             CameraPosition.position = new Vector3(CameraPosition.position.x, CameraPosition.position.y, TargetPosition.z);
-            Debug.Log("hit something");
+            Debug.Log("Camera hit something");
         }
         else
         {
             CameraPosition.localPosition = DefaultPosition;
-            Debug.Log("hit nothing");
+           // Debug.Log("Camera hit nothing");
         }
     }
 

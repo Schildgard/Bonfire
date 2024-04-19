@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerActionScript : MonoBehaviour
+public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 {
 
     private Rigidbody playerRigidbody;
@@ -51,6 +51,9 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float maxDashCooldown;
     #endregion
 
+    [SerializeField]
+    private float blockInput;
+
     public bool cameraInputActivated;
 
     #region Rotation
@@ -60,6 +63,7 @@ public class PlayerActionScript : MonoBehaviour
 
     #endregion
 
+    [SerializeField] Animator Animator;
 
     [SerializeField] private Vector2 cameraInput;
     public Vector2 CameraInput
@@ -73,6 +77,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody>();
         collisionDetection = GetComponent<GroundCheck>();
+        Animator = GetComponent<Animator>();
 
     }
 
@@ -82,9 +87,9 @@ public class PlayerActionScript : MonoBehaviour
         Walk();
         Run();
         Rotate();
+        Block();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
-
 
     private void Walk()
     {
@@ -100,6 +105,17 @@ public class PlayerActionScript : MonoBehaviour
 
          playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
+        if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f) 
+        {
+            Animator.SetBool("isWalking", true);
+            Debug.Log("Walk Animation started");
+        }
+        else
+        {
+            Animator.SetBool("isWalking", false);
+            Debug.Log("Walk Animation started");
+
+        }
     }
 
     private void Rotate()
@@ -121,14 +137,28 @@ public class PlayerActionScript : MonoBehaviour
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
     }
 
+    protected void Attack() 
+    {
+        Debug.Log("Player Attack");
+    }
+    protected void Block()
+    {
 
+        if (blockInput > 0)
+        {
+            Debug.Log("Block");
+        }
+        
+    }
+
+
+
+    #region InputCallBackEvents
     public void WalkEvent(InputAction.CallbackContext _context)
     {
         Input = _context.ReadValue<Vector2>();
 
     }
-
-
 
     public void RunEvent(InputAction.CallbackContext _context)
     {
@@ -163,6 +193,21 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
+    public void AttackEvent(InputAction.CallbackContext _context)
+    {
+         if (_context.started) 
+         {
+             Attack();
+         }
+
+     
+    }
+
+    public void BlockEvent(InputAction.CallbackContext _context) 
+    {
+        blockInput = _context.ReadValue<float>();
+    }
+
     public void CallCameraInput(InputAction.CallbackContext _context)
     {
         if (cameraInputActivated)
@@ -186,5 +231,6 @@ public class PlayerActionScript : MonoBehaviour
             cameraInputActivated = false;
         }
     }
+    #endregion
 
 }

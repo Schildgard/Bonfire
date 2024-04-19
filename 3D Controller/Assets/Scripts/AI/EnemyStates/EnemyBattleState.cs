@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBattleState : EnemyBaseState
+public class EnemyBattleState : EnemyBaseState, IAttackAction
 {
     private NavMeshAgent NavMeshAgent;
     private Transform PlayerPosition;
@@ -22,11 +22,16 @@ public class EnemyBattleState : EnemyBaseState
 
     public override void StateUpdate()
     {
-        Debug.Log("OnBattleUpdate");
+        Attack();
     }
 
     public override void StateExit()
     {
         Debug.Log("OnBattleExit");
+    }
+
+    protected void Attack() 
+    {
+        Debug.Log("Enemy Attack");
     }
 }
