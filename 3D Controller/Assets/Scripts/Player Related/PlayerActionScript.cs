@@ -104,11 +104,9 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Rotate()
     {
-        TargetRotationDirection = Vector3.zero;
-        TargetRotationDirection = Camera.forward * MovementVector.z;
-        TargetRotationDirection = TargetRotationDirection + Camera.right * MovementVector.x;
+        TargetRotationDirection = new Vector3(Input.x, 0, Input.y);
         TargetRotationDirection.Normalize();
-        if (TargetRotationDirection == Vector3.zero)
+        if (TargetRotationDirection == Vector3.zero) //Comparison between two Vectors works in that Case, because the Values of TargetRotation are bound to Input System.
         {
             TargetRotationDirection = transform.forward;
         }

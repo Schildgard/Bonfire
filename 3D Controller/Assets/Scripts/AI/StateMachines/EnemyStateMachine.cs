@@ -5,14 +5,23 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : MonoBehaviour
 {
+    [SerializeField] private Transform PlayerTransform;
     [SerializeField] EnemyDetectionScript EnemyDetection;
 
 
+    private NavMeshAgent NavMeshAgent;
     private EnemyBaseState currentState;
+    private Vector3 StartPosition;
+
     public delegate bool StateMachineDelegate();
     private Dictionary<EnemyBaseState, Dictionary<StateMachineDelegate, EnemyBaseState>> EnemyStateDictionary;
 
 
+    private void Awake()
+    {
+        NavMeshAgent = GetComponent<NavMeshAgent>();
+        StartPosition = transform.position;
+    }
     void Start()
     {
         //First Initialization of State Machine (Assign States, set current State and enter to it
@@ -30,9 +39,9 @@ public class EnemyStateMachine : MonoBehaviour
     private void InitializeStateMachine()
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
-        EnemyChaseState EnemyChaseState = new EnemyChaseState(this);
-        EnemyBattleState EnemyBattleState = new EnemyBattleState(this);
-        EnemyReturnState EnemyReturnState = new EnemyReturnState(this);
+        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform);
+        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform);
+        EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition);
 
         currentState = EnemyIdleState;
         currentState.StateEnter();
@@ -69,8 +78,8 @@ public class EnemyStateMachine : MonoBehaviour
             {
                 EnemyReturnState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                 {
-                  // {   ()=>!EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius), EnemyChaseState},
-                  // {   ()=>!EnemyDetection.CheckRange(EnemyDetection.ChaseSphereRadius), EnemyReturnState}
+                   {   ()=>CompareDistance(StartPosition, transform.position) <= 1f, EnemyIdleState},
+
                 }
             },
 
@@ -94,6 +103,13 @@ public class EnemyStateMachine : MonoBehaviour
                 currentState.StateEnter();
             }
         }
+    }
+
+    private float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition) 
+    {
+        Vector3 DistanceVector = _targetPosition - _currentPosition;
+        float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
+        return distanceToTarget;
     }
 
 

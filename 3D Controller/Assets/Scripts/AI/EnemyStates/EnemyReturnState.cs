@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyReturnState : EnemyBaseState
 {
-    public EnemyReturnState(EnemyStateMachine _enemyStateMachine) : base(_enemyStateMachine) 
+    private Vector3 StartPosition;
+    private NavMeshAgent NavMeshAgent;
+    public EnemyReturnState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Vector3 _startPosition) : base(_enemyStateMachine)
     {
-    
+        StartPosition = _startPosition;
+        NavMeshAgent = _navMeshAgent;
     }
 
 
@@ -17,6 +21,7 @@ public class EnemyReturnState : EnemyBaseState
 
     public override void StateUpdate()
     {
+        NavMeshAgent.SetDestination(StartPosition);
         Debug.Log("OnReturnUpdate");
     }
 

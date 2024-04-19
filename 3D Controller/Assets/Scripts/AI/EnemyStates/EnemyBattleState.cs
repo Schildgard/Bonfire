@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBattleState : EnemyBaseState
 {
-    public EnemyBattleState(EnemyStateMachine _enemyStateMachine) : base(_enemyStateMachine)
-    {
+    private NavMeshAgent NavMeshAgent;
+    private Transform PlayerPosition;
 
+    public EnemyBattleState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Transform _playerPosition) : base(_enemyStateMachine)
+    {
+        NavMeshAgent = _navMeshAgent;
+        PlayerPosition = _playerPosition;
     }
 
 

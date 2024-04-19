@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyChaseState : EnemyBaseState
 {
-    public EnemyChaseState(EnemyStateMachine _enemyStateMachine) : base(_enemyStateMachine)
-    {
 
+    private NavMeshAgent NavMeshAgent;
+    private Transform PlayerPosition;
+
+    public EnemyChaseState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Transform _playerPosition) : base(_enemyStateMachine)
+    {
+        NavMeshAgent = _navMeshAgent;
+        PlayerPosition = _playerPosition;
     }
 
 
@@ -17,6 +23,7 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void StateUpdate()
     {
+        NavMeshAgent.SetDestination(PlayerPosition.position);
         Debug.Log("OnChaseUpdate");
     }
 
