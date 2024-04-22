@@ -4,11 +4,6 @@ using UnityEngine;
 
 public interface IAttackAction
 {
-
-    
-    protected void Attack() 
-    {
-
-    }
+    void Attack();
 
 }

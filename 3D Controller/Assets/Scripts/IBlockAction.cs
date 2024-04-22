@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBlockAction 
 {
-    protected void Block() { }
+    void Block();
 }

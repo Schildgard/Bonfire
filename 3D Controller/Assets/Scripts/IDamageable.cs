@@ -5,11 +5,9 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    protected void GetDamage() 
-    {
 
-    }
+    void GetDamage();
 
-    protected void OnTriggerEnter(Collider collision);
+    void OnTriggerEnter(Collider other);
 
 }

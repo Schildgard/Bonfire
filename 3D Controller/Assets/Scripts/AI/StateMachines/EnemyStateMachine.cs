@@ -10,7 +10,8 @@ public class EnemyStateMachine : MonoBehaviour
 
 
     private NavMeshAgent NavMeshAgent;
-    private EnemyBaseState currentState;
+    private EnemyBaseState CurrentState;
+    private Animator Animator;
     private Vector3 StartPosition;
 
     public delegate bool StateMachineDelegate();
@@ -20,6 +21,7 @@ public class EnemyStateMachine : MonoBehaviour
     private void Awake()
     {
         NavMeshAgent = GetComponent<NavMeshAgent>();
+        Animator = GetComponent<Animator>();
         StartPosition = transform.position;
     }
     void Start()
@@ -31,6 +33,7 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(PlayerTransform);
         // Continous Update of State Machine. Exercise current State. Check if any Conditions for State Change are given and Change.
         UpdateStateMachine();
     }
@@ -39,12 +42,12 @@ public class EnemyStateMachine : MonoBehaviour
     private void InitializeStateMachine()
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
-        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform);
-        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform);
+        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform, Animator);
+        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform, Animator);
         EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition);
 
-        currentState = EnemyIdleState;
-        currentState.StateEnter();
+        CurrentState = EnemyIdleState;
+        CurrentState.StateEnter();
         // First Dictionary contains State and another Dictionary.   Second Dictionary contains Condition and TargetState
         EnemyStateDictionary = new Dictionary<EnemyBaseState, Dictionary<StateMachineDelegate, EnemyBaseState>>
         {
@@ -89,18 +92,18 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void UpdateStateMachine()
     {
-        currentState.StateUpdate();
+        CurrentState.StateUpdate();
         //if condition for ANY StateChange from current is met: Transit!
         //look in current State for transition Conditions all the time (foreach)
         //Key() checks if the conditional Delegate is true
 
-        foreach (var transition in EnemyStateDictionary[currentState])
+        foreach (var transition in EnemyStateDictionary[CurrentState])
         {
             if (transition.Key() == true)
             {
-                currentState.StateExit();
-                currentState = transition.Value;
-                currentState.StateEnter();
+                CurrentState.StateExit();
+                CurrentState = transition.Value;
+                CurrentState.StateEnter();
             }
         }
     }
@@ -111,4 +114,6 @@ public class EnemyStateMachine : MonoBehaviour
         float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
         return distanceToTarget;
     }
+
+
 }

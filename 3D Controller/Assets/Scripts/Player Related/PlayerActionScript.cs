@@ -92,14 +92,14 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         Rotate();
         Block();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
-       
+
     }
 
     private void Walk()
     {
         MovementVector.x = Input.x;
         MovementVector.z = Input.y;
-        MovementVector = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0) * MovementVector; //Character moves in local Space
+       // MovementVector = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0) * MovementVector; //Character moves in local Space
 
         MovementVector.Normalize();
         MovementVector *= currentWalkSpeed;
@@ -107,17 +107,16 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
         SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, MovementVector, lerpSpeed * Time.deltaTime);
 
-         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+        playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
-        if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f) 
+        if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f)
         {
             Animator.SetBool("isWalking", true);
-            Debug.Log("Walk Animation started");
+            //  Debug.Log("Walk Animation started");
         }
         else
         {
             Animator.SetBool("isWalking", false);
-            Debug.Log("Walk Animation started");
 
         }
     }
@@ -141,19 +140,19 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
     }
 
-    protected void Attack() 
+    public void Attack()
     {
         Animator.SetTrigger("Attack Trigger");
         Debug.Log("Player Attack");
     }
-    protected void Block()
+    public void Block()
     {
 
         if (blockInput > 0)
         {
             Debug.Log("Block");
         }
-        
+
     }
 
 
@@ -202,15 +201,15 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
     public void AttackEvent(InputAction.CallbackContext _context)
     {
-         if (_context.started) 
-         {
-             Attack();
-         }
+        if (_context.started)
+        {
+            Attack();
+        }
 
-     
+
     }
 
-    public void BlockEvent(InputAction.CallbackContext _context) 
+    public void BlockEvent(InputAction.CallbackContext _context)
     {
         blockInput = _context.ReadValue<float>();
     }
@@ -239,7 +238,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         }
     }
 
- 
+
     #endregion
 
 }
