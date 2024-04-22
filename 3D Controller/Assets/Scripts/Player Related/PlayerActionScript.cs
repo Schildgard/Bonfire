@@ -66,6 +66,9 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
     [SerializeField] Animator Animator;
 
     [SerializeField] private Vector2 cameraInput;
+
+
+
     public Vector2 CameraInput
     {
         get { return cameraInput; }
@@ -89,13 +92,14 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         Rotate();
         Block();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
+       
     }
 
     private void Walk()
     {
         MovementVector.x = Input.x;
         MovementVector.z = Input.y;
-        //MovementVector = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0) * MovementVector; //Character moves in local Space
+        MovementVector = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0) * MovementVector; //Character moves in local Space
 
         MovementVector.Normalize();
         MovementVector *= currentWalkSpeed;
@@ -139,6 +143,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
     protected void Attack() 
     {
+        Animator.SetTrigger("Attack Trigger");
         Debug.Log("Player Attack");
     }
     protected void Block()
@@ -150,6 +155,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         }
         
     }
+
 
 
 
@@ -183,6 +189,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
 
     }
+
 
     public void DashEvent(InputAction.CallbackContext _context)
     {
@@ -231,6 +238,8 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
             cameraInputActivated = false;
         }
     }
+
+ 
     #endregion
 
 }

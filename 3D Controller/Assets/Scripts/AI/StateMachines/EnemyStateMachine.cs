@@ -111,6 +111,4 @@ public class EnemyStateMachine : MonoBehaviour
         float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
         return distanceToTarget;
     }
-
-
 }
