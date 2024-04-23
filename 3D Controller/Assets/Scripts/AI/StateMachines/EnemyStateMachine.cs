@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyStateMachine : MonoBehaviour
+public class EnemyStateMachine : EnemyStateMachineBase
 {
     [SerializeField] private Transform PlayerTransform;
     [SerializeField] EnemyDetectionScript EnemyDetection;
 
-
+    private EnemyBattleStateMachine EnemyBattleStateMachine;
     private NavMeshAgent NavMeshAgent;
-    private EnemyBaseState CurrentState;
     private Animator Animator;
     private Vector3 StartPosition;
 
-    public delegate bool StateMachineDelegate();
-    private Dictionary<EnemyBaseState, Dictionary<StateMachineDelegate, EnemyBaseState>> EnemyStateDictionary;
 
 
     private void Awake()
@@ -23,27 +20,19 @@ public class EnemyStateMachine : MonoBehaviour
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         StartPosition = transform.position;
-    }
-    void Start()
-    {
-        //First Initialization of State Machine (Assign States, set current State and enter to it
-        InitializeStateMachine();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Continous Update of State Machine. Exercise current State. Check if any Conditions for State Change are given and Change.
-        UpdateStateMachine();
+        EnemyBattleStateMachine = GetComponent<EnemyBattleStateMachine>();
     }
 
 
-    private void InitializeStateMachine()
+
+    public override void InitializeStateMachine()
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
         EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform, Animator, this.transform);
-        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform, Animator);
         EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition, Animator);
+        //EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform, Animator);
+        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine);
+
 
         CurrentState = EnemyIdleState;
         CurrentState.StateEnter();
@@ -89,23 +78,6 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
 
-    private void UpdateStateMachine()
-    {
-        CurrentState.StateUpdate();
-        //if condition for ANY StateChange from current is met: Transit!
-        //look in current State for transition Conditions all the time (foreach)
-        //Key() checks if the conditional Delegate is true
-
-        foreach (var transition in EnemyStateDictionary[CurrentState])
-        {
-            if (transition.Key() == true)
-            {
-                CurrentState.StateExit();
-                CurrentState = transition.Value;
-                CurrentState.StateEnter();
-            }
-        }
-    }
 
     private float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition) 
     {
