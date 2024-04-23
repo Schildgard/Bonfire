@@ -9,6 +9,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
     private Rigidbody playerRigidbody;
     private GroundCheck collisionDetection;
+    private Animator Animator;
 
     #region Walk
     [SerializeField] private float normalWalkSpeed;
@@ -28,7 +29,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
     [SerializeField] private float lerpSpeed;
 
 
-    [SerializeField] private Vector2 Input;
+    [SerializeField] private Vector2 MoveInput;
     private Vector3 SmoothMovement;
     private Vector3 MovementVector;
     #endregion
@@ -51,11 +52,6 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
     [SerializeField] private float maxDashCooldown;
     #endregion
 
-    [SerializeField]
-    private float blockInput;
-
-    public bool cameraInputActivated;
-
     #region Rotation
     [SerializeField] private Transform Camera;
     [SerializeField] private float rotationSpeed;
@@ -63,17 +59,26 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
     #endregion
 
-    [SerializeField] Animator Animator;
+    #region NormalCamera
 
-    [SerializeField] private Vector2 cameraInput;
-
-
-
+    private Vector2 cameraInput;
     public Vector2 CameraInput
     {
         get { return cameraInput; }
         set { cameraInput = value; }
     }
+    public bool cameraInputActivated;
+    #endregion
+
+    #region LockOn Camera
+    [SerializeField] private Camera LockOnCamera;
+    [SerializeField] private Transform TestEnemy;
+    [SerializeField] private bool lockOn;
+    #endregion
+
+    private Transform activeCamera;
+    private float blockInput;
+
 
     // Start is called before the first frame update
     void Start()
@@ -87,21 +92,29 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
     // Update is called once per frame
     void Update()
     {
-        Walk();
+        Walk(activeCamera);
         Run();
         Rotate();
         Block();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
-
+        if (lockOn) { LockOn(TestEnemy.position); }
     }
 
-    private void Walk()
+    private void Walk(Transform _activeCameraTransform)
     {
-        MovementVector.x = Input.x;
-        MovementVector.z = Input.y;
-       // MovementVector = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0) * MovementVector; //Character moves in local Space
+         if (!lockOn) 
+         {
+            _activeCameraTransform = Camera.transform;
+         }
+         else 
+         {
+            _activeCameraTransform = LockOnCamera.transform;
+         }
 
+        MovementVector = _activeCameraTransform.transform.forward * MoveInput.y;
+        MovementVector = MovementVector + _activeCameraTransform.transform.right * MoveInput.x;
         MovementVector.Normalize();
+
         MovementVector *= currentWalkSpeed;
         MovementVector.y = playerRigidbody.velocity.y;
 
@@ -112,7 +125,6 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f)
         {
             Animator.SetBool("isWalking", true);
-            //  Debug.Log("Walk Animation started");
         }
         else
         {
@@ -123,16 +135,27 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
 
     private void Rotate()
     {
-        TargetRotationDirection = new Vector3(Input.x, 0, Input.y);
-        TargetRotationDirection.Normalize();
-        if (TargetRotationDirection == Vector3.zero) //Comparison between two Vectors works in that Case, because the Values of TargetRotation are bound to Input System.
+
+        if (!lockOn)
         {
-            TargetRotationDirection = transform.forward;
+            TargetRotationDirection = Camera.transform.forward * MoveInput.y;
+            TargetRotationDirection += Camera.transform.right * MoveInput.x;
+        }
+        else 
+        {
+            TargetRotationDirection = LockOnCamera.transform.forward;
         }
 
-        Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
-        Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
-        transform.rotation = newRotation;
+            TargetRotationDirection.Normalize();
+            TargetRotationDirection.y = 0;
+            if (TargetRotationDirection == Vector3.zero) //Comparison between two Vectors works in that Case, because the Values of TargetRotation are bound to Input System.
+            {
+                TargetRotationDirection = transform.forward;
+            }
+
+            Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
+            Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = newRotation;
     }
 
     private void Run()
@@ -140,10 +163,15 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
     }
 
+    private void LockOn(Vector3 _target)
+    {
+        LockOnCamera.gameObject.SetActive(true);
+        LockOnCamera.transform.LookAt(_target);
+    }
+
     public void Attack()
     {
         Animator.SetTrigger("Attack Trigger");
-        Debug.Log("Player Attack");
     }
     public void Block()
     {
@@ -161,7 +189,7 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
     #region InputCallBackEvents
     public void WalkEvent(InputAction.CallbackContext _context)
     {
-        Input = _context.ReadValue<Vector2>();
+        MoveInput = _context.ReadValue<Vector2>();
 
     }
 
@@ -236,6 +264,16 @@ public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
         {
             cameraInputActivated = false;
         }
+    }
+
+    public void CameraLockOnEvent(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            lockOn = !lockOn;
+            LockOnCamera.gameObject.SetActive(lockOn);
+        }
+
     }
 
 

@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Lock On Camera",
+                    "type": "Button",
+                    "id": "459518aa-83e5-4581-8b79-9d3b99544ce9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -159,7 +168,7 @@
                 {
                     "name": "",
                     "id": "ff4bfc86-d311-4325-a54e-6a4166326be9",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -236,7 +245,7 @@
                 {
                     "name": "",
                     "id": "c352c404-ce83-4793-a210-a2478091bfba",
-                    "path": "<Keyboard>/1",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -252,6 +261,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e914c322-0d4d-4e26-9ded-2b335bf205c5",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock On Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

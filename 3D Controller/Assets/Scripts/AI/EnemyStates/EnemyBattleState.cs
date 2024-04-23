@@ -29,6 +29,7 @@ public class EnemyBattleState : EnemyBaseState, IAttackAction, IBlockAction
     public override void StateEnter()
     {
         CurrentBattleState = ECurrentBattleState.lureAround;
+        NavMeshAgent.isStopped = true;
         //  Debug.Log("OnBattleEnter");
     }
 

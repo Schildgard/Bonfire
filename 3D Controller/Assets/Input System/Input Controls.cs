@@ -98,6 +98,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock On Camera"",
+                    ""type"": ""Button"",
+                    ""id"": ""459518aa-83e5-4581-8b79-9d3b99544ce9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -181,7 +190,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ff4bfc86-d311-4325-a54e-6a4166326be9"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -258,7 +267,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c352c404-ce83-4793-a210-a2478091bfba"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -274,6 +283,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e914c322-0d4d-4e26-9ded-2b335bf205c5"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock On Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -292,6 +312,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_CameraControls = m_Player.FindAction("Camera Controls", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
+        m_Player_LockOnCamera = m_Player.FindAction("Lock On Camera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +382,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CameraControls;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
+    private readonly InputAction m_Player_LockOnCamera;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -373,6 +395,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @CameraControls => m_Wrapper.m_Player_CameraControls;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
+        public InputAction @LockOnCamera => m_Wrapper.m_Player_LockOnCamera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -406,6 +429,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @LockOnCamera.started += instance.OnLockOnCamera;
+            @LockOnCamera.performed += instance.OnLockOnCamera;
+            @LockOnCamera.canceled += instance.OnLockOnCamera;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -434,6 +460,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @LockOnCamera.started -= instance.OnLockOnCamera;
+            @LockOnCamera.performed -= instance.OnLockOnCamera;
+            @LockOnCamera.canceled -= instance.OnLockOnCamera;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -461,5 +490,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnCameraControls(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnLockOnCamera(InputAction.CallbackContext context);
     }
 }

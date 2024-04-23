@@ -9,12 +9,14 @@ public class EnemyChaseState : EnemyBaseState
     private NavMeshAgent NavMeshAgent;
     private Transform PlayerPosition;
     private Animator Animator;
+    private Transform EnemyTransform;
 
-    public EnemyChaseState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Transform _playerPosition, Animator animator) : base(_enemyStateMachine)
+    public EnemyChaseState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Transform _playerPosition, Animator animator, Transform enemyTransform) : base(_enemyStateMachine)
     {
         NavMeshAgent = _navMeshAgent;
         PlayerPosition = _playerPosition;
         Animator = animator;
+        EnemyTransform = enemyTransform;
     }
 
 
@@ -25,7 +27,9 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void StateUpdate()
     {
+        EnemyTransform.LookAt(PlayerPosition);
         NavMeshAgent.SetDestination(PlayerPosition.position);
+        NavMeshAgent.isStopped = false;
         Animator.SetBool("isWalking", true);
        // Debug.Log("OnChaseUpdate");
     }

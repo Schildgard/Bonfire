@@ -33,7 +33,6 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(PlayerTransform);
         // Continous Update of State Machine. Exercise current State. Check if any Conditions for State Change are given and Change.
         UpdateStateMachine();
     }
@@ -42,9 +41,9 @@ public class EnemyStateMachine : MonoBehaviour
     private void InitializeStateMachine()
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
-        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform, Animator);
+        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform, Animator, this.transform);
         EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform, Animator);
-        EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition);
+        EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition, Animator);
 
         CurrentState = EnemyIdleState;
         CurrentState.StateEnter();

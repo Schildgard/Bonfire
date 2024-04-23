@@ -7,10 +7,12 @@ public class EnemyReturnState : EnemyBaseState
 {
     private Vector3 StartPosition;
     private NavMeshAgent NavMeshAgent;
-    public EnemyReturnState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Vector3 _startPosition) : base(_enemyStateMachine)
+    private Animator Animator;
+    public EnemyReturnState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Vector3 _startPosition, Animator animator) : base(_enemyStateMachine)
     {
         StartPosition = _startPosition;
         NavMeshAgent = _navMeshAgent;
+        Animator = animator;
     }
 
 
@@ -22,12 +24,12 @@ public class EnemyReturnState : EnemyBaseState
     public override void StateUpdate()
     {
         NavMeshAgent.SetDestination(StartPosition);
-        Debug.Log("OnReturnUpdate");
+        Animator.SetBool("isWalking", true);
     }
 
     public override void StateExit()
     {
-        Debug.Log("OnReturnExit");
+        Animator.SetBool("isWalking", false);
     }
 
 }
