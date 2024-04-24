@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -847,7 +847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164349794}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 2.022434, z: 0}
+  m_LocalPosition: {x: 0.004, y: 2.022434, z: -0.008}
   m_LocalScale: {x: 89.319, y: 89.319, z: 89.319}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4679,6 +4679,7 @@ GameObject:
   - component: {fileID: 854263485}
   - component: {fileID: 854263488}
   - component: {fileID: 854263489}
+  - component: {fileID: 854263490}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -4953,7 +4954,7 @@ MonoBehaviour:
   groundCheckDistance: 1.5
 --- !u!95 &854263489
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4970,8 +4971,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &854263490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854263482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e034b35747acd2447a971c28622436f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858782268
 GameObject:
   m_ObjectHideFlags: 0
@@ -10646,7 +10658,7 @@ SkinnedMeshRenderer:
   m_DirtyAABB: 0
 --- !u!95 &1448173192
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10663,8 +10675,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1449157013
 GameObject:
   m_ObjectHideFlags: 0
@@ -20932,7 +20943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71aa62f40cac7624c872b1594cac7ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTransform: {fileID: 854263484}
+  PlayerPosition: {fileID: 854263484}
   EnemyDetection: {fileID: 1801479724}
 --- !u!114 &1801479724
 MonoBehaviour:
@@ -20989,7 +21000,7 @@ CapsuleCollider:
   m_Center: {x: 0, y: 1.46, z: 0}
 --- !u!95 &1801479727
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21006,8 +21017,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1801479728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21020,6 +21030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666cdd35a0fe804449670884152004e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPosition: {fileID: 854263484}
 --- !u!1 &1803406964
 GameObject:
   m_ObjectHideFlags: 0

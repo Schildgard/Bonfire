@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerActionScript : MonoBehaviour, IAttackAction, IBlockAction
+public class PlayerActionScript : MonoBehaviour
 {
 
     private Rigidbody playerRigidbody;

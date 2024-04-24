@@ -8,6 +8,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     public delegate bool StateMachineDelegate();
     public Dictionary<EnemyBaseState, Dictionary<StateMachineDelegate, EnemyBaseState>> EnemyStateDictionary;
     public EnemyBaseState CurrentState;
+    public Transform PlayerPosition;
 
 
 

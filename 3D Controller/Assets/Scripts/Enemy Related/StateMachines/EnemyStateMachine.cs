@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : EnemyStateMachineBase
 {
-    [SerializeField] private Transform PlayerTransform;
     [SerializeField] EnemyDetectionScript EnemyDetection;
 
     private EnemyBattleStateMachine EnemyBattleStateMachine;
@@ -28,9 +27,8 @@ public class EnemyStateMachine : EnemyStateMachineBase
     public override void InitializeStateMachine()
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
-        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerTransform, Animator, this.transform);
+        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform);
         EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition, Animator);
-        //EnemyBattleState EnemyBattleState = new EnemyBattleState(this, NavMeshAgent, PlayerTransform, Animator);
         EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine);
 
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackState : EnemyBaseState, IAttackAction
+public class EnemyAttackState : EnemyBaseState
 {
     private Animator Animator;
     public EnemyAttackState(EnemyBattleStateMachine _enemyStateMachine, Animator animator) : base(_enemyStateMachine)
@@ -29,6 +29,7 @@ public class EnemyAttackState : EnemyBaseState, IAttackAction
     {
         Debug.Log("Attack has been performed");
     }
+
 
     public void Attack()
     {

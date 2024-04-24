@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,12 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
 
     private NavMeshAgent NavMeshAgent;
     private Animator Animator;
+    private Vector3 targetPosition;
+    public Vector3 TargetPosition
+    {
+        get { return targetPosition; }
+        set { targetPosition = value; }
+    }
 
     private float stateTimer;
     public float StateTimer 
@@ -31,7 +38,7 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
     {
 
         EnemyWaitState EnemyWaitState = new EnemyWaitState(this,NavMeshAgent);
-        EnemyGoAroundState EnemyGoAroundState = new EnemyGoAroundState(this, NavMeshAgent, Animator, EnemyDetection);
+        EnemyGoAroundState EnemyGoAroundState = new EnemyGoAroundState(this, NavMeshAgent, Animator, EnemyDetection, PlayerPosition);
         EnemyAttackState EnemyAttackState = new EnemyAttackState(this,Animator);
         EnemyBlockState EnemyBlockState = new EnemyBlockState(this);
 
@@ -53,7 +60,7 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
                 EnemyGoAroundState,
                 new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
-                    { () => stateTimer <=0, EnemyWaitState},
+                    {() => CompareDistance(transform.position, targetPosition) <= 0.5f, EnemyWaitState}
 
                 }
             },
@@ -72,6 +79,7 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
     public override void UpdateStateMachine() 
     {
         stateTimer -= Time.deltaTime;
+        transform.LookAt(PlayerPosition);
         base.UpdateStateMachine();
 
 
@@ -83,6 +91,20 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
     {
         stateTimer = 0;
         
+
+    }
+
+    private float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition)
+    {
+        Vector3 DistanceVector = new Vector3(_targetPosition.x,0, _targetPosition.z) - new Vector3(_currentPosition.x,0, _currentPosition.z);                                       // _targetPosition - _currentPosition;
+        float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
+        return distanceToTarget;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(TargetPosition, Vector3.up *5f);
 
     }
 }

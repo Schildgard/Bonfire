@@ -22,7 +22,6 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void StateEnter()
     {
-        //Debug.Log("OnChaseEnter");
     }
 
     public override void StateUpdate()
@@ -31,12 +30,10 @@ public class EnemyChaseState : EnemyBaseState
         NavMeshAgent.SetDestination(PlayerPosition.position);
         NavMeshAgent.isStopped = false;
         Animator.SetBool("isWalking", true);
-       // Debug.Log("OnChaseUpdate");
     }
 
     public override void StateExit()
     {
         Animator.SetBool("isWalking", false);
-        // Debug.Log("OnChaseExit");
     }
 }
