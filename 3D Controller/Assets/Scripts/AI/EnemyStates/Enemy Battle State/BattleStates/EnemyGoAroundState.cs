@@ -22,8 +22,8 @@ public class EnemyGoAroundState : EnemyBaseState
         //Set Destination within Battle Range, but not behind Player
         NavMeshAgent.SetDestination(Random.insideUnitSphere * EnemyDetection.BattleSphereRadius);
         NavMeshAgent.isStopped = false;
+        Animator.SetBool("isWalking", true);
         Debug.Log("Enter Go Around State");
-
 
 
     }
@@ -32,7 +32,6 @@ public class EnemyGoAroundState : EnemyBaseState
     {
         //Move to Destination
         //play Move Animaiton
-        Animator.SetBool("isWalking", true);
         Debug.Log("Goes Around");
     }
 

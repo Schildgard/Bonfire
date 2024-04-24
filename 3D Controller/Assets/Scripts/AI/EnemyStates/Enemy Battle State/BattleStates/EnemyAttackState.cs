@@ -13,14 +13,16 @@ public class EnemyAttackState : EnemyBaseState, IAttackAction
 
     public override void StateEnter()
     {
-        
+
+        base.StateEnter();
         //Choose Attack
+        Attack();
     }
 
     public override void StateUpdate()
     {
-        Attack();
-        //perform Attack and start Animation
+        
+        
     }
 
     public override void StateExit()

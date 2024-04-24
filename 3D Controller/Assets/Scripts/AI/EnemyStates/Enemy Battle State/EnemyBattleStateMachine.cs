@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,7 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
         EnemyDetection = GetComponent<EnemyDetectionScript>();
 
     }
+
 
     public override void InitializeStateMachine()
     {
@@ -60,10 +62,7 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
                 EnemyAttackState,
                 new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
-                    //{ () => !Animator.GetCurrentAnimatorStateInfo(0).IsName("ataka2"), EnemyGoAroundState},
-                    //{() => Animator.GetAnimatorTransitionInfo(0).IsName("ExitAttack"), EnemyGoAroundState}
-                    //{() => Animator.GetCurrentAnimatorClipInfo(0). }
-
+                    {() => stateTimer <= 0, EnemyGoAroundState}
                 }
             },
        };
@@ -74,6 +73,16 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
     {
         stateTimer -= Time.deltaTime;
         base.UpdateStateMachine();
+
+
+
+    }
+
+
+    public void AttackAnimationEnd() 
+    {
+        stateTimer = 0;
+        
 
     }
 }
