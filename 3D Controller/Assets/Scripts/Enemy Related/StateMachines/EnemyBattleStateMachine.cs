@@ -7,10 +7,7 @@ using UnityEngine.AI;
 
 public class EnemyBattleStateMachine : EnemyStateMachineBase
 {
-    private EnemyDetectionScript EnemyDetection;
 
-    private NavMeshAgent NavMeshAgent;
-    private Animator Animator;
     private Vector3 targetPosition;
     public Vector3 TargetPosition
     {
@@ -25,13 +22,6 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
         set { stateTimer = value;}
     }
 
-    private void Awake()
-    {
-        Animator = GetComponent<Animator>();
-        NavMeshAgent = GetComponent<NavMeshAgent>();
-        EnemyDetection = GetComponent<EnemyDetectionScript>();
-
-    }
 
 
     public override void InitializeStateMachine()
@@ -92,13 +82,6 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
         stateTimer = 0;
         
 
-    }
-
-    private float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition)
-    {
-        Vector3 DistanceVector = new Vector3(_targetPosition.x,0, _targetPosition.z) - new Vector3(_currentPosition.x,0, _currentPosition.z);                                       // _targetPosition - _currentPosition;
-        float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
-        return distanceToTarget;
     }
 
     void OnDrawGizmos()

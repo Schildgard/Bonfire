@@ -11,6 +11,23 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     public Transform PlayerPosition;
 
 
+    public EnemyDetectionScript EnemyDetection;
+    public NavMeshAgent NavMeshAgent;
+    public Animator Animator;
+
+
+
+    protected virtual void Awake()
+    {
+        EnemyDetection = GetComponent<EnemyDetectionScript>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
+        Animator = GetComponent<Animator>();
+    }
+
+
+
+
+
 
     public  void Start()
     {
@@ -48,5 +65,13 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
                 CurrentState.StateEnter();
             }
         }
+    }
+
+
+    protected float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition)
+    {
+        Vector3 DistanceVector = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z);                                       // _targetPosition - _currentPosition;
+        float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
+        return distanceToTarget;
     }
 }

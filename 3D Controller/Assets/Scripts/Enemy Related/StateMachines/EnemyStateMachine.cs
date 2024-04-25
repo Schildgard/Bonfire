@@ -5,19 +5,15 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : EnemyStateMachineBase
 {
-    [SerializeField] EnemyDetectionScript EnemyDetection;
-
     private EnemyBattleStateMachine EnemyBattleStateMachine;
-    private NavMeshAgent NavMeshAgent;
-    private Animator Animator;
+
     private Vector3 StartPosition;
 
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        NavMeshAgent = GetComponent<NavMeshAgent>();
-        Animator = GetComponent<Animator>();
+        base.Awake();
         StartPosition = transform.position;
         EnemyBattleStateMachine = GetComponent<EnemyBattleStateMachine>();
     }
@@ -76,13 +72,6 @@ public class EnemyStateMachine : EnemyStateMachineBase
     }
 
 
-
-    private float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition) 
-    {
-        Vector3 DistanceVector = _targetPosition - _currentPosition;
-        float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
-        return distanceToTarget;
-    }
 
 
 }
