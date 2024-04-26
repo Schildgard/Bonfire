@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyDetectionScript : MonoBehaviour
 {
+
+    [SerializeField]private float radiusVectorX;
+    [SerializeField]private float radiusVectorZ;
     [SerializeField]private float chaseSphereRadius;
     public float ChaseSphereRadius
     {
@@ -41,5 +44,13 @@ public class EnemyDetectionScript : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, battleSphereRadius);
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(radiusVectorX, 0, radiusVectorZ)) * 10);
+        Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(-radiusVectorX, 0, radiusVectorZ)) * 10);
+
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, transform.forward * 10);
     }
 }

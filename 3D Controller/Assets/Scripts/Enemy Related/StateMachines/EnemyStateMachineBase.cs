@@ -17,6 +17,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
 
 
+
     protected virtual void Awake()
     {
         EnemyDetection = GetComponent<EnemyDetectionScript>();
@@ -73,5 +74,18 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
         Vector3 DistanceVector = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z);                                       // _targetPosition - _currentPosition;
         float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
         return distanceToTarget;
+    }
+
+    protected float GetRadius(Vector3 _currentPosition, Vector3 _targetPosition) 
+    {
+        //Get Magnitude of DirectionVectos
+        float sqrMagnitude1 = Vector3.SqrMagnitude(_currentPosition);
+        float sqrMagnitude2 = CompareDistance(_currentPosition, _targetPosition);
+
+        //Get DotProduct of these two Vectors 
+        float dotProduct = (_currentPosition.x * _targetPosition.x) + (_currentPosition.y + _targetPosition.y) + (_currentPosition.z * _targetPosition.z);
+
+        float deGrees = dotProduct / (sqrMagnitude1 * sqrMagnitude2);
+        return deGrees;
     }
 }
