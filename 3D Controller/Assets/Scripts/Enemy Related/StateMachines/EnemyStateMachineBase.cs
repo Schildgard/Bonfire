@@ -9,6 +9,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     public Dictionary<EnemyBaseState, Dictionary<StateMachineDelegate, EnemyBaseState>> EnemyStateDictionary;
     public EnemyBaseState CurrentState;
     public Transform PlayerPosition;
+    public Transform EnemyPosition;
 
 
     public EnemyDetectionScript EnemyDetection;
@@ -20,6 +21,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        EnemyPosition = GetComponent<Transform>();
         EnemyDetection = GetComponent<EnemyDetectionScript>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
@@ -71,32 +73,36 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
     protected float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition)
     {
-        Vector3 DistanceVector = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z);                                       // _targetPosition - _currentPosition;
+        Vector3 DistanceVector = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z); 
         float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
         return distanceToTarget;
     }
 
-    protected float GetRadius(Vector3 _currentPosition, Vector3 _targetPosition) 
+
+    protected float GetRadius(Transform _currentPosition, Transform _targetPosition) 
     {
+        Vector3 ViewDirection = _currentPosition.forward;
 
-        //Get Magnitude of DirectionVectos
-        float sqrMagnitude1 = Vector3.Magnitude(_currentPosition *10);
-        //float sqrMagnitude2 = CompareDistance(_currentPosition, _targetPosition);
-
-
-
-        Vector3 DistanceToTarget = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z);
-
-        float sqrMagnitude2 = Vector3.Magnitude(DistanceToTarget*10);
+        Vector3 TargetDirection = (_targetPosition.position - _currentPosition.position);
 
 
 
-        //Get DotProduct of these two Vectors 
-        //float dotProduct = (_currentPosition.x * _targetPosition.x) + (_currentPosition.y + _targetPosition.y) + (_currentPosition.z * _targetPosition.z);
-        float dotProduct = (_currentPosition.x * DistanceToTarget.x) + (_currentPosition.y + DistanceToTarget.y) + (_currentPosition.z * DistanceToTarget.z);
+        float magnitudeViewDirection = Vector3.Magnitude(ViewDirection);
+        float magnitudeDistanceDirection = Vector3.Magnitude(TargetDirection);
+
+        float dotProduct = (ViewDirection.x * TargetDirection.x) + (ViewDirection.y * TargetDirection.y) + (ViewDirection.z * TargetDirection.z);
+
+        float degrees = dotProduct / (magnitudeViewDirection * magnitudeDistanceDirection);
+
+        Debug.Log(degrees);
+        if (TargetDirection.magnitude <= EnemyDetection.ViewRange)
+        {
+            return degrees;
+        }
+        else return 0f;
 
 
-        float deGrees = dotProduct / (sqrMagnitude1 * sqrMagnitude2);
-        return deGrees;
+
     }
+
 }

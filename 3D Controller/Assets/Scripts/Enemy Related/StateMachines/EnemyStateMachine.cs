@@ -37,9 +37,8 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                    {   ()=>EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius),EnemyBattleState},
-                      // {   ()=>EnemyDetection.CheckRange(EnemyDetection.ChaseSphereRadius),EnemyChaseState}
-                      {()=> GetRadius(transform.forward, PlayerPosition.position) >= 0.3f && GetRadius(transform.forward, PlayerPosition.position) <= 0.7f ,EnemyChaseState},
+                    //{   ()=>EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius),EnemyBattleState},
+                    {   ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState},
                   }
 
              },
