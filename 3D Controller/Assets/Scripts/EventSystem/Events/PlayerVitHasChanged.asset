@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1bb5d4eb202d4545ac25e6bb314929b, type: 3}
-  m_Name: PlayerStatsChange
+  m_Name: PlayerVitHasChanged
   m_EditorClassIdentifier: 
   Listeners: []

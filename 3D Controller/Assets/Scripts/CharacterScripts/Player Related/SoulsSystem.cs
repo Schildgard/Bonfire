@@ -27,6 +27,11 @@ public class SoulsSystem : MonoBehaviour
     public void GainSouls(float _soulsValue) 
     {
         PlayerStats.SoulsValue += _soulsValue;
+        UpdateSoulsCounter();
+    }
+
+    public void UpdateSoulsCounter() 
+    {
         SoulsCounter.text = PlayerStats.SoulsValue.ToString();
     }
 }

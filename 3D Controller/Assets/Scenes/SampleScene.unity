@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4631,6 +4631,30 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 854263493}
+        m_TargetAssemblyTypeName: HealthScript, Assembly-CSharp
+        m_MethodName: ResetHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 854263493}
+        m_TargetAssemblyTypeName: HealthScript, Assembly-CSharp
+        m_MethodName: UpdateMaxHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 854263486}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -4777,18 +4801,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 871552169}
         m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 871552169}
-        m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
         m_MethodName: RespawnList
         m_Mode: 1
         m_Arguments:
@@ -4811,9 +4823,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0378da5ee72a6e4449e5746fcd092e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyList: []
-  KnownEnemies:
-  - {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
+  EnemyStorage:
+  - EnemyPrefab: {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
+    EnemySpawnPosition: {fileID: 1416461437}
+  - EnemyPrefab: {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
+    EnemySpawnPosition: {fileID: 1904200221}
 --- !u!4 &871552170
 Transform:
   m_ObjectHideFlags: 0
@@ -4822,10 +4836,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871552167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.419073, y: 6.6135397, z: 26.336025}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1416461437}
+  - {fileID: 1904200221}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5546,6 +5562,7 @@ MonoBehaviour:
   - {fileID: 51432517}
   - {fileID: 455347257}
   PlayerStats: {fileID: 854263494}
+  PlayerHealthScript: {fileID: 854263493}
   StatCanvas: {fileID: 1164005161}
 --- !u!1 &1299612846
 GameObject:
@@ -6043,6 +6060,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399161909}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1416461436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416461437}
+  m_Layer: 0
+  m_Name: Position Enemy 01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1416461437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416461436}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -25.02, y: 0, z: 39.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 871552170}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &1442967282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3997754367324394837, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
@@ -18344,28 +18392,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798414658}
   m_CullTransparentMesh: 1
---- !u!1 &1801479721 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
-  m_PrefabInstance: {fileID: 3997754368700119975}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1801479735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801479721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d831e4361f50b794d8b0620850243616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyID: 1
-  SpawnPosition: {x: 0, y: 0, z: 0}
-  HealthScript: {fileID: 0}
-  StateMachine: {fileID: 0}
-  BattleStateMachine: {fileID: 0}
 --- !u!1 &1891019369
 GameObject:
   m_ObjectHideFlags: 0
@@ -18443,6 +18469,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891019369}
   m_CullTransparentMesh: 1
+--- !u!1 &1904200220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1904200221}
+  m_Layer: 0
+  m_Name: Position Enemy 02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1904200221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904200220}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 10.61, y: 0, z: 56.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 871552170}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1906363228
 GameObject:
   m_ObjectHideFlags: 0
@@ -19346,10 +19403,6 @@ PrefabInstance:
     - target: {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
       propertyPath: m_Name
       value: Enemy One
-      objectReference: {fileID: 0}
-    - target: {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317079, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
       propertyPath: PlayerPosition

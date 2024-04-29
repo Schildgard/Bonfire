@@ -45,9 +45,11 @@ public class HealthScript : MonoBehaviour, IDamageable
 
     public void GetDamage(float _damage)
     {
+        float defMultiplier = (_damage / 100) * (Stats.Defense * 5f);
         if (!isAlive)
         { return; }
-        currentHealth -= _damage;
+        currentHealth -= (_damage - defMultiplier);
+        Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage");
         if (currentHealth <= 0)
         { Die(); }
         Animator.SetTrigger("Get Damage");

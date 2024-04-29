@@ -15,44 +15,47 @@ public class EnemySpawnManager : MonoBehaviour
         else { Destroy(gameObject); }
         DontDestroyOnLoad(gameObject);
     }
-
-
-    [SerializeField] public List<EnemyID> EnemyList = new List<EnemyID>();
-    EnemyID[] EnemysInScene;
-
-
-
-    [SerializeField] private List<GameObject> KnownEnemies;
-
-    private void Start()
-    {
-        InitializeList();
-    }
-
-    public void InitializeList()
-    {
-         EnemysInScene = FindObjectsOfType(typeof(EnemyID)) as EnemyID[];
-
-        foreach (EnemyID enemy in EnemysInScene)
-        {
-            EnemyList.Add(enemy);
-            enemy.ResetEnemy();
-
-            
-        }
-
-        Debug.Log($"EnemyList containts {EnemyList.Count} Items");
-    }
-
+    [SerializeField] private List<EnemyData> EnemyStorage = new List<EnemyData>();
 
 
 
     public void RespawnList()
     {
 
-        foreach (var enemy in EnemyList) 
+        EnemyStateMachine[] EnemiesToDelete = FindObjectsByType<EnemyStateMachine>(FindObjectsSortMode.None);
+        foreach (var enemy in EnemiesToDelete)
         {
-            enemy.transform.position = enemy.SpawnPosition;
+            Destroy(enemy.gameObject);
         }
+
+        foreach (EnemyData enemy in EnemyStorage) 
+        {
+            enemy.SpawnThisEnemy();
+        }
+
+    }
+
+    [Serializable]
+    public class EnemyData
+    {
+
+        public GameObject EnemyPrefab;
+
+        public Transform EnemySpawnPosition;
+
+        public EnemyData(GameObject _enemyPrefab, Transform _enemySpawnPosition)
+        {
+            EnemyPrefab = _enemyPrefab;
+            EnemySpawnPosition = _enemySpawnPosition;
+            
+        }
+
+
+        public void SpawnThisEnemy() 
+        {
+            Instantiate(EnemyPrefab, EnemySpawnPosition.position,Quaternion.identity);
+            
+        }
+
     }
 }

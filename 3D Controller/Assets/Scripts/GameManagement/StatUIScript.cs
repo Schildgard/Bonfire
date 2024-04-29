@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class StatUIScript : MonoBehaviour
 {
-
     [SerializeField] private TMP_Text[] Attributes;
     [SerializeField] private StatScript PlayerStats;
+    [SerializeField] private HealthScript PlayerHealthScript;
     [SerializeField] private GameObject StatCanvas;
 
     private float levelReference;
@@ -145,6 +145,11 @@ public class StatUIScript : MonoBehaviour
 
         SoulsSystem.instance.LevelUpCost = PlayerStats.Level * 50;
         SoulsSystem.instance.CurrentSouls = soulsValueReference;
+        SoulsSystem.instance.UpdateSoulsCounter();
+
+
+        PlayerHealthScript.UpdateMaxHealth();
+        PlayerHealthScript.ResetHealth();
 
     }
 }
