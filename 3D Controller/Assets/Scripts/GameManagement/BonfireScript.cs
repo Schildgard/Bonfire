@@ -5,7 +5,7 @@ using UnityEngine;
 public class BonfireScript : MonoBehaviour
 {
 
-    public GameEvent gameEvent;
+    public GameEvent RestEvent;
 
     [SerializeField]private GameObject ToolTip;
     private bool bonfireActivated;
@@ -21,7 +21,7 @@ public class BonfireScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y) && bonfireActivated) 
         {
-            gameEvent.Raise();
+            RestEvent.Raise();
         }
     }
 

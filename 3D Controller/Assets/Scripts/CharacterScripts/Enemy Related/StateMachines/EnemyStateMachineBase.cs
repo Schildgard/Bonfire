@@ -12,15 +12,16 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     public Transform EnemyPosition;
 
 
-    public EnemyDetectionScript EnemyDetection;
-    public NavMeshAgent NavMeshAgent;
-    public Animator Animator;
+    protected EnemyDetectionScript EnemyDetection;
+    protected NavMeshAgent NavMeshAgent;
+    protected Animator Animator;
 
 
 
 
     protected virtual void Awake()
     {
+        PlayerPosition = GameObject.Find("Player").GetComponent<Transform>();
         EnemyPosition = GetComponent<Transform>();
         EnemyDetection = GetComponent<EnemyDetectionScript>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
