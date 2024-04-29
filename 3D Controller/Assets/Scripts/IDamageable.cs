@@ -6,8 +6,6 @@ using UnityEngine;
 public interface IDamageable
 {
 
-    void GetDamage();
-
-    void OnTriggerEnter(Collider other);
+    public void GetDamage(float _damage);
 
 }
