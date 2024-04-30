@@ -39,5 +39,6 @@ public class SoulsSystem : MonoBehaviour
     {
         lostSouls = PlayerStats.SoulsValue;
         PlayerStats.SoulsValue = 0;
+        UpdateSoulsCounter();
     }
 }

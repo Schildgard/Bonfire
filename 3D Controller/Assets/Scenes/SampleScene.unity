@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -807,7 +807,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1164005166}
         m_TargetAssemblyTypeName: StatUIScript, Assembly-CSharp
-        m_MethodName: AssignPlayerStats
+        m_MethodName: SaveChanges
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4710,7 +4710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   YouDied: {fileID: 11400000, guid: 1301868de6c918b408901aa408e3b9c1, type: 2}
-  LastBonfire: {fileID: 1464980307}
+  PlayerInput: {fileID: 854263486}
 --- !u!1 &858009000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4876,6 +4876,9 @@ MonoBehaviour:
   SoulsCrate:
     EnemyPrefab: {fileID: 1762738750164056818, guid: d11b081441492a546a50f09bb8f42251, type: 3}
     EnemySpawnPosition: {fileID: 854263484}
+  Player:
+    EnemyPrefab: {fileID: 854263482}
+    EnemySpawnPosition: {fileID: 1464980307}
 --- !u!4 &871552170
 Transform:
   m_ObjectHideFlags: 0
@@ -4911,7 +4914,31 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 871552169}
         m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
+        m_MethodName: RespawnList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 871552169}
+        m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
         m_MethodName: SpawnSoulsCrate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 871552169}
+        m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
+        m_MethodName: RespawnPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

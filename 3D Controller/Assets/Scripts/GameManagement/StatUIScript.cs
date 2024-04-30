@@ -29,7 +29,7 @@ public class StatUIScript : MonoBehaviour
         ShowValuesForStatWindow();
     }
 
-    public void GetStatReferences()
+    private void GetStatReferences()
     {
 
         levelReference = PlayerStats.Level;
@@ -39,7 +39,7 @@ public class StatUIScript : MonoBehaviour
         speedReference = PlayerStats.Speed;
         defenseReference = PlayerStats.Defense;
     }
-    public void ShowValuesForStatWindow()
+    private void ShowValuesForStatWindow()
     {
         levelUpCostReference = levelReference * 50;
 
@@ -54,7 +54,7 @@ public class StatUIScript : MonoBehaviour
 
     }
 
-    public void IncreaseStat(int _index)
+    private void IncreaseStat(int _index)
     {
         if (soulsValueReference < levelUpCostReference)
         { return; }
@@ -86,7 +86,7 @@ public class StatUIScript : MonoBehaviour
     }
 
 
-    public void DecreaseStat(int _index)
+    private void DecreaseStat(int _index)
     {
         switch (_index)
         {
@@ -144,7 +144,6 @@ public class StatUIScript : MonoBehaviour
         PlayerStats.Defense = defenseReference;
 
         SoulsSystem.instance.LevelUpCost = PlayerStats.Level * 50;
-        //SoulsSystem.instance.CurrentSouls = soulsValueReference;
         SoulsSystem.instance.UpdateSoulsCounter();
 
 
