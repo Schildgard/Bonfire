@@ -134,7 +134,7 @@ public class StatUIScript : MonoBehaviour
     }
 
 
-    public void AssignPlayerStats()
+    public void SaveChanges()
     {
         PlayerStats.Level = levelReference;
         PlayerStats.SoulsValue = soulsValueReference;
@@ -144,7 +144,7 @@ public class StatUIScript : MonoBehaviour
         PlayerStats.Defense = defenseReference;
 
         SoulsSystem.instance.LevelUpCost = PlayerStats.Level * 50;
-        SoulsSystem.instance.CurrentSouls = soulsValueReference;
+        //SoulsSystem.instance.CurrentSouls = soulsValueReference;
         SoulsSystem.instance.UpdateSoulsCounter();
 
 

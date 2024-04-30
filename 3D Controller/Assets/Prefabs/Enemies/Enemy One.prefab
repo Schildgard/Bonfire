@@ -5557,6 +5557,7 @@ GameObject:
   - component: {fileID: 3997754368316317075}
   - component: {fileID: 3997754368316317073}
   - component: {fileID: 3997754368316317074}
+  - component: {fileID: -2961963651066758588}
   m_Layer: 8
   m_Name: Enemy One
   m_TagString: Untagged
@@ -5732,9 +5733,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
-  EnemyStateMachines:
-  - {fileID: 3997754368316317068}
-  - {fileID: 3997754368316317079}
+  isAlive: 0
+--- !u!114 &-2961963651066758588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997754368316317070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693ef20a2af119340a73de07d1bd98cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyStateMachines: []
 --- !u!1 &3997754368318191059
 GameObject:
   m_ObjectHideFlags: 0

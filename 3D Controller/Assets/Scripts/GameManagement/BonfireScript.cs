@@ -7,7 +7,7 @@ public class BonfireScript : MonoBehaviour
 
     public GameEvent RestEvent;
 
-    [SerializeField]private GameObject ToolTip;
+    [SerializeField]private GameObject Tooltip;
     private bool bonfireActivated;
 
     // Start is called before the first frame update
@@ -29,7 +29,7 @@ public class BonfireScript : MonoBehaviour
     {
         if (_other.gameObject.layer == 7) 
         {
-            ToolTip.SetActive(true);
+            Tooltip.SetActive(true);
             bonfireActivated = true;
         }
     }
@@ -38,7 +38,7 @@ public class BonfireScript : MonoBehaviour
     {
         if (_other.gameObject.layer == 7)
         {
-            ToolTip.SetActive(false);
+            Tooltip.SetActive(false);
             bonfireActivated=false;
         }
     }

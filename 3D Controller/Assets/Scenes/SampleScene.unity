@@ -2694,6 +2694,7 @@ GameObject:
   - component: {fileID: 562622915}
   - component: {fileID: 562622917}
   - component: {fileID: 562622918}
+  - component: {fileID: 562622919}
   m_Layer: 0
   m_Name: SoulsSystem
   m_TagString: Untagged
@@ -2761,6 +2762,34 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &562622919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562622913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8d6dea4c048d4cb3af9482c5c9c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 1301868de6c918b408901aa408e3b9c1, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 562622917}
+        m_TargetAssemblyTypeName: SoulsSystem, Assembly-CSharp
+        m_MethodName: TransferSouls
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &585744219
 GameObject:
@@ -4274,6 +4303,7 @@ GameObject:
   - component: {fileID: 854263494}
   - component: {fileID: 854263493}
   - component: {fileID: 854263495}
+  - component: {fileID: 854263496}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -4595,7 +4625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
-  EnemyStateMachines: []
+  isAlive: 0
 --- !u!114 &854263494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4667,6 +4697,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &854263496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854263482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c54987c59987b4d992d5216aec4bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YouDied: {fileID: 11400000, guid: 1301868de6c918b408901aa408e3b9c1, type: 2}
+  LastBonfire: {fileID: 1464980307}
 --- !u!1 &858009000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,6 +4820,7 @@ GameObject:
   - component: {fileID: 871552170}
   - component: {fileID: 871552169}
   - component: {fileID: 871552168}
+  - component: {fileID: 871552171}
   m_Layer: 0
   m_Name: EnemySpawnManager
   m_TagString: Untagged
@@ -4828,6 +4873,9 @@ MonoBehaviour:
     EnemySpawnPosition: {fileID: 1416461437}
   - EnemyPrefab: {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
     EnemySpawnPosition: {fileID: 1904200221}
+  SoulsCrate:
+    EnemyPrefab: {fileID: 1762738750164056818, guid: d11b081441492a546a50f09bb8f42251, type: 3}
+    EnemySpawnPosition: {fileID: 854263484}
 --- !u!4 &871552170
 Transform:
   m_ObjectHideFlags: 0
@@ -4845,6 +4893,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &871552171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871552167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8d6dea4c048d4cb3af9482c5c9c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 1301868de6c918b408901aa408e3b9c1, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 871552169}
+        m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
+        m_MethodName: SpawnSoulsCrate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &913871148
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,14 +6159,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416461436}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.02, y: 0, z: 39.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 871552170}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1442967282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3997754367324394837, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
@@ -16908,7 +16984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RestEvent: {fileID: 11400000, guid: 338fd87a61c802c4e8f9f5243201dab5, type: 2}
-  ToolTip: {fileID: 1537790542}
+  Tooltip: {fileID: 1537790542}
 --- !u!135 &1464980309
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18492,14 +18568,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904200220}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.61, y: 0, z: 56.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 871552170}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1906363228
 GameObject:
   m_ObjectHideFlags: 0

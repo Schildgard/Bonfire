@@ -17,6 +17,8 @@ public class EnemySpawnManager : MonoBehaviour
     }
     [SerializeField] private List<EnemyData> EnemyStorage = new List<EnemyData>();
 
+    [SerializeField] private EnemyData SoulsCrate;
+
 
 
     public void RespawnList()
@@ -33,6 +35,11 @@ public class EnemySpawnManager : MonoBehaviour
             enemy.SpawnThisEnemy();
         }
 
+    }
+
+    public void SpawnSoulsCrate() 
+    {
+        SoulsCrate.SpawnThisEnemy();
     }
 
     [Serializable]
@@ -53,7 +60,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         public void SpawnThisEnemy() 
         {
-            Instantiate(EnemyPrefab, EnemySpawnPosition.position,Quaternion.identity);
+            Instantiate(EnemyPrefab, EnemySpawnPosition.position,EnemyPrefab.transform.rotation);
             
         }
 
