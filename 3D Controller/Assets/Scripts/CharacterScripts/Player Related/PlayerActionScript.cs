@@ -34,6 +34,16 @@ public class PlayerActionScript : MonoBehaviour
     private Vector3 MovementVector;
     #endregion
 
+    #region NewWalkUsing BlendTree
+
+
+    private float velocity;
+    [SerializeField] float acceleration;
+    [SerializeField] private float deceleration;
+    private int velocityHash;
+    private float accelerationThreshold = 0.4f;
+    #endregion
+
     #region Run
     [SerializeField] private float maxRunSpeed;
     [SerializeField] private float walkSpeedAcceleration;
@@ -87,12 +97,16 @@ public class PlayerActionScript : MonoBehaviour
         collisionDetection = GetComponent<GroundCheck>();
         Animator = GetComponent<Animator>();
 
+        velocityHash = Animator.StringToHash("Velocity");
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Walk(activeCamera);
+        // Walk(activeCamera);
+        NewWalkUsingBlendTree();
         Run();
         Rotate();
         Block();
@@ -102,14 +116,15 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Walk(Transform _activeCameraTransform)
     {
-         if (!lockOn) 
-         {
+
+        if (!lockOn)
+        {
             _activeCameraTransform = Camera.transform;
-         }
-         else 
-         {
+        }
+        else
+        {
             _activeCameraTransform = LockOnCamera.transform;
-         }
+        }
 
         MovementVector = _activeCameraTransform.transform.forward * MoveInput.y;
         MovementVector = MovementVector + _activeCameraTransform.transform.right * MoveInput.x;
@@ -133,6 +148,27 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
+    private void NewWalkUsingBlendTree()
+    {
+        if (MoveInput.x > 0.1f || MoveInput.x < -0.1f || MoveInput.y > 0.1f || MoveInput.y < -0.1f)
+        {
+            if (velocity <= accelerationThreshold)
+            {
+                Debug.Log("Input Successfull");
+                velocity += Time.deltaTime * acceleration;
+            }
+            else  velocity -= Time.deltaTime * deceleration;
+            
+        }
+
+        else if (velocity > 0)
+        {
+            velocity -= Time.deltaTime * deceleration;
+        }
+
+        Animator.SetFloat(velocityHash, velocity);
+    }
+
     private void Rotate()
     {
 
@@ -141,21 +177,21 @@ public class PlayerActionScript : MonoBehaviour
             TargetRotationDirection = Camera.transform.forward * MoveInput.y;
             TargetRotationDirection += Camera.transform.right * MoveInput.x;
         }
-        else 
+        else
         {
             TargetRotationDirection = LockOnCamera.transform.forward;
         }
 
-            TargetRotationDirection.Normalize();
-            TargetRotationDirection.y = 0;
-            if (TargetRotationDirection == Vector3.zero) //Comparison between two Vectors works in that Case, because the Values of TargetRotation are bound to Input System.
-            {
-                TargetRotationDirection = transform.forward;
-            }
+        TargetRotationDirection.Normalize();
+        TargetRotationDirection.y = 0;
+        if (TargetRotationDirection == Vector3.zero) //Comparison between two Vectors works in that Case, because the Values of TargetRotation are bound to Input System.
+        {
+            TargetRotationDirection = transform.forward;
+        }
 
-            Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
-            Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = newRotation;
+        Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
+        Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = newRotation;
     }
 
     private void Run()
@@ -198,13 +234,17 @@ public class PlayerActionScript : MonoBehaviour
         if (_context.started)
         {
             accelerationMultiplier = 1;
+            accelerationThreshold = 1f;
 
             Animator.SetBool("isRunning", true);
+
+
         }
 
         if (_context.canceled)
         {
-            accelerationMultiplier = -1;
+            accelerationMultiplier = 1;
+            accelerationThreshold = 0.4f;
             Animator.SetBool("isRunning", false);
         }
     }

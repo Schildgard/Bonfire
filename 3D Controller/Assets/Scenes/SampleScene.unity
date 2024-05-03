@@ -4346,6 +4346,8 @@ MonoBehaviour:
   currentWalkSpeed: 6
   lerpSpeed: 5
   MoveInput: {x: 0, y: 0}
+  acceleration: 0.6
+  deceleration: 3
   maxRunSpeed: 12
   walkSpeedAcceleration: 6.5
   jumpPower: 5
