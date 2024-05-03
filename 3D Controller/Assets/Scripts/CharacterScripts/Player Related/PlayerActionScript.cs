@@ -120,7 +120,7 @@ public class PlayerActionScript : MonoBehaviour
 
         SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, MovementVector, lerpSpeed * Time.deltaTime);
 
-        playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+        //playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
         if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f)
         {
@@ -198,11 +198,14 @@ public class PlayerActionScript : MonoBehaviour
         if (_context.started)
         {
             accelerationMultiplier = 1;
+
+            Animator.SetBool("isRunning", true);
         }
 
         if (_context.canceled)
         {
             accelerationMultiplier = -1;
+            Animator.SetBool("isRunning", false);
         }
     }
 
