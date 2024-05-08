@@ -44,6 +44,15 @@ public class PlayerActionScript : MonoBehaviour
     private float accelerationThreshold = 0.4f;
     #endregion
 
+    #region NewWalk2DBlendTree
+
+    float velocityZ;
+    float velocityX;
+
+    private bool runButtonPressed;
+
+    #endregion
+
     #region Run
     [SerializeField] private float maxRunSpeed;
     [SerializeField] private float walkSpeedAcceleration;
@@ -106,8 +115,9 @@ public class PlayerActionScript : MonoBehaviour
     void Update()
     {
         // Walk(activeCamera);
-        NewWalkUsingBlendTree();
-        Run();
+        //NewWalkUsingBlendTree();
+        NewWalk2DBlendTree();
+        //Run();
         Rotate();
         Block();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
@@ -154,7 +164,6 @@ public class PlayerActionScript : MonoBehaviour
         {
             if (velocity <= accelerationThreshold)
             {
-                Debug.Log("Input Successfull");
                 velocity += Time.deltaTime * acceleration;
             }
             else  velocity -= Time.deltaTime * deceleration;
@@ -167,6 +176,57 @@ public class PlayerActionScript : MonoBehaviour
         }
 
         Animator.SetFloat(velocityHash, velocity);
+    }
+
+    private void NewWalk2DBlendTree()
+    {
+
+        // Movement (MoveInput equals the Vector2 Parameter of the Walk Event)
+        if (MoveInput.y > 0.1f && velocityZ < 0.5f && !runButtonPressed) 
+        {
+            Debug.Log("Acceleration");
+            velocityZ += Time.deltaTime * acceleration;
+        }
+        if (MoveInput.x > 0.1f && velocityX < 0.5f && !runButtonPressed) 
+        {
+            velocityX += Time.deltaTime * acceleration;
+        }
+       if (MoveInput.x < -0.1f && velocityX > -0.5f && !runButtonPressed)
+       {
+           velocityX -= Time.deltaTime * acceleration;
+       }
+        if (MoveInput.y < -0.1f && velocityZ < 0.5f && !runButtonPressed)
+        {
+            velocityZ += Time.deltaTime * acceleration;
+        }
+
+        // SlowDown and Stop Movement
+        if (MoveInput.y < 0.1f && velocityZ > 0 && MoveInput.y > -0.1f && velocityZ > 0)
+        {
+            Debug.Log("Deceleration");
+            velocityZ -= Time.deltaTime * acceleration;
+        }
+        if (MoveInput.y < 0.1f && velocityZ < 0 && MoveInput.y > -0.1f && velocityZ < 0)
+        {
+            velocityZ = 0;
+        }
+
+
+        if (MoveInput.x < 0.1f && velocityX > 0 && MoveInput.x > -0.1f && velocityX > 0)
+        {
+            velocityX -= Time.deltaTime * acceleration;
+        }
+        if (MoveInput.x < 0.1f && velocityX < 0 && MoveInput.x > -0.1f && velocityX < 0)
+        {
+            velocityX= 0;
+        }
+
+
+        Animator.SetFloat("Velocity Z", velocityZ);
+        Animator.SetFloat("Velocity X", velocityX);
+
+
+
     }
 
     private void Rotate()
@@ -233,7 +293,8 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started)
         {
-            accelerationMultiplier = 1;
+            //accelerationMultiplier = 1;
+            runButtonPressed = true;
             accelerationThreshold = 1f;
 
             Animator.SetBool("isRunning", true);
@@ -243,7 +304,8 @@ public class PlayerActionScript : MonoBehaviour
 
         if (_context.canceled)
         {
-            accelerationMultiplier = 1;
+            //accelerationMultiplier = 1; // ?????
+            runButtonPressed = false;
             accelerationThreshold = 0.4f;
             Animator.SetBool("isRunning", false);
         }
