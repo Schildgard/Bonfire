@@ -358,6 +358,10 @@ public class PlayerActionScript : MonoBehaviour
 
     }
 
+    public void RestAtFire() 
+    {
+        Animator.SetTrigger("Resting");
+    }
 
 
 
