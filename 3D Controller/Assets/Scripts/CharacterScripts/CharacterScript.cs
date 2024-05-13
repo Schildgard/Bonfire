@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class CharacterScript : MonoBehaviour, IDamageable
 {
+
+    private Image Healthbar;
     protected HealthScript HealthScript;
     protected StatScript Stats;
     protected Animator Animator;
@@ -14,6 +17,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     protected virtual void Start()
     {
         HealthScript = GetComponent<HealthScript>();
+        Healthbar = GetComponentInChildren<Image>();
         Stats = GetComponent<StatScript>();
         Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
@@ -28,6 +32,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
         float defMultiplier = (_damage / 100) * (Stats.Defense * 5f);
         HealthScript.currentHealth -= (_damage - defMultiplier);
+        Healthbar.fillAmount = (HealthScript.MaxHealth/100) * HealthScript.currentHealth;
 
         Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage");
 

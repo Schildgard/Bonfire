@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HealthScript : MonoBehaviour
     public float MaxHealth { get { return maxHealth; } set { MaxHealth = value; } }
     public bool isAlive;
     private StatScript Stats;
+
 
 
 

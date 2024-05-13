@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerActionScript : MonoBehaviour
 {
-
+    private StaminaScript Stamina;
+    public float staminaExhaustion;
     private Rigidbody playerRigidbody;
     private GroundCheck collisionDetection;
     private Animator Animator;
@@ -105,6 +107,7 @@ public class PlayerActionScript : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         collisionDetection = GetComponent<GroundCheck>();
         Animator = GetComponent<Animator>();
+        Stamina = GetComponent<StaminaScript>();
 
         velocityHash = Animator.StringToHash("Velocity");
 
@@ -114,10 +117,8 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Walk(activeCamera);
-        //NewWalkUsingBlendTree();
-        NewWalk2DBlendTree();
-        //Run();
+        Walk(activeCamera);
+        Run();
         Rotate();
         Block();
         currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
@@ -147,6 +148,7 @@ public class PlayerActionScript : MonoBehaviour
 
         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
+
         if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f)
         {
             Animator.SetBool("isWalking", true);
@@ -159,15 +161,15 @@ public class PlayerActionScript : MonoBehaviour
     }
 
     private void NewWalkUsingBlendTree()
-    {
+    {// NO USE
         if (MoveInput.x > 0.1f || MoveInput.x < -0.1f || MoveInput.y > 0.1f || MoveInput.y < -0.1f)
         {
             if (velocity <= accelerationThreshold)
             {
                 velocity += Time.deltaTime * acceleration;
             }
-            else  velocity -= Time.deltaTime * deceleration;
-            
+            else velocity -= Time.deltaTime * deceleration;
+
         }
 
         else if (velocity > 0)
@@ -179,28 +181,46 @@ public class PlayerActionScript : MonoBehaviour
     }
 
     private void NewWalk2DBlendTree()
-    {
+    { // NO USE
 
-        // Movement (MoveInput equals the Vector2 Parameter of the Walk Event)
-        if (MoveInput.y > 0.1f && velocityZ < 0.5f && !runButtonPressed) 
+        // Forward Movement (MoveInput equals the Vector2 Parameter of the Walk Event)
+        if (MoveInput.y > 0.1f && velocityZ < 0.5f && !runButtonPressed)
         {
             Debug.Log("Acceleration");
             velocityZ += Time.deltaTime * acceleration;
         }
-        if (MoveInput.x > 0.1f && velocityX < 0.5f && !runButtonPressed) 
-        {
-            velocityX += Time.deltaTime * acceleration;
-        }
-       if (MoveInput.x < -0.1f && velocityX > -0.5f && !runButtonPressed)
-       {
-           velocityX -= Time.deltaTime * acceleration;
-       }
         if (MoveInput.y < -0.1f && velocityZ < 0.5f && !runButtonPressed)
         {
             velocityZ += Time.deltaTime * acceleration;
         }
+        //Sidewards
+        if (MoveInput.x > 0.1f && velocityX < 0.5f && !runButtonPressed)
+        {
+            velocityZ += Time.deltaTime * acceleration;
+        }
+        if (MoveInput.x < -0.1f && velocityX > -0.5f && !runButtonPressed)
+        {
+            velocityZ -= Time.deltaTime * acceleration;
+        }
+
+
+
+
+
+        //Sidewards
+        if (MoveInput.x > 0.1f && velocityX < 0.5f && !runButtonPressed && lockOn)
+        {
+            velocityX += Time.deltaTime * acceleration;
+        }
+        if (MoveInput.x < -0.1f && velocityX > -0.5f && !runButtonPressed && lockOn)
+        {
+            velocityX -= Time.deltaTime * acceleration;
+        }
+
 
         // SlowDown and Stop Movement
+
+        //Forward
         if (MoveInput.y < 0.1f && velocityZ > 0 && MoveInput.y > -0.1f && velocityZ > 0)
         {
             Debug.Log("Deceleration");
@@ -211,14 +231,14 @@ public class PlayerActionScript : MonoBehaviour
             velocityZ = 0;
         }
 
-
-        if (MoveInput.x < 0.1f && velocityX > 0 && MoveInput.x > -0.1f && velocityX > 0)
+        //sidewards
+        if (MoveInput.x < 0.1f && velocityX > 0 && MoveInput.x > -0.1f && velocityX > 0 && lockOn)
         {
             velocityX -= Time.deltaTime * acceleration;
         }
-        if (MoveInput.x < 0.1f && velocityX < 0 && MoveInput.x > -0.1f && velocityX < 0)
+        if (MoveInput.x < 0.1f && velocityX < 0 && MoveInput.x > -0.1f && velocityX < 0 && lockOn)
         {
-            velocityX= 0;
+            velocityX = 0;
         }
 
 
@@ -227,6 +247,51 @@ public class PlayerActionScript : MonoBehaviour
 
 
 
+    }
+
+    private void AnimationOnlyBlendTree2D()
+    { // NO USE
+        //Vertical Movement Acceleration
+        if (MoveInput.y > 0.1f && velocityZ < 0.1f && !runButtonPressed)
+        {
+            velocityZ += Time.deltaTime * acceleration;
+        }
+        if (MoveInput.y < -0.1f && velocityZ < 0.1f && !runButtonPressed)
+        {
+            velocityZ += Time.deltaTime * acceleration;
+        }
+        //Vertical Movement Deceleration
+        if (MoveInput.y < 0.1f && velocityZ > 0 && MoveInput.y > -0.1f)
+        {
+            velocityZ -= Time.deltaTime * acceleration;
+        }
+        if (MoveInput.y < 0.1f && velocityZ < 0 && MoveInput.y > -0.1f)
+        {
+            velocityZ = 0;
+        }
+
+
+        //Horizontal Acceleration
+        if (MoveInput.x > 0.1f && velocityX < 0.1f && !runButtonPressed)
+        {
+            velocityX += Time.deltaTime * acceleration;
+        }
+        if (MoveInput.x < -0.1f && velocityX > -0.1f && !runButtonPressed)
+        {
+            velocityX -= Time.deltaTime * acceleration;
+        }
+        //Horizontal Deceleraiton
+        if (MoveInput.x < 0.1f && velocityX > 0 && MoveInput.x > -0.1f)
+        {
+            velocityX -= Time.deltaTime * acceleration;
+        }
+        if (MoveInput.x < 0.1f && velocityX < 0 && MoveInput.x > -0.1f)
+        {
+            velocityX += Time.deltaTime * acceleration;
+        }
+
+        Animator.SetFloat("Velocity Z", velocityZ);
+        Animator.SetFloat("Velocity X", velocityX);
     }
 
     private void Rotate()
@@ -257,6 +322,14 @@ public class PlayerActionScript : MonoBehaviour
     private void Run()
     {
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
+        if (acceleration > 0) 
+        {
+            Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+            if (Stamina.CurrentStamina < 0) 
+            {
+                Stamina.CurrentStamina = 0;
+            }
+        }
     }
 
     private void LockOn(Vector3 _target)
@@ -267,7 +340,13 @@ public class PlayerActionScript : MonoBehaviour
 
     public void Attack()
     {
-        Animator.SetTrigger("Attack Trigger");
+        if (Stamina.CurrentStamina > 30)
+        {
+            Animator.SetTrigger("Attack Trigger");
+            Stamina.CurrentStamina -= 30;
+            Stamina.UpdateStaminaBar();
+        }
+        else Debug.Log("Not Enough Stamina");
     }
     public void Block()
     {
@@ -293,9 +372,10 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started)
         {
-            //accelerationMultiplier = 1;
+            accelerationMultiplier = 1;
+            
             runButtonPressed = true;
-            accelerationThreshold = 1f;
+            //accelerationThreshold = 1f;
 
             Animator.SetBool("isRunning", true);
 
@@ -304,9 +384,9 @@ public class PlayerActionScript : MonoBehaviour
 
         if (_context.canceled)
         {
-            //accelerationMultiplier = 1; // ?????
-            runButtonPressed = false;
-            accelerationThreshold = 0.4f;
+            accelerationMultiplier = -1;
+             runButtonPressed = false;
+            //accelerationThreshold = 0.4f;
             Animator.SetBool("isRunning", false);
         }
     }
@@ -315,9 +395,10 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started && collisionDetection.CollisionCheck())
         {
+            Animator.SetTrigger("Jump");
             playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
             playerRigidbody.AddForce(new Vector3(playerRigidbody.velocity.x, 1 * jumpPower, playerRigidbody.velocity.z), ForceMode.Impulse);
-            Debug.Log("Jump");
+            
         }
 
 

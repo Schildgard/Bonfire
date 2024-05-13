@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c343e99679eb9d14c8315fcd2de478a7
+guid: 622479060ba6e01468b9b27aaac33298
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -15,7 +15,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: <Root Transform>
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Second Slash
+      name: Walk in Place
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c343e99679eb9d14c8315fcd2de478a7
+guid: 5ad713c969aa26348a1b7f57e8d036c8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Second Slash
+      name: Death Animation
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 117
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
