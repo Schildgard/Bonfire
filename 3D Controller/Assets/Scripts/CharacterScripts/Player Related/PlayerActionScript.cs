@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class PlayerActionScript : MonoBehaviour
 {
     private StaminaScript Stamina;
-    public float staminaExhaustion;
     private Rigidbody playerRigidbody;
     private GroundCheck collisionDetection;
     private Animator Animator;
@@ -36,29 +35,12 @@ public class PlayerActionScript : MonoBehaviour
     private Vector3 MovementVector;
     #endregion
 
-    #region NewWalkUsing BlendTree
-
-
-    private float velocity;
-    [SerializeField] float acceleration;
-    [SerializeField] private float deceleration;
-    private int velocityHash;
-    private float accelerationThreshold = 0.4f;
-    #endregion
-
-    #region NewWalk2DBlendTree
-
-    float velocityZ;
-    float velocityX;
-
-    private bool runButtonPressed;
-
-    #endregion
-
     #region Run
     [SerializeField] private float maxRunSpeed;
     [SerializeField] private float walkSpeedAcceleration;
+    [SerializeField] private float staminaExhaustion;
 
+    private bool runButtonPressed;
     private float accelerationMultiplier;
     #endregion
 
@@ -109,8 +91,6 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
 
-        velocityHash = Animator.StringToHash("Velocity");
-
 
     }
 
@@ -160,140 +140,6 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    private void NewWalkUsingBlendTree()
-    {// NO USE
-        if (MoveInput.x > 0.1f || MoveInput.x < -0.1f || MoveInput.y > 0.1f || MoveInput.y < -0.1f)
-        {
-            if (velocity <= accelerationThreshold)
-            {
-                velocity += Time.deltaTime * acceleration;
-            }
-            else velocity -= Time.deltaTime * deceleration;
-
-        }
-
-        else if (velocity > 0)
-        {
-            velocity -= Time.deltaTime * deceleration;
-        }
-
-        Animator.SetFloat(velocityHash, velocity);
-    }
-
-    private void NewWalk2DBlendTree()
-    { // NO USE
-
-        // Forward Movement (MoveInput equals the Vector2 Parameter of the Walk Event)
-        if (MoveInput.y > 0.1f && velocityZ < 0.5f && !runButtonPressed)
-        {
-            Debug.Log("Acceleration");
-            velocityZ += Time.deltaTime * acceleration;
-        }
-        if (MoveInput.y < -0.1f && velocityZ < 0.5f && !runButtonPressed)
-        {
-            velocityZ += Time.deltaTime * acceleration;
-        }
-        //Sidewards
-        if (MoveInput.x > 0.1f && velocityX < 0.5f && !runButtonPressed)
-        {
-            velocityZ += Time.deltaTime * acceleration;
-        }
-        if (MoveInput.x < -0.1f && velocityX > -0.5f && !runButtonPressed)
-        {
-            velocityZ -= Time.deltaTime * acceleration;
-        }
-
-
-
-
-
-        //Sidewards
-        if (MoveInput.x > 0.1f && velocityX < 0.5f && !runButtonPressed && lockOn)
-        {
-            velocityX += Time.deltaTime * acceleration;
-        }
-        if (MoveInput.x < -0.1f && velocityX > -0.5f && !runButtonPressed && lockOn)
-        {
-            velocityX -= Time.deltaTime * acceleration;
-        }
-
-
-        // SlowDown and Stop Movement
-
-        //Forward
-        if (MoveInput.y < 0.1f && velocityZ > 0 && MoveInput.y > -0.1f && velocityZ > 0)
-        {
-            Debug.Log("Deceleration");
-            velocityZ -= Time.deltaTime * acceleration;
-        }
-        if (MoveInput.y < 0.1f && velocityZ < 0 && MoveInput.y > -0.1f && velocityZ < 0)
-        {
-            velocityZ = 0;
-        }
-
-        //sidewards
-        if (MoveInput.x < 0.1f && velocityX > 0 && MoveInput.x > -0.1f && velocityX > 0 && lockOn)
-        {
-            velocityX -= Time.deltaTime * acceleration;
-        }
-        if (MoveInput.x < 0.1f && velocityX < 0 && MoveInput.x > -0.1f && velocityX < 0 && lockOn)
-        {
-            velocityX = 0;
-        }
-
-
-        Animator.SetFloat("Velocity Z", velocityZ);
-        Animator.SetFloat("Velocity X", velocityX);
-
-
-
-    }
-
-    private void AnimationOnlyBlendTree2D()
-    { // NO USE
-        //Vertical Movement Acceleration
-        if (MoveInput.y > 0.1f && velocityZ < 0.1f && !runButtonPressed)
-        {
-            velocityZ += Time.deltaTime * acceleration;
-        }
-        if (MoveInput.y < -0.1f && velocityZ < 0.1f && !runButtonPressed)
-        {
-            velocityZ += Time.deltaTime * acceleration;
-        }
-        //Vertical Movement Deceleration
-        if (MoveInput.y < 0.1f && velocityZ > 0 && MoveInput.y > -0.1f)
-        {
-            velocityZ -= Time.deltaTime * acceleration;
-        }
-        if (MoveInput.y < 0.1f && velocityZ < 0 && MoveInput.y > -0.1f)
-        {
-            velocityZ = 0;
-        }
-
-
-        //Horizontal Acceleration
-        if (MoveInput.x > 0.1f && velocityX < 0.1f && !runButtonPressed)
-        {
-            velocityX += Time.deltaTime * acceleration;
-        }
-        if (MoveInput.x < -0.1f && velocityX > -0.1f && !runButtonPressed)
-        {
-            velocityX -= Time.deltaTime * acceleration;
-        }
-        //Horizontal Deceleraiton
-        if (MoveInput.x < 0.1f && velocityX > 0 && MoveInput.x > -0.1f)
-        {
-            velocityX -= Time.deltaTime * acceleration;
-        }
-        if (MoveInput.x < 0.1f && velocityX < 0 && MoveInput.x > -0.1f)
-        {
-            velocityX += Time.deltaTime * acceleration;
-        }
-
-        Animator.SetFloat("Velocity Z", velocityZ);
-        Animator.SetFloat("Velocity X", velocityX);
-    }
-
     private void Rotate()
     {
 
@@ -321,15 +167,21 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Run()
     {
+
+
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
-        if (acceleration > 0) 
+
+        if (runButtonPressed)
         {
+
             Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
-            if (Stamina.CurrentStamina < 0) 
-            {
-                Stamina.CurrentStamina = 0;
-            }
         }
+
+        if (Stamina.CurrentStamina < 0)
+        {
+            Stamina.CurrentStamina = 0;
+        }
+
     }
 
     private void LockOn(Vector3 _target)
@@ -358,10 +210,17 @@ public class PlayerActionScript : MonoBehaviour
 
     }
 
-    public void RestAtFire() 
+    public void RestAtFire()
     {
         Animator.SetTrigger("Resting");
     }
+
+
+
+
+
+
+
 
 
 
@@ -374,23 +233,22 @@ public class PlayerActionScript : MonoBehaviour
 
     public void RunEvent(InputAction.CallbackContext _context)
     {
+
+
         if (_context.started)
         {
             accelerationMultiplier = 1;
-            
+
             runButtonPressed = true;
-            //accelerationThreshold = 1f;
 
             Animator.SetBool("isRunning", true);
-
-
         }
+
 
         if (_context.canceled)
         {
             accelerationMultiplier = -1;
-             runButtonPressed = false;
-            //accelerationThreshold = 0.4f;
+            runButtonPressed = false;
             Animator.SetBool("isRunning", false);
         }
     }
@@ -402,7 +260,7 @@ public class PlayerActionScript : MonoBehaviour
             Animator.SetTrigger("Jump");
             playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
             playerRigidbody.AddForce(new Vector3(playerRigidbody.velocity.x, 1 * jumpPower, playerRigidbody.velocity.z), ForceMode.Impulse);
-            
+
         }
 
 
