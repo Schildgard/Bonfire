@@ -12,12 +12,6 @@ public class EventListener : MonoBehaviour
     private void OnEnable()
     {
         Event.RegisterListener(this);
-
-     //  if (Event.Listeners.Contains(this)) 
-     //  {
-     //  Debug.Log($"{gameObject.name} has been registered as Listener to {Event.name}");
-     //
-     //  }
     }
 
     private void OnDisable()

@@ -10,6 +10,7 @@ public class HealthScript : MonoBehaviour
     public float MaxHealth { get { return maxHealth; } set { MaxHealth = value; } }
     public bool isAlive;
     private StatScript Stats;
+    private Image Healthbar;
 
 
 
@@ -18,6 +19,7 @@ public class HealthScript : MonoBehaviour
     private void Awake()
     {
         Stats = GetComponent<StatScript>();
+        Healthbar = GetComponentInChildren<Image>();
 
 
     }
@@ -35,16 +37,19 @@ public class HealthScript : MonoBehaviour
     public void UpdateMaxHealth()
     {
         maxHealth = Stats.Vitality * 10;
+        Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
     }
 
     public void UpdateMaxHealth(float _value)
     {
 
         maxHealth += _value;
+        Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
     }
 
     public void ResetHealth()
     {
         currentHealth = maxHealth;
+        Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
     }
 }

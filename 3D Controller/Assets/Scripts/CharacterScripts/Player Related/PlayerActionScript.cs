@@ -168,19 +168,35 @@ public class PlayerActionScript : MonoBehaviour
     private void Run()
     {
 
-
-        CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
-
-        if (runButtonPressed)
+        if (playerRigidbody.velocity.x > 0.1f || playerRigidbody.velocity.x < -0.1f || playerRigidbody.velocity.z > 0.1f || playerRigidbody.velocity.z < -0.1f)
         {
 
-            Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+
+
+            if (runButtonPressed && Stamina.CurrentStamina > 1)
+            {
+                accelerationMultiplier = 1;
+                Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+                Animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                accelerationMultiplier = -1;
+                Animator.SetBool("isRunning", false);
+            }
+        }
+        else 
+        {
+            accelerationMultiplier = -1;
+            Animator.SetBool("isRunning", false);
         }
 
         if (Stamina.CurrentStamina < 0)
         {
             Stamina.CurrentStamina = 0;
         }
+        CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
+
 
     }
 
@@ -237,19 +253,13 @@ public class PlayerActionScript : MonoBehaviour
 
         if (_context.started)
         {
-            accelerationMultiplier = 1;
-
             runButtonPressed = true;
-
-            Animator.SetBool("isRunning", true);
         }
 
 
         if (_context.canceled)
         {
-            accelerationMultiplier = -1;
             runButtonPressed = false;
-            Animator.SetBool("isRunning", false);
         }
     }
 

@@ -8,11 +8,11 @@ public class StaminaScript : MonoBehaviour
     private StatScript Stats;
     public Image StaminaBar;
     [SerializeField] private float maxStamina;
+    [SerializeField]private float regMultiplier;
 
 
     [SerializeField]private float currentStamina;
     public float CurrentStamina { get { return currentStamina; } set { currentStamina = value; } }
-    [SerializeField]private float regMultiplier;
 
     private void Awake()
     {
@@ -21,9 +21,13 @@ public class StaminaScript : MonoBehaviour
 
     private void Update()
     {
-        if (currentStamina < maxStamina)
+        if (currentStamina < maxStamina && CurrentStamina >=1f)
         {
             RegenerateStamina();
+        }
+        else if (CurrentStamina < 1f)
+        { 
+            StartCoroutine(ExhaustionRegeneration());
         }
     }
 
@@ -38,5 +42,11 @@ public class StaminaScript : MonoBehaviour
         StaminaBar.fillAmount = (maxStamina / 10000) * currentStamina;
     }
 
-    
+    private IEnumerator ExhaustionRegeneration()
+    {
+        yield return new WaitForSeconds(1);
+
+        CurrentStamina = 1;
+        UpdateStaminaBar();
+    }
 }
