@@ -56,9 +56,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _BaseSpeed: 0.01
-    - _BaseTiling: 0.1
+    - _BaseTiling: 0.08
     - _DetailSpeedMultiplier: 0.65
-    - _DetailTiling: 0.5
+    - _DetailTiling: 0.08
     - _Foam_Distance: 3
     - _Foam_Noise_Scale: 150
     - _Fresnel_Power: 4
@@ -66,7 +66,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.725
-    - _Water_Alpha: 0.4
+    - _Water_Alpha: 0.48
     m_Colors:
     - _Deep_Color: {r: 0.052198283, g: 0.068676546, b: 0.21698111, a: 0}
     - _Foam_Color: {r: 0.8726415, g: 0.95252997, b: 1, a: 0}
