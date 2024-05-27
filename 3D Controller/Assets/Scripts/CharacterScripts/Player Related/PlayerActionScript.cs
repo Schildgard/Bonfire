@@ -105,6 +105,11 @@ public class PlayerActionScript : MonoBehaviour
         if (lockOn) { LockOn(TestEnemy.position); }
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void Walk(Transform _activeCameraTransform)
     {
 
