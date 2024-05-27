@@ -11,6 +11,7 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody playerRigidbody;
     private GroundCheck collisionDetection;
     private Animator Animator;
+    private Spelllist Spelllist;
 
     #region Walk
     [SerializeField] private float normalWalkSpeed;
@@ -81,6 +82,8 @@ public class PlayerActionScript : MonoBehaviour
 
     private Transform activeCamera;
     private float blockInput;
+    private GameObject ActiveSpell;
+    private GameObject ActiveSpell2;
 
 
     // Start is called before the first frame update
@@ -90,6 +93,7 @@ public class PlayerActionScript : MonoBehaviour
         collisionDetection = GetComponent<GroundCheck>();
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
+        Spelllist = GetComponent<Spelllist>();
 
 
     }
@@ -105,10 +109,6 @@ public class PlayerActionScript : MonoBehaviour
         if (lockOn) { LockOn(TestEnemy.position); }
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
 
     private void Walk(Transform _activeCameraTransform)
     {
@@ -190,7 +190,7 @@ public class PlayerActionScript : MonoBehaviour
                 Animator.SetBool("isRunning", false);
             }
         }
-        else 
+        else
         {
             accelerationMultiplier = -1;
             Animator.SetBool("isRunning", false);
@@ -238,7 +238,10 @@ public class PlayerActionScript : MonoBehaviour
 
 
 
-
+    public void InstantiateSpell()
+    {
+        ActiveSpell = Instantiate(Spelllist.Spells[0].Prefab, this.transform);
+    }
 
 
 
@@ -304,6 +307,31 @@ public class PlayerActionScript : MonoBehaviour
     public void BlockEvent(InputAction.CallbackContext _context)
     {
         blockInput = _context.ReadValue<float>();
+    }
+
+
+    public void CastSpellEvent1(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            if (ActiveSpell == null)
+            {
+                Animator.SetTrigger("Cast Buff");
+                //ActiveSpell = Instantiate(Spelllist.Spells[0].Prefab, this.transform);
+            }
+        }
+    }
+
+    public void CastSpellEvent2(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            if (ActiveSpell2 == null)
+            {
+                Animator.SetTrigger("Cast Spell");
+                //ActiveSpell2 = Instantiate(Spelllist.Spells[1].Prefab, this.transform);
+            }
+        }
     }
 
     public void CallCameraInput(InputAction.CallbackContext _context)
