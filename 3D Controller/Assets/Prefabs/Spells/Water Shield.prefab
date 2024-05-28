@@ -161,7 +161,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a27ae245f760b4bf191c0234d3b43918, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.688
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -255,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 3808753618014953185, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
       propertyPath: m_Name
       value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808753618014953185, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3808753618014953186, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
       propertyPath: m_RootOrder
