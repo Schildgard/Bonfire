@@ -4882,9 +4882,10 @@ GameObject:
   - component: {fileID: 1164704925994203758}
   - component: {fileID: 1164704925994203665}
   - component: {fileID: 3940421274533792770}
+  - component: {fileID: 702632521234472355}
   m_Layer: 0
   m_Name: Lightning_Ray
-  m_TagString: Untagged
+  m_TagString: Lightning
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8662,7 +8663,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9693,7 +9694,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164704925994203664}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
@@ -9782,6 +9783,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &702632521234472355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164704925994203664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ca504f294d2b44ca45f7ea7e507611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElectrifiedVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
+  threshold: 10
 --- !u!1 &6261010593745496062
 GameObject:
   m_ObjectHideFlags: 0
