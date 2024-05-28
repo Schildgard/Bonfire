@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18152869, g: 0.22330654, b: 0.28501928, a: 1}
+  m_IndirectSpecularColor: {r: 0.18152827, g: 0.223306, b: 0.28501832, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9902,6 +9902,88 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86be2d2231099d4686e1a8df645be1e, type: 3}
+--- !u!1 &2037414759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037414761}
+  - component: {fileID: 2037414760}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2037414760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037414759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419a88e780a6cdf45b583d2febad0cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Music: []
+  SFX:
+  - name: FootStep_01
+    clip: {fileID: 8300000, guid: c025c43d1749af5469c7dd8af13e162f, type: 3}
+    volume: 0.4
+    source: {fileID: 0}
+  - name: Attack_Swing
+    clip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Attack_Swing_2
+    clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Water Shield
+    clip: {fileID: 8300000, guid: dddde2397affa4973880bcc238b6ad30, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Lightning Cast
+    clip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Lightning Impact
+    clip: {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Fire Cast
+    clip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Fire Impact
+    clip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Lightning Impact
+    clip: {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
+    volume: 1
+    source: {fileID: 0}
+--- !u!4 &2037414761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037414759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2053620563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4830912437247630408, guid: f3897d0628eef8b4c8bb1013ef7eebcf, type: 3}

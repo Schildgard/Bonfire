@@ -237,6 +237,10 @@ public class PlayerActionScript : MonoBehaviour
     }
 
 
+    public void PlaySFX(int _index) 
+    {
+        AudioManager.instance.SFX[_index].source.Play();
+    }
 
     public void InstantiateSpell()
     {
@@ -326,11 +330,8 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started)
         {
-            if (ActiveSpell2 == null)
-            {
                 Animator.SetTrigger("Cast Spell");
-                //ActiveSpell2 = Instantiate(Spelllist.Spells[1].Prefab, this.transform);
-            }
+                ActiveSpell2 = Instantiate(Spelllist.Spells[1].Prefab, this.transform);
         }
     }
 
