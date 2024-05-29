@@ -243,12 +243,6 @@ public class PlayerActionScript : MonoBehaviour
         AudioManager.instance.SFX[_index].source.Play();
     }
 
-   // public void InstantiateSpell()
-   // {
-   //     ActiveSpell = Instantiate(Spelllist.Spells[0].Prefab, this.transform);
-   // }
-
-
 
 
 

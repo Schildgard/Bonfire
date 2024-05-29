@@ -9694,7 +9694,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164704925994203664}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
@@ -9796,6 +9796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElectrifiedVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
+  particleDamage: 1
+  EffectMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
 --- !u!1 &6261010593745496062
 GameObject:
   m_ObjectHideFlags: 0

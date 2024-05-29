@@ -5483,10 +5483,12 @@ MonoBehaviour:
     Prefab: {fileID: 6588983084077696163, guid: 31285d779d01765409daeec01504625f, type: 3}
     SpawnTransform: {fileID: 854263484}
     useAltCastAnimation: 1
+    lifeTime: 5
   - name: Thunder Charge
     Prefab: {fileID: 1164704925994203664, guid: 704725268cd27d449abfda29d442a49f, type: 3}
     SpawnTransform: {fileID: 1056224114}
     useAltCastAnimation: 0
+    lifeTime: 0.5
 --- !u!1001 &855368428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6490,6 +6492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1056224114}
+  - component: {fileID: 1056224115}
   m_Layer: 7
   m_Name: SpawnProjectile
   m_TagString: Untagged
@@ -6512,6 +6515,20 @@ Transform:
   m_Father: {fileID: 854263484}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1056224115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056224113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc3db3925acbed43bc7e217db288566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraTransform: {fileID: 159062588}
+  PlayerTransform: {fileID: 854263484}
 --- !u!1 &1069629899
 GameObject:
   m_ObjectHideFlags: 0

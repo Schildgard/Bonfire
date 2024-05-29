@@ -11,12 +11,15 @@ public class Spelllist : MonoBehaviour
 
     public List<Spell> Spells;
 
+    private int spellIndex;
+
     private void Awake()
     {
         Animator = GetComponent<Animator>();
     }
     public void CastSpell(int _index)
     {
+        spellIndex = _index;
         if (Spells[_index].useAltCastAnimation)
         {
             Animator.SetTrigger("Cast Buff");
@@ -25,9 +28,14 @@ public class Spelllist : MonoBehaviour
         {
             Animator.SetTrigger("Cast Spell");
         }
-        Instantiate(Spells[_index].Prefab, Spells[_index].SpawnTransform);
     }
 
+    public void InstantiateSpell()
+    {
+        GameObject SpellObject = Instantiate(Spells[spellIndex].Prefab, Spells[spellIndex].SpawnTransform);
+        Destroy(SpellObject, Spells[spellIndex].lifeTime);
+        spellIndex = 0;
+    }
 
 }
 
@@ -39,5 +47,6 @@ public class Spell
     public Transform SpawnTransform;  
     public bool useAltCastAnimation;
 
+    public float lifeTime;
 
 }
