@@ -82,8 +82,9 @@ public class PlayerActionScript : MonoBehaviour
 
     private Transform activeCamera;
     private float blockInput;
-    private GameObject ActiveSpell;
-    private GameObject ActiveSpell2;
+   // private GameObject ActiveSpell;
+   // private GameObject ActiveSpell2;
+    [SerializeField] private Transform SpawnPosition;
 
 
     // Start is called before the first frame update
@@ -242,10 +243,10 @@ public class PlayerActionScript : MonoBehaviour
         AudioManager.instance.SFX[_index].source.Play();
     }
 
-    public void InstantiateSpell()
-    {
-        ActiveSpell = Instantiate(Spelllist.Spells[0].Prefab, this.transform);
-    }
+   // public void InstantiateSpell()
+   // {
+   //     ActiveSpell = Instantiate(Spelllist.Spells[0].Prefab, this.transform);
+   // }
 
 
 
@@ -318,11 +319,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started)
         {
-            if (ActiveSpell == null)
-            {
-                Animator.SetTrigger("Cast Buff");
-                //ActiveSpell = Instantiate(Spelllist.Spells[0].Prefab, this.transform);
-            }
+            Spelllist.CastSpell(0);
         }
     }
 
@@ -330,8 +327,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started)
         {
-                Animator.SetTrigger("Cast Spell");
-                ActiveSpell2 = Instantiate(Spelllist.Spells[1].Prefab, this.transform);
+            Spelllist.CastSpell(1);
         }
     }
 

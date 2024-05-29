@@ -8,19 +8,17 @@ public class LightningBoltCollider : MonoBehaviour
 
 
     [SerializeField] private GameObject ElectrifiedVFX;
-    [SerializeField] private int threshold; //Threshold how many Effects can be active at the same Time
-
     private ParticleSystem ParticleSystem;
-
-    private List<GameObject> ActiveEffects;
     public List<ParticleCollisionEvent> CollisionEvents;
+
+
 
     private void Start()
     {
         ParticleSystem = GetComponent<ParticleSystem>();
         CollisionEvents = new List<ParticleCollisionEvent>();
-        ActiveEffects = new List<GameObject>();
     }
+
 
     private void OnParticleCollision(GameObject _target) //Called per Particle
     {
@@ -30,29 +28,17 @@ public class LightningBoltCollider : MonoBehaviour
 
         int numCollisionEvents = ParticleSystem.GetCollisionEvents(_target, CollisionEvents); //when Particle collides, return 1 and add to CollisionEvents List
 
-        if (ActiveEffects.Count <= threshold)
+
+        for (int i = 0; i < numCollisionEvents; i++)
         {
-
-            for (int i = 0; i < numCollisionEvents; i++)
-            {
-                Vector3 pos = CollisionEvents[i].intersection;
-                GameObject vfx = Instantiate(ElectrifiedVFX, pos, Quaternion.Euler(-90, 0, 0));
-                ActiveEffects.Add(vfx);
-                i++;
-                StartCoroutine(DespawnVFX(vfx));
-            }
+            Vector3 pos = CollisionEvents[i].intersection;
+            GameObject vfx = Instantiate(ElectrifiedVFX, pos, Quaternion.Euler(-90, 0, 0));
+            i++;
         }
-
-
     }
 
-
-    private IEnumerator DespawnVFX(GameObject _object)
-    {
-        yield return new WaitForSeconds(5);
-        Destroy(_object);
-        ActiveEffects.Remove(_object);
-
-    }
 
 }
+
+
+
