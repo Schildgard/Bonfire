@@ -9,9 +9,9 @@ public class LightningBoltCollider : MonoBehaviour
 {
 
 
-    [SerializeField] private GameObject ElectrifiedVFX;
+    [SerializeField] private GameObject ElectrifiedSurfaceVFX;
+
     [SerializeField] private Material EffectMaterial;
-    [SerializeField] private GameObject EffectCondition;
 
     private ParticleSystem ParticleSystem;
     public List<ParticleCollisionEvent> CollisionEvents;
@@ -54,7 +54,7 @@ public class LightningBoltCollider : MonoBehaviour
         for (int i = 0; i < numCollisionEvents; i++)
         {
             Vector3 pos = CollisionEvents[i].intersection;
-            GameObject vfx = Instantiate(ElectrifiedVFX, pos, Quaternion.Euler(-90, 0, 0));
+            GameObject vfx = Instantiate(ElectrifiedSurfaceVFX, pos, Quaternion.Euler(-90, 0, 0));
             i++;
         }
     }
@@ -65,14 +65,13 @@ public class LightningBoltCollider : MonoBehaviour
         var targetRenderer = _target.GetComponentInChildren<SkinnedMeshRenderer>();
         if (targetRenderer.materials.Length < 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
         {
-            Material[] oldMaterial = targetRenderer.materials;
-            targetRenderer.gameObject.AddComponent<EffectCondition_Wet>();
+            var Condition = targetRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
             
-            targetRenderer.materials = new Material[] { oldMaterial[0], EffectMaterial };;
+            targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], EffectMaterial };;
         }
         else
         {
-            var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Wet>();
+            var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Lightning>();
             EnemyCondition.duration = EnemyCondition.maxduration;
             Debug.Log(_target.name + "has already been electrified");
         }

@@ -9994,8 +9994,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
     volume: 1
     source: {fileID: 0}
-  - name: Lightning Impact
-    clip: {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
+  - name: Electrified
+    clip: {fileID: 8300000, guid: aefc2111571d1a84da4b1838d7beb4fd, type: 3}
     volume: 1
     source: {fileID: 0}
 --- !u!4 &2037414761
@@ -10154,6 +10154,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Non-Attacking Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9221268664293755682, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9221268664293755682, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 162cb3af372d73946a898483aabc2fe2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
 --- !u!4 &2059491329 stripped

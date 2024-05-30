@@ -9795,7 +9795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ca504f294d2b44ca45f7ea7e507611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ElectrifiedVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
+  ElectrifiedSurfaceVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
   EffectMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
   EffectCondition: {fileID: 6256935676206986735, guid: 2abbca19702385848b3bfd0fea504c90, type: 3}
   particleDamage: 1

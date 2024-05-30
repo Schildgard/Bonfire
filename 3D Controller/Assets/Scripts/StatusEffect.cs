@@ -6,17 +6,31 @@ public abstract class StatusEffect : MonoBehaviour
 {
     protected SkinnedMeshRenderer SkinnedMeshRenderer;
 
-    protected Material[] OriginalMaterial;
+    public Material[] OriginalMaterial;
+    private AudioSource AudioSource;
 
-    public float maxduration = 5;
+
+    public float maxduration;
     public float duration;
+    public int sfxIndex;
 
     protected virtual void Awake()
     {
         SkinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
         OriginalMaterial = SkinnedMeshRenderer.materials;
         duration = maxduration;
+        AudioSource = gameObject.AddComponent<AudioSource>();
+        
     }
+
+    private void Start()
+    {
+        AudioSource.clip = AudioManager.instance.SFX[sfxIndex].clip;
+        AudioSource.volume = 0.4f;
+        AudioSource.Play();
+    }
+
+
 
     protected virtual void Update()
     {
@@ -26,6 +40,7 @@ public abstract class StatusEffect : MonoBehaviour
         {
             SkinnedMeshRenderer.materials = OriginalMaterial;
             Destroy(this);
+            Destroy(AudioSource);
         }
     }
 }
