@@ -9796,8 +9796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElectrifiedVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
-  particleDamage: 1
   EffectMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
+  EffectCondition: {fileID: 6256935676206986735, guid: 2abbca19702385848b3bfd0fea504c90, type: 3}
+  particleDamage: 1
 --- !u!1 &6261010593745496062
 GameObject:
   m_ObjectHideFlags: 0

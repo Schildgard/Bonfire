@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -9,12 +10,14 @@ public class LightningBoltCollider : MonoBehaviour
 
 
     [SerializeField] private GameObject ElectrifiedVFX;
+    [SerializeField] private Material EffectMaterial;
+    [SerializeField] private GameObject EffectCondition;
+
     private ParticleSystem ParticleSystem;
     public List<ParticleCollisionEvent> CollisionEvents;
 
     public float particleDamage;
 
-    [SerializeField] private Material EffectMaterial;
 
 
     private void Start()
@@ -28,7 +31,7 @@ public class LightningBoltCollider : MonoBehaviour
     {
 
         var damageableTarget = _target.gameObject.GetComponent<IDamageable>();
-        if (damageableTarget != null) 
+        if (damageableTarget != null)
         {
             damageableTarget.GetDamage(particleDamage);
             ElectrifyTarget(_target);
@@ -39,7 +42,7 @@ public class LightningBoltCollider : MonoBehaviour
         var electrizableTarget = _target.gameObject.GetComponent<IElectrilizable>();
         if (electrizableTarget == null) return;
 
-        if (damageableTarget != null) 
+        if (damageableTarget != null)
         {
 
         }
@@ -58,9 +61,21 @@ public class LightningBoltCollider : MonoBehaviour
 
     private void ElectrifyTarget(GameObject _target)
     {
-        var meshMaterials = _target.GetComponentInChildren<SkinnedMeshRenderer>();
-        Material[] oldMaterial = meshMaterials.materials;
-        meshMaterials.materials = new Material[] { oldMaterial[0], EffectMaterial };
+        
+        var targetRenderer = _target.GetComponentInChildren<SkinnedMeshRenderer>();
+        if (targetRenderer.materials.Length < 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
+        {
+            Material[] oldMaterial = targetRenderer.materials;
+            targetRenderer.gameObject.AddComponent<EffectCondition_Wet>();
+            
+            targetRenderer.materials = new Material[] { oldMaterial[0], EffectMaterial };;
+        }
+        else
+        {
+            var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Wet>();
+            EnemyCondition.duration = EnemyCondition.maxduration;
+            Debug.Log(_target.name + "has already been electrified");
+        }
     }
 
 }
