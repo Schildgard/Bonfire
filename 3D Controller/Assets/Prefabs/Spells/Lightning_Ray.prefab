@@ -9636,7 +9636,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: e37b630403dafb840a830b7475d08ae0, type: 2}
+  - {fileID: 2100000, guid: a6987e7cbb588ec4cbf83d98684b3e2a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9797,7 +9797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ElectrifiedSurfaceVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
   EffectMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
-  EffectCondition: {fileID: 6256935676206986735, guid: 2abbca19702385848b3bfd0fea504c90, type: 3}
   particleDamage: 1
 --- !u!1 &6261010593745496062
 GameObject:

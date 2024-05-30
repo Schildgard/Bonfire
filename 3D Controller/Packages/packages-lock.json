@@ -187,6 +187,15 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.unity.visualeffectgraph": {
+      "version": "12.1.13",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.shadergraph": "12.1.13",
+        "com.unity.render-pipelines.core": "12.1.13"
+      }
+    },
     "com.unity.visualscripting": {
       "version": "1.9.2",
       "depth": 0,
