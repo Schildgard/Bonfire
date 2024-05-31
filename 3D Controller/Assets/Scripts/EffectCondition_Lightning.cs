@@ -12,7 +12,13 @@ public class EffectCondition_Lightning : StatusEffect
         sfxIndex = 8;
         base.Awake();
     }
-
+    protected override void Start()
+    {
+        base.Start();
+        AudioSource.clip = AudioManager.instance.SFX[sfxIndex].clip;
+        AudioSource.volume = 0.4f;
+        AudioSource.Play();
+    }
     protected override void Update()
     {
         base.Update();

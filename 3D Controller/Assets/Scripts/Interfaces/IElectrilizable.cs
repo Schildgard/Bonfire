@@ -7,6 +7,6 @@ public interface IElectrilizable
 
     public void Electrify()
     {
-        Debug.Log("Object Electrified");
+        
     }
 }

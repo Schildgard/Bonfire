@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class Wettable : MonoBehaviour, IWetable
 {
-public void GetWet() { }
+    public GameObject WetCondition;
+    public void GetWet()
+    {
+
+        WetCondition.SetActive(true);
+    }
+
+    public void GetDry() 
+    {
+        WetCondition.SetActive(false);
+    }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public interface IWetable 
 {
 
-    public void GetWet()
-    {
+    public void GetWet();
 
-    }
+
+    public void GetDry();
 }

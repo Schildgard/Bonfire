@@ -7,7 +7,7 @@ public abstract class StatusEffect : MonoBehaviour
     protected SkinnedMeshRenderer SkinnedMeshRenderer;
 
     public Material[] OriginalMaterial;
-    private AudioSource AudioSource;
+    protected AudioSource AudioSource;
 
 
     public float maxduration;
@@ -23,11 +23,9 @@ public abstract class StatusEffect : MonoBehaviour
         
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        AudioSource.clip = AudioManager.instance.SFX[sfxIndex].clip;
-        AudioSource.volume = 0.4f;
-        AudioSource.Play();
+        
     }
 
 
