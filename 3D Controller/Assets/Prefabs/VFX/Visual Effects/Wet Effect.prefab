@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1558507786169303362}
   - component: {fileID: 7310286546763304903}
   m_Layer: 0
-  m_Name: Tutorial Effect
+  m_Name: Wet Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
