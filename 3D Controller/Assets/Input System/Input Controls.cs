@@ -113,7 +113,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""94aef330-a31f-45ef-b9b3-e25afc2d8504"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
+                    ""processors"": ""Scale(factor=0)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -122,7 +122,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""345e4395-c20d-4988-b798-b8d11723824a"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
+                    ""processors"": ""Scale"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -131,7 +131,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""0d0c0fff-44e8-48e3-b049-3c6560c764ff"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
+                    ""processors"": ""Scale(factor=2)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 }

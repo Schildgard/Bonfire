@@ -82,8 +82,8 @@ public class PlayerActionScript : MonoBehaviour
 
     private Transform activeCamera;
     private float blockInput;
-   // private GameObject ActiveSpell;
-   // private GameObject ActiveSpell2;
+    // private GameObject ActiveSpell;
+    // private GameObject ActiveSpell2;
     [SerializeField] private Transform SpawnPosition;
 
 
@@ -238,13 +238,10 @@ public class PlayerActionScript : MonoBehaviour
     }
 
 
-    public void PlaySFX(int _index) 
+    public void PlaySFX(int _index)
     {
         AudioManager.instance.SFX[_index].source.Play();
     }
-
-
-
 
 
     #region InputCallBackEvents
@@ -309,29 +306,18 @@ public class PlayerActionScript : MonoBehaviour
     }
 
 
-    public void CastSpellEvent1(InputAction.CallbackContext _context)
+    public void CastSpellEvent(InputAction.CallbackContext _context)
     {
         if (_context.started)
         {
-            Spelllist.CastSpell(0);
+            int spellIndex = (int)_context.ReadValue<float>();  // ReadValue returns a float (1 =pressed, 0 = not pressed), the Num =InputMap has a ScaleFactor, according to its spellIndex in the spelllist, so by pressing 3, this line retuns: spellindex =  1 x 2 = 2. So Spell of Index 2 is selected.
+
+            Spelllist.CastSpell(spellIndex);
+
+            //To prevent a wrong InputEvent applied to this Method, I could set Index 1 an Placeholder, which returns an Debug. Since no Scale factor is applied, the Index of a non cast spell will be 1.
         }
     }
 
-    public void CastSpellEvent2(InputAction.CallbackContext _context)
-    {
-        if (_context.started)
-        {
-            Spelllist.CastSpell(1);
-        }
-    }
-
-    public void CastSpellEvent3(InputAction.CallbackContext _context)
-    {
-        if (_context.started)
-        {
-            Spelllist.CastSpell(2);
-        }
-    }
 
 
 
