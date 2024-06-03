@@ -109,7 +109,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Cast Spell"",
+                    ""name"": ""Cast Spell 1"",
                     ""type"": ""Button"",
                     ""id"": ""94aef330-a31f-45ef-b9b3-e25afc2d8504"",
                     ""expectedControlType"": ""Button"",
@@ -118,9 +118,18 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cast Buff"",
+                    ""name"": ""Cast Spell 2"",
                     ""type"": ""Button"",
                     ""id"": ""345e4395-c20d-4988-b798-b8d11723824a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast Spell 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d0c0fff-44e8-48e3-b049-3c6560c764ff"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -322,7 +331,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Cast Spell"",
+                    ""action"": ""Cast Spell 1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -333,7 +342,18 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Cast Buff"",
+                    ""action"": ""Cast Spell 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ff72ec8-6005-4574-9626-443584a8bbd2"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast Spell 3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -353,8 +373,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_LockOnCamera = m_Player.FindAction("Lock On Camera", throwIfNotFound: true);
-        m_Player_CastSpell = m_Player.FindAction("Cast Spell", throwIfNotFound: true);
-        m_Player_CastBuff = m_Player.FindAction("Cast Buff", throwIfNotFound: true);
+        m_Player_CastSpell1 = m_Player.FindAction("Cast Spell 1", throwIfNotFound: true);
+        m_Player_CastSpell2 = m_Player.FindAction("Cast Spell 2", throwIfNotFound: true);
+        m_Player_CastSpell3 = m_Player.FindAction("Cast Spell 3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,8 +446,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_LockOnCamera;
-    private readonly InputAction m_Player_CastSpell;
-    private readonly InputAction m_Player_CastBuff;
+    private readonly InputAction m_Player_CastSpell1;
+    private readonly InputAction m_Player_CastSpell2;
+    private readonly InputAction m_Player_CastSpell3;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -440,8 +462,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @LockOnCamera => m_Wrapper.m_Player_LockOnCamera;
-        public InputAction @CastSpell => m_Wrapper.m_Player_CastSpell;
-        public InputAction @CastBuff => m_Wrapper.m_Player_CastBuff;
+        public InputAction @CastSpell1 => m_Wrapper.m_Player_CastSpell1;
+        public InputAction @CastSpell2 => m_Wrapper.m_Player_CastSpell2;
+        public InputAction @CastSpell3 => m_Wrapper.m_Player_CastSpell3;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -478,12 +501,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @LockOnCamera.started += instance.OnLockOnCamera;
             @LockOnCamera.performed += instance.OnLockOnCamera;
             @LockOnCamera.canceled += instance.OnLockOnCamera;
-            @CastSpell.started += instance.OnCastSpell;
-            @CastSpell.performed += instance.OnCastSpell;
-            @CastSpell.canceled += instance.OnCastSpell;
-            @CastBuff.started += instance.OnCastBuff;
-            @CastBuff.performed += instance.OnCastBuff;
-            @CastBuff.canceled += instance.OnCastBuff;
+            @CastSpell1.started += instance.OnCastSpell1;
+            @CastSpell1.performed += instance.OnCastSpell1;
+            @CastSpell1.canceled += instance.OnCastSpell1;
+            @CastSpell2.started += instance.OnCastSpell2;
+            @CastSpell2.performed += instance.OnCastSpell2;
+            @CastSpell2.canceled += instance.OnCastSpell2;
+            @CastSpell3.started += instance.OnCastSpell3;
+            @CastSpell3.performed += instance.OnCastSpell3;
+            @CastSpell3.canceled += instance.OnCastSpell3;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -515,12 +541,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @LockOnCamera.started -= instance.OnLockOnCamera;
             @LockOnCamera.performed -= instance.OnLockOnCamera;
             @LockOnCamera.canceled -= instance.OnLockOnCamera;
-            @CastSpell.started -= instance.OnCastSpell;
-            @CastSpell.performed -= instance.OnCastSpell;
-            @CastSpell.canceled -= instance.OnCastSpell;
-            @CastBuff.started -= instance.OnCastBuff;
-            @CastBuff.performed -= instance.OnCastBuff;
-            @CastBuff.canceled -= instance.OnCastBuff;
+            @CastSpell1.started -= instance.OnCastSpell1;
+            @CastSpell1.performed -= instance.OnCastSpell1;
+            @CastSpell1.canceled -= instance.OnCastSpell1;
+            @CastSpell2.started -= instance.OnCastSpell2;
+            @CastSpell2.performed -= instance.OnCastSpell2;
+            @CastSpell2.canceled -= instance.OnCastSpell2;
+            @CastSpell3.started -= instance.OnCastSpell3;
+            @CastSpell3.performed -= instance.OnCastSpell3;
+            @CastSpell3.canceled -= instance.OnCastSpell3;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -549,7 +578,8 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnLockOnCamera(InputAction.CallbackContext context);
-        void OnCastSpell(InputAction.CallbackContext context);
-        void OnCastBuff(InputAction.CallbackContext context);
+        void OnCastSpell1(InputAction.CallbackContext context);
+        void OnCastSpell2(InputAction.CallbackContext context);
+        void OnCastSpell3(InputAction.CallbackContext context);
     }
 }

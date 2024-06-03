@@ -87,7 +87,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Cast Spell",
+                    "name": "Cast Spell 1",
                     "type": "Button",
                     "id": "94aef330-a31f-45ef-b9b3-e25afc2d8504",
                     "expectedControlType": "Button",
@@ -96,9 +96,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cast Buff",
+                    "name": "Cast Spell 2",
                     "type": "Button",
                     "id": "345e4395-c20d-4988-b798-b8d11723824a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cast Spell 3",
+                    "type": "Button",
+                    "id": "0d0c0fff-44e8-48e3-b049-3c6560c764ff",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -300,7 +309,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cast Spell",
+                    "action": "Cast Spell 1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -311,7 +320,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cast Buff",
+                    "action": "Cast Spell 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ff72ec8-6005-4574-9626-443584a8bbd2",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast Spell 3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

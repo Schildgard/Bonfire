@@ -325,6 +325,16 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
+    public void CastSpellEvent3(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            Spelllist.CastSpell(2);
+        }
+    }
+
+
+
     public void CallCameraInput(InputAction.CallbackContext _context)
     {
         if (cameraInputActivated)
