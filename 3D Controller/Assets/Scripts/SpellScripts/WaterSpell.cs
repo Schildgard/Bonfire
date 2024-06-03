@@ -10,6 +10,10 @@ public class WaterSpell : MonoBehaviour
     [SerializeField] private Material EffectMaterial;
     //[SerializeField] private VisualEffect VFX;
 
+    private void Awake()
+    {
+        this.transform.parent = null;
+    }
 
 
     private void OnTriggerEnter(Collider _target)
@@ -18,8 +22,6 @@ public class WaterSpell : MonoBehaviour
         if (wettableTarget == null) return;
 
         wettableTarget.GetWet();
-
-
 
         // Change Materials
 
@@ -37,17 +39,16 @@ public class WaterSpell : MonoBehaviour
             EnemyCondition.duration = EnemyCondition.maxduration;
             Debug.Log(_target.name + "has already been wettified");
         }
+    }
 
 
+    private void OnTriggerStay(Collider _target)
+    {
+        var targetRenderer = _target.GetComponentInChildren<SkinnedMeshRenderer>();
+        if (targetRenderer == null) return;
 
-
-        //Apply VFX
-        // VisualEffect vfx = Instantiate(VFX, _target.transform);
-        // vfx.SetSkinnedMeshRenderer("SkinnedMeshRenderer", targetRenderer);
-        // VFXPropertyBinder vfxPropertyBinder = vfx.AddComponent<VFXPropertyBinder>();
-
-
-
-
+        var WetCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Wet>();
+        if (WetCondition == null) return;
+        WetCondition.duration = WetCondition.maxduration;
     }
 }
