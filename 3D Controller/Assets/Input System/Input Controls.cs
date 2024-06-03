@@ -134,6 +134,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=2)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast Spell 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""c57a460a-c4f2-4c7d-886e-833fa306e06e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -356,6 +365,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Cast Spell 3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fa9e5ef-c357-4d84-a0bb-f4ec1578a53d"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast Spell 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -376,6 +396,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_CastSpell1 = m_Player.FindAction("Cast Spell 1", throwIfNotFound: true);
         m_Player_CastSpell2 = m_Player.FindAction("Cast Spell 2", throwIfNotFound: true);
         m_Player_CastSpell3 = m_Player.FindAction("Cast Spell 3", throwIfNotFound: true);
+        m_Player_CastSpell4 = m_Player.FindAction("Cast Spell 4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -449,6 +470,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CastSpell1;
     private readonly InputAction m_Player_CastSpell2;
     private readonly InputAction m_Player_CastSpell3;
+    private readonly InputAction m_Player_CastSpell4;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -465,6 +487,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @CastSpell1 => m_Wrapper.m_Player_CastSpell1;
         public InputAction @CastSpell2 => m_Wrapper.m_Player_CastSpell2;
         public InputAction @CastSpell3 => m_Wrapper.m_Player_CastSpell3;
+        public InputAction @CastSpell4 => m_Wrapper.m_Player_CastSpell4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -510,6 +533,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @CastSpell3.started += instance.OnCastSpell3;
             @CastSpell3.performed += instance.OnCastSpell3;
             @CastSpell3.canceled += instance.OnCastSpell3;
+            @CastSpell4.started += instance.OnCastSpell4;
+            @CastSpell4.performed += instance.OnCastSpell4;
+            @CastSpell4.canceled += instance.OnCastSpell4;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -550,6 +576,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @CastSpell3.started -= instance.OnCastSpell3;
             @CastSpell3.performed -= instance.OnCastSpell3;
             @CastSpell3.canceled -= instance.OnCastSpell3;
+            @CastSpell4.started -= instance.OnCastSpell4;
+            @CastSpell4.performed -= instance.OnCastSpell4;
+            @CastSpell4.canceled -= instance.OnCastSpell4;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -581,5 +610,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnCastSpell1(InputAction.CallbackContext context);
         void OnCastSpell2(InputAction.CallbackContext context);
         void OnCastSpell3(InputAction.CallbackContext context);
+        void OnCastSpell4(InputAction.CallbackContext context);
     }
 }

@@ -5327,6 +5327,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0d0c0fff-44e8-48e3-b049-3c6560c764ff
     m_ActionName: Player/Cast Spell 3[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 854263485}
+        m_TargetAssemblyTypeName: PlayerActionScript, Assembly-CSharp
+        m_MethodName: CastSpellEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c57a460a-c4f2-4c7d-886e-833fa306e06e
+    m_ActionName: Player/Cast Spell 4[/Keyboard/5]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -5567,6 +5583,11 @@ MonoBehaviour:
     Prefab: {fileID: 5543659430663024688, guid: 1c4dac34751b2154d89f90e648ab3a16, type: 3}
     SpawnTransform: {fileID: 527257563}
     useAltCastAnimation: 1
+    lifeTime: 20
+  - name: Fire Cast
+    Prefab: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
+    SpawnTransform: {fileID: 1056224114}
+    useAltCastAnimation: 0
     lifeTime: 20
 --- !u!1001 &855368428
 PrefabInstance:
@@ -13968,63 +13989,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &9109552124376797420
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307184663635017082, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-      propertyPath: m_Name
-      value: FireCast
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
 --- !u!4 &9118793901233621744
 Transform:
   m_ObjectHideFlags: 0

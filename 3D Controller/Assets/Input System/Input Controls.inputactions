@@ -112,6 +112,15 @@
                     "processors": "Scale(factor=2)",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cast Spell 4",
+                    "type": "Button",
+                    "id": "c57a460a-c4f2-4c7d-886e-833fa306e06e",
+                    "expectedControlType": "Button",
+                    "processors": "Scale(factor=3)",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -332,6 +341,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cast Spell 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0fa9e5ef-c357-4d84-a0bb-f4ec1578a53d",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast Spell 4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
