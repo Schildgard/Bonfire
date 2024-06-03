@@ -31,23 +31,58 @@ public class LightningBoltCollider : MonoBehaviour
     {
 
         var damageableTarget = _target.gameObject.GetComponent<IDamageable>();
-        if (damageableTarget != null)
+        var electrizableTarget = _target.gameObject.GetComponentInChildren<IElectrilizable>();
+
+        //Case 1
+        if (damageableTarget == null && electrizableTarget == null)
+        {
+            return;
+        }
+
+        //case 2
+        if (damageableTarget == null && electrizableTarget != null)
+        {
+            ElectrifySurface(_target);
+
+        }
+
+        //Case 3
+        if (damageableTarget != null && electrizableTarget == null)
+        {
+            damageableTarget.GetDamage(particleDamage);
+        }
+
+        //Case 4
+        if (damageableTarget != null && electrizableTarget != null)
         {
             damageableTarget.GetDamage(particleDamage);
             ElectrifyTarget(_target);
+
         }
+        //Might replace this with a switch
 
+    }
 
+    private void ElectrifyTarget(GameObject _target)
+    {
 
-        var electrizableTarget = _target.gameObject.GetComponent<IElectrilizable>();
-        if (electrizableTarget == null) return;
-
-        if (damageableTarget != null)
+        var targetRenderer = _target.GetComponentInChildren<SkinnedMeshRenderer>();
+        if (targetRenderer.materials.Length <= 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
         {
+            var Condition = targetRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
 
+            targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], EffectMaterial }; ;
         }
+        else
+        {
+            var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Lightning>();
+            EnemyCondition.duration = EnemyCondition.maxduration;
+            Debug.Log(_target.name + "has already been electrified");
+        }
+    }
 
-
+    private void ElectrifySurface(GameObject _target)
+    {
         int numCollisionEvents = ParticleSystem.GetCollisionEvents(_target, CollisionEvents); //when Particle collides, return 1 and add to CollisionEvents List
 
 
@@ -56,24 +91,6 @@ public class LightningBoltCollider : MonoBehaviour
             Vector3 pos = CollisionEvents[i].intersection;
             GameObject vfx = Instantiate(ElectrifiedSurfaceVFX, pos, Quaternion.Euler(-90, 0, 0));
             i++;
-        }
-    }
-
-    private void ElectrifyTarget(GameObject _target)
-    {
-        
-        var targetRenderer = _target.GetComponentInChildren<SkinnedMeshRenderer>();
-        if (targetRenderer.materials.Length < 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
-        {
-            var Condition = targetRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
-            
-            targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], EffectMaterial };;
-        }
-        else
-        {
-            var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Lightning>();
-            EnemyCondition.duration = EnemyCondition.maxduration;
-            Debug.Log(_target.name + "has already been electrified");
         }
     }
 

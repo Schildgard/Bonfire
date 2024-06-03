@@ -5,8 +5,5 @@ using UnityEngine;
 public interface IElectrilizable 
 {
 
-    public void Electrify()
-    {
-        
-    }
+    public void Electrify() { }
 }
