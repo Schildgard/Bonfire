@@ -141,6 +141,7 @@ MonoBehaviour:
   damagePerIntervall: 3
   damageIntervall: 3
   damageCounter: 3
+  CloudPrefab: {fileID: 6565343181988738893, guid: 29c2816ac964924419ba598eabf61074, type: 3}
 --- !u!82 &2535757854151708502
 AudioSource:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18152827, g: 0.223306, b: 0.28501832, a: 1}
+  m_IndirectSpecularColor: {r: 0.18152869, g: 0.22330654, b: 0.28501928, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1978,7 +1978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317069, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 248.7
+      value: 230.98
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317069, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5665,7 +5665,7 @@ MonoBehaviour:
     Prefab: {fileID: 5543659430663024688, guid: 1c4dac34751b2154d89f90e648ab3a16, type: 3}
     SpawnTransform: {fileID: 527257563}
     useAltCastAnimation: 1
-    lifeTime: 20
+    lifeTime: 2
   - name: Fire Cast
     Prefab: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
     SpawnTransform: {fileID: 1056224114}
@@ -8228,24 +8228,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1560383988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6565343181988738893, guid: 29c2816ac964924419ba598eabf61074, type: 3}
-  m_PrefabInstance: {fileID: 833801492}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &1560383993
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560383988}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.4800346
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1562709413
 GameObject:
   m_ObjectHideFlags: 0

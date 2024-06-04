@@ -8,7 +8,7 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
 
     protected override void Awake()
     {
-        maxduration = 10;
+        maxduration = 20;
         base.Awake();
     }
 
