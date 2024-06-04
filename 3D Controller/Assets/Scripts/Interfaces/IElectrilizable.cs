@@ -5,5 +5,8 @@ using UnityEngine;
 public interface IElectrilizable 
 {
 
-    public void Electrify() { }
+    public void Electrify(Material _material);
+
+    public void Electrify(Vector3 _position);
+    
 }

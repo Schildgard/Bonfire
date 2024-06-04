@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356dbdeffca80d44d9c3ecbc99faf32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ElectrifiedSurfaceVFX: {fileID: 0}
+  ElectrifiedSurfaceVFX: {fileID: 9061981627004042412, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
 --- !u!135 &1560383993
 SphereCollider:
   m_ObjectHideFlags: 0

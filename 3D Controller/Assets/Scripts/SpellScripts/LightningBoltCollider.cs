@@ -9,7 +9,7 @@ public class LightningBoltCollider : MonoBehaviour
 {
 
 
-    [SerializeField] private GameObject ElectrifiedSurfaceVFX;
+    //[SerializeField] private GameObject ElectrifiedSurfaceVFX;
 
     [SerializeField] private Material EffectMaterial;
 
@@ -42,7 +42,8 @@ public class LightningBoltCollider : MonoBehaviour
         //case 2
         if (damageableTarget == null && electrizableTarget != null)
         {
-            ElectrifySurface(_target);
+            //ElectrifySurface(_target);
+            electrizableTarget.Electrify(GetCollisionPosition(_target));  // Get Position Method
 
         }
 
@@ -56,7 +57,8 @@ public class LightningBoltCollider : MonoBehaviour
         if (damageableTarget != null && electrizableTarget != null)
         {
             damageableTarget.GetDamage(particleDamage);
-            ElectrifyTarget(_target);
+            //ElectrifyTarget(_target);
+            electrizableTarget.Electrify(EffectMaterial);
 
         }
         //Might replace this with a switch
@@ -81,17 +83,35 @@ public class LightningBoltCollider : MonoBehaviour
         }
     }
 
-    private void ElectrifySurface(GameObject _target)
+  // private void ElectrifySurface(GameObject _target)
+  // {
+  //     int numCollisionEvents = ParticleSystem.GetCollisionEvents(_target, CollisionEvents); //when Particle collides, return 1 and add to CollisionEvents List
+  //
+  //
+  //     for (int i = 0; i < numCollisionEvents; i++)
+  //     {
+  //         Vector3 pos = CollisionEvents[i].intersection;
+  //         GameObject vfx = Instantiate(ElectrifiedSurfaceVFX, pos, Quaternion.Euler(-90, 0, 0));
+  //         i++;
+  //     }
+  // }
+
+
+    private Vector3 GetCollisionPosition(GameObject _target)
     {
         int numCollisionEvents = ParticleSystem.GetCollisionEvents(_target, CollisionEvents); //when Particle collides, return 1 and add to CollisionEvents List
-
 
         for (int i = 0; i < numCollisionEvents; i++)
         {
             Vector3 pos = CollisionEvents[i].intersection;
-            GameObject vfx = Instantiate(ElectrifiedSurfaceVFX, pos, Quaternion.Euler(-90, 0, 0));
             i++;
+            return pos;
+            
         }
+        Debug.Log("Vector3.Zero was returned");
+        return Vector3.zero;
+        
+
     }
 
 }
