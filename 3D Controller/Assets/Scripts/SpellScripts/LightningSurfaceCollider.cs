@@ -12,14 +12,14 @@ public class LightningSurfaceCollider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider _target)
     {
-        Debug.Log("Not Hittable");
+
         var hittableTarget = _target.gameObject.GetComponent<IDamageable>();
         if (hittableTarget == null)
         {
             
             return;
         }
-        Debug.Log("Hit");
+
         hittableTarget.GetDamage(5);
     }
 

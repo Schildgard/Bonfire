@@ -83,18 +83,7 @@ public class LightningBoltCollider : MonoBehaviour
         }
     }
 
-  // private void ElectrifySurface(GameObject _target)
-  // {
-  //     int numCollisionEvents = ParticleSystem.GetCollisionEvents(_target, CollisionEvents); //when Particle collides, return 1 and add to CollisionEvents List
-  //
-  //
-  //     for (int i = 0; i < numCollisionEvents; i++)
-  //     {
-  //         Vector3 pos = CollisionEvents[i].intersection;
-  //         GameObject vfx = Instantiate(ElectrifiedSurfaceVFX, pos, Quaternion.Euler(-90, 0, 0));
-  //         i++;
-  //     }
-  // }
+ 
 
 
     private Vector3 GetCollisionPosition(GameObject _target)
