@@ -5660,7 +5660,7 @@ MonoBehaviour:
     Prefab: {fileID: 1164704925994203664, guid: 704725268cd27d449abfda29d442a49f, type: 3}
     SpawnTransform: {fileID: 1056224114}
     useAltCastAnimation: 0
-    lifeTime: 0.5
+    lifeTime: 5
   - name: Rain Cast
     Prefab: {fileID: 5543659430663024688, guid: 1c4dac34751b2154d89f90e648ab3a16, type: 3}
     SpawnTransform: {fileID: 527257563}
@@ -5670,7 +5670,7 @@ MonoBehaviour:
     Prefab: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
     SpawnTransform: {fileID: 1056224114}
     useAltCastAnimation: 0
-    lifeTime: 20
+    lifeTime: 0.5
 --- !u!1001 &855368428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10636,63 +10636,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102430341}
   m_CullTransparentMesh: 1
---- !u!1001 &2106445812
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9061981627004042412, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_Name
-      value: Electrified_Cloud
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
 --- !u!1 &2109264382
 GameObject:
   m_ObjectHideFlags: 0

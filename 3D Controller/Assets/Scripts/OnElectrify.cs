@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class WaterBehaviourScript : MonoBehaviour, IElectrilizable
+public class OnElectrify : MonoBehaviour, IElectrilizable
 {
 
 
