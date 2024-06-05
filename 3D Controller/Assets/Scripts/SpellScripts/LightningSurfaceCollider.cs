@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LightningSurfaceCollider : MonoBehaviour
 {
-
+    [SerializeField] private float despawnTimer;
     private void Start()
     {
         StartCoroutine(DespawnVFX(gameObject));
@@ -14,20 +14,21 @@ public class LightningSurfaceCollider : MonoBehaviour
     {
 
         var hittableTarget = _target.gameObject.GetComponent<IDamageable>();
-        if (hittableTarget == null)
-        {
-            
-            return;
-        }
+        if (hittableTarget == null) return;
+
 
         hittableTarget.GetDamage(5);
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        // Apply Damage/Effect over time?
+    }
+
     private IEnumerator DespawnVFX(GameObject _object)
     {
-        yield return new WaitForSeconds(5);
-        Destroy(_object);
-        //ActiveEffects.Remove(_object);
+        yield return new WaitForSeconds(despawnTimer);
+        _object.SetActive(false);
 
     }
 }

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 3247430988267827571}
   - component: {fileID: 372555032952965603}
   - component: {fileID: 4201181582265377136}
-  - component: {fileID: 9031164960330856900}
   - component: {fileID: 1560383993}
+  - component: {fileID: 7715993557873333447}
+  - component: {fileID: 1377591117827062027}
   m_Layer: 9
   m_Name: Clouds
   m_TagString: Untagged
@@ -31,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7900197326905917460}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,19 +114,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &9031164960330856900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6565343181988738893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 356dbdeffca80d44d9c3ecbc99faf32f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ElectrifiedSurfaceVFX: {fileID: 9061981627004042412, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
 --- !u!135 &1560383993
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -138,3 +127,111 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.4800346
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7715993557873333447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565343181988738893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b187ead6f2a84d49b3e3d9d179daa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElectrifiedSurfaceVFX: {fileID: 7900197326905917463}
+--- !u!54 &1377591117827062027
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565343181988738893}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1001 &1180369551335292091
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3247430988267827571}
+    m_Modifications:
+    - target: {fileID: 232481288094392508, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042412, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_Name
+      value: Electrified_Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042412, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042414, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+--- !u!4 &7900197326905917460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9061981627004042415, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+  m_PrefabInstance: {fileID: 1180369551335292091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7900197326905917463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9061981627004042412, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+  m_PrefabInstance: {fileID: 1180369551335292091}
+  m_PrefabAsset: {fileID: 0}

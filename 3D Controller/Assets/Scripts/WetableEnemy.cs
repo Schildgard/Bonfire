@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wettable : MonoBehaviour, IWetable
+public class WetableEnemy : MonoBehaviour, IWetable
 {
-    public GameObject WetCondition;
+    [SerializeField]private GameObject WetCondition;
+    public Material ElectrifiedMaterial;
+
+
     public void GetWet()
     {
 

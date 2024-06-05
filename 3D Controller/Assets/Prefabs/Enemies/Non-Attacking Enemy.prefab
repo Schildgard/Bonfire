@@ -1590,6 +1590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WetCondition: {fileID: 7331126574363835144}
+  ElectrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
 --- !u!1 &4104516079506665354
 GameObject:
   m_ObjectHideFlags: 0

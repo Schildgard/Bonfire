@@ -8,7 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 public class LightningBoltCollider : MonoBehaviour
 {
 
-    [SerializeField] private Material EffectMaterial;
+    //[SerializeField] private Material EffectMaterial;
+
     [SerializeField] private float hitSphereRadius;
     [SerializeField] private float particleDamage;
     [SerializeField] private float maxHitDistance;
@@ -43,6 +44,7 @@ public class LightningBoltCollider : MonoBehaviour
         if (hit)
         {
             hitPosition = hitInfo.point;
+            Debug.Log(hitInfo.transform.gameObject.name + " was hit");
             return hitInfo.transform.gameObject;
         }
 
@@ -63,34 +65,19 @@ public class LightningBoltCollider : MonoBehaviour
         var damageableTarget = _target.gameObject.GetComponent<IDamageable>();
         var electrizableTarget = _target.gameObject.GetComponentInChildren<IElectrilizable>();
 
-        //Case 1
-        if (damageableTarget == null && electrizableTarget == null)
-        {
-                Debug.Log(_target.name + " was hitted but is wether damageable nor electrilizable");
-                return;
-        }
 
-        //case 2
-        if (damageableTarget == null && electrizableTarget != null)
-        {
-            electrizableTarget.Electrify(hitPosition);
-        }
-
-        //Case 3
-        if (damageableTarget != null && electrizableTarget == null)
+        if (damageableTarget != null)
         {
             damageableTarget.GetDamage(particleDamage);
+            Debug.Log(_target.name + " is damageable");
         }
-
-        //Case 4
-        if (damageableTarget != null && electrizableTarget != null)
+        if (electrizableTarget != null)
         {
-            damageableTarget.GetDamage(particleDamage);
-            //ElectrifyTarget(_target);
-            electrizableTarget.Electrify(EffectMaterial);
-
+            electrizableTarget.Electrify();
+            Debug.Log(_target.name + " is electrilizable");
+            return;
         }
-        //Might replace this with a switch
+        Debug.Log(_target.name + "  is neither");
 
     }
 

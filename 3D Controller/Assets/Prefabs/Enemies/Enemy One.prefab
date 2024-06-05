@@ -1386,7 +1386,7 @@ GameObject:
   - component: {fileID: 3997754368316317073}
   - component: {fileID: 3997754368316317074}
   - component: {fileID: -2961963651066758588}
-  - component: {fileID: 9007419283171493434}
+  - component: {fileID: -6551806193598819533}
   m_Layer: 8
   m_Name: Enemy One
   m_TagString: Untagged
@@ -1577,7 +1577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyStateMachines: []
---- !u!114 &9007419283171493434
+--- !u!114 &-6551806193598819533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1589,7 +1589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9665c66a4d5248a489420a5308fa4cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WetCondition: {fileID: 5641451871894289207}
+  WetCondition: {fileID: 3059933155240588563, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
+  ElectrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
 --- !u!1 &4104516079506665354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,10 +2953,5 @@ PrefabInstance:
 --- !u!4 &4933010840178818692 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2326378937811529888, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
-  m_PrefabInstance: {fileID: 7223041976033512996}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5641451871894289207 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3059933155240588563, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
   m_PrefabInstance: {fileID: 7223041976033512996}
   m_PrefabAsset: {fileID: 0}

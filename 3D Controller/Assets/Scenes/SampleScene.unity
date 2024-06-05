@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18152869, g: 0.22330654, b: 0.28501928, a: 1}
+  m_IndirectSpecularColor: {r: 0.18152827, g: 0.223306, b: 0.28501832, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4940,6 +4940,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clouds
       objectReference: {fileID: 0}
+    - target: {fileID: 7715993557873333447, guid: 29c2816ac964924419ba598eabf61074, type: 3}
+      propertyPath: ElectrifiedSurfaceVFX
+      value: 
+      objectReference: {fileID: 1602030730}
+    - target: {fileID: 7900197326905917463, guid: 29c2816ac964924419ba598eabf61074, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c2816ac964924419ba598eabf61074, type: 3}
 --- !u!1 &839513120
@@ -5660,7 +5668,7 @@ MonoBehaviour:
     Prefab: {fileID: 1164704925994203664, guid: 704725268cd27d449abfda29d442a49f, type: 3}
     SpawnTransform: {fileID: 1056224114}
     useAltCastAnimation: 0
-    lifeTime: 5
+    lifeTime: 0.5
   - name: Rain Cast
     Prefab: {fileID: 5543659430663024688, guid: 1c4dac34751b2154d89f90e648ab3a16, type: 3}
     SpawnTransform: {fileID: 527257563}
@@ -5670,7 +5678,7 @@ MonoBehaviour:
     Prefab: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
     SpawnTransform: {fileID: 1056224114}
     useAltCastAnimation: 0
-    lifeTime: 0.5
+    lifeTime: 3
 --- !u!1001 &855368428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5970,8 +5978,7 @@ GameObject:
   - component: {fileID: 927173473}
   - component: {fileID: 927173472}
   - component: {fileID: 927173476}
-  - component: {fileID: 927173475}
-  m_Layer: 9
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6043,19 +6050,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &927173475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927173470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 356dbdeffca80d44d9c3ecbc99faf32f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ElectrifiedSurfaceVFX: {fileID: 9061981627004042412, guid: a7c3579ceeea47e4ebf7c269635fc4b6, type: 3}
 --- !u!65 &927173476
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8431,6 +8425,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583595333}
   m_CullTransparentMesh: 1
+--- !u!1 &1602030730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7900197326905917463, guid: 29c2816ac964924419ba598eabf61074, type: 3}
+  m_PrefabInstance: {fileID: 833801492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1609389349
 GameObject:
   m_ObjectHideFlags: 0

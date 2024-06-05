@@ -6,6 +6,7 @@ using UnityEngine;
 public class EffectCondition_Wet : StatusEffect, IElectrilizable
 {
 
+    private Material ElectrifiedMaterial;
 
     protected override void Awake()
     {
@@ -28,14 +29,19 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
         }
     }
 
-    public void Electrify(Material _effectMaterial)
+    public void Electrify()
     {
+        var Wetable = GetComponentInParent<WetableEnemy>();
+        ElectrifiedMaterial = Wetable.ElectrifiedMaterial;
+
+
+        
         var targetRenderer = GetComponent<SkinnedMeshRenderer>();
         if (targetRenderer.materials.Length <= 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
         {
             var Condition = targetRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
 
-            targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], _effectMaterial }; ;
+            targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial }; ;
         }
         else
         {
@@ -43,10 +49,5 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
             EnemyCondition.duration = EnemyCondition.maxduration;
             Debug.Log(gameObject.name + "has already been electrified");
         }
-    }
-
-    public void Electrify(Vector3 _position)
-    {
-        Debug.Log("This Object needs a Material Parameter but you tried to implement a Vector3");
     }
 }
