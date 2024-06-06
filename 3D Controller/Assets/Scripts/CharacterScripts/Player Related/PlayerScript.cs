@@ -30,7 +30,6 @@ public class PlayerScript : CharacterScript
     public override void Respawn()
     {
         base.Respawn();
-        YouDied.Raise();
         HealthScript.ResetHealth();
         PlayerInput.enabled = true;
         HealthScript.isAlive = true;
@@ -39,6 +38,7 @@ public class PlayerScript : CharacterScript
     IEnumerator WaitRespawn()
     {
         yield return new WaitForSeconds(3.5f);
-        Respawn();
+        YouDied.Raise();
+        
     }
 }

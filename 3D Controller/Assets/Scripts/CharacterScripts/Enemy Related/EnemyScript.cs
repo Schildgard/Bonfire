@@ -20,11 +20,10 @@ public class EnemyScript : CharacterScript
     {
         transform.position = SpawnPosition;
         Collider.enabled = true;
-       // foreach (var enemyStateMachine in EnemyStateMachines)
-       // {
-       //     enemyStateMachine.enabled = true;
-       // }
+
+        EnemyStateMachines[0].enabled = true;
         Animator.SetTrigger("Respawn");
+
         HealthScript.ResetHealth();
         HealthScript.isAlive = true;
     }

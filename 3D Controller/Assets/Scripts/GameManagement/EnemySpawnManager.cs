@@ -22,13 +22,21 @@ public class EnemySpawnManager : MonoBehaviour
     private EnemyScript[] RespawnableEnemies;
     [SerializeField]private GameObject SoulscratePrefab;
     [SerializeField]private PlayerScript PlayerReference;
+    [SerializeField]private Transform PlayerSpawnPosition;
+
+
 
 
     private void Start()
     {
         RespawnableEnemies = (FindObjectsByType<EnemyScript>(FindObjectsSortMode.None));
+
     }
 
+    public void SetPlayerRespawnPoint()
+    {
+        PlayerSpawnPosition.position = PlayerReference.transform.position;
+    }
 
     public void RespawnList()
     {
@@ -48,6 +56,7 @@ public class EnemySpawnManager : MonoBehaviour
     public void RespawnPlayer()
     {
         Debug.Log("Respawn Player");
-        //PlayerReference.Respawn();
+        PlayerReference.Respawn();
+        PlayerReference.transform.position = PlayerSpawnPosition.position;
     }
 }
