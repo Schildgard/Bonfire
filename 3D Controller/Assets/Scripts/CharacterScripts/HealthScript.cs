@@ -40,7 +40,7 @@ public class HealthScript : MonoBehaviour
         Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
     }
 
-    public void UpdateMaxHealth(float _value)
+    public void IncreaseMaxHealth(float _value)
     {
 
         maxHealth += _value;

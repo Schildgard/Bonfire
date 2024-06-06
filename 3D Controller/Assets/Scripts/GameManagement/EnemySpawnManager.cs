@@ -19,89 +19,35 @@ public class EnemySpawnManager : MonoBehaviour
     }
 
 
-
-    [SerializeField] private List<EnemyData> EnemyStorage;
-
-    private List<EnemyData> EnemyRespawnList = new List<EnemyData>();
-
-    //private List<Transform> SpawnPosition = new List<Transform>();
-
-    [SerializeField] private EnemyData SoulsCrate;
-
-    [SerializeField] private EnemyData Player;
-
+    private EnemyScript[] RespawnableEnemies;
+    [SerializeField]private GameObject SoulscratePrefab;
+    [SerializeField]private PlayerScript PlayerReference;
 
 
     private void Start()
     {
-        // foreach (EnemyData Enemy in EnemyStorage)
-        // {
-        //     SpawnPosition.Add(Enemy.EnemySpawnPosition);
-        // }
-
-        EnemyRespawnList = EnemyStorage;
+        RespawnableEnemies = (FindObjectsByType<EnemyScript>(FindObjectsSortMode.None));
     }
 
 
     public void RespawnList()
     {
-
-       EnemyStateMachine[] EnemiesToDelete = FindObjectsByType<EnemyStateMachine>(FindObjectsSortMode.None);
-       foreach (var enemy in EnemiesToDelete)
-       {
-           Destroy(enemy.gameObject);
-       }
-
- 
-
-      // foreach (EnemyData enemy in EnemyStorage) 
-      // {
-      //     enemy.SpawnThisEnemy();
-      // }
-
-        for (int i = 0; i < EnemyRespawnList.Count; i++)
+        foreach (EnemyScript Enemy in RespawnableEnemies)
         {
-            EnemyRespawnList[i].SpawnThisEnemy(EnemyRespawnList[i].EnemySpawnPosition.position);
+            Enemy.Respawn();
         }
-
     }
 
     public void SpawnSoulsCrate() 
     {
-        SoulsCrate.SpawnThisEnemy(Vector3.zero);
+        Debug.Log("Try to spawn SoulsCrate");
+         GameObject SoulsCrate = Instantiate(SoulscratePrefab, PlayerReference.transform.position, Quaternion.identity);
+        Debug.Log("SoulsCrate spawned");
     }
 
-    public void RespawnPlayer() 
+    public void RespawnPlayer()
     {
-        Player.EnemyPrefab.transform.position = Player.EnemySpawnPosition.position;
-    }
-
-    [Serializable]
-    public class EnemyData
-    {
-
-        public GameObject EnemyPrefab;
-
-        public Transform EnemySpawnPosition;
-
-        public EnemyData(GameObject _enemyPrefab, Transform _enemySpawnPosition)
-        {
-            EnemyPrefab = _enemyPrefab;
-            EnemySpawnPosition = _enemySpawnPosition;
-            
-        }
-
-
-        public void SpawnThisEnemy(Vector3 _position) 
-        {
-            Instantiate(EnemyPrefab, _position,EnemyPrefab.transform.rotation);
-            
-        }
-
-        public void SpawnPlayer()
-        { 
-
-        }
-
+        Debug.Log("Respawn Player");
+        //PlayerReference.Respawn();
     }
 }

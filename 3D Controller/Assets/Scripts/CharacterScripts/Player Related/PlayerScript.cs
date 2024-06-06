@@ -26,13 +26,19 @@ public class PlayerScript : CharacterScript
 
     }
 
-    IEnumerator WaitRespawn()
+
+    public override void Respawn()
     {
-        yield return new WaitForSeconds(3.5f);
+        base.Respawn();
         YouDied.Raise();
         HealthScript.ResetHealth();
         PlayerInput.enabled = true;
         HealthScript.isAlive = true;
+    }
 
+    IEnumerator WaitRespawn()
+    {
+        yield return new WaitForSeconds(3.5f);
+        Respawn();
     }
 }

@@ -12,6 +12,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     protected StatScript Stats;
     protected Animator Animator;
     protected Collider Collider;
+
     // Start is called before the first frame update
 
     protected virtual void Start()
@@ -40,6 +41,8 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         { Die(); }
         Animator.SetTrigger("Get Damage");
     }
+
+    public virtual void Respawn() { }
 
     public virtual void Die() 
     {

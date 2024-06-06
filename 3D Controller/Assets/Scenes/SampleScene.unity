@@ -2286,11 +2286,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: edad5e410080c4064ac47bacfa3944ac, type: 3}
   m_PrefabInstance: {fileID: 1906401728}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &411442910 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
-  m_PrefabInstance: {fileID: 1616177314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &415359362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,11 +2421,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415359362}
   m_CullTransparentMesh: 1
---- !u!1 &420322792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
-  m_PrefabInstance: {fileID: 1956093328}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &420961786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,11 +2954,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7d6cf65b309d9e84094b1732d90c8b3f, type: 3}
   m_PrefabInstance: {fileID: 458247232}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &479793165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
-  m_PrefabInstance: {fileID: 2144296883}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &511440530
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,11 +3285,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &563724114 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
-  m_PrefabInstance: {fileID: 240956523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &585744219
 GameObject:
   m_ObjectHideFlags: 0
@@ -5759,23 +5739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0378da5ee72a6e4449e5746fcd092e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStorage:
-  - EnemyPrefab: {fileID: 411442910}
-    EnemySpawnPosition: {fileID: 2057088955}
-  - EnemyPrefab: {fileID: 479793165}
-    EnemySpawnPosition: {fileID: 2144296884}
-  - EnemyPrefab: {fileID: 563724114}
-    EnemySpawnPosition: {fileID: 240956524}
-  - EnemyPrefab: {fileID: 1773877347}
-    EnemySpawnPosition: {fileID: 1722893329}
-  - EnemyPrefab: {fileID: 420322792}
-    EnemySpawnPosition: {fileID: 1299264337}
-  SoulsCrate:
-    EnemyPrefab: {fileID: 1762738750164056818, guid: d11b081441492a546a50f09bb8f42251, type: 3}
-    EnemySpawnPosition: {fileID: 854263484}
-  Player:
-    EnemyPrefab: {fileID: 854263482}
-    EnemySpawnPosition: {fileID: 1464980307}
+  SoulscratePrefab: {fileID: 1762738750164056818, guid: d11b081441492a546a50f09bb8f42251, type: 3}
+  PlayerReference: {fileID: 854263496}
 --- !u!4 &871552170
 Transform:
   m_ObjectHideFlags: 0
@@ -8882,11 +8847,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.325596, y: 5.7254205, z: 1}
   m_Center: {x: 2.837202, y: 2.3627098, z: 0}
---- !u!1 &1773877347 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
-  m_PrefabInstance: {fileID: 367840521}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1789891188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: a80be9499fbfc7e4cb6e69988210f97d, type: 3}
