@@ -14,33 +14,61 @@ public class EnemySpawnManager : MonoBehaviour
         if (instance == null) instance = this;
         else { Destroy(gameObject); }
         DontDestroyOnLoad(gameObject);
+
+        
     }
-    [SerializeField] private List<EnemyData> EnemyStorage = new List<EnemyData>();
+
+
+
+    [SerializeField] private List<EnemyData> EnemyStorage;
+
+    private List<EnemyData> EnemyRespawnList = new List<EnemyData>();
+
+    //private List<Transform> SpawnPosition = new List<Transform>();
 
     [SerializeField] private EnemyData SoulsCrate;
 
     [SerializeField] private EnemyData Player;
 
 
+
+    private void Start()
+    {
+        // foreach (EnemyData Enemy in EnemyStorage)
+        // {
+        //     SpawnPosition.Add(Enemy.EnemySpawnPosition);
+        // }
+
+        EnemyRespawnList = EnemyStorage;
+    }
+
+
     public void RespawnList()
     {
 
-        EnemyStateMachine[] EnemiesToDelete = FindObjectsByType<EnemyStateMachine>(FindObjectsSortMode.None);
-        foreach (var enemy in EnemiesToDelete)
-        {
-            Destroy(enemy.gameObject);
-        }
+       EnemyStateMachine[] EnemiesToDelete = FindObjectsByType<EnemyStateMachine>(FindObjectsSortMode.None);
+       foreach (var enemy in EnemiesToDelete)
+       {
+           Destroy(enemy.gameObject);
+       }
 
-        foreach (EnemyData enemy in EnemyStorage) 
+ 
+
+      // foreach (EnemyData enemy in EnemyStorage) 
+      // {
+      //     enemy.SpawnThisEnemy();
+      // }
+
+        for (int i = 0; i < EnemyRespawnList.Count; i++)
         {
-            enemy.SpawnThisEnemy();
+            EnemyRespawnList[i].SpawnThisEnemy(EnemyRespawnList[i].EnemySpawnPosition.position);
         }
 
     }
 
     public void SpawnSoulsCrate() 
     {
-        SoulsCrate.SpawnThisEnemy();
+        SoulsCrate.SpawnThisEnemy(Vector3.zero);
     }
 
     public void RespawnPlayer() 
@@ -64,9 +92,9 @@ public class EnemySpawnManager : MonoBehaviour
         }
 
 
-        public void SpawnThisEnemy() 
+        public void SpawnThisEnemy(Vector3 _position) 
         {
-            Instantiate(EnemyPrefab, EnemySpawnPosition.position,EnemyPrefab.transform.rotation);
+            Instantiate(EnemyPrefab, _position,EnemyPrefab.transform.rotation);
             
         }
 

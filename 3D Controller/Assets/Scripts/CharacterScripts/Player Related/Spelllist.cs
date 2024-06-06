@@ -19,7 +19,7 @@ public class Spelllist : MonoBehaviour
     public void CastSpell(int _index)
     {
         spellIndex = _index;
-        if (Spells[_index].useAltCastAnimation)
+        if (Spells[_index].SpellObject.alernativeCastAnimation)
         {
             Animator.SetTrigger("Cast Buff");
         }
@@ -31,21 +31,21 @@ public class Spelllist : MonoBehaviour
 
     public void InstantiateSpell()
     {
-        GameObject SpellObject = Instantiate(Spells[spellIndex].Prefab, Spells[spellIndex].SpawnTransform);
-        Destroy(SpellObject, Spells[spellIndex].lifeTime);
+        GameObject SpellObject = Instantiate(Spells[spellIndex].SpellObject.spellPrefab, Spells[spellIndex].SpawnTransform);
+        Destroy(SpellObject, Spells[spellIndex].SpellObject.spellDuration);
         spellIndex = 0;
     }
 
 }
 
+
+
+
 [Serializable]
 public class Spell
 {
-    [SerializeField] private string name;
-    public GameObject Prefab;
+    public SO_Spell SpellObject;
     public Transform SpawnTransform;  
-    public bool useAltCastAnimation;
 
-    public float lifeTime;
 
 }

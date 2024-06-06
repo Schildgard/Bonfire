@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ed7e2324c2ce5478c5ae360b21a7bb, type: 3}
+  m_Name: ThunderBolt
+  m_EditorClassIdentifier: 
+  spellName: ThunderBolt
+  spellDuration: 0.5
+  spellPrefab: {fileID: 1164704925994203664, guid: 704725268cd27d449abfda29d442a49f, type: 3}
+  alernativeCastAnimation: 0
