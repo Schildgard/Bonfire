@@ -41,7 +41,7 @@ public class EnemySpawnManager : MonoBehaviour
     public void SpawnSoulsCrate() 
     {
         Debug.Log("Try to spawn SoulsCrate");
-         GameObject SoulsCrate = Instantiate(SoulscratePrefab, PlayerReference.transform.position, Quaternion.identity);
+        Instantiate(SoulscratePrefab, PlayerReference.transform.position, Quaternion.identity);
         Debug.Log("SoulsCrate spawned");
     }
 
