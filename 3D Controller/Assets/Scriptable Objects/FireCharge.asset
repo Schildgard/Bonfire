@@ -16,3 +16,4 @@ MonoBehaviour:
   spellDuration: 3
   spellPrefab: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
   alernativeCastAnimation: 0
+  SpellIcon: {fileID: 21300000, guid: c6ae35aa675f33d4eb9c57987f1f96e1, type: 3}

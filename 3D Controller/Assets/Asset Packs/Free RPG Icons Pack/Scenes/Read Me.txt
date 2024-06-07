@@ -1,0 +1,1 @@
+1. Script "SetDemoImage" is used to set icons on the canvas after playing the scene.
