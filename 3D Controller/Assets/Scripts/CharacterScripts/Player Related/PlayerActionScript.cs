@@ -12,6 +12,7 @@ public class PlayerActionScript : MonoBehaviour
     private GroundCheck collisionDetection;
     private Animator Animator;
     private Spelllist Spelllist;
+    private AbilityBar AbilityBar;
 
     #region Walk
     [SerializeField] private float normalWalkSpeed;
@@ -95,6 +96,7 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
+        AbilityBar = GetComponentInChildren<AbilityBar>();
 
 
     }

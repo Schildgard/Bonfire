@@ -1,44 +1,56 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AbilityBar : MonoBehaviour
 {
-    public List<AbilityBarSlot> AbilityBarSlots;
+    [SerializeField] private List<AbilityBarSlot> AbilityBarSlots;
 
-    public GameObject SlotItemPrefab;
+    [SerializeField] private GameObject SlotItemPrefab;
+
+    private Spelllist Spelllist;
+
 
 
     private void Start()
     {
+        Spelllist = GetComponentInParent<Spelllist>();
         InitializeSlots();
     }
 
-    public SO_Spell GetAbilityFromSlot(int _index)
-    {
-        return AbilityBarSlots[_index].Spell;
 
-    }
+
 
 
     private void InitializeSlots()
     {
-        foreach (var SlotItem in AbilityBarSlots)
+        foreach (var Ability in AbilityBarSlots)
         {
-            if (SlotItem.Spell == null)
+            if (Ability.Spell == null)
             {
+                Debug.Log(Ability.name + " Spell is null");
                 continue;
             }
-            CreateSlotItem(SlotItem, SlotItem.Spell);
-
+            Debug.Log("Create SlotItem for" + Ability);
+            CreateSlotItem(Ability, Ability.Spell);
+            Debug.Log("Now Adding to List");
+            Spelllist.Spells.Add(Ability.Spell);
+            Debug.Log("Success");
         }
     }
 
     private void CreateSlotItem(AbilityBarSlot _abilityBarSlot, SO_Spell _spell)
     {
         var slotItem = Instantiate(SlotItemPrefab, _abilityBarSlot.transform);
-         slotItem.GetComponent<Image>().sprite = _spell.SpellIcon;
+        slotItem.GetComponent<Image>().sprite = _spell.SpellIcon;
+    }
+
+    public SO_Spell GetAbilityFromSlot(int _index)
+    {
+        return AbilityBarSlots[_index].Spell;
+
     }
 }

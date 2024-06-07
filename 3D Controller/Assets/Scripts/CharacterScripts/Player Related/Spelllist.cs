@@ -8,7 +8,13 @@ public class Spelllist : MonoBehaviour
 {
     private Animator Animator;
 
-    public List<Spell> Spells;
+    public List<SO_Spell> Spells;
+
+    [SerializeField] private Transform ProjectileTransform;
+    [SerializeField] private Transform BuffTransform;
+    [SerializeField] private Transform AOETransform;
+
+    private Transform SpawnPosition;
 
     private int spellIndex;
 
@@ -19,7 +25,7 @@ public class Spelllist : MonoBehaviour
     public void CastSpell(int _index)
     {
         spellIndex = _index;
-        if (Spells[_index].SpellObject.alernativeCastAnimation)
+        if (Spells[_index].alernativeCastAnimation)
         {
             Animator.SetTrigger("Cast Buff");
         }
@@ -27,12 +33,30 @@ public class Spelllist : MonoBehaviour
         {
             Animator.SetTrigger("Cast Spell");
         }
+
+
+        switch (Spells[_index].spellTypeIndex)
+        {
+            case 0:
+                SpawnPosition = ProjectileTransform;
+                break;
+            case 1:
+                SpawnPosition = BuffTransform;
+                break;
+            case 2:
+                SpawnPosition = AOETransform;
+                break;
+            default:
+                break;
+        }
     }
 
     public void InstantiateSpell()
     {
-        GameObject SpellObject = Instantiate(Spells[spellIndex].SpellObject.spellPrefab, Spells[spellIndex].SpawnTransform);
-        Destroy(SpellObject, Spells[spellIndex].SpellObject.spellDuration);
+        GameObject SpellObject = Instantiate(Spells[spellIndex].spellPrefab, SpawnPosition);
+
+
+        Destroy(SpellObject, Spells[spellIndex].spellDuration);
         spellIndex = 0;
     }
 
@@ -45,7 +69,7 @@ public class Spelllist : MonoBehaviour
 public class Spell
 {
     public SO_Spell SpellObject;
-    public Transform SpawnTransform;  
+    //public Transform SpawnTransform;  
 
 
 }

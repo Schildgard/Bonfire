@@ -12,4 +12,6 @@ public class SO_Spell : ScriptableObject
     public bool alernativeCastAnimation;
 
     public Sprite SpellIcon;
+
+    public int spellTypeIndex;
 }
