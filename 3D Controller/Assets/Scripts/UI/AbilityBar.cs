@@ -22,35 +22,22 @@ public class AbilityBar : MonoBehaviour
     }
 
 
-
-
-
     private void InitializeSlots()
     {
         foreach (var Ability in AbilityBarSlots)
         {
             if (Ability.Spell == null)
             {
-                Debug.Log(Ability.name + " Spell is null");
                 continue;
             }
-            Debug.Log("Create SlotItem for" + Ability);
-            CreateSlotItem(Ability, Ability.Spell);
-            Debug.Log("Now Adding to List");
+            CreateSlotIcon(Ability, Ability.Spell);
             Spelllist.Spells.Add(Ability.Spell);
-            Debug.Log("Success");
         }
     }
 
-    private void CreateSlotItem(AbilityBarSlot _abilityBarSlot, SO_Spell _spell)
+    private void CreateSlotIcon(AbilityBarSlot _abilityBarSlot, SO_Spell _spell)
     {
         var slotItem = Instantiate(SlotItemPrefab, _abilityBarSlot.transform);
         slotItem.GetComponent<Image>().sprite = _spell.SpellIcon;
-    }
-
-    public SO_Spell GetAbilityFromSlot(int _index)
-    {
-        return AbilityBarSlots[_index].Spell;
-
     }
 }

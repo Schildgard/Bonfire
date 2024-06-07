@@ -5,5 +5,9 @@ using UnityEngine.UI;
 
 public class AbilityBarSlot : MonoBehaviour
 {
-    public SO_Spell Spell;
+
+    [SerializeField]private SO_Spell spell;
+
+
+    public SO_Spell Spell { get { return spell; } set { spell = value; } }
 }

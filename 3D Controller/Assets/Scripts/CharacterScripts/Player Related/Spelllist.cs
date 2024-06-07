@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Spelllist : MonoBehaviour
 {
-    private Animator Animator;
 
-    public List<SO_Spell> Spells;
+    private Animator Animator;
+    //private List<SO_Spell> spells;
+    private int spellIndex;
+    public List<SO_Spell> Spells; //{ get { return spells; } set { spells = value; } }
 
     [SerializeField] private Transform ProjectileTransform;
     [SerializeField] private Transform BuffTransform;
@@ -16,24 +19,35 @@ public class Spelllist : MonoBehaviour
 
     private Transform SpawnPosition;
 
-    private int spellIndex;
 
     private void Awake()
     {
         Animator = GetComponent<Animator>();
     }
+
+
+
     public void CastSpell(int _index)
     {
-        spellIndex = _index;
-        if (Spells[_index].alernativeCastAnimation)
+        GetSpellIndexAndSpawnPosition(_index);
+
+        if (Spells[spellIndex].alernativeCastAnimation)
         {
             Animator.SetTrigger("Cast Buff");
         }
-        else 
+        else
         {
             Animator.SetTrigger("Cast Spell");
         }
 
+
+    }
+
+    private void GetSpellIndexAndSpawnPosition(int _index)
+    {
+
+
+        spellIndex = _index;
 
         switch (Spells[_index].spellTypeIndex)
         {
@@ -59,17 +73,5 @@ public class Spelllist : MonoBehaviour
         Destroy(SpellObject, Spells[spellIndex].spellDuration);
         spellIndex = 0;
     }
-
-}
-
-
-
-
-[Serializable]
-public class Spell
-{
-    public SO_Spell SpellObject;
-    //public Transform SpawnTransform;  
-
 
 }
