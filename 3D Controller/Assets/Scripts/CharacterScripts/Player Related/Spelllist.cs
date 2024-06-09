@@ -29,7 +29,13 @@ public class Spelllist : MonoBehaviour
 
     public void CastSpell(int _index)
     {
-        GetSpellIndexAndSpawnPosition(_index);
+        spellIndex = _index;
+        if (Spells[spellIndex] == null )
+        {
+            Debug.Log("No Spell Attached");
+            return;
+        }
+        GetSpellSpawnPosition(spellIndex);
 
         if (Spells[spellIndex].alernativeCastAnimation)
         {
@@ -43,12 +49,8 @@ public class Spelllist : MonoBehaviour
 
     }
 
-    private void GetSpellIndexAndSpawnPosition(int _index)
+    private void GetSpellSpawnPosition(int _index)
     {
-
-
-        spellIndex = _index;
-
         switch (Spells[_index].spellTypeIndex)
         {
             case 0:
@@ -61,6 +63,7 @@ public class Spelllist : MonoBehaviour
                 SpawnPosition = AOETransform;
                 break;
             default:
+                Debug.Log("No spellTypeIndex");
                 break;
         }
     }
@@ -68,7 +71,6 @@ public class Spelllist : MonoBehaviour
     public void InstantiateSpell()
     {
         GameObject SpellObject = Instantiate(Spells[spellIndex].spellPrefab, SpawnPosition);
-
 
         Destroy(SpellObject, Spells[spellIndex].spellDuration);
         spellIndex = 0;

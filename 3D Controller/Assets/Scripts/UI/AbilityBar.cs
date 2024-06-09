@@ -11,13 +11,12 @@ public class AbilityBar : MonoBehaviour
 
     [SerializeField] private GameObject SlotItemPrefab;
 
-    private Spelllist Spelllist;
+    //[SerializeField]private Spelllist Spelllist;
 
 
 
     private void Start()
     {
-        Spelllist = GetComponentInParent<Spelllist>();
         InitializeSlots();
     }
 
@@ -31,7 +30,7 @@ public class AbilityBar : MonoBehaviour
                 continue;
             }
             CreateSlotIcon(Ability, Ability.Spell);
-            Spelllist.Spells.Add(Ability.Spell);
+            //Spelllist.Spells.Add(Ability.Spell);
         }
     }
 
