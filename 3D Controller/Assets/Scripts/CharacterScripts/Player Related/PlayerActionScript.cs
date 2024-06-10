@@ -12,7 +12,6 @@ public class PlayerActionScript : MonoBehaviour
     private GroundCheck collisionDetection;
     private Animator Animator;
     private Spelllist Spelllist;
-    private AbilityBar AbilityBar;
 
     #region Walk
     [SerializeField] private float normalWalkSpeed;
@@ -96,7 +95,6 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
-        AbilityBar = GetComponentInChildren<AbilityBar>();
 
 
     }
@@ -115,7 +113,6 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Walk(Transform _activeCameraTransform)
     {
-
         if (!lockOn)
         {
             _activeCameraTransform = Camera.transform;
@@ -124,6 +121,7 @@ public class PlayerActionScript : MonoBehaviour
         {
             _activeCameraTransform = LockOnCamera.transform;
         }
+
 
         MovementVector = _activeCameraTransform.transform.forward * MoveInput.y;
         MovementVector = MovementVector + _activeCameraTransform.transform.right * MoveInput.x;
