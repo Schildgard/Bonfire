@@ -9,9 +9,8 @@ public class Spelllist : MonoBehaviour
 {
 
     private Animator Animator;
-    //private List<SO_Spell> spells;
     private int spellIndex;
-    public List<SO_Spell> Spells; //{ get { return spells; } set { spells = value; } }
+    public List<SO_Spell> Spells;
 
     [SerializeField] private Transform ProjectileTransform;
     [SerializeField] private Transform BuffTransform;

@@ -12,6 +12,7 @@ public class PlayerActionScript : MonoBehaviour
     private GroundCheck collisionDetection;
     private Animator Animator;
     private Spelllist Spelllist;
+    private bool blockMovement;
 
     #region Walk
     [SerializeField] private float normalWalkSpeed;
@@ -31,7 +32,7 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float lerpSpeed;
 
 
-    [SerializeField] private Vector2 MoveInput;
+    private Vector2 MoveInput;
     private Vector3 SmoothMovement;
     private Vector3 MovementVector;
     #endregion
@@ -80,11 +81,12 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private bool lockOn;
     #endregion
 
-    private Transform activeCamera;
+    //Wasted
     private float blockInput;
-    // private GameObject ActiveSpell;
-    // private GameObject ActiveSpell2;
-    [SerializeField] private Transform SpawnPosition;
+
+    [SerializeField] private WeaponScript currentWeapon;
+
+
 
 
     // Start is called before the first frame update
@@ -97,34 +99,28 @@ public class PlayerActionScript : MonoBehaviour
         Spelllist = GetComponent<Spelllist>();
 
 
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Walk(activeCamera);
+        if (!blockMovement)
+        {
+            Walk();
+        }
         Run();
         Rotate();
         Block();
-        currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
-        if (lockOn) { LockOn(TestEnemy.position); }
+        //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
 
-    private void Walk(Transform _activeCameraTransform)
+    private void Walk()
     {
-        if (!lockOn)
-        {
-            _activeCameraTransform = Camera.transform;
-        }
-        else
-        {
-            _activeCameraTransform = LockOnCamera.transform;
-        }
 
-
-        MovementVector = _activeCameraTransform.transform.forward * MoveInput.y;
-        MovementVector = MovementVector + _activeCameraTransform.transform.right * MoveInput.x;
+        MovementVector = Camera.transform.forward * MoveInput.y;
+        MovementVector = MovementVector + Camera.transform.right * MoveInput.x;
         MovementVector.Normalize();
 
         MovementVector *= currentWalkSpeed;
@@ -206,19 +202,13 @@ public class PlayerActionScript : MonoBehaviour
 
     }
 
-    private void LockOn(Vector3 _target)
-    {
-        LockOnCamera.gameObject.SetActive(true);
-        LockOnCamera.transform.LookAt(_target);
-    }
-
     public void Attack()
     {
-        if (Stamina.CurrentStamina > 30)
+        Debug.Log("Trigger Attack");
+        if (Stamina.CurrentStamina > currentWeapon.StaminaAttackCost)
         {
+            Debug.Log("Trigger Attack ANimation");
             Animator.SetTrigger("Attack Trigger");
-            Stamina.CurrentStamina -= 30;
-            Stamina.UpdateStaminaBar();
         }
         else Debug.Log("Not Enough Stamina");
     }
@@ -241,6 +231,23 @@ public class PlayerActionScript : MonoBehaviour
     public void PlaySFX(int _index)
     {
         AudioManager.instance.SFX[_index].source.Play();
+    }
+
+    public void AttackDrainStamina()
+    {
+
+        Stamina.CurrentStamina -= currentWeapon.StaminaAttackCost;
+        Stamina.UpdateStaminaBar();
+    }
+
+    public void BlockMovement()
+    {
+        blockMovement = true;
+    }
+
+    public void UnblockMovement()
+    {
+        blockMovement = false;
     }
 
 
@@ -281,14 +288,14 @@ public class PlayerActionScript : MonoBehaviour
     }
 
 
-    public void DashEvent(InputAction.CallbackContext _context)
-    {
-        if (_context.started && currentDashCoolDown <= 0)
-        {
-            playerRigidbody.AddForce(new Vector3(MovementVector.x, 0, MovementVector.z) * dashPower, ForceMode.Impulse);
-            currentDashCoolDown = maxDashCooldown;
-        }
-    }
+    // public void DashEvent(InputAction.CallbackContext _context)
+    // {
+    //     if (_context.started && currentDashCoolDown <= 0)
+    //     {
+    //         playerRigidbody.AddForce(new Vector3(MovementVector.x, 0, MovementVector.z) * dashPower, ForceMode.Impulse);
+    //         currentDashCoolDown = maxDashCooldown;
+    //     }
+    // }
 
     public void AttackEvent(InputAction.CallbackContext _context)
     {

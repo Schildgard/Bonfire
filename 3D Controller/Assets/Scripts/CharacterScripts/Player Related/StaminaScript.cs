@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class StaminaScript : MonoBehaviour
 {
-    private StatScript Stats;
     public Image StaminaBar;
     [SerializeField] private float maxStamina;
     [SerializeField]private float regMultiplier;
@@ -14,10 +13,6 @@ public class StaminaScript : MonoBehaviour
     [SerializeField]private float currentStamina;
     public float CurrentStamina { get { return currentStamina; } set { currentStamina = value; } }
 
-    private void Awake()
-    {
-        Stats = GetComponent<StatScript>();
-    }
 
     private void Update()
     {
