@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8827773162606435617}
   - component: {fileID: 2460272423680878754}
   - component: {fileID: 5593683694027637915}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 559605338774935628}
   m_LocalRotation: {x: 0.00000006505421, y: 0.60186243, z: -0.000000049027918, w: 0.7985998}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3177144697262833015}
   m_RootOrder: 2
@@ -93,8 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3177144697262833015}
   - component: {fileID: 5673044864000331884}
-  - component: {fileID: 6717199849631125528}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry4910
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 2836331978891831245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5139530555175634194}
@@ -151,20 +150,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7784885153798800190}
   m_Enabled: 1
---- !u!136 &6717199849631125528
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836331978891831245}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.44
-  m_Height: 1.99
-  m_Direction: 1
-  m_Center: {x: -0.8, y: 0.96, z: 0.36}
 --- !u!1 &7386297547241120844
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +161,7 @@ GameObject:
   - component: {fileID: 1899490052230413693}
   - component: {fileID: 4385828885188332206}
   - component: {fileID: 6913666992573967818}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,8 +177,8 @@ Transform:
   m_GameObject: {fileID: 7386297547241120844}
   m_LocalRotation: {x: 0.00000006505421, y: 0.60186243, z: -0.000000049027918, w: 0.7985998}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3177144697262833015}
   m_RootOrder: 1
@@ -259,8 +244,7 @@ GameObject:
   - component: {fileID: 5139530555175634194}
   - component: {fileID: 683956041344566264}
   - component: {fileID: 7495088843875152881}
-  - component: {fileID: 7935939253687334026}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry4910
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,8 +260,8 @@ Transform:
   m_GameObject: {fileID: 8653604975326017316}
   m_LocalRotation: {x: 0.00000006505421, y: 0.60186243, z: -0.000000049027918, w: 0.7985998}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3177144697262833015}
   m_RootOrder: 0
@@ -332,20 +316,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7935939253687334026
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8653604975326017316}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 593488334852896246, guid: 392ccefdc43e68245b2b50fd1e5cd507, type: 3}
 --- !u!1 &9043413659390337211
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +327,7 @@ GameObject:
   - component: {fileID: 8818163398652861024}
   - component: {fileID: 6487978393959921887}
   - component: {fileID: 7784885153798800190}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,8 +343,8 @@ Transform:
   m_GameObject: {fileID: 9043413659390337211}
   m_LocalRotation: {x: 0.00000006505421, y: 0.60186243, z: -0.000000049027918, w: 0.7985998}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3177144697262833015}
   m_RootOrder: 3

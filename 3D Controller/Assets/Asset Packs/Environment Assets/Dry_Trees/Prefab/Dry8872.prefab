@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5629959518674860824}
   - component: {fileID: 8998961119103171728}
   - component: {fileID: 7488278756217695051}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 859441568514707686}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5082251385855675209}
   m_RootOrder: 2
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8128131817420294979}
   - component: {fileID: 6218675949282245776}
   - component: {fileID: 3846904824461335540}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 869707708739261042}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5082251385855675209}
   m_RootOrder: 1
@@ -176,8 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5082251385855675209}
   - component: {fileID: 6426502996732889864}
-  - component: {fileID: 4953991927936774998}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8872
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 5605882136043868659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1435837701148622156}
@@ -234,20 +233,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3053021830327420102}
   m_Enabled: 1
---- !u!136 &4953991927936774998
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5605882136043868659}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9
-  m_Height: 4.83
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.5, z: -0.2}
 --- !u!1 &6740753850850139965
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +245,7 @@ GameObject:
   - component: {fileID: 4134022730773278690}
   - component: {fileID: 5004479577488120817}
   - component: {fileID: 6641408399981533628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8872
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,8 +261,8 @@ Transform:
   m_GameObject: {fileID: 6740753850850139965}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5082251385855675209}
   m_RootOrder: 0
@@ -357,7 +342,7 @@ GameObject:
   - component: {fileID: 5032624454322452926}
   - component: {fileID: 8787794619044745245}
   - component: {fileID: 3053021830327420102}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,8 +358,8 @@ Transform:
   m_GameObject: {fileID: 8599133586957323797}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5082251385855675209}
   m_RootOrder: 3

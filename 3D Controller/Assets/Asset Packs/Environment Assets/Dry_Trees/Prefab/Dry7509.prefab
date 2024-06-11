@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8157059256543155203}
   - component: {fileID: 4624411357791336914}
   - component: {fileID: 1447551117604536115}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 3320437058447677578}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7231903619604404473}
   m_RootOrder: 3
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5915414756455930099}
   - component: {fileID: 8400909164484783904}
   - component: {fileID: 1709636392323827780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 3371780217899663810}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7231903619604404473}
   m_RootOrder: 1
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 2794807222693166379}
   - component: {fileID: 161514310709035974}
   - component: {fileID: 4049709555916384247}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,8 +193,8 @@ Transform:
   m_GameObject: {fileID: 3679698614233596001}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7231903619604404473}
   m_RootOrder: 2
@@ -260,8 +260,7 @@ GameObject:
   - component: {fileID: 1082122726432194263}
   - component: {fileID: 674857493454621753}
   - component: {fileID: 6436667309524961009}
-  - component: {fileID: 4907158287290768483}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry7509
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,8 +276,8 @@ Transform:
   m_GameObject: {fileID: 7005202703139286240}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7231903619604404473}
   m_RootOrder: 0
@@ -333,20 +332,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4907158287290768483
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7005202703139286240}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8968316385674700976, guid: 2a4339fd08e4a774f907817c85495b3b, type: 3}
 --- !u!1 &8004922568447459907
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7231903619604404473}
   - component: {fileID: 4419863451105425716}
-  - component: {fileID: 7842197229774473858}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry7509
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 8004922568447459907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1082122726432194263}
@@ -415,17 +399,3 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1447551117604536115}
   m_Enabled: 1
---- !u!136 &7842197229774473858
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8004922568447459907}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.09, y: 0.96, z: -0.5}

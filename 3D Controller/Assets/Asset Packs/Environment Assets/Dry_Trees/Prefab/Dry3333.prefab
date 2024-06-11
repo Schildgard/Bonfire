@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 1867807597899721068}
   - component: {fileID: 4638549753651784886}
   - component: {fileID: 6941267244000461481}
-  - component: {fileID: 6236343114863749112}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry3333
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 933920570334307058}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6357215127638003843}
   m_RootOrder: 0
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6236343114863749112
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933920570334307058}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8139385853437241027, guid: f12b0b72f2d21d64db13e1bfa8f3ec4f, type: 3}
 --- !u!1 &1053203464780733352
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +94,7 @@ GameObject:
   - component: {fileID: 8549759492248452214}
   - component: {fileID: 4857705635449135189}
   - component: {fileID: 5357064223515413838}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 1053203464780733352}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6357215127638003843}
   m_RootOrder: 3
@@ -192,7 +177,7 @@ GameObject:
   - component: {fileID: 7958556659701469321}
   - component: {fileID: 5256748722406811482}
   - component: {fileID: 3160513468813099070}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,8 +193,8 @@ Transform:
   m_GameObject: {fileID: 1346373166685145528}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6357215127638003843}
   m_RootOrder: 1
@@ -275,7 +260,7 @@ GameObject:
   - component: {fileID: 3126529227173835867}
   - component: {fileID: 6401060125021299429}
   - component: {fileID: 5653635228686222351}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry8873LOD013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,8 +276,8 @@ Transform:
   m_GameObject: {fileID: 3308698300250113194}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6357215127638003843}
   m_RootOrder: 2
@@ -357,8 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6357215127638003843}
   - component: {fileID: 3408194372687991264}
-  - component: {fileID: 928580673266278494}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dry3333
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 6013024405325220409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1867807597899721068}
@@ -415,17 +399,3 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5357064223515413838}
   m_Enabled: 1
---- !u!136 &928580673266278494
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6013024405325220409}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: -0.44, y: 1, z: 0.66}
