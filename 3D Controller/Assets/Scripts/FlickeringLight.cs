@@ -30,7 +30,7 @@ public class FlickeringLight : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime * (1 - Random.Range(-speedRandomness, speedRandomness)) * Mathf.PI;
-        Light.intensity = startLightIntensity = startLightIntensity + Mathf.Sin(timer * flickerPerSecond) * flickerIntensity;
+        Light.intensity = startLightIntensity + Mathf.Sin(timer * flickerPerSecond) * flickerIntensity;
 
     }
 }
