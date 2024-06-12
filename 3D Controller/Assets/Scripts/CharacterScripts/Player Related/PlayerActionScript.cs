@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerActionScript : MonoBehaviour
 {
@@ -75,16 +76,13 @@ public class PlayerActionScript : MonoBehaviour
     public bool cameraInputActivated;
     #endregion
 
-    #region LockOn Camera
-    [SerializeField] private Camera LockOnCamera;
-    [SerializeField] private Transform TestEnemy;
-    [SerializeField] private bool lockOn;
-    #endregion
 
     //Wasted
     private float blockInput;
 
     [SerializeField] private WeaponScript currentWeapon;
+
+    [SerializeField] private Transform PlayerFocusPoint;
 
 
 
@@ -105,6 +103,7 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!blockMovement)
         {
             Walk();
@@ -118,8 +117,8 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Walk()
     {
-
         MovementVector = Camera.transform.forward * MoveInput.y;
+
         MovementVector = MovementVector + Camera.transform.right * MoveInput.x;
         MovementVector.Normalize();
 
@@ -145,15 +144,10 @@ public class PlayerActionScript : MonoBehaviour
     private void Rotate()
     {
 
-        if (!lockOn)
-        {
-            TargetRotationDirection = Camera.transform.forward * MoveInput.y;
-            TargetRotationDirection += Camera.transform.right * MoveInput.x;
-        }
-        else
-        {
-            TargetRotationDirection = LockOnCamera.transform.forward;
-        }
+
+        TargetRotationDirection = Camera.transform.forward * MoveInput.y;
+        TargetRotationDirection += Camera.transform.right * MoveInput.x;
+
 
         TargetRotationDirection.Normalize();
         TargetRotationDirection.y = 0;
@@ -350,16 +344,6 @@ public class PlayerActionScript : MonoBehaviour
         {
             cameraInputActivated = false;
         }
-    }
-
-    public void CameraLockOnEvent(InputAction.CallbackContext _context)
-    {
-        if (_context.started)
-        {
-            lockOn = !lockOn;
-            LockOnCamera.gameObject.SetActive(lockOn);
-        }
-
     }
 
 
