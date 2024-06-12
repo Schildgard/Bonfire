@@ -82,8 +82,9 @@ public class PlayerActionScript : MonoBehaviour
 
     [SerializeField] private WeaponScript currentWeapon;
 
-    [SerializeField] private Transform PlayerFocusPoint;
+    [SerializeField] private Camera MainCamera;
 
+    [SerializeField] private CinemachineFreeLook freeLook;
 
 
 
@@ -95,6 +96,8 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
+
+        Cursor.lockState = CursorLockMode.Locked;
 
 
 
@@ -111,15 +114,22 @@ public class PlayerActionScript : MonoBehaviour
         Run();
         Rotate();
         Block();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            freeLook.enabled = !freeLook.enabled;
+        }
         //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
 
+
     private void Walk()
     {
-        MovementVector = Camera.transform.forward * MoveInput.y;
+        MovementVector = MainCamera.transform.forward * MoveInput.y;
+        MovementVector += MainCamera.transform.right * MoveInput.x;
 
-        MovementVector = MovementVector + Camera.transform.right * MoveInput.x;
+
         MovementVector.Normalize();
 
         MovementVector *= currentWalkSpeed;
@@ -144,10 +154,8 @@ public class PlayerActionScript : MonoBehaviour
     private void Rotate()
     {
 
-
-        TargetRotationDirection = Camera.transform.forward * MoveInput.y;
-        TargetRotationDirection += Camera.transform.right * MoveInput.x;
-
+        TargetRotationDirection = MainCamera.transform.forward * MoveInput.y;
+        TargetRotationDirection += MainCamera.transform.right * MoveInput.x;
 
         TargetRotationDirection.Normalize();
         TargetRotationDirection.y = 0;
@@ -334,16 +342,15 @@ public class PlayerActionScript : MonoBehaviour
 
     public void AllowCameraInput(InputAction.CallbackContext _context)
     {
-
-        if (_context.started)
-        {
-            cameraInputActivated = true;
-        }
-
-        if (_context.canceled)
-        {
-            cameraInputActivated = false;
-        }
+     //if (_context.started)
+     //{
+     //    //cameraInputActivated = true;
+     //}
+     //
+     //if (_context.canceled)
+     //{
+     //    //cameraInputActivated = false;
+     //}
     }
 
 
