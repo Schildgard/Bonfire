@@ -16,6 +16,8 @@ public class PlayerRotation : MonoBehaviour
     private bool lockOn;
     private CinemachineInputProvider cinemachineInputProvider;
 
+
+   
     [SerializeField] private float scanRadius;
 
     private void Start()
@@ -89,7 +91,7 @@ public class PlayerRotation : MonoBehaviour
 
             foreach (GameObject enemy in potentialTarget)
             {
-              float dotProduct =  GetRadius(transform, enemy.transform);
+              float dotProduct =  HelperFunctions.instance.GetDotProduct(transform, enemy.transform);
 
                 if (dotProduct >= 0)
                 {
@@ -132,8 +134,6 @@ public class PlayerRotation : MonoBehaviour
 
         }
 
-        // Now check which enemies in potentialTarget list are in Front of player / in line of view with camera
-
     }
     public void AllowCameraInput(InputAction.CallbackContext _context)
     {
@@ -167,30 +167,4 @@ public class PlayerRotation : MonoBehaviour
 
 
 
-
-
-
-
-
-
-    protected float GetRadius(Transform _currentPosition, Transform _targetPosition)
-    {
-        Vector3 ViewDirection = _currentPosition.forward;
-
-        Vector3 TargetDirection = (_targetPosition.position - _currentPosition.position);
-
-
-
-        float magnitudeViewDirection = Vector3.Magnitude(ViewDirection);
-        float magnitudeDistanceDirection = Vector3.Magnitude(TargetDirection);
-
-        float dotProduct = (ViewDirection.x * TargetDirection.x) + (ViewDirection.y * TargetDirection.y) + (ViewDirection.z * TargetDirection.z);
-
-        float degrees = dotProduct / (magnitudeViewDirection * magnitudeDistanceDirection);
-
-
-            return degrees;
-
-
-    }
 }

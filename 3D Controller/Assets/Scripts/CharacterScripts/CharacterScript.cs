@@ -13,7 +13,10 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     protected Animator Animator;
     protected Collider Collider;
 
-    // Start is called before the first frame update
+
+    //view Distance not Used yet
+    [SerializeField]private float viewDistance;
+    public float ViewDistance { get { return viewDistance; } set { viewDistance = value; } }
 
     protected virtual void Start()
     {

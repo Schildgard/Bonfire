@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerScript : CharacterScript
 {
     [SerializeField] GameEvent YouDied;
-
-    //[SerializeField] Transform LastBonfire;
-
     [SerializeField] PlayerInput PlayerInput;
+
 
     protected override void Start() 
     {
