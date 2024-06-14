@@ -163,10 +163,8 @@ public class PlayerActionScript : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Trigger Attack");
         if (Stamina.CurrentStamina > currentWeapon.StaminaAttackCost)
         {
-            Debug.Log("Trigger Attack ANimation");
             Animator.SetTrigger("Attack Trigger");
         }
         else Debug.Log("Not Enough Stamina");

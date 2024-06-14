@@ -7,22 +7,16 @@ using UnityEngine.InputSystem;
 public class PlayerRotation : MonoBehaviour
 {
 
-    private PlayerActionScript ActionScript;
 
-
-    [SerializeField] private Transform Camera;
     [SerializeField] private float rotationSpeed;
-    private Vector3 TargetRotationDirection;
-
-
-
     [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private CinemachineVirtualCamera lockOnCamera;
+    private PlayerActionScript ActionScript;
+    private Vector3 TargetRotationDirection;
     private bool lockOn;
-
-
-
     private CinemachineInputProvider cinemachineInputProvider;
+
+    [SerializeField] private float scanRadius;
 
     private void Start()
     {
@@ -66,6 +60,81 @@ public class PlayerRotation : MonoBehaviour
 
     }
 
+
+    public void CheckPotentialTargets(InputAction.CallbackContext _context)
+    {
+
+
+        List<GameObject> potentialTarget = new List<GameObject>();
+
+        if (_context.started)
+        {
+            // Gather Enemies Around Player
+            var targetableEnemies = Physics.OverlapSphere(transform.position, scanRadius);
+
+            foreach (var enemy in targetableEnemies)
+            {
+                if (enemy.gameObject.layer == 8)
+                {
+                    potentialTarget.Add(enemy.gameObject);
+                    Debug.Log(enemy.name + " is in LockOn Range");
+                }
+            }
+
+            Debug.Log("potentialTargetList contains" + (potentialTarget.Count) + " Objects");
+
+            //Check which Enemies are in Front of Player
+            List<GameObject> TargetsInFrontofPlayer = new List<GameObject>();
+
+
+            foreach (GameObject enemy in potentialTarget)
+            {
+              float dotProduct =  GetRadius(transform, enemy.transform);
+
+                if (dotProduct >= 0)
+                {
+                    Debug.Log("Add " + enemy.name + " to Front List");
+                    TargetsInFrontofPlayer.Add(enemy);
+                    Debug.Log("Adding Succesfull");
+                }
+                else
+                {
+                    Debug.Log(enemy.name + " is behind Player");
+                }
+            }
+
+            //Get Distance of Enemies who are in front of Player and set nearest Enemy as Target
+
+            GameObject lockOnTarget = TargetsInFrontofPlayer[0];
+            float shortestDistanceToPlayer = 10000;
+
+
+            foreach (var enemy in TargetsInFrontofPlayer)
+            {
+                Vector3 Distance = enemy.transform.position - transform.position;
+                float distance = Vector3.SqrMagnitude (Distance);
+                Debug.Log("Distance between Player and " + enemy.name + " is " + distance);
+                if (distance < shortestDistanceToPlayer)
+                {
+                   lockOnTarget = enemy.gameObject;
+
+                    shortestDistanceToPlayer = distance;
+                    Debug.Log("shortestDistance is changed to " + distance);
+                }
+                else
+                {
+                    Debug.Log("shortestDistance remains the same");
+                }
+            }
+            lockOnCamera.LookAt = lockOnTarget.transform;
+
+            //Set Enemy with shortestDistance as Target of Focus Camera
+
+        }
+
+        // Now check which enemies in potentialTarget list are in Front of player / in line of view with camera
+
+    }
     public void AllowCameraInput(InputAction.CallbackContext _context)
     {
         if (_context.started)
@@ -79,7 +148,6 @@ public class PlayerRotation : MonoBehaviour
         }
     }
 
-
     public void LockOn(InputAction.CallbackContext _context)
     {
         if (_context.started)
@@ -87,6 +155,42 @@ public class PlayerRotation : MonoBehaviour
             freeLook.enabled = !freeLook.enabled;
             lockOn = !lockOn;
         }
+
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, scanRadius);
+    }
+
+
+
+
+
+
+
+
+
+    protected float GetRadius(Transform _currentPosition, Transform _targetPosition)
+    {
+        Vector3 ViewDirection = _currentPosition.forward;
+
+        Vector3 TargetDirection = (_targetPosition.position - _currentPosition.position);
+
+
+
+        float magnitudeViewDirection = Vector3.Magnitude(ViewDirection);
+        float magnitudeDistanceDirection = Vector3.Magnitude(TargetDirection);
+
+        float dotProduct = (ViewDirection.x * TargetDirection.x) + (ViewDirection.y * TargetDirection.y) + (ViewDirection.z * TargetDirection.z);
+
+        float degrees = dotProduct / (magnitudeViewDirection * magnitudeDistanceDirection);
+
+
+            return degrees;
+
 
     }
 }

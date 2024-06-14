@@ -2361,7 +2361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_Name
-      value: Non-Attacking Enemy (2)
+      value: Hollow 1
       objectReference: {fileID: 0}
     - target: {fileID: 7883213703673035919, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.size
@@ -6623,6 +6623,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 854263499}
         m_TargetAssemblyTypeName: PlayerRotation, Assembly-CSharp
+        m_MethodName: CheckPotentialTargets
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 854263499}
+        m_TargetAssemblyTypeName: PlayerRotation, Assembly-CSharp
         m_MethodName: LockOn
         m_Mode: 0
         m_Arguments:
@@ -6946,10 +6958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf7444d4c548fa4c9a9ce0e798355b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 963194228}
   rotationSpeed: 6
   freeLook: {fileID: 1937391888}
   lockOnCamera: {fileID: 195637387}
+  scanRadius: 5
 --- !u!1001 &855368428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8023,7 +8035,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12870675, y: -0.000000008531639, z: 0.0000000011072893, w: 0.9916827}
+  m_LocalRotation: {x: 0.12870675, y: 0.000000008531635, z: -0.0000000011072887, w: 0.9916827}
   m_LocalPosition: {x: 44.95, y: 3.1, z: 174.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8541,7 +8553,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036642316}
-  m_LocalRotation: {x: 0.097355194, y: -0.0000000042811625, z: 4.187828e-10, w: 0.9952497}
+  m_LocalRotation: {x: 0.097355194, y: 0.0000000042811608, z: -4.1878262e-10, w: 0.9952497}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9039,7 +9051,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130771527}
-  m_LocalRotation: {x: 0.12870672, y: -0.0000000085316385, z: 0.0000000011072888, w: 0.9916827}
+  m_LocalRotation: {x: 0.12870672, y: 0.000000008531633, z: -0.0000000011072882, w: 0.9916827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11213,7 +11225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317069, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 251.3
+      value: 235.78
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317069, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11245,7 +11257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3997754368316317070, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
       propertyPath: m_Name
-      value: Non-Attacking Enemy (1)
+      value: Hollow 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
@@ -14235,7 +14247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068344956}
-  m_LocalRotation: {x: 0.16018224, y: 0.000000004252742, z: -6.9012535e-10, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018224, y: -0.000000004252742, z: 6.9012535e-10, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
