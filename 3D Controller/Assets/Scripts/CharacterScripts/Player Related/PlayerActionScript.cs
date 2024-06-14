@@ -35,7 +35,9 @@ public class PlayerActionScript : MonoBehaviour
 
     private Vector2 MoveInput;
     private Vector3 SmoothMovement;
-    private Vector3 MovementVector;
+    private Vector3 movementVector;
+
+    public Vector3 MovementVector { get { return movementVector; } }
     #endregion
 
     #region Run
@@ -58,33 +60,12 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float maxDashCooldown;
     #endregion
 
-    #region Rotation
-    [SerializeField] private Transform Camera;
-    [SerializeField] private float rotationSpeed;
-    private Vector3 TargetRotationDirection;
-
-    #endregion
-
-    #region NormalCamera
-
-    private Vector2 cameraInput;
-    public Vector2 CameraInput
-    {
-        get { return cameraInput; }
-        set { cameraInput = value; }
-    }
-    public bool cameraInputActivated;
-    #endregion
+    [SerializeField] private WeaponScript currentWeapon;
+    [SerializeField] private Camera MainCamera;
 
 
     //Wasted
     private float blockInput;
-
-    [SerializeField] private WeaponScript currentWeapon;
-
-    [SerializeField] private Camera MainCamera;
-
-    [SerializeField] private CinemachineFreeLook freeLook;
 
 
 
@@ -96,9 +77,6 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-
 
 
     }
@@ -112,13 +90,9 @@ public class PlayerActionScript : MonoBehaviour
             Walk();
         }
         Run();
-        Rotate();
+
         Block();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            freeLook.enabled = !freeLook.enabled;
-        }
         //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
@@ -126,21 +100,21 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Walk()
     {
-        MovementVector = MainCamera.transform.forward * MoveInput.y;
-        MovementVector += MainCamera.transform.right * MoveInput.x;
+        movementVector = MainCamera.transform.forward * MoveInput.y;
+        movementVector += MainCamera.transform.right * MoveInput.x;
 
 
-        MovementVector.Normalize();
+        movementVector.Normalize();
 
-        MovementVector *= currentWalkSpeed;
-        MovementVector.y = playerRigidbody.velocity.y;
+        movementVector *= currentWalkSpeed;
+        movementVector.y = playerRigidbody.velocity.y;
 
-        SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, MovementVector, lerpSpeed * Time.deltaTime);
+        SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, movementVector, lerpSpeed * Time.deltaTime);
 
         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
 
-        if (MovementVector.x > 0.1f || MovementVector.z > 0.1f || MovementVector.x < -0.1f || MovementVector.z < -0.1f)
+        if (movementVector.x > 0.1f || movementVector.z > 0.1f || movementVector.x < -0.1f || movementVector.z < -0.1f)
         {
             Animator.SetBool("isWalking", true);
         }
@@ -151,23 +125,6 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    private void Rotate()
-    {
-
-        TargetRotationDirection = MainCamera.transform.forward * MoveInput.y;
-        TargetRotationDirection += MainCamera.transform.right * MoveInput.x;
-
-        TargetRotationDirection.Normalize();
-        TargetRotationDirection.y = 0;
-        if (TargetRotationDirection == Vector3.zero) //Comparison between two Vectors works in that Case, because the Values of TargetRotation are bound to Input System.
-        {
-            TargetRotationDirection = transform.forward;
-        }
-
-        Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
-        Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
-        transform.rotation = newRotation;
-    }
 
     private void Run()
     {
@@ -282,7 +239,7 @@ public class PlayerActionScript : MonoBehaviour
         {
             Animator.SetTrigger("Jump");
             playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
-            playerRigidbody.AddForce(new Vector3(playerRigidbody.velocity.x, 1 * jumpPower, playerRigidbody.velocity.z), ForceMode.Impulse);
+            playerRigidbody.AddForce(new Vector3(0, 1 * jumpPower, 0), ForceMode.Impulse);
 
         }
 
@@ -328,30 +285,6 @@ public class PlayerActionScript : MonoBehaviour
     }
 
 
-
-
-    public void CallCameraInput(InputAction.CallbackContext _context)
-    {
-        if (cameraInputActivated)
-        {
-            CameraInput = _context.ReadValue<Vector2>();
-        }
-        else CameraInput = Vector3.zero;
-
-    }
-
-    public void AllowCameraInput(InputAction.CallbackContext _context)
-    {
-     //if (_context.started)
-     //{
-     //    //cameraInputActivated = true;
-     //}
-     //
-     //if (_context.canceled)
-     //{
-     //    //cameraInputActivated = false;
-     //}
-    }
 
 
     #endregion
