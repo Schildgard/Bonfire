@@ -9795,7 +9795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ca504f294d2b44ca45f7ea7e507611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
   hitSphereRadius: 0.5
   particleDamage: 1
   maxHitDistance: 9

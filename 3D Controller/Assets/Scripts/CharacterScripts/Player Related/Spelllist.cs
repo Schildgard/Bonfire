@@ -29,6 +29,7 @@ public class Spelllist : MonoBehaviour
     public void CastSpell(int _index)
     {
         spellIndex = _index;
+
         if (Spells[spellIndex] == null )
         {
             Debug.Log("No Spell Attached");

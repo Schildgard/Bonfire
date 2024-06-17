@@ -13,10 +13,8 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     protected Animator Animator;
     protected Collider Collider;
 
-
-    //view Distance not Used yet
-    [SerializeField]private float viewDistance;
-    public float ViewDistance { get { return viewDistance; } set { viewDistance = value; } }
+    [SerializeField] private int getDamageSoundIndex;
+    [SerializeField] private int deathSoundIndex;
 
     protected virtual void Start()
     {
@@ -28,7 +26,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     }
 
 
-    public void GetDamage(float _damage)
+    public virtual void GetDamage(float _damage)
     {
         if (!HealthScript.isAlive)
         { return; }
@@ -40,9 +38,13 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
         Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage");
 
+        Animator.SetTrigger("Get Damage");
         if (HealthScript.currentHealth <= 0)
         { Die(); }
-        Animator.SetTrigger("Get Damage");
+        else 
+        {
+            AudioManager.instance.SFX[getDamageSoundIndex].source.Play();
+        }
     }
 
     public virtual void Respawn() { }
@@ -54,6 +56,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         HealthScript.isAlive = false;
 
         Animator.SetTrigger("Died");
+        AudioManager.instance.SFX[deathSoundIndex].source.Play();
         Debug.Log(gameObject.name + "died");
     }
 

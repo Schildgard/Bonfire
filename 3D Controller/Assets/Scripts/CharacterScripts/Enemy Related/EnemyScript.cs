@@ -28,8 +28,15 @@ public class EnemyScript : CharacterScript
         HealthScript.isAlive = true;
     }
 
+    public override void GetDamage(float _damage)
+    {
+        AudioManager.instance.SFX[10].source.pitch = 1.84f;
+        base.GetDamage(_damage);
+        
+    }
     public override void Die()
     {
+        AudioManager.instance.SFX[10].source.pitch = 1.84f;
         base.Die();
         SoulsSystem.instance.GainSouls(Stats.SoulsValue);
         Collider.enabled = false;

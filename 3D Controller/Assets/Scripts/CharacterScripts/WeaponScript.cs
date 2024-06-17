@@ -32,6 +32,7 @@ public class WeaponScript : MonoBehaviour
         var hittableTarget = _target.GetComponent<IDamageable>();
         if (hittableTarget == null) return;
         hittableTarget.GetDamage(weaponDamage + damageMultiplier);
+        AudioManager.instance.SFX[9].source.Play();
         Debug.Log($"Weapon dealt{weaponDamage + damageMultiplier} Damage");
     }
 }
