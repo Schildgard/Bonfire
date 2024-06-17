@@ -73,15 +73,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Camera Controls"",
-                    ""type"": ""Value"",
-                    ""id"": ""420c5396-5ce8-4247-a044-62e470d98f89"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f0281288-8402-45c4-9e0f-be0e71269496"",
@@ -143,6 +134,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=3)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchTarget"",
+                    ""type"": ""Value"",
+                    ""id"": ""27c5e435-9226-4a13-8566-0fd7e7aa4e4b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -235,61 +235,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""7b4aaa33-1d25-4796-a7bb-c639f6d46840"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Controls"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""f5704268-80bb-439b-a841-b17d82853caa"",
-                    ""path"": ""<Mouse>/delta/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Controls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""ebead9c5-1424-405b-9c22-00972326ef99"",
-                    ""path"": ""<Mouse>/delta/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Controls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""2221ac34-b75d-4a60-b868-ff026955e5a0"",
-                    ""path"": ""<Mouse>/delta/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Controls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""54eace8a-3495-477c-807e-a1b6a76026e1"",
-                    ""path"": ""<Mouse>/delta/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Controls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""f1ed3f68-4985-4912-a0c5-03aa5bde13f1"",
                     ""path"": ""<Mouse>/rightButton"",
@@ -376,6 +321,39 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Cast Spell 4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""6b5333a9-d706-4f45-be65-999f6daa7458"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchTarget"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5249df85-5e68-4df5-945c-fd92b7637563"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2ea98eff-498c-4e16-bcfd-9a44ae4e311a"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -389,7 +367,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_ActivateCamera = m_Player.FindAction("Activate Camera", throwIfNotFound: true);
-        m_Player_CameraControls = m_Player.FindAction("Camera Controls", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_LockOnCamera = m_Player.FindAction("Lock On Camera", throwIfNotFound: true);
@@ -397,6 +374,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_CastSpell2 = m_Player.FindAction("Cast Spell 2", throwIfNotFound: true);
         m_Player_CastSpell3 = m_Player.FindAction("Cast Spell 3", throwIfNotFound: true);
         m_Player_CastSpell4 = m_Player.FindAction("Cast Spell 4", throwIfNotFound: true);
+        m_Player_SwitchTarget = m_Player.FindAction("SwitchTarget", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -463,7 +441,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_ActivateCamera;
-    private readonly InputAction m_Player_CameraControls;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_LockOnCamera;
@@ -471,6 +448,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CastSpell2;
     private readonly InputAction m_Player_CastSpell3;
     private readonly InputAction m_Player_CastSpell4;
+    private readonly InputAction m_Player_SwitchTarget;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -480,7 +458,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @ActivateCamera => m_Wrapper.m_Player_ActivateCamera;
-        public InputAction @CameraControls => m_Wrapper.m_Player_CameraControls;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @LockOnCamera => m_Wrapper.m_Player_LockOnCamera;
@@ -488,6 +465,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @CastSpell2 => m_Wrapper.m_Player_CastSpell2;
         public InputAction @CastSpell3 => m_Wrapper.m_Player_CastSpell3;
         public InputAction @CastSpell4 => m_Wrapper.m_Player_CastSpell4;
+        public InputAction @SwitchTarget => m_Wrapper.m_Player_SwitchTarget;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -512,9 +490,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @ActivateCamera.started += instance.OnActivateCamera;
             @ActivateCamera.performed += instance.OnActivateCamera;
             @ActivateCamera.canceled += instance.OnActivateCamera;
-            @CameraControls.started += instance.OnCameraControls;
-            @CameraControls.performed += instance.OnCameraControls;
-            @CameraControls.canceled += instance.OnCameraControls;
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
@@ -536,6 +511,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @CastSpell4.started += instance.OnCastSpell4;
             @CastSpell4.performed += instance.OnCastSpell4;
             @CastSpell4.canceled += instance.OnCastSpell4;
+            @SwitchTarget.started += instance.OnSwitchTarget;
+            @SwitchTarget.performed += instance.OnSwitchTarget;
+            @SwitchTarget.canceled += instance.OnSwitchTarget;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -555,9 +533,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @ActivateCamera.started -= instance.OnActivateCamera;
             @ActivateCamera.performed -= instance.OnActivateCamera;
             @ActivateCamera.canceled -= instance.OnActivateCamera;
-            @CameraControls.started -= instance.OnCameraControls;
-            @CameraControls.performed -= instance.OnCameraControls;
-            @CameraControls.canceled -= instance.OnCameraControls;
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
@@ -579,6 +554,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @CastSpell4.started -= instance.OnCastSpell4;
             @CastSpell4.performed -= instance.OnCastSpell4;
             @CastSpell4.canceled -= instance.OnCastSpell4;
+            @SwitchTarget.started -= instance.OnSwitchTarget;
+            @SwitchTarget.performed -= instance.OnSwitchTarget;
+            @SwitchTarget.canceled -= instance.OnSwitchTarget;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -603,7 +581,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnActivateCamera(InputAction.CallbackContext context);
-        void OnCameraControls(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnLockOnCamera(InputAction.CallbackContext context);
@@ -611,5 +588,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnCastSpell2(InputAction.CallbackContext context);
         void OnCastSpell3(InputAction.CallbackContext context);
         void OnCastSpell4(InputAction.CallbackContext context);
+        void OnSwitchTarget(InputAction.CallbackContext context);
     }
 }

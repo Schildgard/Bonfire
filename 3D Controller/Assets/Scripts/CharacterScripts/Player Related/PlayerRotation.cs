@@ -17,7 +17,7 @@ public class PlayerRotation : MonoBehaviour
     private CinemachineInputProvider cinemachineInputProvider;
 
 
-   
+
     [SerializeField] private float scanRadius;
 
     private void Start()
@@ -33,8 +33,9 @@ public class PlayerRotation : MonoBehaviour
     void Update()
     {
         Rotate();
-    }
 
+
+    }
 
 
     private void Rotate()
@@ -62,15 +63,45 @@ public class PlayerRotation : MonoBehaviour
 
     }
 
-
     public void CheckPotentialTargets(InputAction.CallbackContext _context)
     {
+        if (_context.started)
+        {
+            List<GameObject> potentialTarget = ScanForEnemiesInRange();
+            List<GameObject> TargetsInFrontofPlayer = new List<GameObject>();
 
+            foreach (GameObject enemy in potentialTarget)
+            {
+                Vector3 relativePosition = transform.InverseTransformPoint(enemy.transform.position);
 
-        List<GameObject> potentialTarget = new List<GameObject>();
+                if (relativePosition.z >= 0)
+                {
+                    Debug.Log("Add " + enemy.name + " to Front List");
+                    TargetsInFrontofPlayer.Add(enemy);
+                    Debug.Log("Adding Succesfull");
+                }
+                else
+                {
+                    Debug.Log(enemy.name + " is behind Player");
+                }
+            }
+            GameObject lockOnTarget = GetNearestEnemy(TargetsInFrontofPlayer);
+
+            lockOnCamera.LookAt = lockOnTarget.transform;
+        }
+    }
+
+    public void LockOnToNextTarget(InputAction.CallbackContext _context)
+    {
 
         if (_context.started)
         {
+            float contextInput = _context.ReadValue<float>();
+            Debug.Log(contextInput);
+
+            List<GameObject> potentialTarget = new List<GameObject>();
+
+
             // Gather Enemies Around Player
             var targetableEnemies = Physics.OverlapSphere(transform.position, scanRadius);
 
@@ -85,40 +116,58 @@ public class PlayerRotation : MonoBehaviour
 
             Debug.Log("potentialTargetList contains" + (potentialTarget.Count) + " Objects");
 
-            //Check which Enemies are in Front of Player
-            List<GameObject> TargetsInFrontofPlayer = new List<GameObject>();
 
 
-            foreach (GameObject enemy in potentialTarget)
+
+
+            //Sort out enemies who are not in front or left of the player
+
+            List<GameObject> viableTargets = new List<GameObject>();
+            //If Input ist right stick
+            if (contextInput > 0)
             {
-              float dotProduct =  HelperFunctions.instance.GetDotProduct(transform, enemy.transform);
 
-                if (dotProduct >= 0)
+                foreach (var enemy in potentialTarget)
                 {
-                    Debug.Log("Add " + enemy.name + " to Front List");
-                    TargetsInFrontofPlayer.Add(enemy);
-                    Debug.Log("Adding Succesfull");
-                }
-                else
-                {
-                    Debug.Log(enemy.name + " is behind Player");
+                    Vector3 relativePosition = transform.InverseTransformPoint(enemy.transform.position);
+                    if (relativePosition.z > 0 && relativePosition.x >= 0)
+                    {
+                        viableTargets.Add(enemy.gameObject);
+                        Debug.Log(enemy.name + " is right of you");
+                    }
                 }
             }
 
-            //Get Distance of Enemies who are in front of Player and set nearest Enemy as Target
+            //If Input is left stick
+            if (contextInput < 0)
+            {
 
-            GameObject lockOnTarget = TargetsInFrontofPlayer[0];
+                foreach (var enemy in potentialTarget)
+                {
+                    Vector3 relativePosition = transform.InverseTransformPoint(enemy.transform.position);
+                    if (relativePosition.z > 0 && relativePosition.x <= 0)
+                    {
+                        viableTargets.Add(enemy.gameObject);
+                        Debug.Log(enemy.name + " is left of you");
+                    }
+                }
+            }
+
+
+
+            // Get Distance of closest Target of chosen Direction
+
+            GameObject lockOnTarget = viableTargets[0];
             float shortestDistanceToPlayer = 10000;
 
-
-            foreach (var enemy in TargetsInFrontofPlayer)
+            foreach (var enemy in viableTargets)
             {
                 Vector3 Distance = enemy.transform.position - transform.position;
-                float distance = Vector3.SqrMagnitude (Distance);
+                float distance = Vector3.SqrMagnitude(Distance);
                 Debug.Log("Distance between Player and " + enemy.name + " is " + distance);
                 if (distance < shortestDistanceToPlayer)
                 {
-                   lockOnTarget = enemy.gameObject;
+                    lockOnTarget = enemy.gameObject;
 
                     shortestDistanceToPlayer = distance;
                     Debug.Log("shortestDistance is changed to " + distance);
@@ -130,11 +179,61 @@ public class PlayerRotation : MonoBehaviour
             }
             lockOnCamera.LookAt = lockOnTarget.transform;
 
-            //Set Enemy with shortestDistance as Target of Focus Camera
+
+
 
         }
 
     }
+
+
+    private List<GameObject> ScanForEnemiesInRange()
+    {
+        List<GameObject> potentialTargets = new List<GameObject>();
+        // Gather Enemies Around Player
+        var targetableEnemies = Physics.OverlapSphere(transform.position, scanRadius);
+
+        foreach (var enemy in targetableEnemies)
+        {
+            if (enemy.gameObject.layer == 8)
+            {
+                potentialTargets.Add(enemy.gameObject);
+                Debug.Log(enemy.name + " is in LockOn Range");
+            }
+        }
+
+        Debug.Log("potentialTargetList contains" + (potentialTargets.Count) + " Objects");
+
+        return potentialTargets;
+    }
+
+    private GameObject GetNearestEnemy(List<GameObject> _enemylist)
+    {
+        GameObject lockOnTarget = _enemylist[0];
+        float shortestDistanceToPlayer = 10000;
+
+
+        foreach (var enemy in _enemylist)
+        {
+            Vector3 Distance = enemy.transform.position - transform.position;
+            float distance = Vector3.SqrMagnitude(Distance);
+            Debug.Log("Distance between Player and " + enemy.name + " is " + distance);
+            if (distance < shortestDistanceToPlayer)
+            {
+                lockOnTarget = enemy.gameObject;
+
+                shortestDistanceToPlayer = distance;
+                Debug.Log("shortestDistance is changed to " + distance);
+            }
+            else
+            {
+                Debug.Log("shortestDistance remains the same");
+            }
+        }
+        return lockOnTarget;
+    }
+
+
     public void AllowCameraInput(InputAction.CallbackContext _context)
     {
         if (_context.started)
@@ -157,7 +256,6 @@ public class PlayerRotation : MonoBehaviour
         }
 
     }
-
 
     private void OnDrawGizmos()
     {
