@@ -16,6 +16,8 @@ public class PlayerActionScript : MonoBehaviour
     private bool blockMovement;
 
     #region Walk
+    [Header("Walking Parameters")]
+    [SerializeField] private Camera MainCamera;
     [SerializeField] private float normalWalkSpeed;
     public float NormalWalkSpeed
     {
@@ -41,6 +43,7 @@ public class PlayerActionScript : MonoBehaviour
     #endregion
 
     #region Run
+    [Header("Running Parameters")]
     [SerializeField] private float maxRunSpeed;
     [SerializeField] private float walkSpeedAcceleration;
     [SerializeField] private float staminaExhaustion;
@@ -48,12 +51,13 @@ public class PlayerActionScript : MonoBehaviour
     private bool runButtonPressed;
     private float accelerationMultiplier;
     #endregion
-
     #region Jump
+    [Header("Jump Parameters")]
     [SerializeField] private float jumpPower;
     #endregion
 
     #region Dash
+    [Header("Dash Parameters")]
     [SerializeField] private float dashPower;
 
     [SerializeField] private float currentDashCoolDown;
@@ -61,7 +65,6 @@ public class PlayerActionScript : MonoBehaviour
     #endregion
 
     [SerializeField] private WeaponScript currentWeapon;
-    [SerializeField] private Camera MainCamera;
 
 
     //Wasted
