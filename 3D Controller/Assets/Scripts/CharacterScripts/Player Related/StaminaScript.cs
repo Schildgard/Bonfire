@@ -5,43 +5,85 @@ using UnityEngine.UI;
 
 public class StaminaScript : MonoBehaviour
 {
+
+    private StatScript Stats;
     public Image StaminaBar;
     [SerializeField] private float maxStamina;
-    [SerializeField]private float regMultiplier;
+    [SerializeField] private float regMultiplier;
+    [SerializeField] private float currentStamina;
 
 
-    [SerializeField]private float currentStamina;
+    private bool regenerationBlocked;
     public float CurrentStamina { get { return currentStamina; } set { currentStamina = value; } }
 
 
+    private void Awake()
+    {
+        Stats = GetComponent<StatScript>();
+    }
+    private void Start()
+    {
+        UpdateMaxStamina();
+    }
+
     private void Update()
     {
-        if (currentStamina < maxStamina && CurrentStamina >=1f)
+        if (!regenerationBlocked)
         {
-            RegenerateStamina();
+
+            if (currentStamina < maxStamina)
+            {
+                RegenerateStamina();
+            }
         }
-        else if (CurrentStamina < 1f)
-        { 
+        if (currentStamina <= 0)
+        {
+            currentStamina = 0;
             StartCoroutine(ExhaustionRegeneration());
         }
     }
 
-    private void RegenerateStamina() 
+    public void UpdateMaxStamina()
+    {
+        maxStamina = 90 + Stats.Speed * 10;
+        regMultiplier = 20 + Stats.Speed * 5;
+        UpdateStaminaBar();
+    }
+    private void RegenerateStamina()
     {
         currentStamina += Time.deltaTime * regMultiplier;
+        if (currentStamina >= maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
         UpdateStaminaBar();
+    }
+
+    public void DrainStamina(float _staminaCost)
+    {
+        currentStamina -= _staminaCost;
+        UpdateStaminaBar();
+    }
+
+    public void BlockStaminaRegeneration()
+    {
+        regenerationBlocked = true;
+    }
+    public void ContinueStaminaRegeneration()
+    {
+        regenerationBlocked = false;
     }
 
     public void UpdateStaminaBar()
     {
-        StaminaBar.fillAmount = (maxStamina / 10000) * currentStamina;
+        //StaminaBar.fillAmount = (maxStamina / 10000) * currentStamina;
+        StaminaBar.fillAmount = (1 / maxStamina) * currentStamina;
     }
 
     private IEnumerator ExhaustionRegeneration()
     {
-        yield return new WaitForSeconds(1);
-
-        CurrentStamina = 1;
-        UpdateStaminaBar();
+        regenerationBlocked = true;
+        yield return new WaitForSeconds(3);
+        regenerationBlocked = false;
     }
 }

@@ -10,25 +10,21 @@ public class WeaponScript : MonoBehaviour
     public float StaminaAttackCost { get { return staminaAttackCost; } set { staminaAttackCost = value; } }
 
     [SerializeField] private float weaponDamage;
-    [SerializeField] private float knockBackValue;
+
+    private float strengthScaling;
 
     private void Start()
     {
         WielderStats = GetComponentInParent<StatScript>();
     }
-    public float KnockBackValue
-    {
-        get { return knockBackValue; }
-    }
 
-    public void KnockBack(Rigidbody _hitObject)
-    {
-        _hitObject.AddForce(transform.forward * knockBackValue, ForceMode.Impulse);
-    }
+
+
 
     private void OnTriggerEnter(Collider _target)
     {
-        float damageMultiplier = (weaponDamage / 100) * (WielderStats.Strength * 5);
+       // float damageMultiplier = (weaponDamage / 100) * (WielderStats.Strength * 5);
+        float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
         var hittableTarget = _target.GetComponent<IDamageable>();
         if (hittableTarget == null) return;
         hittableTarget.GetDamage(weaponDamage + damageMultiplier);

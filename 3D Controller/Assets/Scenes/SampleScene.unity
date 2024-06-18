@@ -653,8 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaAttackCost: 30
-  weaponDamage: 5
-  knockBackValue: 10
+  weaponDamage: 250
 --- !u!1001 &70667198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6673,26 +6672,6 @@ MonoBehaviour:
     m_ActionName: Player/Run[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 854263485}
-        m_TargetAssemblyTypeName: PlayerActionScript, Assembly-CSharp
-        m_MethodName: JumpEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 61094c90-8aee-4be2-8169-dd1e927e2f22
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c78c9034-29d6-43fc-b257-88093af72042
-    m_ActionName: Player/Dash[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 1937391891}
         m_TargetAssemblyTypeName: MainCameraEnabler, Assembly-CSharp
         m_MethodName: AllowCameraInput
@@ -6963,7 +6942,7 @@ MonoBehaviour:
   level: 1
   strength: 1
   vitality: 1
-  speed: 1
+  speed: 10
   defense: 1
   soulsValue: 0
 --- !u!114 &854263495
@@ -7059,9 +7038,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StaminaBar: {fileID: 730345985}
-  maxStamina: 100
+  maxStamina: 0
   regMultiplier: 25
-  currentStamina: 100
+  currentStamina: 0
 --- !u!114 &854263498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8176,7 +8155,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12870675, y: -0.000000008531635, z: 0.0000000011072887, w: 0.9916827}
+  m_LocalRotation: {x: 0.12870675, y: 0.000000008531639, z: -0.0000000011072893, w: 0.9916827}
   m_LocalPosition: {x: 44.95, y: 3.1, z: 174.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9192,7 +9171,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130771527}
-  m_LocalRotation: {x: 0.12870672, y: -0.000000008531633, z: 0.0000000011072882, w: 0.9916827}
+  m_LocalRotation: {x: 0.12870672, y: 0.0000000085316385, z: -0.0000000011072888, w: 0.9916827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14425,7 +14404,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068344956}
-  m_LocalRotation: {x: 0.16018225, y: -0.000000023309845, z: 0.000000003782667, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018222, y: 0.000000025470568, z: -0.0000000041333035, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

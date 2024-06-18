@@ -171,7 +171,7 @@ public class PlayerActionScript : MonoBehaviour
 
 
 
-            if (runButtonPressed && Stamina.CurrentStamina > 1)
+            if (runButtonPressed && Stamina.CurrentStamina > 0)
             {
                 accelerationMultiplier = 1;
                 Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
@@ -191,7 +191,7 @@ public class PlayerActionScript : MonoBehaviour
 
         if (Stamina.CurrentStamina < 0)
         {
-            Stamina.CurrentStamina = 0;
+            //Stamina.CurrentStamina = 0;
         }
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
 
@@ -200,7 +200,7 @@ public class PlayerActionScript : MonoBehaviour
 
     public void Attack()
     {
-        if (Stamina.CurrentStamina > currentWeapon.StaminaAttackCost)
+        if (Stamina.CurrentStamina > 1f)
         {
             Animator.SetTrigger("Attack Trigger");
         }
@@ -229,9 +229,9 @@ public class PlayerActionScript : MonoBehaviour
 
     public void AttackDrainStamina()
     {
-
-        Stamina.CurrentStamina -= currentWeapon.StaminaAttackCost;
-        Stamina.UpdateStaminaBar();
+        Stamina.DrainStamina(currentWeapon.StaminaAttackCost);
+       // Stamina.CurrentStamina -= currentWeapon.StaminaAttackCost;
+       // Stamina.UpdateStaminaBar();
     }
 
     public void BlockMovement()

@@ -54398,6 +54398,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.06666667
+    functionName: BlockStaminaRegeneration
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.43333334
     functionName: PlaySFX
     data: 
@@ -54421,6 +54428,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.3333334
     functionName: UnblockMovement
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3333334
+    functionName: ContinueStaminaRegeneration
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -1366,8 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaAttackCost: 0
-  weaponDamage: 5
-  knockBackValue: 10
+  weaponDamage: 450
 --- !u!1 &3997754368316317070
 GameObject:
   m_ObjectHideFlags: 0

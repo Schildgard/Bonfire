@@ -36,20 +36,26 @@ public class HealthScript : MonoBehaviour
 
     public void UpdateMaxHealth()
     {
-        maxHealth = Stats.Vitality * 10;
-        Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
+        maxHealth = 950 + Stats.Vitality *50;
+        UpdateHealthBar();
     }
 
     public void IncreaseMaxHealth(float _value)
     {
 
         maxHealth += _value;
-        Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
+        UpdateHealthBar();
     }
 
     public void ResetHealth()
     {
         currentHealth = maxHealth;
-        Healthbar.fillAmount = (MaxHealth / 100) * currentHealth;
+        UpdateHealthBar();
+    }
+
+
+    public void UpdateHealthBar()
+    {
+        Healthbar.fillAmount = (1 / maxHealth) * currentHealth;
     }
 }
