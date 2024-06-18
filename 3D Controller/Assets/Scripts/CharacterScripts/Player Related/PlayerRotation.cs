@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class PlayerRotation : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
-   // [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private CinemachineVirtualCamera lockOnCamera;
     private PlayerActionScript ActionScript;
     private Vector3 TargetRotationDirection;
@@ -20,8 +19,6 @@ public class PlayerRotation : MonoBehaviour
     private void Start()
     {
         ActionScript = GetComponent<PlayerActionScript>();
-       // cinemachineInputProvider = freeLook.GetComponent<CinemachineInputProvider>();
-       // cinemachineInputProvider.enabled = false;
     }
 
 

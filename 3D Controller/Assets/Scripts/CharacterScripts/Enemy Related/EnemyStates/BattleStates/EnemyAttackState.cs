@@ -21,8 +21,8 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void StateUpdate()
     {
-        
-        
+
+
     }
 
     public override void StateExit()
@@ -33,7 +33,19 @@ public class EnemyAttackState : EnemyBaseState
 
     public void Attack()
     {
-        Animator.SetTrigger("Attack Trigger");
+
+        int randomAttackIndex = Random.Range(0, 2);
+
+        if (randomAttackIndex == 0)
+        {
+            Animator.SetTrigger("Attack Trigger");
+            Debug.Log("Enemy performed normal Attack");
+        }
+        else if (randomAttackIndex == 1)
+        {
+            Animator.SetTrigger("Heavy Attack");
+            Debug.Log("Enemy performed Heavy Attack");
+        }
 
     }
 

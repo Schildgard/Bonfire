@@ -36,6 +36,7 @@ public class PlayerScript : CharacterScript
     IEnumerator WaitRespawn()
     {
         yield return new WaitForSeconds(3.5f);
+        Debug.Log("Die Event Raise");
         YouDied.Raise();
         
     }

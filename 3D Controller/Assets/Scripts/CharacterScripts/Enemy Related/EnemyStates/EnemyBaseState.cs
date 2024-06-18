@@ -22,7 +22,7 @@ public abstract class EnemyBaseState
     {
         if(BattleStateMachine != null)
         {
-            BattleStateMachine.StateTimer = Random.Range(2, 6);
+            BattleStateMachine.StateTimer = Random.Range(1, 4);
         }
     }
 

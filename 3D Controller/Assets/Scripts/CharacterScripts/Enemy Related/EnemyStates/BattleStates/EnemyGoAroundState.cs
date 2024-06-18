@@ -22,7 +22,6 @@ public class EnemyGoAroundState : EnemyBaseState
     public override void StateEnter()
     {
         base.StateEnter();
-        //Vector3 Destination = Player.position + (Random.insideUnitSphere * EnemyDetection.BattleSphereRadius);
         Vector3 Destination = BattleStateMachine.EnemyPosition.position + new Vector3(BattleStateMachine.EnemyPosition.right.x *Random.Range(-2, 3), 0, BattleStateMachine.EnemyPosition.forward.z * Random.Range(0, 2));
         BattleStateMachine.TargetPosition = Destination;
         
@@ -44,7 +43,6 @@ public class EnemyGoAroundState : EnemyBaseState
 
     public override void StateExit()
     {
-        //Cancel Walk Animation and Movement
         NavMeshAgent.isStopped = true;
         Animator.SetBool("isWalking", false);
     }
