@@ -70,6 +70,8 @@ public class PlayerActionScript : MonoBehaviour
     //Wasted
     private float blockInput;
 
+    private PlayerRotation RotationScript;
+
 
 
     // Start is called before the first frame update
@@ -80,6 +82,8 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
+
+        RotationScript = GetComponent<PlayerRotation>();
 
 
     }
@@ -117,14 +121,44 @@ public class PlayerActionScript : MonoBehaviour
         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
 
-        if (movementVector.x > 0.1f || movementVector.z > 0.1f || movementVector.x < -0.1f || movementVector.z < -0.1f)
+        if (!RotationScript.LockOn)
         {
-            Animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            Animator.SetBool("isWalking", false);
 
+            if (movementVector.x > 0.1f || movementVector.z > 0.1f || movementVector.x < -0.1f || movementVector.z < -0.1f)
+            {
+                Animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                Animator.SetBool("isWalking", false);
+
+            }
+        }
+
+        else // if Lock On
+        {
+            if (MoveInput.x > 0 && MoveInput.y == 0)
+            {
+                Animator.SetBool("rightStrafe", true);
+                Animator.SetBool("leftStrafe", false);
+            }
+            else if (MoveInput.x < 0 && MoveInput.y == 0)
+            {
+                Animator.SetBool("leftStrafe", true);
+                Animator.SetBool("rightStrafe", false);
+            }
+            else if (MoveInput.y > 0 || MoveInput.y < 0)
+            {
+                Animator.SetBool("isWalking", true);
+                Animator.SetBool("rightStrafe", false);
+                Animator.SetBool("leftStrafe", false);
+            }
+            else
+            {
+                Animator.SetBool("isWalking", false);
+                Animator.SetBool("rightStrafe", false);
+                Animator.SetBool("leftStrafe", false);
+            }
         }
     }
 
@@ -234,28 +268,6 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    public void JumpEvent(InputAction.CallbackContext _context)
-    {
-        if (_context.started && collisionDetection.CollisionCheck())
-        {
-            Animator.SetTrigger("Jump");
-            playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
-            playerRigidbody.AddForce(new Vector3(0, 1 * jumpPower, 0), ForceMode.Impulse);
-
-        }
-
-
-    }
-
-
-    // public void DashEvent(InputAction.CallbackContext _context)
-    // {
-    //     if (_context.started && currentDashCoolDown <= 0)
-    //     {
-    //         playerRigidbody.AddForce(new Vector3(MovementVector.x, 0, MovementVector.z) * dashPower, ForceMode.Impulse);
-    //         currentDashCoolDown = maxDashCooldown;
-    //     }
-    // }
 
     public void AttackEvent(InputAction.CallbackContext _context)
     {
