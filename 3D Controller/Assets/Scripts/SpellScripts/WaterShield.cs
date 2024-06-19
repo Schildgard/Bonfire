@@ -5,8 +5,9 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private StatScript Stats;
     private float previousDefValue;
     [SerializeField] private float buffedDefValue;
-
     [SerializeField] private GameObject SplashEffect;
+
+    [SerializeField] private GameObject ElectrifyEffect;
 
 
     // Wetnesses AOE Attacking Enemies
@@ -41,7 +42,7 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     }
     public void Electrify()
     {
-        throw new System.NotImplementedException();
+        ElectrifyEffect.SetActive(true);
     }
 
     public void Die()
@@ -58,7 +59,10 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private void OnDestroy()
     {
         ResetDefense();
+        //if not Electrified
         Instantiate(SplashEffect, transform.root);
+        //if Electrified
+        //Instantiate Electrified Splash Effect
 
     }
 }

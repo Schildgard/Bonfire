@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4061469761321831697}
   m_Layer: 0
   m_Name: Water Shield
-  m_TagString: Untagged
+  m_TagString: Water Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffedDefValue: 33
   SplashEffect: {fileID: 9019369910736256646, guid: f7896242638a398499eb10e046522bad, type: 3}
+  ElectrifyEffect: {fileID: 6588983083394686789}
 --- !u!1001 &8046714310427115940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,6 +322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
+--- !u!1 &6588983083394686789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3808753618014953185, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
+  m_PrefabInstance: {fileID: 8046714310427115940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6588983083394686790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3808753618014953186, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}

@@ -14,10 +14,21 @@ public class LightningSurfaceCollider : MonoBehaviour
     {
 
         var hittableTarget = _target.gameObject.GetComponent<IDamageable>();
-        if (hittableTarget == null) return;
+        IElectrilizable[] electrilizableTargets = _target.gameObject.GetComponentsInChildren<IElectrilizable>();
+        if (hittableTarget != null)
+        {
+            hittableTarget.GetDamage(5);
 
+        }
 
-        hittableTarget.GetDamage(5);
+        if (electrilizableTargets != null)
+        {
+            foreach (var target in electrilizableTargets)
+            {
+                target.Electrify();
+            }
+        }
+
     }
 
     private void OnTriggerStay(Collider other)
