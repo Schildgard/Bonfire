@@ -6,6 +6,8 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private float previousDefValue;
     [SerializeField] private float buffedDefValue;
 
+    [SerializeField] private GameObject SplashEffect;
+
 
     // Wetnesses AOE Attacking Enemies
     // Gets Electrified when Contact with Lightning
@@ -56,7 +58,7 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private void OnDestroy()
     {
         ResetDefense();
+        Instantiate(SplashEffect, transform.root);
 
-        // Wet AOE
     }
 }

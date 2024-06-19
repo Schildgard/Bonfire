@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffedDefValue: 33
+  SplashEffect: {fileID: 9019369910736256646, guid: f7896242638a398499eb10e046522bad, type: 3}
 --- !u!1001 &8046714310427115940
 PrefabInstance:
   m_ObjectHideFlags: 0
