@@ -8,6 +8,8 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     [SerializeField] private GameObject SplashEffect;
 
     [SerializeField] private GameObject ElectrifyEffect;
+    [SerializeField] private GameObject SparkEffect;
+    private bool electrified;
 
 
     // Wetnesses AOE Attacking Enemies
@@ -43,6 +45,7 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     public void Electrify()
     {
         ElectrifyEffect.SetActive(true);
+        electrified = true;
     }
 
     public void Die()
@@ -59,10 +62,17 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private void OnDestroy()
     {
         ResetDefense();
-        //if not Electrified
-        Instantiate(SplashEffect, transform.root);
-        //if Electrified
-        //Instantiate Electrified Splash Effect
+        if (!electrified)
+        {
+            GameObject Splash = Instantiate(SplashEffect, transform.root);
+            Destroy(Splash, 0.2f);
+        }
+
+        else
+        {
+            GameObject Spark = Instantiate(SparkEffect, transform.position, Quaternion.identity);
+            Destroy(Spark, 0.1f);
+        }
 
     }
 }
