@@ -15,18 +15,18 @@ public class EnemyWaitState : EnemyBaseState
     {
         base.StateEnter();
         NavMeshAgent.isStopped = true;
-        Debug.Log("Enter Wait State");
+        //Debug.Log("Enter Wait State");
     }
 
     public override void StateUpdate()
     {
-        Debug.Log("Enemy Waits");
+        //Debug.Log("Enemy Waits");
         //do nothing
     }
 
     public override void StateExit()
     {
-        Debug.Log("Exit Wait State");
+        //Debug.Log("Exit Wait State");
     }
 
 }

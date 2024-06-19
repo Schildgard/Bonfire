@@ -654,6 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaAttackCost: 30
   weaponDamage: 250
+  strengthScaling: 1
 --- !u!1001 &70667198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6942,7 +6943,7 @@ MonoBehaviour:
   level: 1
   strength: 1
   vitality: 1
-  speed: 10
+  speed: 1
   defense: 1
   soulsValue: 0
 --- !u!114 &854263495
@@ -8673,7 +8674,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036642316}
-  m_LocalRotation: {x: 0.097355194, y: -0.0000000042811608, z: 4.1878262e-10, w: 0.9952497}
+  m_LocalRotation: {x: 0.097355194, y: 0.0000000042811625, z: -4.187828e-10, w: 0.9952497}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14404,7 +14405,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068344956}
-  m_LocalRotation: {x: 0.16018222, y: 0.000000025470568, z: -0.0000000041333035, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018225, y: 0.000000023309845, z: -0.000000003782667, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

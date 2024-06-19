@@ -18,7 +18,7 @@ public class EnemyReturnState : EnemyBaseState
 
     public override void StateEnter()
     {
-        Debug.Log("OnReturnEnter");
+        //Debug.Log("OnReturnEnter");
     }
 
     public override void StateUpdate()

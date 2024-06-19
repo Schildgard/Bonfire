@@ -126,6 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6588983084077696162}
   - component: {fileID: 5845735716045486323}
+  - component: {fileID: 4061469761321831697}
   m_Layer: 0
   m_Name: Water Shield
   m_TagString: Untagged
@@ -245,6 +246,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4061469761321831697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6588983084077696163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fee3e7a4966964fa1c02cbe09db398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffedDefValue: 33
 --- !u!1001 &8046714310427115940
 PrefabInstance:
   m_ObjectHideFlags: 0
