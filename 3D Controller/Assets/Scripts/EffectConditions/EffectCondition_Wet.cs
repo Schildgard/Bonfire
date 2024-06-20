@@ -7,6 +7,8 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
 {
 
     private Material ElectrifiedMaterial;
+    private Material WetMaterial;
+
 
     protected override void Awake()
     {
@@ -25,7 +27,6 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
             SkinnedMeshRenderer.materials = OriginalMaterial;
             Destroy(this);
             Destroy(AudioSource);
-
         }
     }
 
@@ -35,19 +36,26 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
         ElectrifiedMaterial = Wetable.ElectrifiedMaterial;
 
 
-        
-        var targetRenderer = GetComponent<SkinnedMeshRenderer>();
-        if (targetRenderer.materials.Length <= 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
+        // Material Array Check can probably be replaced with a simple bool which checks if the Target ist electrified.
+        if (SkinnedMeshRenderer.materials.Length <= 2) // Indicator if the the Second or third Material, which is the Electrify Material, already has been added or not
         {
-            var Condition = targetRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
+            var Condition = SkinnedMeshRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
 
-            targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial }; ;
+            SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial }; ;
         }
         else
         {
-            var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Lightning>();
-            EnemyCondition.duration = EnemyCondition.maxduration;
+            var lightningCondition = SkinnedMeshRenderer.gameObject.GetComponent<EffectCondition_Lightning>();
+            lightningCondition.duration = lightningCondition.maxduration;
             Debug.Log(gameObject.name + "has already been electrified");
         }
+    }
+
+
+    private void OnEnable()
+    {
+        var Wetable = GetComponentInParent<WetableEnemy>();
+        WetMaterial = Wetable.WetMaterial;
+        SkinnedMeshRenderer.materials = new Material[] { OriginalMaterial[0], WetMaterial }; ;
     }
 }

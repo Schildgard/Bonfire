@@ -1367,6 +1367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaAttackCost: 0
   weaponDamage: 450
+  strengthScaling: 0
 --- !u!1 &3997754368316317070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,8 +1592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9665c66a4d5248a489420a5308fa4cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectToPlaceEffectCondition: {fileID: 8803777903147204803}
   WetCondition: {fileID: 3059933155240588563, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
   ElectrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
+  WetMaterial: {fileID: 2100000, guid: 162cb3af372d73946a898483aabc2fe2, type: 2}
 --- !u!1 &4104516079506665354
 GameObject:
   m_ObjectHideFlags: 0

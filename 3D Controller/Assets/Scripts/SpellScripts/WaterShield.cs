@@ -12,25 +12,16 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private bool electrified;
 
 
-    // Wetnesses AOE Attacking Enemies
-    // Gets Electrified when Contact with Lightning
-    //Deals Damage to Attacking Enemy when Electrified
-
-
-
-
     private void Awake()
     {
         Stats = GetComponentInParent<StatScript>();
     }
 
 
-
     private void Start()
     {
         BoostDefense();
     }
-
 
     private void BoostDefense()
     {
