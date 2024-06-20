@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class FireCast : MonoBehaviour
@@ -53,7 +51,7 @@ public class FireCast : MonoBehaviour
     }
     private void OnTriggerEnter(Collider _target)
     {
-
+        if (_target.gameObject.layer == 7) { return; }
         var damageableTarget = _target.gameObject.GetComponent<IDamageable>();
         if (damageableTarget == null) return;
         hitTargets.Add(damageableTarget);

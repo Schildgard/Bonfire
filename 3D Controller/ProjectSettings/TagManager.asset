@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lightning
   - Water Shield
+  - Focus
   layers:
   - Default
   - TransparentFX
