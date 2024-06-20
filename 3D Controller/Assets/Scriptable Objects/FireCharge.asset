@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: FireCharge
   m_EditorClassIdentifier: 
   spellName: FireCharge
-  spellDuration: 3
-  spellPrefab: {fileID: 7624460926159435259, guid: d30d1d9da7252554daa9117134e3fb4e, type: 3}
-  alernativeCastAnimation: 0
+  spellDuration: 7
+  spellPrefab: {fileID: 5589637508815771286, guid: d02a39a92690cfe438315ac560949064, type: 3}
+  alernativeCastAnimation: 1
   SpellIcon: {fileID: 21300000, guid: c6ae35aa675f33d4eb9c57987f1f96e1, type: 3}
+  spellTypeIndex: 0

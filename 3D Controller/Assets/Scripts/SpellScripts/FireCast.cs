@@ -11,12 +11,13 @@ public class FireCast : MonoBehaviour
     private List<GameObject> WetTargets;
 
     [SerializeField] private float damageIntervall;
-    [SerializeField] private float damageCounter;
+    [SerializeField] private float timer;
 
     [SerializeField] private GameObject CloudPrefab;
 
     private void Awake()
     {
+        this.transform.parent = null;
         hitTargets = new List<IDamageable>();
         WetTargets = new List<GameObject>();
     }
@@ -25,8 +26,8 @@ public class FireCast : MonoBehaviour
     {
         if (hitTargets.Count > 0)
         {
-            damageCounter -= Time.deltaTime;
-            if (damageCounter <= 0)
+            timer -= Time.deltaTime;
+            if (timer <= 0)
             {
 
                 foreach (IDamageable target in hitTargets)
@@ -35,26 +36,20 @@ public class FireCast : MonoBehaviour
                     
                 }
                 AudioManager.instance.SFX[7].source.Play();
-                damageCounter = damageIntervall;
+                timer = damageIntervall;
 
                 foreach (GameObject target in WetTargets)
                 {
-                    //spawnCloudVFX
-
                     Instantiate(CloudPrefab, target.transform.position, Quaternion.identity);
-                    Debug.Log("Spawn Cloud");
 
                     var wetCondition = target.GetComponentInChildren<EffectCondition_Wet>();
                     wetCondition.duration = 0.01f;
-                    Debug.Log("Set Duration to 0.01f");
                 }
                     WetTargets.Clear();
-                    Debug.Log("Cleared List");
-
             }
 
         }
-        else { damageCounter = 0.3f;}
+        else { timer = 0.1f;} //WTF? //Probably setted this to make cure the flame directly hits, but it doesnt work anyway
     }
     private void OnTriggerEnter(Collider _target)
     {
@@ -66,12 +61,12 @@ public class FireCast : MonoBehaviour
 
         var wetableTarget = _target.gameObject.GetComponent<IWetable>();
         if (wetableTarget == null) return;
-        Debug.Log(_target.name + "has IWetable");
+
         var wetTarget = _target.GetComponentInChildren<EffectCondition_Wet>();
         if (wetTarget == null) return;
-        Debug.Log(_target.name + "has EffectCondition_wet");
+        Debug.Log(_target.name + "has EffectCondition_wet and entered the Fire Collider");
         WetTargets.Add(_target.gameObject);
-        Debug.Log(_target.name + "is added to List!");
+        Debug.Log(_target.name + "is added to Wet List!");
 
     }
 

@@ -29,7 +29,7 @@ public class LightningSurfaceCollider : MonoBehaviour
             }
             foreach(var target in ElectrilizableTargets)
             {
-                target.Electrify();
+                target.Electrify(); // Problem! Object gets Destroyed while in List, Error occurs because this script still tries to access the reference of the List
             }
             timer = 0;
         }
@@ -70,10 +70,12 @@ public class LightningSurfaceCollider : MonoBehaviour
         if (DamageableTargets.Contains(hittableTarget))
         {
             DamageableTargets.Remove(hittableTarget);
+            Debug.Log(_target.name + " Damageable has been removed from Surface Collider List");
         }
         if (ElectrilizableTargets.Contains(electrilizableTarget))
         {
             ElectrilizableTargets.Remove(electrilizableTarget); //Potential Error ?
+            Debug.Log(_target.name + " Electrilizable has been removed from Surface Collider List");
         }
     }
     private IEnumerator DespawnVFX(GameObject _object)

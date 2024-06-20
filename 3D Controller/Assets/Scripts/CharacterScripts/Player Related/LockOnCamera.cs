@@ -40,14 +40,13 @@ public class LockOnCamera : MonoBehaviour
 
             if (relativePosition.z >= 0)
             {
-                Debug.Log("Add " + enemy.name + " to Front List");
+                //Debug.Log("Add " + enemy.name + " to Front List");
                 TargetsInFrontofPlayer.Add(enemy);
-                Debug.Log("Adding Succesfull");
             }
-            else
-            {
-                Debug.Log(enemy.name + " is behind Player");
-            }
+          //  else
+          //  {
+          //      Debug.Log(enemy.name + " is behind Player");
+          //  }
         }
         if (TargetsInFrontofPlayer.Count <= 0)
         {
@@ -70,7 +69,6 @@ public class LockOnCamera : MonoBehaviour
         List<GameObject> potentialTarget = ScanForEnemiesInRange();
         if (potentialTarget == null)
         {
-            Debug.Log("No Enemies in Range");
             return;
         }
 
@@ -85,7 +83,7 @@ public class LockOnCamera : MonoBehaviour
                 if (relativePosition.z > 0 && relativePosition.x >= 0)
                 {
                     viableTargets.Add(enemy.gameObject);
-                    Debug.Log(enemy.name + " is right of you");
+                    //Debug.Log(enemy.name + " is right of you");
                 }
             }
         }
@@ -99,7 +97,7 @@ public class LockOnCamera : MonoBehaviour
                 if (relativePosition.z > 0 && relativePosition.x <= 0)
                 {
                     viableTargets.Add(enemy.gameObject);
-                    Debug.Log(enemy.name + " is left of you");
+                    //Debug.Log(enemy.name + " is left of you");
                 }
             }
         }
@@ -129,11 +127,11 @@ public class LockOnCamera : MonoBehaviour
             if (enemy.gameObject.layer == 8)
             {
                 potentialTargets.Add(enemy.gameObject);
-                Debug.Log(enemy.name + " is in LockOn Range");
+                //Debug.Log(enemy.name + " is in LockOn Range");
             }
         }
 
-        Debug.Log("potentialTargetList contains" + (potentialTargets.Count) + " Objects");
+        //Debug.Log("potentialTargetList contains" + (potentialTargets.Count) + " Objects");
 
         if (potentialTargets.Count > 0)
         {

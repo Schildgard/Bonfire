@@ -169,7 +169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8026453241377063012, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
       propertyPath: damage
-      value: 200
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026453241377063012, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
+      propertyPath: despawnTimer
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8026453241377063012, guid: 0d2d8a33839542942b3ee57d7d915ca4, type: 3}
       propertyPath: tickIntervall
