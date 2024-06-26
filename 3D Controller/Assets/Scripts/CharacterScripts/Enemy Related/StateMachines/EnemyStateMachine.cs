@@ -10,6 +10,7 @@ public class EnemyStateMachine : EnemyStateMachineBase
 
     private Vector3 StartPosition;
 
+    public bool taskBool;
 
     protected override void Awake()
     {
@@ -27,7 +28,6 @@ public class EnemyStateMachine : EnemyStateMachineBase
         EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator);
         EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine);
 
-        Task TestTask = MT_InSightCheck(transform, PlayerPosition);
 
         CurrentState = EnemyIdleState;
         CurrentState.StateEnter();
@@ -38,9 +38,15 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                    {   ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState},
+                    //  {
+                    //      ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
+                    //  },
+                    {
                       //Test for MultiThreading
-                      //{()=> MT_InSightCheck(transform,PlayerPosition), EnemyChaseState },
+                        //() => MT_GetEnemyVisionResult(transform, PlayerPosition).Result, EnemyChaseState
+                        () => taskBool, EnemyChaseState
+
+                    }
                   }
 
              },

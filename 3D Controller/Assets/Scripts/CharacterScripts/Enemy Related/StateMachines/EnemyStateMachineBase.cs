@@ -13,7 +13,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     public Transform EnemyPosition;
 
 
-    protected EnemyDetectionScript EnemyDetection;
+    public EnemyDetectionScript EnemyDetection;
     protected NavMeshAgent NavMeshAgent;
     protected Animator Animator;
 
@@ -34,7 +34,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
 
 
-    public  void Start()
+    public void Start()
     {
         //First Initialization of State Machine (Assign States, set current State and enter to it
         InitializeStateMachine();
@@ -75,13 +75,13 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
     protected float CompareDistance(Vector3 _currentPosition, Vector3 _targetPosition)
     {
-        Vector3 DistanceVector = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z); 
+        Vector3 DistanceVector = new Vector3(_targetPosition.x, 0, _targetPosition.z) - new Vector3(_currentPosition.x, 0, _currentPosition.z);
         float distanceToTarget = Vector3.SqrMagnitude(DistanceVector);
         return distanceToTarget;
     }
 
 
-    protected float GetRadius(Transform _currentPosition, Transform _targetPosition) 
+    protected float GetRadius(Transform _currentPosition, Transform _targetPosition)
     {
         Vector3 ViewDirection = _currentPosition.forward;
 
@@ -106,7 +106,15 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
     }
 
-    protected async Task<bool> MT_InSightCheck(Transform _currentPosition, Transform _targetPosition)
+    protected async Task<bool> MT_GetEnemyVisionResult(Transform _currentPosition, Transform _targetPosition)
+    {
+        bool testBool = false;
+        testBool = await MT_CheckEnemyVision(_currentPosition,_targetPosition);
+        return testBool;
+
+    }
+
+    protected async Task<bool> MT_CheckEnemyVision(Transform _currentPosition, Transform _targetPosition)
     {
         float dotproduct = GetRadius(_currentPosition, _targetPosition);
         return dotproduct >= 0.7f ? true : false;
