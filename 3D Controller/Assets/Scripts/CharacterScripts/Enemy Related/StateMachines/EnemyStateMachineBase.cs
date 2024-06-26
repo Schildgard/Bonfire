@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -103,6 +104,12 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
 
 
+    }
+
+    protected async Task<bool> MT_InSightCheck(Transform _currentPosition, Transform _targetPosition)
+    {
+        float dotproduct = GetRadius(_currentPosition, _targetPosition);
+        return dotproduct >= 0.7f ? true : false;
     }
 
 }

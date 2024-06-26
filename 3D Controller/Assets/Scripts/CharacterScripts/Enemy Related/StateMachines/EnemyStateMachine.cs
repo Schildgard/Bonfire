@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,6 @@ public class EnemyStateMachine : EnemyStateMachineBase
     private EnemyBattleStateMachine EnemyBattleStateMachine;
 
     private Vector3 StartPosition;
-
 
 
     protected override void Awake()
@@ -24,9 +24,10 @@ public class EnemyStateMachine : EnemyStateMachineBase
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
         EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform);
-        EnemyReturnState EnemyReturnState = new EnemyReturnState(this,NavMeshAgent, StartPosition, Animator);
+        EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator);
         EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine);
 
+        Task TestTask = MT_InSightCheck(transform, PlayerPosition);
 
         CurrentState = EnemyIdleState;
         CurrentState.StateEnter();
@@ -37,8 +38,9 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                    //{   ()=>EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius),EnemyBattleState},
                     {   ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState},
+                      //Test for MultiThreading
+                      //{()=> MT_InSightCheck(transform,PlayerPosition), EnemyChaseState },
                   }
 
              },
