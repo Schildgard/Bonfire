@@ -38,15 +38,13 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                    //  {
-                    //      ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
-                    //  },
-                    {
-                      //Test for MultiThreading
-                        //() => MT_GetEnemyVisionResult(transform, PlayerPosition).Result, EnemyChaseState
-                        () => taskBool, EnemyChaseState
-
-                    }
+                   //{
+                   //    ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
+                   //},
+                   {
+                     //Test for MultiThreading
+                     () => taskBool, EnemyChaseState
+                   }
                   }
 
              },
