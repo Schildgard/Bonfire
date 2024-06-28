@@ -106,18 +106,5 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
     }
 
-    protected async Task<bool> MT_GetEnemyVisionResult(Transform _currentPosition, Transform _targetPosition)
-    {
-        bool testBool = false;
-        testBool = await MT_CheckEnemyVision(_currentPosition,_targetPosition);
-        return testBool;
-
-    }
-
-    protected async Task<bool> MT_CheckEnemyVision(Transform _currentPosition, Transform _targetPosition)
-    {
-        float dotproduct = GetRadius(_currentPosition, _targetPosition);
-        return dotproduct >= 0.7f ? true : false;
-    }
 
 }

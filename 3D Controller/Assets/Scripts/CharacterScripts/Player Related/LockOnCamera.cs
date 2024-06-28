@@ -100,7 +100,7 @@ public class LockOnCamera : MonoBehaviour
 
         if (viableTargets.Count == 0)
         {
-            Debug.Log("No Enemy in chosen Direction");
+            //Debug.Log("No Enemy in chosen Direction");
             return;
         }
 
@@ -143,17 +143,17 @@ public class LockOnCamera : MonoBehaviour
         {
             Vector3 Distance = enemy.transform.position - playerTransform.position;
             float distance = Vector3.SqrMagnitude(Distance);
-            Debug.Log("Distance between Player and " + enemy.name + " is " + distance);
+            //Debug.Log("Distance between Player and " + enemy.name + " is " + distance);
             if (distance < shortestDistanceToPlayer)
             {
                 lockOnTarget = enemy.gameObject;
 
                 shortestDistanceToPlayer = distance;
-                Debug.Log("shortestDistance is changed to " + distance);
+             //   Debug.Log("shortestDistance is changed to " + distance);
             }
             else
             {
-                Debug.Log("shortestDistance remains the same");
+             //   Debug.Log("shortestDistance remains the same");
             }
         }
         return lockOnTarget;

@@ -14,16 +14,16 @@ public class Spawn1000Enemies : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         CalculateSpawnPositions();
-        UnityEngine.Debug.Log($"All {spawnPositions.Count} Positions have been calculated");
+        //UnityEngine.Debug.Log($"All {spawnPositions.Count} Positions have been calculated");
 
 
         stopwatch.Start();
         SpawnEnemies();
         stopwatch.Stop();
-        UnityEngine.Debug.Log($"Spawning all {spawnPositions.Count} Enemies took that much time: {stopwatch.Elapsed}");
+        //UnityEngine.Debug.Log($"Spawning all {spawnPositions.Count} Enemies took that much time: {stopwatch.Elapsed}");
 
 
         
@@ -37,7 +37,7 @@ public class Spawn1000Enemies : MonoBehaviour
 
     private void CalculateSpawnPositions ()
     {
-        UnityEngine.Debug.Log("Start Calculating Spawn Position");
+       // UnityEngine.Debug.Log("Start Calculating Spawn Position");
         for (int i = 0; i < maxEnemyCount; i++)
         {
             spawnPositions.Add(new Vector3(Random.Range(0, 501), 0, Random.Range(0, 501)));
@@ -46,7 +46,7 @@ public class Spawn1000Enemies : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        UnityEngine.Debug.Log("Start Spawning Enemies");
+       // UnityEngine.Debug.Log("Start Spawning Enemies");
         foreach (var position in spawnPositions)
         {
             Instantiate(Enemy, position, Quaternion.identity);

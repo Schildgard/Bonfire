@@ -1,65 +1,90 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Jobs;
+using UnityEngine.Rendering;
 
 public class TaskMaster : MonoBehaviour
 {
-    private Task runTask;
-    private EnemyStateMachine[] EnemyList;
-    private bool exitTask;
+    private EnemyStateMachine[] EnemyArray;
+
+    private TransformAccessArray AccessArray;
+    private Transform[] EnemyTransforms;
+
+
+    [SerializeField] private Transform playerTransform;
+
+
+
 
     void Start()
     {
-        EnemyList = FindObjectsByType<EnemyStateMachine>(sortMode:FindObjectsSortMode.None);
-
-        runTask = Task.Run(ContinousTask);
-
-
+        Initialize();
     }
+
 
     private void Update()
     {
+
+        Debug.Log("TaskMaster tries to create an Job Object");
+        Job_EnemyDetection detectionJob = new Job_EnemyDetection
+        {
+            playerPosition = playerTransform.position,
+            //results = playerAnglesToEnemy,
+        };
+        Debug.Log("TaskMaster sucessfully created Job Object");
+
+
+        Debug.Log("TaskMaster creates Job Handle for its Job");
+        JobHandle jobHandle = detectionJob.Schedule(AccessArray);
+
+        jobHandle.Complete();
+
+
+        for (int i = 0; i < EnemyArray.Length; i++)
+        {
+
+            if (detectionJob.results >= 0.7f)
+            {
+                Debug.Log($"{EnemyArray[i].name} sees the Player: dotproduct is {detectionJob.results}");
+            }
+            else
+                Debug.Log($"{EnemyArray[i].name} does not see the Player:  dotproduct is {detectionJob.results}");
+        }
         
     }
 
-    public void ContinousTask()
+
+
+
+
+    private void Initialize()
     {
-        while (!exitTask)
+        EnemyArray = FindObjectsByType<EnemyStateMachine>(sortMode: FindObjectsSortMode.None);
+        Debug.Log($"TaskMaster added {EnemyArray.Length} StateMachines to its StateMachineArray");
+
+        EnemyTransforms = new Transform[EnemyArray.Length];
+        Debug.Log($"TaskMaster initialized the EnemyTransform Array with the size of {EnemyTransforms.Length}");
+
+
+        for (int i = 0; i < EnemyArray.Length; i++)
         {
-
-            foreach (var Enemy in EnemyList)
-            {
-                Enemy.taskBool = MT_CheckEnemyVision(Enemy.transform, Enemy.PlayerPosition, Enemy);
-            }
+            EnemyTransforms[i] = EnemyArray[i].transform;
         }
+        Debug.Log($"TaskMaster filled the EnemyTransformArray with {EnemyTransforms.Length} enemies. ");
+
+        AccessArray = new TransformAccessArray(EnemyTransforms);
+
+        Debug.Log("TaskMaster completed its Initialization");
+
     }
 
-
-    public bool MT_CheckEnemyVision(Transform _currentPosition, Transform _targetPosition, EnemyStateMachine _enemy)
+    private void OnDisable()
     {
-        float dotproduct = GetRadius(_currentPosition, _targetPosition,_enemy);
-        return dotproduct >= 0.7f ? true : false;
+        AccessArray.Dispose();
     }
-    protected float GetRadius(Transform _currentPosition, Transform _targetPosition, EnemyStateMachine _enemy)
-    {
-        Vector3 ViewDirection = _currentPosition.forward;
 
-        Vector3 TargetDirection = (_targetPosition.position - _currentPosition.position);
-
-
-        float magnitudeViewDirection = Vector3.Magnitude(ViewDirection);
-        float magnitudeDistanceDirection = Vector3.Magnitude(TargetDirection);
-
-        float dotProduct = (ViewDirection.x * TargetDirection.x) + (ViewDirection.y * TargetDirection.y) + (ViewDirection.z * TargetDirection.z);
-
-        float degrees = dotProduct / (magnitudeViewDirection * magnitudeDistanceDirection);
-
-        if (TargetDirection.magnitude <= _enemy.EnemyDetection.ViewRange)
-        {
-            return degrees;
-        }
-        else return 0f;
-
-
-
-    }
 }
