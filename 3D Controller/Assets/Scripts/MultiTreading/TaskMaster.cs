@@ -25,8 +25,6 @@ public class TaskMaster : MonoBehaviour
 
     private void Update()
     {
-
-
         NativeArray<float> result = new NativeArray<float>(AccessArray.length, Allocator.TempJob);
 
         Job_EnemyDetection detectionJob = new Job_EnemyDetection
@@ -43,10 +41,11 @@ public class TaskMaster : MonoBehaviour
         {
             if (detectionJob.results[i] >= 0.7f)
             {
+                EnemyArray[i].TaskBool = true;
                 //Debug.Log($"{EnemyArray[i].name} sees the Player: dotproduct is {detectionJob.results[i]}");
             }
-           // else
-                //Debug.Log($"{EnemyArray[i].name} does not see the Player:  dotproduct is {detectionJob.results[i]}");
+            else EnemyArray[i].TaskBool = false;
+            //Debug.Log($"{EnemyArray[i].name} does not see the Player:  dotproduct is {detectionJob.results[i]}");
         }
         result.Dispose();
 

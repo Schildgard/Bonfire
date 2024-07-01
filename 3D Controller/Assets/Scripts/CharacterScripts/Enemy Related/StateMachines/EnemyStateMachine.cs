@@ -7,10 +7,12 @@ using UnityEngine.AI;
 public class EnemyStateMachine : EnemyStateMachineBase
 {
     private EnemyBattleStateMachine EnemyBattleStateMachine;
-
     private Vector3 StartPosition;
 
-    public bool taskBool;
+    #region MultiThreading
+    private bool taskBool;
+    public bool TaskBool { get => taskBool; set => taskBool = value; }
+    #endregion
 
     protected override void Awake()
     {
@@ -38,13 +40,13 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                   //{
-                   //    ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
-                   //},
                    {
-                     //Test for MultiThreading
-                     () => taskBool, EnemyChaseState
-                   }
+                       ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
+                   },
+                  // {
+                  //   //MultiThreading
+                  //   () => TaskBool, EnemyChaseState
+                  // }
                   }
 
              },
