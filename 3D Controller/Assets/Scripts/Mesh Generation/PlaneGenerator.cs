@@ -82,4 +82,12 @@ public class PlaneGenerator
         _mesh.RecalculateNormals();
 
     }
+
+    public void UpdatePlaneMesh(MeshFace _meshface, int _resolution, int _size)
+    {
+        resolution = _resolution;
+        size = _size;
+
+        DrawPlaneMesh(_meshface.MeshFilter.mesh);
+    }
 }
