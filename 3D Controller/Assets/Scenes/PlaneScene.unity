@@ -383,9 +383,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeSettings: {fileID: 11400000, guid: d1a2b762e9ae8b64bbaf0db279d42f24, type: 2}
-  planeMaterial: {fileID: 2100000, guid: 116e6789a4602fc4696ffb8f67a9f310, type: 2}
+  planeMaterial: {fileID: 2100000, guid: f85832c94099b8941b52b0daa3b4df26, type: 2}
   resolution: 128
-  size: 1000
 --- !u!4 &1905452133
 Transform:
   m_ObjectHideFlags: 0
