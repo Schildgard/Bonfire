@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class ShapeSettings : ScriptableObject
 {
+    public float size;
     public NoiseLayer[] NoiseLayers;
 }
 

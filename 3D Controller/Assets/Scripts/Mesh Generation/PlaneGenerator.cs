@@ -7,14 +7,13 @@ public class PlaneGenerator
     private Material material;
     private NoiseFilter noiseFilter;
     private int resolution;
-    private int size;
 
-    public PlaneGenerator(Material _material, NoiseFilter _noiseFilter, int _resolution, int _size)
+
+    public PlaneGenerator(Material _material, NoiseFilter _noiseFilter, int _resolution)
     {
         material = _material;
         noiseFilter = _noiseFilter;
         resolution = _resolution;
-        size = _size;
     }
 
 
@@ -53,7 +52,7 @@ public class PlaneGenerator
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);  //Calculate Vertex Position
                 percent -= Vector2.one * 0.5f; //translate position to percentage of full mesh
 
-                Vector3 planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y)) * size;
+                Vector3 planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
 
 
                 //Here: Add Noise Position before setting vertex!
@@ -83,10 +82,9 @@ public class PlaneGenerator
 
     }
 
-    public void UpdatePlaneMesh(MeshFace _meshface, int _resolution, int _size)
+    public void UpdatePlaneMesh(MeshFace _meshface, int _resolution)
     {
         resolution = _resolution;
-        size = _size;
 
         DrawPlaneMesh(_meshface.MeshFilter.mesh);
     }

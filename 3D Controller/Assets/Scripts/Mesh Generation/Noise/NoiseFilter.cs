@@ -47,6 +47,6 @@ public class NoiseFilter
             noiseValue += layerValue;
         }
         // OCE Version return _vertexPosition * (1 + noiseValue)
-        return _vertexPosition + (Vector3.up * (noiseValue)); // if all values are zero, the +1 makes sure that the groundlevel is taken then.
+        return (_vertexPosition * shapeSettings.size) + (Vector3.up * (noiseValue ));
     }
 }
