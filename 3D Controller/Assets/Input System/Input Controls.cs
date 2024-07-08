@@ -46,15 +46,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Activate Camera"",
-                    ""type"": ""Button"",
-                    ""id"": ""cd0cb8d7-a0ed-411b-8b71-53c1f95dabb4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f0281288-8402-45c4-9e0f-be0e71269496"",
@@ -73,7 +64,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Lock On Camera"",
+                    ""name"": ""Lock On"",
                     ""type"": ""Button"",
                     ""id"": ""459518aa-83e5-4581-8b79-9d3b99544ce9"",
                     ""expectedControlType"": ""Button"",
@@ -196,17 +187,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f1ed3f68-4985-4912-a0c5-03aa5bde13f1"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Activate Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c352c404-ce83-4793-a210-a2478091bfba"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -234,7 +214,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Lock On Camera"",
+                    ""action"": ""Lock On"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -316,6 +296,34 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""25295b6d-366c-4f22-9359-29f27bc494a0"",
+            ""actions"": [
+                {
+                    ""name"": ""Activate Camera"",
+                    ""type"": ""Button"",
+                    ""id"": ""4381b14e-5e65-42c0-a467-e872ed0951c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2b886dc8-6a78-4a1a-9ce3-94ade4213bf7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Activate Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -324,15 +332,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_ActivateCamera = m_Player.FindAction("Activate Camera", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
-        m_Player_LockOnCamera = m_Player.FindAction("Lock On Camera", throwIfNotFound: true);
+        m_Player_LockOn = m_Player.FindAction("Lock On", throwIfNotFound: true);
         m_Player_CastSpell1 = m_Player.FindAction("Cast Spell 1", throwIfNotFound: true);
         m_Player_CastSpell2 = m_Player.FindAction("Cast Spell 2", throwIfNotFound: true);
         m_Player_CastSpell3 = m_Player.FindAction("Cast Spell 3", throwIfNotFound: true);
         m_Player_CastSpell4 = m_Player.FindAction("Cast Spell 4", throwIfNotFound: true);
         m_Player_SwitchTarget = m_Player.FindAction("SwitchTarget", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_ActivateCamera = m_Camera.FindAction("Activate Camera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -396,10 +406,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_ActivateCamera;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
-    private readonly InputAction m_Player_LockOnCamera;
+    private readonly InputAction m_Player_LockOn;
     private readonly InputAction m_Player_CastSpell1;
     private readonly InputAction m_Player_CastSpell2;
     private readonly InputAction m_Player_CastSpell3;
@@ -411,10 +420,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public PlayerActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @ActivateCamera => m_Wrapper.m_Player_ActivateCamera;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
-        public InputAction @LockOnCamera => m_Wrapper.m_Player_LockOnCamera;
+        public InputAction @LockOn => m_Wrapper.m_Player_LockOn;
         public InputAction @CastSpell1 => m_Wrapper.m_Player_CastSpell1;
         public InputAction @CastSpell2 => m_Wrapper.m_Player_CastSpell2;
         public InputAction @CastSpell3 => m_Wrapper.m_Player_CastSpell3;
@@ -435,18 +443,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
-            @ActivateCamera.started += instance.OnActivateCamera;
-            @ActivateCamera.performed += instance.OnActivateCamera;
-            @ActivateCamera.canceled += instance.OnActivateCamera;
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
-            @LockOnCamera.started += instance.OnLockOnCamera;
-            @LockOnCamera.performed += instance.OnLockOnCamera;
-            @LockOnCamera.canceled += instance.OnLockOnCamera;
+            @LockOn.started += instance.OnLockOn;
+            @LockOn.performed += instance.OnLockOn;
+            @LockOn.canceled += instance.OnLockOn;
             @CastSpell1.started += instance.OnCastSpell1;
             @CastSpell1.performed += instance.OnCastSpell1;
             @CastSpell1.canceled += instance.OnCastSpell1;
@@ -472,18 +477,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
-            @ActivateCamera.started -= instance.OnActivateCamera;
-            @ActivateCamera.performed -= instance.OnActivateCamera;
-            @ActivateCamera.canceled -= instance.OnActivateCamera;
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
-            @LockOnCamera.started -= instance.OnLockOnCamera;
-            @LockOnCamera.performed -= instance.OnLockOnCamera;
-            @LockOnCamera.canceled -= instance.OnLockOnCamera;
+            @LockOn.started -= instance.OnLockOn;
+            @LockOn.performed -= instance.OnLockOn;
+            @LockOn.canceled -= instance.OnLockOn;
             @CastSpell1.started -= instance.OnCastSpell1;
             @CastSpell1.performed -= instance.OnCastSpell1;
             @CastSpell1.canceled -= instance.OnCastSpell1;
@@ -516,18 +518,67 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
+    private readonly InputAction m_Camera_ActivateCamera;
+    public struct CameraActions
+    {
+        private @InputControls m_Wrapper;
+        public CameraActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ActivateCamera => m_Wrapper.m_Camera_ActivateCamera;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void AddCallbacks(ICameraActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
+            @ActivateCamera.started += instance.OnActivateCamera;
+            @ActivateCamera.performed += instance.OnActivateCamera;
+            @ActivateCamera.canceled += instance.OnActivateCamera;
+        }
+
+        private void UnregisterCallbacks(ICameraActions instance)
+        {
+            @ActivateCamera.started -= instance.OnActivateCamera;
+            @ActivateCamera.performed -= instance.OnActivateCamera;
+            @ActivateCamera.canceled -= instance.OnActivateCamera;
+        }
+
+        public void RemoveCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICameraActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnActivateCamera(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
-        void OnLockOnCamera(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
         void OnCastSpell1(InputAction.CallbackContext context);
         void OnCastSpell2(InputAction.CallbackContext context);
         void OnCastSpell3(InputAction.CallbackContext context);
         void OnCastSpell4(InputAction.CallbackContext context);
         void OnSwitchTarget(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnActivateCamera(InputAction.CallbackContext context);
     }
 }

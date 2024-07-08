@@ -324,7 +324,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503163517}
-  m_LocalRotation: {x: -0.0010883134, y: 0.99164724, z: -0.12870212, w: -0.008385433}
+  m_LocalRotation: {x: -0.0010883143, y: 0.99164724, z: -0.12870212, w: -0.008385439}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -513,6 +513,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379705, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 4381b14e-5e65-42c0-a467-e872ed0951c8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: Camera/Activate Camera[/Mouse/rightButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
@@ -883,6 +899,7 @@ GameObject:
   - component: {fileID: 967285482}
   - component: {fileID: 967285484}
   - component: {fileID: 967285485}
+  - component: {fileID: 967285486}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -1002,7 +1019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967285481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.050732657, y: 2.5, z: 2.9995708}
+  m_LocalPosition: {x: 0.050732702, y: 2.5, z: 2.9995708}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1040,6 +1057,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9d75b7c311e78438ec9d04a41e55be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &967285486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967285481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c872f2b08f3079344b556e226a1adcce, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1aa66ae-a31e-40ec-b548-f4bea6d10519
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db0bae9b-3b08-4ebe-a22a-e499363aeaf1
+    m_ActionName: Player/Run[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cd0cb8d7-a0ed-411b-8b71-53c1f95dabb4
+    m_ActionName: Player/Activate Camera[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0281288-8402-45c4-9e0f-be0e71269496
+    m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a6999a4-d341-491e-b9c5-14fd3e9e3b9b
+    m_ActionName: Player/Block[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 459518aa-83e5-4581-8b79-9d3b99544ce9
+    m_ActionName: Player/Lock On Camera[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94aef330-a31f-45ef-b9b3-e25afc2d8504
+    m_ActionName: Player/Cast Spell 1[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 345e4395-c20d-4988-b798-b8d11723824a
+    m_ActionName: Player/Cast Spell 2[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d0c0fff-44e8-48e3-b049-3c6560c764ff
+    m_ActionName: Player/Cast Spell 3[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c57a460a-c4f2-4c7d-886e-833fa306e06e
+    m_ActionName: Player/Cast Spell 4[/Keyboard/5]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27c5e435-9226-4a13-8566-0fd7e7aa4e4b
+    m_ActionName: Player/SwitchTarget[/Mouse/scroll/down,/Mouse/scroll/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 967285485}
+        m_TargetAssemblyTypeName: MainCameraEnabler, Assembly-CSharp
+        m_MethodName: AllowCameraInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4381b14e-5e65-42c0-a467-e872ed0951c8
+    m_ActionName: Camera/Activate Camera[/Mouse/rightButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Camera
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1068436145
 GameObject:
   m_ObjectHideFlags: 3
@@ -1109,7 +1216,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068436145}
-  m_LocalRotation: {x: -0.0008232137, y: 0.99521416, z: -0.097351715, w: -0.00841561}
+  m_LocalRotation: {x: -0.00082321145, y: 0.99521416, z: -0.09735171, w: -0.008415587}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1196,8 +1303,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391608846}
-  m_LocalRotation: {x: -0.0010883157, y: 0.99164724, z: -0.12870215, w: -0.008385451}
-  m_LocalPosition: {x: 0.050732657, y: 2.5, z: 2.9995708}
+  m_LocalRotation: {x: -0.0010883167, y: 0.99164724, z: -0.12870215, w: -0.008385457}
+  m_LocalPosition: {x: 0.050732702, y: 2.5, z: 2.9995708}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1427,8 +1534,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877989355}
-  m_LocalRotation: {x: -0.0013544605, y: 0.9870522, z: -0.16017655, w: -0.00834656}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0013544624, y: 0.9870522, z: -0.16017653, w: -0.0083465725}
+  m_LocalPosition: {x: -0.0000000037252903, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
