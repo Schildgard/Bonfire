@@ -40,9 +40,9 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                   {
-                       ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
-                   },
+                  {
+                      ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState
+                  },
                   // {
                   //   //MultiThreading
                   //   () => TaskBool, EnemyChaseState

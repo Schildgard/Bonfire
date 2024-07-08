@@ -35,6 +35,8 @@ public class PlaneGenerator
 
         return new MeshFace(meshRenderer, meshFilter);
     }
+
+
     public void DrawPlaneMesh(Mesh _mesh, Collider _collider)
     {
         int vertexCount = resolution * resolution;

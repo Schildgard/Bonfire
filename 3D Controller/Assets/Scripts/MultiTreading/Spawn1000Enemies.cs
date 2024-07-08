@@ -25,8 +25,6 @@ public class Spawn1000Enemies : MonoBehaviour
         stopwatch.Stop();
         //UnityEngine.Debug.Log($"Spawning all {spawnPositions.Count} Enemies took that much time: {stopwatch.Elapsed}");
 
-
-        
     }
 
     // Update is called once per frame

@@ -2858,7 +2858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc3db3925acbed43bc7e217db288566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraTransform: {fileID: 0}
   PlayerTransform: {fileID: 6523336426587379705}
 --- !u!1 &6523336426587379711
 GameObject:
@@ -2939,8 +2938,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8326077, z: 1}
-  m_Center: {x: 0, y: 0.86630404, z: 0}
+  m_Size: {x: 1, y: 1.7813354, z: 1}
+  m_Center: {x: 0, y: 0.89194024, z: 0}
 --- !u!95 &6523336426587379588
 Animator:
   serializedVersion: 5
@@ -3019,22 +3018,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: db0bae9b-3b08-4ebe-a22a-e499363aeaf1
     m_ActionName: Player/Run[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainCameraEnabler, Assembly-CSharp
-        m_MethodName: AllowCameraInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cd0cb8d7-a0ed-411b-8b71-53c1f95dabb4
-    m_ActionName: Player/Activate Camera[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6523336426587379704}
@@ -3175,6 +3158,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 27c5e435-9226-4a13-8566-0fd7e7aa4e4b
     m_ActionName: Player/SwitchTarget[/Keyboard/numpad4,/Keyboard/numpad6]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4381b14e-5e65-42c0-a467-e872ed0951c8
+    m_ActionName: Camera/Activate Camera[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3208,7 +3195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960ffa22d1379b5409dcdb6eae6481f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 0}
   normalWalkSpeed: 6
   currentWalkSpeed: 6
   lerpSpeed: 5
