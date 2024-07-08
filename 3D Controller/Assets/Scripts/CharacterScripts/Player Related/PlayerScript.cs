@@ -34,7 +34,7 @@ public class PlayerScript : CharacterScript
     {
         base.Respawn();
         HealthScript.ResetHealth();
-        PlayerInput.enabled = true;
+       PlayerInput.enabled = true;
         HealthScript.isAlive = true;
     }
 

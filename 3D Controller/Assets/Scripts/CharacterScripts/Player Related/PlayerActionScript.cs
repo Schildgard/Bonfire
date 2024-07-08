@@ -8,7 +8,7 @@ public class PlayerActionScript : MonoBehaviour
     private GroundCheck collisionDetection;
     private Animator Animator;
     private Spelllist Spelllist;
-    private bool blockMovement;
+    private bool movementIsBlocked;
 
     #region Walk
     [Header("Walking Parameters")]
@@ -89,7 +89,7 @@ public class PlayerActionScript : MonoBehaviour
     void Update()
     {
 
-        if (!blockMovement)
+        if (!movementIsBlocked)
         {
             Walk();
         }
@@ -238,12 +238,15 @@ public class PlayerActionScript : MonoBehaviour
 
     public void BlockMovement()
     {
-        blockMovement = true;
+        if (movementIsBlocked) { return; }
+        movementIsBlocked = true;
     }
 
     public void UnblockMovement()
     {
-        blockMovement = false;
+        if (!movementIsBlocked) { return; }
+        movementIsBlocked = false;
+        Debug.Log("Movement unblocked");
     }
 
 
