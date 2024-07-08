@@ -5,11 +5,14 @@ using UnityEngine;
 public class SpellDirection : MonoBehaviour
 {
 
-    [SerializeField] private Transform CameraTransform;
+    private Transform CameraTransform;
     [SerializeField] private Transform PlayerTransform;
     // Start is called before the first frame update
 
-
+    private void Start()
+    {
+        CameraTransform = Camera.main.transform;
+    }
     // Update is called once per frame
     void Update()
     {

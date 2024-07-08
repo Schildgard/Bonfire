@@ -12,7 +12,7 @@ public class PlayerActionScript : MonoBehaviour
 
     #region Walk
     [Header("Walking Parameters")]
-    [SerializeField] private Camera MainCamera;
+    private Camera MainCamera;
     [SerializeField] private float normalWalkSpeed;
     public float NormalWalkSpeed
     {
@@ -79,6 +79,8 @@ public class PlayerActionScript : MonoBehaviour
         Spelllist = GetComponent<Spelllist>();
 
         RotationScript = GetComponent<PlayerRotation>();
+
+        MainCamera = Camera.main;
 
 
     }
@@ -219,14 +221,19 @@ public class PlayerActionScript : MonoBehaviour
 
     public void PlaySFX(int _index)
     {
+        if (AudioManager.instance == null)
+        {
+            Debug.Log("Player ActionScript tried to play an Sound Effect, but the AudioManager is Null. Please check if there is an AudioManager in the Scene, and if so, if there is an SFX List of Sound Effects");
+            return;
+        }
         AudioManager.instance.SFX[_index].source.Play();
     }
 
     public void AttackDrainStamina()
     {
         Stamina.DrainStamina(currentWeapon.StaminaAttackCost);
-       // Stamina.CurrentStamina -= currentWeapon.StaminaAttackCost;
-       // Stamina.UpdateStaminaBar();
+        // Stamina.CurrentStamina -= currentWeapon.StaminaAttackCost;
+        // Stamina.UpdateStaminaBar();
     }
 
     public void BlockMovement()

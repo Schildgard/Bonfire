@@ -9,9 +9,14 @@ public class PlayerScript : CharacterScript
     [SerializeField] PlayerInput PlayerInput;
 
 
-    protected override void Start() 
+    protected override void Start()
     {
         base.Start();
+        if (SoulsSystem.instance == null)
+        {
+            Debug.Log("PlayerScript tried to Update the Souls Counter of the SoulsSystem on Start, but SoulsSystem is Null. Plase check if there is an SoulsSystem in the scene");
+            return;
+        }
         SoulsSystem.instance.UpdateSoulsCounter();
     }
 
