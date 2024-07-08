@@ -2882,6 +2882,7 @@ GameObject:
   - component: {fileID: 6523336426587379586}
   - component: {fileID: 6523336426587379599}
   - component: {fileID: 6523336426587379598}
+  - component: {fileID: -5073372864754327131}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2936,7 +2937,7 @@ BoxCollider:
   m_GameObject: {fileID: 6523336426587379711}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1.7813354, z: 1}
   m_Center: {x: 0, y: 0.89194024, z: 0}
@@ -3386,6 +3387,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 6
   lockOnCamera: {fileID: 0}
+--- !u!136 &-5073372864754327131
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523336426587379711}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.26
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &6532223850918310464
 GameObject:
   m_ObjectHideFlags: 0
