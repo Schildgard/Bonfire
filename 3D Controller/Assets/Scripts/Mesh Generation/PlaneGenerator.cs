@@ -8,6 +8,7 @@ public class PlaneGenerator
     private NoiseFilter noiseFilter;
     private int resolution;
 
+    MeshCollider collider;
 
     public PlaneGenerator(Material _material, NoiseFilter _noiseFilter, int _resolution)
     {
@@ -23,18 +24,18 @@ public class PlaneGenerator
 
         MeshRenderer meshRenderer = newPlane.AddComponent<MeshRenderer>();
         MeshFilter meshFilter = newPlane.AddComponent<MeshFilter>();
+        collider = newPlane.AddComponent<MeshCollider>();
         Mesh mesh = new Mesh();
-
         mesh.name = "Plane Layer";
         meshRenderer.sharedMaterial = material;
         meshFilter.mesh = mesh;
 
 
-        DrawPlaneMesh(mesh);
+        DrawPlaneMesh(mesh, collider);
 
         return new MeshFace(meshRenderer, meshFilter);
     }
-    public void DrawPlaneMesh(Mesh _mesh)
+    public void DrawPlaneMesh(Mesh _mesh, Collider _collider)
     {
         int vertexCount = resolution * resolution;
         int triangleIndexCount = 2 * (3 * ((resolution - 1) * (resolution - 1)));
@@ -48,7 +49,7 @@ public class PlaneGenerator
         {
             for (int x = 0; x < resolution; x++, i++)
             {
-               
+
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);  //Calculate Vertex Position
                 percent -= Vector2.one * 0.5f; //translate position to percentage of full mesh
 
@@ -79,6 +80,8 @@ public class PlaneGenerator
         _mesh.vertices = verticies;
         _mesh.triangles = triangles;
         _mesh.RecalculateNormals();
+        collider.sharedMesh = _mesh;
+
 
     }
 
@@ -86,6 +89,6 @@ public class PlaneGenerator
     {
         resolution = _resolution;
 
-        DrawPlaneMesh(_meshface.MeshFilter.mesh);
+        DrawPlaneMesh(_meshface.MeshFilter.mesh, collider);
     }
 }
