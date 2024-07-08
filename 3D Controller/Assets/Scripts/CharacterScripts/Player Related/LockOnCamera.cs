@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class LockOnCamera : MonoBehaviour
 {
     [SerializeField] private PlayerRotation playerRotation;
-    [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private Transform playerTransform;
     private CinemachineVirtualCamera lockOnCamera;
+    private CinemachineFreeLook freeLook;
 
 
 
@@ -17,6 +17,7 @@ public class LockOnCamera : MonoBehaviour
     private void Awake()
     {
         lockOnCamera = GetComponent<CinemachineVirtualCamera>();
+        freeLook = FindAnyObjectByType<CinemachineFreeLook>();
     }
 
 
@@ -52,7 +53,7 @@ public class LockOnCamera : MonoBehaviour
         Transform FocusPoint = lockOnTarget.transform.Find("FocusPoint");
 
         lockOnCamera.LookAt = FocusPoint;
-        
+
 
     }
 
@@ -149,11 +150,11 @@ public class LockOnCamera : MonoBehaviour
                 lockOnTarget = enemy.gameObject;
 
                 shortestDistanceToPlayer = distance;
-             //   Debug.Log("shortestDistance is changed to " + distance);
+                //   Debug.Log("shortestDistance is changed to " + distance);
             }
             else
             {
-             //   Debug.Log("shortestDistance remains the same");
+                //   Debug.Log("shortestDistance remains the same");
             }
         }
         return lockOnTarget;
