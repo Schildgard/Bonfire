@@ -9,7 +9,7 @@ public class PlaneManager : MonoBehaviour
     [SerializeField] private ShapeSettings shapeSettings;
     [SerializeField] private Material planeMaterial;
 
-    [SerializeField, Range(4,255)] private int resolution;
+    [SerializeField, Range(4,240)] private int resolution;
 
     private MeshFace plane;
     private NoiseFilter noiseFilter;

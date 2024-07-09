@@ -44,6 +44,7 @@ public class PlaneGenerator
 
         Vector3[] verticies = new Vector3[vertexCount];
         int[] triangles = new int[triangleIndexCount];
+        Vector2[] uvs = new Vector2[vertexCount];
 
         int triangleIndex = 0;
 
@@ -62,6 +63,7 @@ public class PlaneGenerator
                 Vector3 transformedPosition = noiseFilter.SetNoisePosition(planePosition);
 
                 verticies[i] = transformedPosition;
+                uvs[i] = new Vector2(x, y);
 
                 if (y < resolution - 1 && x < resolution - 1)  //If Index is NOT on the Edge, draw a new Mesh
                 {
@@ -81,6 +83,7 @@ public class PlaneGenerator
         _mesh.Clear();
         _mesh.vertices = verticies;
         _mesh.triangles = triangles;
+        _mesh.uv = uvs;
         _mesh.RecalculateNormals();
         collider.sharedMesh = _mesh;
 
