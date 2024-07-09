@@ -11,7 +11,6 @@ public class LockOnCamera : MonoBehaviour
     private CinemachineFreeLook freeLook;
 
 
-
     [SerializeField] private float scanRadius;
 
     private void Awake()
@@ -22,14 +21,13 @@ public class LockOnCamera : MonoBehaviour
 
 
 
-    public void CheckPotentialTargets(InputAction.CallbackContext _context)
+    public Transform CheckPotentialTargets()
     {
-        if (!_context.started) return;
 
         List<GameObject> potentialTarget = ScanForEnemiesInRange();
         if (potentialTarget == null)
         {
-            return;
+            return null;
         }
 
         List<GameObject> TargetsInFrontofPlayer = new List<GameObject>();
@@ -45,15 +43,38 @@ public class LockOnCamera : MonoBehaviour
         }
         if (TargetsInFrontofPlayer.Count <= 0)
         {
-            return;
+            return null;
         }
 
         GameObject lockOnTarget = GetNearestEnemy(TargetsInFrontofPlayer);
-
         Transform FocusPoint = lockOnTarget.transform.Find("FocusPoint");
+        return FocusPoint;
 
-        lockOnCamera.LookAt = FocusPoint;
+    }
 
+    public void ToggleLockOn(InputAction.CallbackContext _context)
+    {
+
+        if (_context.started)
+        {
+            Transform Target = lockOnCamera.LookAt;
+
+            if (Target != null)
+            {
+                lockOnCamera.LookAt = null;
+                freeLook.enabled = true;
+                playerRotation.LockOn = false;
+                return;
+            }
+
+            Target = CheckPotentialTargets();
+            if (Target == null) { return; }
+
+
+            lockOnCamera.LookAt = Target;
+            freeLook.enabled = false;
+            playerRotation.LockOn = true;
+        }
 
     }
 
@@ -160,16 +181,6 @@ public class LockOnCamera : MonoBehaviour
         return lockOnTarget;
     }
 
-
-    public void LockOn(InputAction.CallbackContext _context)
-    {
-        if (_context.started)
-        {
-            freeLook.enabled = !freeLook.enabled;
-            playerRotation.LockOn = !playerRotation.LockOn;
-        }
-
-    }
 
     private void OnDrawGizmos()
     {

@@ -13315,7 +13315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068344956}
-  m_LocalRotation: {x: 0.16018222, y: 0.000000025470568, z: -0.0000000041333035, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018225, y: 0.000000023309845, z: -0.000000003782667, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14515,6 +14515,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -14580,11 +14584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckPotentialTargets
+      value: ToggleLockOn
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LockOn
+      value: CheckPotentialTargets
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379707, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
