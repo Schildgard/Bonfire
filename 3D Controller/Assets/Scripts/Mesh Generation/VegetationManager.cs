@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class VegetationManager : MonoBehaviour
 {
-    private VegetationGenerator[] vegGenerators;
+    private VegetationGenerator vegGenerator;
 
-    private Material[] vegetationMaterials;
+    private Material vegetationMaterial;
 
-    private Mesh plane;
-    private MeshFace[] vegetationMesh;
+    private MeshFace vegetationMesh;
+
+    private Mesh planeMesh;
 
     private void Start()
     {
+        planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
         GenerateAllVegetations();
     }
 
     private void GenerateAllVegetations()
     {
-        vegetationMesh = new MeshFace[vegGenerators.Length];
+        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial);
+        vegetationMesh = vegGenerator.GenerateVegetationItem();
 
-        for (int i = 0; i < vegGenerators.Length; i++)
-        {
-            vegetationMesh[i] = vegGenerators[i].GenerateVegetationItem();
-        }
     }
 }

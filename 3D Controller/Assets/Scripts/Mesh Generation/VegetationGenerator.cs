@@ -18,9 +18,6 @@ public class VegetationGenerator
     private Vector3[] planePositions;
 
 
-    Vector3[] vegetationVerticies;
-
-
     List<Vector3> vegetationSpawnPositions = new List<Vector3>();
     private float spawnThreshold;
 
@@ -50,9 +47,9 @@ public class VegetationGenerator
 
     private void CalculateSpawnPositions()
     {
-        planePositions = planeMesh.vertices;
-
         vegetationSpawnPositions.Clear();
+
+        planePositions = planeMesh.vertices;
 
         float spawnValue;
         //Evaluate Positions in Noise so it returns a Value between 0 and 1
@@ -69,7 +66,30 @@ public class VegetationGenerator
 
     private void DrawVegetation(Mesh _mesh)
     {
+        int vertexCount = vegetationSpawnPositions.Count * 4;
 
+        int triangleIndexCount = 3 * 2 * vertexCount; // vermutlich Error
+
+        Vector3[] verts = new Vector3[vertexCount];
+        int[] triangles = new int[triangleIndexCount]; // vermutlich Error
+
+        foreach (var position in vegetationSpawnPositions)
+        {
+            //set verticies of quad
+        }
+        int vertindex = 0;
+        int triIndex = 0;
+        for (int i = 0; i < vegetationSpawnPositions.Count; i++)
+        {
+            verts[vertindex] = vegetationSpawnPositions[i];
+            verts[vertindex + 1] = vegetationSpawnPositions[i] + Vector3.right;
+            verts[vertindex + 2] = vegetationSpawnPositions[i] + Vector3.up;
+            verts[vertindex + 3] = vegetationSpawnPositions[i]+Vector3.up+Vector3.right;
+            vertindex += 4;
+
+         //  triangles[triIndex] = i;
+         //  triangles[triIndex + 1] = i +
+        }
 
     }
 }
