@@ -1459,8 +1459,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vegetationMaterial: {fileID: 2100000, guid: 82c74de02197b2343a84c48579a8ffd8, type: 2}
+  GPUInstancedMaterial: {fileID: 2100000, guid: 0355594afd0ad9947843e1c9974336f7, type: 2}
   threshold: 0.2
   PositionIndicatorPrefab: {fileID: 2800341564207050323, guid: 79daa9495c6448748902f95bd159d1f5, type: 3}
+  generateInstancedMeshes: 1
 --- !u!4 &1526803937
 Transform:
   m_ObjectHideFlags: 0

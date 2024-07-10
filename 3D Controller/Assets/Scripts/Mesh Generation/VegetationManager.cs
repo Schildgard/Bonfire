@@ -5,19 +5,28 @@ using UnityEngine;
 public class VegetationManager : MonoBehaviour
 {
     private VegetationGenerator vegGenerator;
-    [SerializeField]private Material vegetationMaterial;
+    private InstancedMesh_VegetationGenerator instancedVegGenerator;
+    [SerializeField] private Material vegetationMaterial;
+    [SerializeField] private Material GPUInstancedMaterial;
     private MeshFace vegetationMesh;
     private Mesh planeMesh;
 
-    [SerializeField]private float threshold;
-
+    [SerializeField] private float threshold;
 
     [SerializeField] GameObject PositionIndicatorPrefab;
+
+
+    MeshFace[] instancedMeshes;
+
+
+    public bool generateInstancedMeshes;
     private void Start()
     {
         planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
-        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, threshold);
 
+        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, threshold);
+
+        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, threshold);
 
 
         GenerateVegetations();
@@ -26,6 +35,12 @@ public class VegetationManager : MonoBehaviour
 
     private void GenerateVegetations()
     {
+        if (generateInstancedMeshes)
+        {
+        instancedVegGenerator.GenerateVegetationItem();
+            return;
+        }
+
         vegetationMesh = vegGenerator.GenerateVegetationItem();
 
     }
@@ -38,4 +53,5 @@ public class VegetationManager : MonoBehaviour
         }
 
     }
+
 }
