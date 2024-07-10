@@ -17,14 +17,14 @@ public class VegetationManager : MonoBehaviour
     {
         planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
         vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, threshold);
-        GenerateAllVegetations();
 
-      // List<Vector3> spawnPositions = vegGenerator.CalculateSpawnPositions(planeMesh);
-      // 
-      // ShowSpawnPositions(spawnPositions);
+
+
+        GenerateVegetations();
+
     }
 
-    private void GenerateAllVegetations()
+    private void GenerateVegetations()
     {
         vegetationMesh = vegGenerator.GenerateVegetationItem();
 
