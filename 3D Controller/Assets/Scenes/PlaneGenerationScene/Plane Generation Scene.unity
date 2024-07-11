@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shapeSettings: {fileID: 11400000, guid: d1a2b762e9ae8b64bbaf0db279d42f24, type: 2}
   planeMaterial: {fileID: 2100000, guid: 28f0a0fff83a64243964cd3edd981ac4, type: 2}
-  resolution: 32
+  resolution: 240
 --- !u!4 &354864415
 Transform:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503163517}
-  m_LocalRotation: {x: 0.08875703, y: -0.7181607, z: 0.09320734, w: 0.68387127}
+  m_LocalRotation: {x: 0.08875704, y: -0.71816075, z: 0.09320736, w: 0.68387115}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1267,7 +1267,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068436145}
-  m_LocalRotation: {x: 0.06713681, y: -0.7207439, z: 0.07050307, w: 0.686331}
+  m_LocalRotation: {x: 0.06713681, y: -0.7207439, z: 0.07050306, w: 0.68633103}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1314,7 +1314,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1354,7 +1354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391608846}
-  m_LocalRotation: {x: 0.08875703, y: -0.7181606, z: 0.09320734, w: 0.68387127}
+  m_LocalRotation: {x: 0.08875703, y: -0.71816075, z: 0.09320736, w: 0.68387115}
   m_LocalPosition: {x: 2.9964132, y: 34.5, z: 0.1466546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1461,8 +1461,9 @@ MonoBehaviour:
   vegetationMaterial: {fileID: 2100000, guid: 82c74de02197b2343a84c48579a8ffd8, type: 2}
   threshold: 0.2
   GPUInstancedMaterial: {fileID: 2100000, guid: 0355594afd0ad9947843e1c9974336f7, type: 2}
-  PositionIndicatorPrefab: {fileID: 2800341564207050323, guid: 79daa9495c6448748902f95bd159d1f5, type: 3}
-  generateInstancedMeshes: 1
+  PositionIndicatorPrefab: {fileID: 499700821537816554, guid: 07a8ca479ea94df4f911b2cf47c36538, type: 3}
+  generateInstancedMeshes: 0
+  generatePrefabs: 0
 --- !u!4 &1526803937
 Transform:
   m_ObjectHideFlags: 0
@@ -1695,7 +1696,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877989355}
-  m_LocalRotation: {x: 0.11046277, y: -0.7148329, z: 0.11600141, w: 0.68070227}
+  m_LocalRotation: {x: 0.11046278, y: -0.71483296, z: 0.11600143, w: 0.6807022}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -16,10 +16,7 @@ public class VegetationManager : MonoBehaviour
     [SerializeField] private Material GPUInstancedMaterial;
     Mesh instancedMesh;
 
-    Matrix4x4[] Batches;
-    List<List<Matrix4x4>> ListofBatchLists;
-    int batchCount;
-
+    List<List<Matrix4x4>> ListofMatrixLists;
 
     #endregion
 
@@ -27,12 +24,17 @@ public class VegetationManager : MonoBehaviour
     #region Testing Variables
     [SerializeField] GameObject PositionIndicatorPrefab;
     public bool generateInstancedMeshes;
+    public bool generatePrefabs;
+
+    List<Vector3> spawnPositions;
     #endregion
 
     private void Start()
     {
         planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
+
         InitializeGenerators();
+        spawnPositions = instancedVegGenerator.CalculateSpawnPositions(planeMesh);
 
         GenerateVegetations();
 
@@ -45,13 +47,17 @@ public class VegetationManager : MonoBehaviour
         if (generateInstancedMeshes)
         {
             RenderBatches();
-        }
+        }       
     }
+
+
+
     private void InitializeGenerators()
     {
         instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, threshold);
 
         vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, threshold);
+
     }
 
     private void GenerateVegetations()
@@ -62,11 +68,17 @@ public class VegetationManager : MonoBehaviour
             return;
         }
 
+        else if (generatePrefabs)
+        {
+            GeneratePrefabs(spawnPositions);
+            return;
+        }
+
         vegetationMesh = vegGenerator.GenerateVegetationItem();
 
     }
 
-    private void ShowSpawnPositions(List<Vector3> _positions)
+    private void GeneratePrefabs(List<Vector3> _positions)
     {
         foreach (var position in _positions)
         {
@@ -75,11 +87,13 @@ public class VegetationManager : MonoBehaviour
 
     }
 
-
     private void CreateInstancedVegetations()
     {
         List<Vector3> spawnPositions = instancedVegGenerator.CalculateSpawnPositions(planeMesh);
-        ListofBatchLists = new List<List<Matrix4x4>>();
+        Debug.Log($"Spawn Positions has {spawnPositions.Count} positions");
+        ListofMatrixLists = new List<List<Matrix4x4>>();
+        ListofMatrixLists.Add(new List<Matrix4x4>());
+        Debug.Log($"Lists of Matrix Lists ha {ListofMatrixLists.Count} Lists in it");
 
         instancedMesh = instancedVegGenerator.GenerateMesh();
 
@@ -89,31 +103,25 @@ public class VegetationManager : MonoBehaviour
         {
             if (counter >= 1000)
             {
+                ListofMatrixLists.Add(new List<Matrix4x4>());
+                Debug.Log($"Lists of Matrizes added a new List to it and now consists of {ListofMatrixLists.Count} Lists");
                 ListIndex++;
+
                 counter = 0;
             }
 
-            ListofBatchLists[ListIndex].Add(Matrix4x4.TRS(spawnPositions[i], Quaternion.identity, Vector3.one));
+            ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(spawnPositions[i], Quaternion.identity, Vector3.one));
             counter++;
         }
-
-
-        batchCount = spawnPositions.Count;
-        Batches = new Matrix4x4[batchCount];
-
-        for (int i = 0; i < batchCount; i++)
-        {
-            Batches[i] = Matrix4x4.TRS(spawnPositions[i], Quaternion.identity, Vector3.one);
-        }
-
-
     }
 
     private void RenderBatches()
     {
+        foreach (var MatrixList in ListofMatrixLists)
+        {
+            Graphics.DrawMeshInstanced(instancedMesh, 0, GPUInstancedMaterial, MatrixList);
+        }
 
-        Graphics.DrawMeshInstanced(instancedMesh, 0, GPUInstancedMaterial, Batches);
-
-        Debug.Log("Completed a Render Cycle");
     }
+
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19935eb8baf3bb43abe067790ef3ba6, type: 3}
   m_Name: New ShapeSettings
   m_EditorClassIdentifier: 
-  size: 60
+  size: 500
   NoiseLayers:
   - enabled: 1
     NoiseSettings:
