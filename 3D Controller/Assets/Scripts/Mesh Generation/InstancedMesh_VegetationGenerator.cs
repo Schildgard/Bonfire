@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InstancedMesh_VegetationGenerator
 {
@@ -29,7 +30,7 @@ public class InstancedMesh_VegetationGenerator
 
         List<Vector3> SpawnPositions = CalculateSpawnPositions(planeMesh);
 
-        Mesh[] Meshes = DrawVegetation( SpawnPositions);
+        Mesh[] Meshes = DrawVegetation(SpawnPositions);
 
 
         return Meshes;
@@ -54,7 +55,7 @@ public class InstancedMesh_VegetationGenerator
             }
         }
         return vegetationSpawnPositions;
-    }                             
+    }
 
     private Mesh[] DrawVegetation(List<Vector3> _spawnPosition)
     {
@@ -79,7 +80,7 @@ public class InstancedMesh_VegetationGenerator
             int[] triangles = new int[6];
 
             verts[0] = position;
-            verts[1] = position +Vector3.right;
+            verts[1] = position + Vector3.right;
             verts[2] = position + Vector3.up;
             verts[3] = position + Vector3.up + Vector3.right;
 
@@ -103,8 +104,31 @@ public class InstancedMesh_VegetationGenerator
         return newMeshArray;
     }
 
-    private void DrawInstancedVegetation()
+    public Mesh GenerateMesh()
     {
+        Mesh mesh = new Mesh();
 
+        Vector3[] verts = new Vector3[4];
+        int[] triangles = new int[6];
+
+        verts[0] = Vector3.zero;
+        verts[1] = Vector3.right;
+        verts[2] = Vector3.up;
+        verts[3] = Vector3.up + Vector3.right;
+
+        triangles[0] = 0;
+        triangles[1] = 3;
+        triangles[2] = 2;
+
+        triangles[3] = 0;
+        triangles[4] = 1;
+        triangles[5] = 3;
+
+        mesh.Clear();
+        mesh.vertices = verts;
+        mesh.triangles = triangles;
+        mesh.RecalculateNormals();
+
+        return mesh;
     }
 }
