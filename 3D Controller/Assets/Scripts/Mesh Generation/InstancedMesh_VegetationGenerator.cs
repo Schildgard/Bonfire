@@ -7,10 +7,9 @@ public class InstancedMesh_VegetationGenerator
 {
 
 
-    public InstancedMesh_VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings)
+    public InstancedMesh_VegetationGenerator(Mesh _mesh, EnvironmentalSettings _environmentalSettings)
     {
         planeMesh = _mesh;
-        material = _material;
         noise = new Noise();
 
         environmentalSettings = _environmentalSettings;
@@ -20,7 +19,6 @@ public class InstancedMesh_VegetationGenerator
 
     private Mesh planeMesh;
     private Noise noise;
-    private Material material;
     private Vector3[] planePositions;
 
 
@@ -77,7 +75,7 @@ public class InstancedMesh_VegetationGenerator
             Mesh vegetationMesh = new Mesh();
 
             vegetationMesh.name = "Vegetation";
-            meshRenderer.sharedMaterial = material;
+          //  meshRenderer.sharedMaterial = material;
             meshFilter.mesh = vegetationMesh;
 
             Vector3[] verts = new Vector3[4];

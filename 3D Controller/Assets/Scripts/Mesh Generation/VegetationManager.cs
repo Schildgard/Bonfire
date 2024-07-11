@@ -9,10 +9,11 @@ public class VegetationManager : MonoBehaviour
     private Mesh planeMesh;
 
     [SerializeField] private Material vegetationMaterial;
+    [SerializeField] private Material spawnObjectsMaterial;
+    [SerializeField] private Material GPUInstancingMaterial;
 
     #region GPU Instancing
     private InstancedMesh_VegetationGenerator instancedVegGenerator;
-    [SerializeField] private Material GPUInstancedMaterial;
     Mesh instancedMesh;
 
     List<List<Matrix4x4>> ListofMatrixLists;
@@ -21,7 +22,10 @@ public class VegetationManager : MonoBehaviour
 
 
     #region Testing Variables
-    [SerializeField] GameObject PositionIndicatorPrefab;
+
+
+
+    [SerializeField] GameObject VegetationPrefab;
     public bool generateInstancedMeshes;
     public bool generatePrefabs;
 
@@ -30,6 +34,7 @@ public class VegetationManager : MonoBehaviour
 
 
     [SerializeField] private EnvironmentalSettingsLayer environmentalSettings;
+
 
     private void Start()
     {
@@ -56,7 +61,7 @@ public class VegetationManager : MonoBehaviour
 
     private void InitializeGenerators()
     {
-        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, environmentalSettings.EnvironmentalSettings);
+        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, environmentalSettings.EnvironmentalSettings);
 
         vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, environmentalSettings.EnvironmentalSettings);
 
@@ -84,7 +89,7 @@ public class VegetationManager : MonoBehaviour
     {
         foreach (var position in _positions)
         {
-            Instantiate(PositionIndicatorPrefab, position, Quaternion.identity);
+            Instantiate(VegetationPrefab, position, Quaternion.identity);
         }
 
     }
@@ -92,11 +97,10 @@ public class VegetationManager : MonoBehaviour
     private void CreateInstancedVegetations()
     {
         List<Vector3> spawnPositions = instancedVegGenerator.CalculateSpawnPositions(planeMesh);
-        Debug.Log($"Spawn Positions has {spawnPositions.Count} positions");
-        ListofMatrixLists = new List<List<Matrix4x4>>();
-        ListofMatrixLists.Add(new List<Matrix4x4>());
-        Debug.Log($"Lists of Matrix Lists ha {ListofMatrixLists.Count} Lists in it");
-
+        ListofMatrixLists = new List<List<Matrix4x4>>
+        {
+            new List<Matrix4x4>()
+        };
         instancedMesh = instancedVegGenerator.GenerateMesh();
 
         int ListIndex = 0;
@@ -106,7 +110,7 @@ public class VegetationManager : MonoBehaviour
             if (counter >= 1000)
             {
                 ListofMatrixLists.Add(new List<Matrix4x4>());
-                Debug.Log($"Lists of Matrizes added a new List to it and now consists of {ListofMatrixLists.Count} Lists");
+
                 ListIndex++;
 
                 counter = 0;
@@ -121,7 +125,7 @@ public class VegetationManager : MonoBehaviour
     {
         foreach (var MatrixList in ListofMatrixLists)
         {
-            Graphics.DrawMeshInstanced(instancedMesh, 0, GPUInstancedMaterial, MatrixList);
+            Graphics.DrawMeshInstanced(instancedMesh, 0, GPUInstancingMaterial, MatrixList);
         }
 
     }
