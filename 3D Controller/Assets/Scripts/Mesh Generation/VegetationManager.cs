@@ -9,7 +9,6 @@ public class VegetationManager : MonoBehaviour
     private Mesh planeMesh;
 
     [SerializeField] private Material vegetationMaterial;
-    [SerializeField] private float threshold;
 
     #region GPU Instancing
     private InstancedMesh_VegetationGenerator instancedVegGenerator;
@@ -28,6 +27,9 @@ public class VegetationManager : MonoBehaviour
 
     List<Vector3> spawnPositions;
     #endregion
+
+
+    [SerializeField] private EnvironmentalSettings environmentalSettings;
 
     private void Start()
     {
@@ -54,9 +56,9 @@ public class VegetationManager : MonoBehaviour
 
     private void InitializeGenerators()
     {
-        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, threshold);
+        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, environmentalSettings);
 
-        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, threshold);
+        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, environmentalSettings);
 
     }
 
@@ -110,7 +112,7 @@ public class VegetationManager : MonoBehaviour
                 counter = 0;
             }
 
-            ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(spawnPositions[i], Quaternion.identity, Vector3.one));
+            ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(spawnPositions[i]+ instancedVegGenerator.EnvironmentalSettings.Offset, Quaternion.identity, instancedVegGenerator.EnvironmentalSettings.ScaleMultiplier));
             counter++;
         }
     }

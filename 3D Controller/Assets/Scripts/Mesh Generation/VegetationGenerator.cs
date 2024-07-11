@@ -5,12 +5,13 @@ using UnityEngine;
 public class VegetationGenerator
 {
 
-    public VegetationGenerator(Mesh _mesh, Material _material, float _threshold)
+    public VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings)
     {
         planeMesh = _mesh;
         material = _material;
         noise = new Noise();
-        spawnThreshold = _threshold;
+
+        environmentalSettings = _environmentalSettings;
     }
 
 
@@ -19,7 +20,7 @@ public class VegetationGenerator
     private Material material;
     private Vector3[] planePositions;
 
-    private float spawnThreshold;
+    private EnvironmentalSettings environmentalSettings;
 
 
 
@@ -60,7 +61,8 @@ public class VegetationGenerator
         foreach (var position in planePositions)
         {
             spawnValue = noise.Evaluate(position);
-            if (spawnValue > spawnThreshold)
+
+            if (spawnValue > environmentalSettings.Threshold)
             {
                 vegetationSpawnPositions.Add(position);
             }
@@ -81,12 +83,14 @@ public class VegetationGenerator
 
         int vertindex = 0;
         int triIndex = 0;
+        Vector3 rightMovement = Vector3.right * environmentalSettings.ScaleMultiplier.x;
+        Vector3 upMovement = Vector3.up * environmentalSettings.ScaleMultiplier.y;
         for (int i = 0; i < _spawnPosition.Count; i++)
         {
             verts[vertindex] = _spawnPosition[i];
-            verts[vertindex + 1] = _spawnPosition[i] + Vector3.right;
-            verts[vertindex + 2] = _spawnPosition[i] + Vector3.up;
-            verts[vertindex + 3] = _spawnPosition[i] + Vector3.up + Vector3.right;
+            verts[vertindex + 1] = _spawnPosition[i] + rightMovement;
+            verts[vertindex + 2] = _spawnPosition[i] + upMovement;
+            verts[vertindex + 3] = _spawnPosition[i] + upMovement + rightMovement;
             vertindex += 4;
 
 

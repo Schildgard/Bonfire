@@ -7,12 +7,14 @@ public class InstancedMesh_VegetationGenerator
 {
 
 
-    public InstancedMesh_VegetationGenerator(Mesh _mesh, Material _material, float _threshold)
+    public InstancedMesh_VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings)
     {
         planeMesh = _mesh;
         material = _material;
         noise = new Noise();
-        spawnThreshold = _threshold;
+
+        environmentalSettings = _environmentalSettings;
+
     }
 
 
@@ -21,8 +23,10 @@ public class InstancedMesh_VegetationGenerator
     private Material material;
     private Vector3[] planePositions;
 
-    private float spawnThreshold;
 
+    private EnvironmentalSettings environmentalSettings;
+
+    public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
 
 
     public Mesh[] GenerateVegetationItem()
@@ -49,7 +53,7 @@ public class InstancedMesh_VegetationGenerator
         foreach (var position in planePositions)
         {
             spawnValue = noise.Evaluate(position);
-            if (spawnValue > spawnThreshold)
+            if (spawnValue > environmentalSettings.Threshold)
             {
                 vegetationSpawnPositions.Add(position);
             }
