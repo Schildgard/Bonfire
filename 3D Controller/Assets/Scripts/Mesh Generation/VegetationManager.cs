@@ -29,7 +29,7 @@ public class VegetationManager : MonoBehaviour
     #endregion
 
 
-    [SerializeField] private EnvironmentalSettings environmentalSettings;
+    [SerializeField] private EnvironmentalSettingsLayer environmentalSettings;
 
     private void Start()
     {
@@ -56,9 +56,9 @@ public class VegetationManager : MonoBehaviour
 
     private void InitializeGenerators()
     {
-        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, environmentalSettings);
+        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, GPUInstancedMaterial, environmentalSettings.EnvironmentalSettings);
 
-        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, environmentalSettings);
+        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, environmentalSettings.EnvironmentalSettings);
 
     }
 

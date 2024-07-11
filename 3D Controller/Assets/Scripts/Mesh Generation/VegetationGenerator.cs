@@ -85,8 +85,10 @@ public class VegetationGenerator
         int triIndex = 0;
         Vector3 rightMovement = Vector3.right * environmentalSettings.ScaleMultiplier.x;
         Vector3 upMovement = Vector3.up * environmentalSettings.ScaleMultiplier.y;
+        Vector3 Offset = environmentalSettings.Offset;
         for (int i = 0; i < _spawnPosition.Count; i++)
         {
+            _spawnPosition[i] += Offset;
             verts[vertindex] = _spawnPosition[i];
             verts[vertindex + 1] = _spawnPosition[i] + rightMovement;
             verts[vertindex + 2] = _spawnPosition[i] + upMovement;
