@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public abstract class EnvironmentGenerator
+public class PrefabGenerator
 {
     protected Mesh planeMesh;
     protected Noise noise;
-
-
-    protected Vector3[] planePositions;
-    protected List<List<Matrix4x4>> matrices;
+    protected GameObject prefab;
 
     protected EnvironmentalSettings environmentalSettings;
     public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
-    public List<List<Matrix4x4>> Matrices => matrices;
 
-    public virtual Mesh CreateEnvironmentalMesh()
+    private Vector3[] planePositions;
+    public Vector3[] PlanePositions => planePositions;
+
+    public PrefabGenerator(Mesh _mesh, EnvironmentalSettings _environmentalSettings, GameObject _prefab)
     {
-        Debug.Log($"This Generator ({this}) creates no Mesh. It probably is a a Prefab Generator which calculates Plane Positions to spawn its Prefabs");
-        return null;
+        planeMesh = _mesh;
+        noise = new Noise();
+        environmentalSettings = _environmentalSettings;
+        prefab = _prefab;
     }
+
 
     public virtual List<Vector3> CalculateSpawnPositions(Mesh _planeMesh)
     {
@@ -42,5 +43,11 @@ public abstract class EnvironmentGenerator
             }
         }
         return vegetationSpawnPositions;
+    }
+
+
+    public void SetSpawnPositions()
+    {
+        CalculateSpawnPositions(planeMesh);
     }
 }

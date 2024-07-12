@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VegetationGenerator : EnvironmentGenerator
 {
+    private Material material;
 
     public VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings)
     {
@@ -14,9 +15,6 @@ public class VegetationGenerator : EnvironmentGenerator
         environmentalSettings = _environmentalSettings;
     }
 
-
-    private Mesh planeMesh;
-    private Material material;
 
 
     public Mesh GenerateVegetationItem()
@@ -37,39 +35,10 @@ public class VegetationGenerator : EnvironmentGenerator
         DrawVegetationMesh(vegetationMesh, SpawnPositions);
 
         return vegetationMesh;
-
-
-        // return new MeshFace(meshRenderer, meshFilter);
-    }
-
-
-
-
-    public List<Vector3> CalculateSpawnPositions(Mesh _planeMesh)
-    {
-        List<Vector3> vegetationSpawnPositions = new List<Vector3>();
-
-        vegetationSpawnPositions.Clear();
-        planePositions = _planeMesh.vertices;
-
-        float spawnValue;
-        //Evaluate Positions in Noise so it returns a Value between 0 and 1
-
-        foreach (var position in planePositions)
-        {
-            spawnValue = noise.Evaluate(position);
-
-            if (spawnValue > environmentalSettings.Threshold)
-            {
-                vegetationSpawnPositions.Add(position);
-            }
-        }
-        return vegetationSpawnPositions;
     }
 
     private void DrawVegetationMesh(Mesh _mesh, List<Vector3> _spawnPosition)
     {
-
         int vertexCount = _spawnPosition.Count * 4;
 
         int triangleIndexCount = 3 * 2 * vertexCount;
@@ -112,8 +81,6 @@ public class VegetationGenerator : EnvironmentGenerator
         _mesh.RecalculateNormals();
 
     }
-
-
 
     public override Mesh CreateEnvironmentalMesh()
     {

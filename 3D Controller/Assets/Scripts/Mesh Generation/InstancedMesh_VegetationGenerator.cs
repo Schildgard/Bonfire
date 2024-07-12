@@ -3,37 +3,22 @@ using UnityEngine;
 
 public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 {
-    private Mesh planeMesh;
-
     public InstancedMesh_VegetationGenerator(Mesh _planeMesh, EnvironmentalSettings _environmentalSettings)
     {
         noise = new Noise();
         environmentalSettings = _environmentalSettings;
         planeMesh = _planeMesh;
 
-        matrices = CalculateSpawnPositions();
+        matrices = CalculateMatrices();
 
     }
 
 
 
-    public List<List<Matrix4x4>> CalculateSpawnPositions()
+    public List<List<Matrix4x4>> CalculateMatrices()
     {
-        List<Vector3> vegetationSpawnPositions = new List<Vector3>();
+        List<Vector3> vegetationSpawnPositions = CalculateSpawnPositions(planeMesh);
 
-        planePositions = planeMesh.vertices;
-
-        float spawnValue;
-        //Evaluate Positions in Noise so it returns a Value between 0 and 1
-
-        foreach (var position in planePositions)
-        {
-            spawnValue = noise.Evaluate(position);
-            if (spawnValue > environmentalSettings.Threshold)
-            {
-                vegetationSpawnPositions.Add(position);
-            }
-        }
 
         List<List<Matrix4x4>> ListofMatrixLists = new List<List<Matrix4x4>>
         {
@@ -63,10 +48,9 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 
 
 
-
     public override Mesh CreateEnvironmentalMesh()
     {
-        matrices = CalculateSpawnPositions();
+        matrices = CalculateMatrices();
 
         Mesh instancablMesh = GenerateMesh();
         return instancablMesh;

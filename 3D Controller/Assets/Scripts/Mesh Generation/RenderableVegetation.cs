@@ -5,7 +5,7 @@ using UnityEngine;
 public class RenderableVegetation
 {
     public Material Material;
-    [Range(1, 2)]
+    [Range(0, 1)]
     public int RenderMode;
 
     private EnvironmentGenerator environmentGenerator;
@@ -19,14 +19,16 @@ public class RenderableVegetation
     {
         switch (RenderMode)
         {
-            case 1:
+            case 0:
                 environmentGenerator = new VegetationGenerator(_mesh, Material, environmentalSettings);
                 break;
-            case 2:
+            case 1:
                 environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, environmentalSettings);
+                if(Material.enableInstancing == false) { Material.enableInstancing = true; }
                 break;
             default:
                 environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, environmentalSettings);
+                if (Material.enableInstancing == false) { Material.enableInstancing = true; }
                 break;
         }
         return environmentGenerator;

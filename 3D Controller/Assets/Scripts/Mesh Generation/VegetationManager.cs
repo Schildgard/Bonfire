@@ -4,92 +4,66 @@ using UnityEngine;
 
 public class VegetationManager : MonoBehaviour
 {
-    // private VegetationGenerator vegGenerator;
     private Mesh planeMesh;
 
-    // [SerializeField] private Material vegetationMaterial;
-    // [SerializeField] private Material spawnObjectsMaterial;
-    // [SerializeField] private Material GPUInstancingMaterial;
-
-    #region GPU Instancing
-    private InstancedMesh_VegetationGenerator instancedVegGenerator;
-    //  Mesh instancedMesh;
-
-    List<List<Matrix4x4>> ListofMatrixLists;
-
-    #endregion
-
-
-    #region Testing Variables
-
-
-
-    // [SerializeField] GameObject VegetationPrefab;
-    // public bool generateInstancedMeshes;
-    // public bool generatePrefabs;
-
-    List<Vector3> spawnPositions;
-    #endregion
-
-
-    // [SerializeField] private EnvironmentalSettingsLayer environmentalSettings;
-
-
-    [SerializeField] private List<RenderableVegetation> renderableVegetations;
+    [SerializeField] private List<RenderableVegetation> renderableEnvironment;
+    [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
 
     private void Start()
     {
         planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
-
         InitializeGenerators();
-
         GenerateVegetations();
-
-
     }
 
 
     private void Update()
     {
-        if (instancedEnvironment.Count <= 0) { return; }
-        foreach (var environment in instancedEnvironment)
-        {
-            RenderBatches(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
-
-            //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
-        }
+        RenderInstancedMeshes();
     }
 
 
 
     private void InitializeGenerators()
     {
-
-        foreach (var environment in renderableVegetations)
+        foreach (var environment in renderableEnvironment)
         {
             environment.InitializeGenerator(planeMesh);
         }
 
+        foreach (var environment in spawnableEnvironment)
+        {
+            environment.InitializeGenerator(planeMesh);
+        }
     }
 
     private void GenerateVegetations()
     {
 
-        foreach (var environment in renderableVegetations)
+        foreach (var environment in renderableEnvironment)
         {
-            if (environment.RenderMode == 1)
+            if (environment.RenderMode == 0)
             {
                 environment.EnvironmentGenerator.CreateEnvironmentalMesh();
             }
 
-            if (environment.RenderMode == 2)
+            if (environment.RenderMode == 1)
             {
                 instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
             }
         }
 
+        foreach(var environment in spawnableEnvironment)
+        {
+            environment.EnvironmentGenerator.SetSpawnPositions();
+
+            foreach (var position in environment.EnvironmentGenerator.PlanePositions)
+            {
+                Instantiate(environment.Prefab, position, Quaternion.identity);
+            }
+        }
     }
 
     private void GeneratePrefabs(List<Vector3> _positions)
@@ -109,6 +83,17 @@ public class VegetationManager : MonoBehaviour
         foreach (var MatrixList in _matrixLists)
         {
             Graphics.DrawMeshInstanced(_mesh, 0, _material, MatrixList);
+        }
+    }
+
+    public void RenderInstancedMeshes()
+    {
+        if (instancedEnvironment.Count <= 0) { return; }
+        foreach (var environment in instancedEnvironment)
+        {
+            RenderBatches(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
+
+            //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
         }
     }
 
