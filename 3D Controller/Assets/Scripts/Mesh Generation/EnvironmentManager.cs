@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VegetationManager : MonoBehaviour
+public class EnvironmentManager : MonoBehaviour
 {
     private Mesh planeMesh;
 
@@ -59,20 +59,11 @@ public class VegetationManager : MonoBehaviour
         {
             environment.EnvironmentGenerator.SetSpawnPositions();
 
-            foreach (var position in environment.EnvironmentGenerator.PlanePositions)
+            foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
             {
                 Instantiate(environment.Prefab, position, Quaternion.identity);
             }
         }
-    }
-
-    private void GeneratePrefabs(List<Vector3> _positions)
-    {
-        foreach (var position in _positions)
-        {
-            // Instantiate(VegetationPrefab, position, Quaternion.identity);
-        }
-
     }
 
 

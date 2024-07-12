@@ -13,7 +13,7 @@ public class RenderablePrefabs
 
     public PrefabGenerator InitializeGenerator(Mesh _mesh)
     {
-        environmentGenerator = new PrefabGenerator(_mesh, environmentalSettings, Prefab);
+        environmentGenerator = new PrefabGenerator(_mesh, environmentalSettings);
         return environmentGenerator;
     }
 }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PrefabGenerator
 {
-    protected Mesh planeMesh;
-    protected Noise noise;
-    protected GameObject prefab;
+    private Mesh planeMesh;
+    private Noise noise;
 
     protected EnvironmentalSettings environmentalSettings;
     public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
@@ -14,20 +13,19 @@ public class PrefabGenerator
     private Vector3[] planePositions;
     public Vector3[] PlanePositions => planePositions;
 
-    public PrefabGenerator(Mesh _mesh, EnvironmentalSettings _environmentalSettings, GameObject _prefab)
+    public List<Vector3> SpawnPositions = new List<Vector3>();
+
+    public PrefabGenerator(Mesh _mesh, EnvironmentalSettings _environmentalSettings)
     {
         planeMesh = _mesh;
         noise = new Noise();
         environmentalSettings = _environmentalSettings;
-        prefab = _prefab;
     }
 
 
     public virtual List<Vector3> CalculateSpawnPositions(Mesh _planeMesh)
     {
-        List<Vector3> vegetationSpawnPositions = new List<Vector3>();
-
-        vegetationSpawnPositions.Clear();
+        SpawnPositions.Clear();
         planePositions = _planeMesh.vertices;
 
         float spawnValue;
@@ -39,15 +37,16 @@ public class PrefabGenerator
 
             if (spawnValue > environmentalSettings.Threshold)
             {
-                vegetationSpawnPositions.Add(position);
+                SpawnPositions.Add(position);
             }
         }
-        return vegetationSpawnPositions;
+
+        return SpawnPositions;
     }
 
 
     public void SetSpawnPositions()
     {
-        CalculateSpawnPositions(planeMesh);
+      SpawnPositions =  CalculateSpawnPositions(planeMesh);
     }
 }
