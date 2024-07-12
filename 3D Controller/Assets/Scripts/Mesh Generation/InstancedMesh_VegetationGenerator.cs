@@ -1,49 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class InstancedMesh_VegetationGenerator
+public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 {
-
-
-    public InstancedMesh_VegetationGenerator(Mesh _mesh, EnvironmentalSettings _environmentalSettings)
-    {
-        planeMesh = _mesh;
-        noise = new Noise();
-
-        environmentalSettings = _environmentalSettings;
-
-    }
-
-
     private Mesh planeMesh;
-    private Noise noise;
-    private Vector3[] planePositions;
 
-
-    private EnvironmentalSettings environmentalSettings;
-
-    public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
-
-
-    public Mesh[] GenerateVegetationItem()
+    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, EnvironmentalSettings _environmentalSettings)
     {
+        noise = new Noise();
+        environmentalSettings = _environmentalSettings;
+        planeMesh = _planeMesh;
 
-        List<Vector3> SpawnPositions = CalculateSpawnPositions(planeMesh);
+        matrices = CalculateSpawnPositions();
 
-        Mesh[] Meshes = DrawVegetation(SpawnPositions);
-
-
-        return Meshes;
     }
 
-    public List<Vector3> CalculateSpawnPositions(Mesh _planeMesh)
+
+
+    public List<List<Matrix4x4>> CalculateSpawnPositions()
     {
         List<Vector3> vegetationSpawnPositions = new List<Vector3>();
 
-        vegetationSpawnPositions.Clear();
-        planePositions = _planeMesh.vertices;
+        planePositions = planeMesh.vertices;
 
         float spawnValue;
         //Evaluate Positions in Noise so it returns a Value between 0 and 1
@@ -56,54 +34,42 @@ public class InstancedMesh_VegetationGenerator
                 vegetationSpawnPositions.Add(position);
             }
         }
-        return vegetationSpawnPositions;
+
+        List<List<Matrix4x4>> ListofMatrixLists = new List<List<Matrix4x4>>
+        {
+            new List<Matrix4x4>()
+        };
+
+        int ListIndex = 0;
+        int counter = 0;
+
+        for (int i = 0; i < vegetationSpawnPositions.Count; i++)
+        {
+            if (counter >= 1000)
+            {
+                ListofMatrixLists.Add(new List<Matrix4x4>());
+
+                ListIndex++;
+
+                counter = 0;
+            }
+
+            ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(vegetationSpawnPositions[i] + EnvironmentalSettings.Offset, Quaternion.identity, EnvironmentalSettings.ScaleMultiplier));
+            counter++;
+
+        }
+        return ListofMatrixLists;
     }
 
-    private Mesh[] DrawVegetation(List<Vector3> _spawnPosition)
+
+
+
+    public override Mesh CreateEnvironmentalMesh()
     {
-        Mesh[] newMeshArray = new Mesh[_spawnPosition.Count];
+        matrices = CalculateSpawnPositions();
 
-        int i = 0;
-
-        foreach (var position in _spawnPosition)
-        {
-
-            GameObject VegetationObject = new GameObject();
-
-            MeshFilter meshFilter = VegetationObject.AddComponent<MeshFilter>();
-            MeshRenderer meshRenderer = VegetationObject.AddComponent<MeshRenderer>();
-            Mesh vegetationMesh = new Mesh();
-
-            vegetationMesh.name = "Vegetation";
-          //  meshRenderer.sharedMaterial = material;
-            meshFilter.mesh = vegetationMesh;
-
-            Vector3[] verts = new Vector3[4];
-            int[] triangles = new int[6];
-
-            verts[0] = position;
-            verts[1] = position + Vector3.right;
-            verts[2] = position + Vector3.up;
-            verts[3] = position + Vector3.up + Vector3.right;
-
-            triangles[0] = 0;
-            triangles[1] = 3;
-            triangles[2] = 2;
-
-            triangles[3] = 0;
-            triangles[4] = 1;
-            triangles[5] = 3;
-
-
-
-            vegetationMesh.Clear();
-            vegetationMesh.vertices = verts;
-            vegetationMesh.triangles = triangles;
-            vegetationMesh.RecalculateNormals();
-            newMeshArray[i] = vegetationMesh;
-            i++;
-        }
-        return newMeshArray;
+        Mesh instancablMesh = GenerateMesh();
+        return instancablMesh;
     }
 
     public Mesh GenerateMesh()
@@ -133,4 +99,5 @@ public class InstancedMesh_VegetationGenerator
 
         return mesh;
     }
+
 }

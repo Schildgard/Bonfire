@@ -11,7 +11,15 @@ public class EnvironmentalSettings : ScriptableObject
 
     public Vector3 Offset;
     public Vector3 ScaleMultiplier;
+
+
 }
+
+
+
+
+
+
 [System.Serializable]
 public class EnvironmentalSettingsLayer
 {

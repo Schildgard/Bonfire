@@ -16,7 +16,7 @@ public class PlaneManager : MonoBehaviour
 
     public ShapeSettings ShapeSettings => shapeSettings;
 
-
+    private Vector3 SpawnOffset;
 
 
     private void Awake()

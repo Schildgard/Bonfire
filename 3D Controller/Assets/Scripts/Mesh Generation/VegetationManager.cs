@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class VegetationManager : MonoBehaviour
 {
-    private VegetationGenerator vegGenerator;
-    private MeshFace vegetationMesh;
+    // private VegetationGenerator vegGenerator;
     private Mesh planeMesh;
 
-    [SerializeField] private Material vegetationMaterial;
-    [SerializeField] private Material spawnObjectsMaterial;
-    [SerializeField] private Material GPUInstancingMaterial;
+    // [SerializeField] private Material vegetationMaterial;
+    // [SerializeField] private Material spawnObjectsMaterial;
+    // [SerializeField] private Material GPUInstancingMaterial;
 
     #region GPU Instancing
     private InstancedMesh_VegetationGenerator instancedVegGenerator;
-    Mesh instancedMesh;
+    //  Mesh instancedMesh;
 
     List<List<Matrix4x4>> ListofMatrixLists;
 
@@ -25,23 +24,26 @@ public class VegetationManager : MonoBehaviour
 
 
 
-    [SerializeField] GameObject VegetationPrefab;
-    public bool generateInstancedMeshes;
-    public bool generatePrefabs;
+    // [SerializeField] GameObject VegetationPrefab;
+    // public bool generateInstancedMeshes;
+    // public bool generatePrefabs;
 
     List<Vector3> spawnPositions;
     #endregion
 
 
-    [SerializeField] private EnvironmentalSettingsLayer environmentalSettings;
+    // [SerializeField] private EnvironmentalSettingsLayer environmentalSettings;
 
+
+    [SerializeField] private List<RenderableVegetation> renderableVegetations;
+
+    private Dictionary<RenderableVegetation, Mesh> instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
 
     private void Start()
     {
         planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
 
         InitializeGenerators();
-        spawnPositions = instancedVegGenerator.CalculateSpawnPositions(planeMesh);
 
         GenerateVegetations();
 
@@ -51,37 +53,42 @@ public class VegetationManager : MonoBehaviour
 
     private void Update()
     {
-        if (generateInstancedMeshes)
+        if (instancedEnvironment.Count <= 0) { return; }
+        foreach (var environment in instancedEnvironment)
         {
-            RenderBatches();
-        }       
+            RenderBatches(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
+
+            //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
+        }
     }
 
 
 
     private void InitializeGenerators()
     {
-        instancedVegGenerator = new InstancedMesh_VegetationGenerator(planeMesh, environmentalSettings.EnvironmentalSettings);
 
-        vegGenerator = new VegetationGenerator(planeMesh, vegetationMaterial, environmentalSettings.EnvironmentalSettings);
+        foreach (var environment in renderableVegetations)
+        {
+            environment.InitializeGenerator(planeMesh);
+        }
 
     }
 
     private void GenerateVegetations()
     {
-        if (generateInstancedMeshes)
-        {
-            CreateInstancedVegetations();
-            return;
-        }
 
-        else if (generatePrefabs)
+        foreach (var environment in renderableVegetations)
         {
-            GeneratePrefabs(spawnPositions);
-            return;
-        }
+            if (environment.RenderMode == 1)
+            {
+                environment.EnvironmentGenerator.CreateEnvironmentalMesh();
+            }
 
-        vegetationMesh = vegGenerator.GenerateVegetationItem();
+            if (environment.RenderMode == 2)
+            {
+                instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
+            }
+        }
 
     }
 
@@ -89,45 +96,21 @@ public class VegetationManager : MonoBehaviour
     {
         foreach (var position in _positions)
         {
-            Instantiate(VegetationPrefab, position, Quaternion.identity);
+            // Instantiate(VegetationPrefab, position, Quaternion.identity);
         }
 
     }
 
-    private void CreateInstancedVegetations()
+
+
+    private void RenderBatches(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
     {
-        List<Vector3> spawnPositions = instancedVegGenerator.CalculateSpawnPositions(planeMesh);
-        ListofMatrixLists = new List<List<Matrix4x4>>
+
+        foreach (var MatrixList in _matrixLists)
         {
-            new List<Matrix4x4>()
-        };
-        instancedMesh = instancedVegGenerator.GenerateMesh();
-
-        int ListIndex = 0;
-        int counter = 0;
-        for (int i = 0; i < spawnPositions.Count; i++)
-        {
-            if (counter >= 1000)
-            {
-                ListofMatrixLists.Add(new List<Matrix4x4>());
-
-                ListIndex++;
-
-                counter = 0;
-            }
-
-            ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(spawnPositions[i]+ instancedVegGenerator.EnvironmentalSettings.Offset, Quaternion.identity, instancedVegGenerator.EnvironmentalSettings.ScaleMultiplier));
-            counter++;
+            Graphics.DrawMeshInstanced(_mesh, 0, _material, MatrixList);
         }
     }
 
-    private void RenderBatches()
-    {
-        foreach (var MatrixList in ListofMatrixLists)
-        {
-            Graphics.DrawMeshInstanced(instancedMesh, 0, GPUInstancingMaterial, MatrixList);
-        }
-
-    }
 
 }

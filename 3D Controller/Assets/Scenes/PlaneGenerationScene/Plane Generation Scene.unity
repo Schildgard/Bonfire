@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -371,7 +371,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503163517}
-  m_LocalRotation: {x: 0.08875704, y: -0.71816075, z: 0.09320736, w: 0.68387115}
+  m_LocalRotation: {x: 0.08875703, y: -0.7181607, z: 0.09320734, w: 0.68387127}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1267,7 +1267,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068436145}
-  m_LocalRotation: {x: 0.06713681, y: -0.7207439, z: 0.07050306, w: 0.68633103}
+  m_LocalRotation: {x: 0.06713681, y: -0.7207439, z: 0.07050307, w: 0.686331}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1354,7 +1354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391608846}
-  m_LocalRotation: {x: 0.08875703, y: -0.71816075, z: 0.09320736, w: 0.68387115}
+  m_LocalRotation: {x: 0.08875703, y: -0.7181606, z: 0.09320734, w: 0.68387127}
   m_LocalPosition: {x: 2.9964132, y: 34.5, z: 0.1466546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1458,14 +1458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e807c0cb3870bfd4a88bb3f54b201d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vegetationMaterial: {fileID: 2100000, guid: 82c74de02197b2343a84c48579a8ffd8, type: 2}
-  GPUInstancedMaterial: {fileID: 2100000, guid: 0355594afd0ad9947843e1c9974336f7, type: 2}
-  PositionIndicatorPrefab: {fileID: 499700821537816554, guid: 07a8ca479ea94df4f911b2cf47c36538, type: 3}
-  generateInstancedMeshes: 0
-  generatePrefabs: 0
-  environmentalSettings:
-    name: Grass Settings
-    EnvironmentalSettings: {fileID: 11400000, guid: e6727e28eac490d4dae63678dbef361b, type: 2}
+  renderableVegetations:
+  - Material: {fileID: 2100000, guid: 82c74de02197b2343a84c48579a8ffd8, type: 2}
+    RenderMode: 1
+    environmentalSettings: {fileID: 11400000, guid: e6727e28eac490d4dae63678dbef361b, type: 2}
 --- !u!4 &1526803937
 Transform:
   m_ObjectHideFlags: 0
@@ -1698,7 +1694,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877989355}
-  m_LocalRotation: {x: 0.11046277, y: -0.7148329, z: 0.11600141, w: 0.68070227}
+  m_LocalRotation: {x: 0.11046276, y: -0.7148329, z: 0.11600141, w: 0.68070227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
