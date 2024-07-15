@@ -24,6 +24,7 @@ public abstract class EnvironmentGenerator
 
     protected Mesh renderMesh;
 
+    protected bool randomRotation;
 
 
 

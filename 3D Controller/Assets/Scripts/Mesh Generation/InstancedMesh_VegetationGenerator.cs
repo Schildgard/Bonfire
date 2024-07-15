@@ -4,7 +4,7 @@ using UnityEngine;
 public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 {
 
-    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier)
+    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, bool _randomRotation)
     {
         noise = new Noise();
         planeMesh = _planeMesh;
@@ -14,11 +14,12 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
         Threshold = _threshold;
         Offset = _offset;
         ScaleMultiplier = _scaleMultiplier;
+        randomRotation = _randomRotation;
 
         renderMesh = null;
     }
 
-    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, Mesh _mesh)
+    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, Mesh _mesh, bool _randomRotation)
     {
         noise = new Noise();
         planeMesh = _planeMesh;
@@ -27,6 +28,7 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 
         Threshold = _threshold;
         Offset = _offset;
+        randomRotation = _randomRotation;
         ScaleMultiplier = _scaleMultiplier;
 
         renderMesh = _mesh;
@@ -58,7 +60,16 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
                 counter = 0;
             }
 
-            ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(vegetationSpawnPositions[i] + Offset, Quaternion.identity, ScaleMultiplier));
+            if (randomRotation)
+            {
+                //Insert randomized Rotation here
+                Debug.Log("Random Rotation activated");
+                ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(vegetationSpawnPositions[i] + Offset, Quaternion.Euler(0, Random.Range(0, 181), 0), ScaleMultiplier));
+            }
+            else
+            {
+                ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(vegetationSpawnPositions[i] + Offset, Quaternion.identity, ScaleMultiplier));
+            }
             counter++;
 
         }
