@@ -13,8 +13,6 @@ public class RenderableVegetation
     public EnvironmentGenerator EnvironmentGenerator => environmentGenerator;
 
 
-    public EnvironmentalSettings environmentalSettings;
-
 
 
     public float Threshold;
@@ -30,14 +28,14 @@ public class RenderableVegetation
         switch (RenderMode)
         {
             case 0:
-                environmentGenerator = new VegetationGenerator(_mesh, Material, environmentalSettings,Threshold,  Offset, ScaleMultiplier);
+                environmentGenerator = new VegetationGenerator(_mesh, Material,Threshold,  Offset, ScaleMultiplier);
                 break;
             case 1:
-                environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, environmentalSettings);
+                environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, Offset, ScaleMultiplier);
                 if(Material.enableInstancing == false) { Material.enableInstancing = true; }
                 break;
             default:
-                environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, environmentalSettings);
+                environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, Offset, ScaleMultiplier);
                 if (Material.enableInstancing == false) { Material.enableInstancing = true; }
                 break;
         }

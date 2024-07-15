@@ -7,13 +7,11 @@ public class VegetationGenerator : EnvironmentGenerator
     private Material material;
 
 
-    public VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier)
+    public VegetationGenerator(Mesh _mesh, Material _material, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier)
     {
         planeMesh = _mesh;
         material = _material;
         noise = new Noise();
-
-        environmentalSettings = _environmentalSettings;
 
         Threshold = _threshold;
         Offset = _offset;
@@ -51,12 +49,15 @@ public class VegetationGenerator : EnvironmentGenerator
         Vector3[] verts = new Vector3[vertexCount];
         int[] triangles = new int[triangleIndexCount];
 
+        Vector2[] uvs = new Vector2[vertexCount];
+
 
         int vertindex = 0;
         int triIndex = 0;
         Vector3 rightMovement = Vector3.right * ScaleMultiplier.x;
         Vector3 upMovement = Vector3.up * ScaleMultiplier.y;
-       // Vector3 Offset = environmentalSettings.Offset;
+        // Vector3 Offset = environmentalSettings.Offset;
+
         for (int i = 0; i < _spawnPosition.Count; i++)
         {
             _spawnPosition[i] += Offset;
@@ -65,6 +66,7 @@ public class VegetationGenerator : EnvironmentGenerator
             verts[vertindex + 2] = _spawnPosition[i] + upMovement;
             verts[vertindex + 3] = _spawnPosition[i] + upMovement + rightMovement;
             vertindex += 4;
+
 
 
 
@@ -79,12 +81,16 @@ public class VegetationGenerator : EnvironmentGenerator
             triIndex += 6;
         }
 
+        for (int i = 0; i < verts.Length; i++)
+        {
+            uvs[i] = new Vector2(verts[i].x, verts[i].y);
+        }
 
         _mesh.Clear();
         _mesh.vertices = verts;
         _mesh.triangles = triangles;
+        _mesh.uv = uvs;
         _mesh.RecalculateNormals();
-
     }
 
     public override Mesh CreateEnvironmentalMesh()
