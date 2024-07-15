@@ -16,6 +16,15 @@ public abstract class EnvironmentGenerator
     public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
     public List<List<Matrix4x4>> Matrices => matrices;
 
+
+    protected float Threshold;
+
+    protected Vector3 Offset;
+    protected Vector3 ScaleMultiplier;
+
+
+
+
     public virtual Mesh CreateEnvironmentalMesh()
     {
         Debug.Log($"This Generator ({this}) creates no Mesh. It probably is a a Prefab Generator which calculates Plane Positions to spawn its Prefabs");
@@ -36,7 +45,7 @@ public abstract class EnvironmentGenerator
         {
             spawnValue = noise.Evaluate(position);
 
-            if (spawnValue > environmentalSettings.Threshold)
+            if (spawnValue > Threshold)
             {
                 vegetationSpawnPositions.Add(position);
             }

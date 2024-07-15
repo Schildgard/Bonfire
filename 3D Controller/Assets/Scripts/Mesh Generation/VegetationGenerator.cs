@@ -6,13 +6,18 @@ public class VegetationGenerator : EnvironmentGenerator
 {
     private Material material;
 
-    public VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings)
+
+    public VegetationGenerator(Mesh _mesh, Material _material, EnvironmentalSettings _environmentalSettings, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier)
     {
         planeMesh = _mesh;
         material = _material;
         noise = new Noise();
 
         environmentalSettings = _environmentalSettings;
+
+        Threshold = _threshold;
+        Offset = _offset;
+        ScaleMultiplier = _scaleMultiplier;
     }
 
 
@@ -49,9 +54,9 @@ public class VegetationGenerator : EnvironmentGenerator
 
         int vertindex = 0;
         int triIndex = 0;
-        Vector3 rightMovement = Vector3.right * environmentalSettings.ScaleMultiplier.x;
-        Vector3 upMovement = Vector3.up * environmentalSettings.ScaleMultiplier.y;
-        Vector3 Offset = environmentalSettings.Offset;
+        Vector3 rightMovement = Vector3.right * ScaleMultiplier.x;
+        Vector3 upMovement = Vector3.up * ScaleMultiplier.y;
+       // Vector3 Offset = environmentalSettings.Offset;
         for (int i = 0; i < _spawnPosition.Count; i++)
         {
             _spawnPosition[i] += Offset;

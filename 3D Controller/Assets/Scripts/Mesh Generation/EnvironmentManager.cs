@@ -30,6 +30,7 @@ public class EnvironmentManager : MonoBehaviour
     {
         foreach (var environment in renderableEnvironment)
         {
+            Debug.Log($"Initialized Generator with Material {environment.Material} ");
             environment.InitializeGenerator(planeMesh);
         }
 
