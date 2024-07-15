@@ -22,6 +22,8 @@ public abstract class EnvironmentGenerator
     protected Vector3 Offset;
     protected Vector3 ScaleMultiplier;
 
+    protected Mesh renderMesh;
+
 
 
 
