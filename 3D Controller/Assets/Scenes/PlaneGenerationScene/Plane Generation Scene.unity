@@ -380,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503163517}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08875704, y: -0.7181607, z: 0.09320734, w: 0.68387127}
+  m_LocalRotation: {x: 0.088757046, y: -0.71816075, z: 0.09320737, w: 0.68387115}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1303,7 +1303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068436145}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06713681, y: -0.7207439, z: 0.07050307, w: 0.686331}
+  m_LocalRotation: {x: 0.06713681, y: -0.7207439, z: 0.07050306, w: 0.68633103}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1398,7 +1398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391608846}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08875703, y: -0.7181606, z: 0.09320734, w: 0.68387127}
+  m_LocalRotation: {x: 0.08875703, y: -0.71816075, z: 0.09320737, w: 0.68387115}
   m_LocalPosition: {x: 2.9964132, y: 34.5, z: 0.1466546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1515,12 +1515,23 @@ MonoBehaviour:
   renderableEnvironment:
   - Material: {fileID: 2100000, guid: a48ad8aadb27f004390383c89862e6f3, type: 2}
     RenderMode: 1
-    Threshold: 0
+    Threshold: 1
     Offset: {x: 0, y: 0, z: 0}
-    ScaleMultiplier: {x: 5, y: 2, z: 1}
+    ScaleMultiplier: {x: 5, y: 2, z: 5}
     mesh: {fileID: 4300000, guid: 0c4301a6ce8e5964c8df62a78aca15d1, type: 2}
     randomRotation: 0
-  spawnableEnvironment: []
+    randomizedOffset: 0
+  - Material: {fileID: 2100000, guid: fc123ab8f2eb56945b5849155624e2c0, type: 2}
+    RenderMode: 1
+    Threshold: 0
+    Offset: {x: 0, y: 0, z: 0}
+    ScaleMultiplier: {x: 15, y: 8, z: 15}
+    mesh: {fileID: 4300000, guid: c8542799e804ef04eb35ba93777008a8, type: 2}
+    randomRotation: 0
+    randomizedOffset: 1
+  spawnableEnvironment:
+  - Prefab: {fileID: 551099380728858824, guid: d3435aac0162bb54681ce18b991a3088, type: 3}
+    environmentalSettings: {fileID: 11400000, guid: 5f0a8d2306322614da3cd2e8c4f88b3a, type: 2}
 --- !u!4 &1526803937
 Transform:
   m_ObjectHideFlags: 0
@@ -1594,7 +1605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6523336426587379711, guid: ea2296b1d937a0448a418cbde04ac93a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -25,6 +25,7 @@ public abstract class EnvironmentGenerator
     protected Mesh renderMesh;
 
     protected bool randomRotation;
+    protected bool randomizedOffset;
 
 
 
@@ -48,7 +49,7 @@ public abstract class EnvironmentGenerator
         {
             spawnValue = noise.Evaluate(position);
 
-            if (spawnValue > Threshold)
+            if (spawnValue >= Threshold)
             {
                 vegetationSpawnPositions.Add(position);
             }
