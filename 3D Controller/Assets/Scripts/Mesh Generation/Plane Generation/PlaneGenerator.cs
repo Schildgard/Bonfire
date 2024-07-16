@@ -30,6 +30,8 @@ public class PlaneGenerator
         meshRenderer.sharedMaterial = material;
         meshFilter.mesh = mesh;
 
+        newPlane.isStatic = true;
+
         DrawPlaneMesh(mesh, collider);
 
         return new MeshFace(meshRenderer, meshFilter);

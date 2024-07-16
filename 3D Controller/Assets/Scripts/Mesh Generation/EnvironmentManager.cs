@@ -59,7 +59,7 @@ public class EnvironmentManager : MonoBehaviour
         foreach(var environment in spawnableEnvironment)
         {
             environment.EnvironmentGenerator.SetSpawnPositions();
-
+            
             foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
             {
                 Instantiate(environment.Prefab, position, Quaternion.identity);
