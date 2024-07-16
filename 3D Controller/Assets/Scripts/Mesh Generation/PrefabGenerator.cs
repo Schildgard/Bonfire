@@ -7,11 +7,11 @@ public class PrefabGenerator
     private Mesh planeMesh;
     private Noise noise;
     private int maxSpawnCount;
-    private bool enableMaxCount;
+    private bool enableMaxCount = true;
     private Vector3[] planePositions;
-    private float Threshold;
-    private Vector3 Offset;
-    private bool randomizedOffset;
+    private float Threshold = -1f;
+    private Vector3 Offset = new Vector3(0,0,0);
+    private bool randomizedOffset = false;
 
 
 
