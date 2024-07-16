@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.003127821, g: 0.0061466563, b: 0.014172211, a: 1}
+  m_IndirectSpecularColor: {r: 0.0031405094, g: 0.0061705993, b: 0.014241768, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -193,10 +193,12 @@ Transform:
   - {fileID: 1226801876}
   - {fileID: 1250623429}
   - {fileID: 281542979}
-  - {fileID: 2053620563}
   - {fileID: 1304342055}
-  - {fileID: 1811448407}
   - {fileID: 1282831098}
+  - {fileID: 1811448407}
+  - {fileID: 2053620563}
+  - {fileID: 756642122}
+  - {fileID: 1262964724}
   - {fileID: 1979484856}
   - {fileID: 1292860496}
   - {fileID: 5900599706022023236}
@@ -7334,7 +7336,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1562709414}
+    m_TransformParent: {fileID: 35271435}
     m_Modifications:
     - target: {fileID: 1275170048151092057, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: minTimeValue
@@ -7358,7 +7360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.02
+      value: -7.9799995
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7366,7 +7368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 199
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10097,8 +10099,6 @@ Transform:
   - {fileID: 594670876}
   - {fileID: 960084647}
   - {fileID: 2090025775}
-  - {fileID: 756642122}
-  - {fileID: 1262964724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1562709415
@@ -13787,7 +13787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068344956}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16018222, y: 0.000000025470568, z: -0.0000000041333035, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018222, y: -0.000000025470568, z: 0.0000000041333035, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14579,7 +14579,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1562709414}
+    m_TransformParent: {fileID: 35271435}
     m_Modifications:
     - target: {fileID: 1275170048151092057, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: speedRandomness
@@ -14603,7 +14603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.33
+      value: 0.33000183
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14611,7 +14611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 199
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 1275170048999191090, guid: 1ae97d77e54cb374aadeccc9ddc1d44f, type: 3}
       propertyPath: m_LocalRotation.w

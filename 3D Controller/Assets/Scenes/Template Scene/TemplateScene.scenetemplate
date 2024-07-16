@@ -20,11 +20,11 @@ MonoBehaviour:
   preview: {fileID: 0}
   dependencies:
   - dependency: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-    instantiationMode: 1
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 5f2a108eb023faf43a809979fd3d38f2, type: 3}
     instantiationMode: 0
   - dependency: {fileID: -944628639613478452, guid: c872f2b08f3079344b556e226a1adcce, type: 3}
-    instantiationMode: 1
+    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 40265a896a0f341bb956e90c59025a29, type: 3}
     instantiationMode: 1
   templatePipeline: {fileID: 0}
