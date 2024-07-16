@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnvironmentManager : MonoBehaviour
 {
@@ -56,13 +57,24 @@ public class EnvironmentManager : MonoBehaviour
             }
         }
 
-        foreach(var environment in spawnableEnvironment)
+        foreach (var environment in spawnableEnvironment)
         {
             environment.EnvironmentGenerator.SetSpawnPositions();
-            
-            foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+
+
+            if (environment.RandomRotation)
             {
-                Instantiate(environment.Prefab, position, Quaternion.identity);
+                foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+                {
+                    Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                }
+            }
+            else
+            {
+                foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+                {
+                    Instantiate(environment.Prefab, position, Quaternion.identity);
+                }
             }
         }
     }

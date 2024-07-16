@@ -8,22 +8,28 @@ public class PrefabGenerator
     private Noise noise;
     private int maxSpawnCount;
     private bool enableMaxCount;
-
-    protected EnvironmentalSettings environmentalSettings;
-    public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
-
     private Vector3[] planePositions;
+    private float Threshold;
+    private Vector3 Offset;
+    private bool randomizedOffset;
+
+
+
     public Vector3[] PlanePositions => planePositions;
 
     public List<Vector3> SpawnPositions = new List<Vector3>();
 
-    public PrefabGenerator(Mesh _mesh, EnvironmentalSettings _environmentalSettings, int _maxSpawnCount, bool _enableMaxCount)
+
+    public PrefabGenerator(Mesh _mesh, int _maxSpawnCount, bool _enableMaxCount, float _threshold, Vector3 _offset, bool _randomOffset)
     {
         planeMesh = _mesh;
         noise = new Noise();
-        environmentalSettings = _environmentalSettings;
         maxSpawnCount = _maxSpawnCount;
         enableMaxCount = _enableMaxCount;
+
+        Threshold = _threshold;
+        Offset = _offset;
+        randomizedOffset = _randomOffset;
     }
 
 
@@ -31,28 +37,35 @@ public class PrefabGenerator
     {
         SpawnPositions.Clear();
         planePositions = _planeMesh.vertices;
-
+        Vector3 offsetPosition;
         float spawnValue;
-        //Evaluate Positions in Noise so it returns a Value between 0 and 1
         if (enableMaxCount)
         {
             for (int i = 0, c = 0; i < planePositions.Length; i++, c++)
             {
                 if (c >= maxSpawnCount) return SpawnPositions;
+
                 Vector3 randomizedPosition = planePositions[Random.Range(0, planePositions.Length)];
                 SpawnPositions.Add(randomizedPosition);
             }
             return SpawnPositions;
         }
+
         else
         {
             foreach (var position in planePositions)
             {
+                //Evaluate Positions in Noise so it returns a Value between 0 and 1
                 spawnValue = noise.Evaluate(position);
 
-                if (spawnValue > environmentalSettings.Threshold)
+                if (spawnValue > Threshold)
                 {
-                    SpawnPositions.Add(position);
+                    if (randomizedOffset)
+                    {
+                        Offset = new Vector3(Random.Range(-0.5f, 0.6f), 0, Random.Range(-0.5f, 0.6f));
+                    }
+                    offsetPosition = new Vector3(position.x + Offset.x, position.y + Offset.y, position.z + Offset.z);
+                    SpawnPositions.Add(offsetPosition);
                 }
             }
         }
