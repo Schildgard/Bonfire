@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class EnvironmentManager : MonoBehaviour
 {
     private Mesh planeMesh;
-    private GameObject[] prefabsInScene;
+    private List<GameObject> prefabsInScene;
 
     [SerializeField] private List<RenderableVegetation> renderableEnvironment;
     [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
@@ -58,11 +58,11 @@ public class EnvironmentManager : MonoBehaviour
         }
 
 
+        prefabsInScene = new List<GameObject>();
         foreach (var environment in spawnableEnvironment)
         {
 
             environment.EnvironmentGenerator.SetSpawnPositions();
-            prefabsInScene = new GameObject[environment.EnvironmentGenerator.SpawnPositions.Count];
             int index = 0;
 
 
@@ -71,7 +71,7 @@ public class EnvironmentManager : MonoBehaviour
                 foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                 {
 
-                    prefabsInScene[index] = Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                    prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
                     index++;
                 }
             }
@@ -79,7 +79,7 @@ public class EnvironmentManager : MonoBehaviour
             {
                 foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                 {
-                    prefabsInScene[index] = Instantiate(environment.Prefab, position, Quaternion.identity);
+                    prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
                     index++;
                 }
             }
@@ -110,13 +110,12 @@ public class EnvironmentManager : MonoBehaviour
 
     public void UpdateEnvironment()
     {
-        Debug.Log("Change");
 
         foreach (var prefab in prefabsInScene)
         {
-            Debug.Log("try to destroy: " + prefab.name);
             Destroy(prefab.gameObject);
         }
+        prefabsInScene.Clear();
 
         InitializeGenerators();
         GenerateVegetations();
