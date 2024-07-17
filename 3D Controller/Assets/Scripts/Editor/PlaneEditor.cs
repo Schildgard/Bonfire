@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 [CustomEditor(typeof(PlaneManager))]
-public class PlaneEdotpr : Editor
+public class PlaneEditor : Editor
 {
 
     PlaneManager planeManager;

@@ -23,7 +23,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
-        RenderInstancedMeshes();
+        RenderAllInstancedMeshes();
     }
 
 
@@ -88,7 +88,7 @@ public class EnvironmentManager : MonoBehaviour
 
 
 
-    private void RenderBatches(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
+    private void RenderInstancedMeshes(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
     {
 
         foreach (var MatrixList in _matrixLists)
@@ -97,12 +97,12 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    public void RenderInstancedMeshes()
+    public void RenderAllInstancedMeshes()
     {
         if (instancedEnvironment.Count <= 0) { return; }
         foreach (var environment in instancedEnvironment)
         {
-            RenderBatches(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
+            RenderInstancedMeshes(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
 
             //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
         }

@@ -12,8 +12,8 @@ public abstract class EnvironmentGenerator
     protected Vector3[] planePositions;
     protected List<List<Matrix4x4>> matrices;
 
-    protected EnvironmentalSettings environmentalSettings;
-    public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
+    //protected EnvironmentalSettings environmentalSettings;
+    //public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
     public List<List<Matrix4x4>> Matrices => matrices;
 
 
