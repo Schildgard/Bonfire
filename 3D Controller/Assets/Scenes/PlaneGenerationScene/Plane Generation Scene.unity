@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1530,6 +1530,13 @@ MonoBehaviour:
     randomRotation: 1
     randomizedOffset: 1
   spawnableEnvironment:
+  - prefab: {fileID: 230006360637513423, guid: 6905bfb07dfcac5489e6daf8e7babe92, type: 3}
+    maxPrefabCount: 0
+    enableMaxCount: 0
+    Threshold: 1
+    Offset: {x: 0, y: 0, z: 0}
+    randomRotation: 0
+    randomizedOffset: 0
   - prefab: {fileID: 5821095623752504305, guid: b44ac916d141cb14e8d3a1621a9c68ae, type: 3}
     maxPrefabCount: 4
     enableMaxCount: 1
@@ -1537,13 +1544,6 @@ MonoBehaviour:
     Offset: {x: 0, y: 0, z: 0}
     randomRotation: 1
     randomizedOffset: 0
-  - prefab: {fileID: 230006360637513423, guid: 6905bfb07dfcac5489e6daf8e7babe92, type: 3}
-    maxPrefabCount: 0
-    enableMaxCount: 0
-    Threshold: 0.9
-    Offset: {x: 0, y: 0, z: 0}
-    randomRotation: 1
-    randomizedOffset: 1
 --- !u!4 &1526803937
 Transform:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877989355}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11046277, y: -0.7148329, z: 0.11600141, w: 0.68070227}
+  m_LocalRotation: {x: 0.11046276, y: -0.7148329, z: 0.11600141, w: 0.68070227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

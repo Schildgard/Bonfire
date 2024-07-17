@@ -6,11 +6,12 @@ using UnityEngine.UIElements;
 public class EnvironmentManager : MonoBehaviour
 {
     private Mesh planeMesh;
+    private GameObject[] prefabsInScene;
 
     [SerializeField] private List<RenderableVegetation> renderableEnvironment;
     [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
 
-    private Dictionary<RenderableVegetation, Mesh> instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
+    private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
     private void Start()
     {
@@ -31,7 +32,6 @@ public class EnvironmentManager : MonoBehaviour
     {
         foreach (var environment in renderableEnvironment)
         {
-            Debug.Log($"Initialized Generator with Material {environment.Material} ");
             environment.InitializeGenerator(planeMesh);
         }
 
@@ -43,7 +43,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void GenerateVegetations()
     {
-
+        instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
         foreach (var environment in renderableEnvironment)
         {
             if (environment.RenderMode == 0)
@@ -57,23 +57,30 @@ public class EnvironmentManager : MonoBehaviour
             }
         }
 
+
         foreach (var environment in spawnableEnvironment)
         {
+
             environment.EnvironmentGenerator.SetSpawnPositions();
+            prefabsInScene = new GameObject[environment.EnvironmentGenerator.SpawnPositions.Count];
+            int index = 0;
 
 
             if (environment.RandomRotation)
             {
                 foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                 {
-                    Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+
+                    prefabsInScene[index] = Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                    index++;
                 }
             }
             else
             {
                 foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                 {
-                    Instantiate(environment.Prefab, position, Quaternion.identity);
+                    prefabsInScene[index] = Instantiate(environment.Prefab, position, Quaternion.identity);
+                    index++;
                 }
             }
         }
@@ -101,5 +108,17 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
+    public void UpdateEnvironment()
+    {
+        Debug.Log("Change");
 
+        foreach (var prefab in prefabsInScene)
+        {
+            Debug.Log("try to destroy: " + prefab.name);
+            Destroy(prefab.gameObject);
+        }
+
+        InitializeGenerators();
+        GenerateVegetations();
+    }
 }

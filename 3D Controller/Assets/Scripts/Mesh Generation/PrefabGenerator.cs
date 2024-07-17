@@ -76,5 +76,6 @@ public class PrefabGenerator
     public void SetSpawnPositions()
     {
         SpawnPositions = CalculateSpawnPositions(planeMesh);
+        Debug.Log($"SpawnPositions: {SpawnPositions.Count}");
     }
 }
