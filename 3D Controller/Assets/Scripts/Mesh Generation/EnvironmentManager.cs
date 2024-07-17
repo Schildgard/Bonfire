@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[ExecuteInEditMode]
 public class EnvironmentManager : MonoBehaviour
 {
     private Mesh planeMesh;
@@ -13,9 +14,24 @@ public class EnvironmentManager : MonoBehaviour
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
-    private void Start()
+    private bool renderInstancedMeshes;
+
+
+
+
+
+    public void Initialize()
     {
-        planeMesh = GameObject.Find("Custom Plane").GetComponent<MeshFilter>().mesh;
+        RemoveEnvironmentPrefabs();
+
+        var customPlane = GameObject.Find("Custom Plane");
+        if (customPlane == null)
+        {
+            Debug.Log("No Custom Plane was found. Please make sure if a Plane called 'Custom Plane' is in your Hierarchy");
+            return;
+        }
+        planeMesh = customPlane.GetComponent<MeshFilter>().sharedMesh;
+
         InitializeGenerators();
         GenerateVegetations();
     }
@@ -23,7 +39,10 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
-        RenderAllInstancedMeshes();
+        if (renderInstancedMeshes)
+        {
+            RenderAllInstancedMeshes();
+        }
     }
 
 
@@ -84,6 +103,9 @@ public class EnvironmentManager : MonoBehaviour
                 }
             }
         }
+
+
+        renderInstancedMeshes = true;
     }
 
 
@@ -99,7 +121,7 @@ public class EnvironmentManager : MonoBehaviour
 
     public void RenderAllInstancedMeshes()
     {
-        if (instancedEnvironment.Count <= 0) { return; }
+        if (instancedEnvironment == null || instancedEnvironment.Count <= 0) { return; }
         foreach (var environment in instancedEnvironment)
         {
             RenderInstancedMeshes(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
@@ -110,14 +132,26 @@ public class EnvironmentManager : MonoBehaviour
 
     public void UpdateEnvironment()
     {
-
-        foreach (var prefab in prefabsInScene)
-        {
-            Destroy(prefab.gameObject);
-        }
-        prefabsInScene.Clear();
+        RemoveEnvironmentPrefabs();
 
         InitializeGenerators();
         GenerateVegetations();
+    }
+
+
+    public void RemoveEnvironmentPrefabs()
+    {
+        if (prefabsInScene == null)
+        {
+            Debug.Log("No PrefabsInScene Reference known");
+            return;
+        }
+
+        foreach (var prefab in prefabsInScene)
+        {
+            DestroyImmediate(prefab.gameObject);
+        }
+        prefabsInScene.Clear();
+        renderInstancedMeshes = false;
     }
 }

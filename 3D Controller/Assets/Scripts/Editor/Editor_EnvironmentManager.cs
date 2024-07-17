@@ -24,6 +24,16 @@ public class Editor_EnvironmentManager : Editor
                 manager.UpdateEnvironment();
             }
         }
+
+        if (GUILayout.Button("Generate Environment"))
+        {
+            manager.Initialize();
+        }
+
+        if (GUILayout.Button("Remove Environmental Prefabs"))
+        {
+            manager.RemoveEnvironmentPrefabs();
+        }
     }
 
 

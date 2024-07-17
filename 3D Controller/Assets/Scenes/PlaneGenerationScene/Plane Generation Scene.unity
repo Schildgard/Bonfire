@@ -1541,7 +1541,7 @@ MonoBehaviour:
     maxPrefabCount: 4
     enableMaxCount: 1
     Threshold: 0
-    Offset: {x: 0, y: 0, z: 0}
+    Offset: {x: 0, y: -0.49, z: 0}
     randomRotation: 1
     randomizedOffset: 0
 --- !u!4 &1526803937
@@ -1797,7 +1797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877989355}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11046277, y: -0.7148329, z: 0.11600141, w: 0.68070227}
+  m_LocalRotation: {x: 0.11046276, y: -0.7148329, z: 0.11600141, w: 0.68070227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

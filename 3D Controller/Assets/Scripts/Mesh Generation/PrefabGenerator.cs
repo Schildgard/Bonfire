@@ -46,6 +46,7 @@ public class PrefabGenerator
                 if (c >= maxSpawnCount) return SpawnPositions;
 
                 Vector3 randomizedPosition = planePositions[Random.Range(0, planePositions.Length)];
+                randomizedPosition.y = randomizedPosition.y + Offset.y;
                 SpawnPositions.Add(randomizedPosition);
             }
             return SpawnPositions;
@@ -76,6 +77,5 @@ public class PrefabGenerator
     public void SetSpawnPositions()
     {
         SpawnPositions = CalculateSpawnPositions(planeMesh);
-        Debug.Log($"SpawnPositions: {SpawnPositions.Count}");
     }
 }

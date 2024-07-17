@@ -75,7 +75,6 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
             if (randomRotation)
             {
                 //Insert randomized Rotation here
-                Debug.Log("Random Rotation activated");
                 ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(matrixPosition, Quaternion.Euler(0, Random.Range(0, 181), 0), randomizedHeightScale));
             }
             else

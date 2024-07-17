@@ -5,7 +5,6 @@ using UnityEngine;
 [CustomEditor(typeof(PlaneManager))]
 public class PlaneEditor : Editor
 {
-
     PlaneManager planeManager;
     private Editor shapeEditor;
     public bool ShapeSettingsFouldOut;

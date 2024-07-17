@@ -34,9 +34,10 @@ public class PlaneManager : MonoBehaviour
         {
             plane = planeGenerator.CreatePlaneItem();
             Debug.Log("Plane was created");
-
-
         }
+
+
+        Debug.Log("There is already CustomPlane in Scene");
 
     }
 
