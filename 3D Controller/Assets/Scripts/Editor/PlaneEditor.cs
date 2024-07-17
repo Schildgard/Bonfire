@@ -15,12 +15,15 @@ public class PlaneEditor : Editor
         using (var check = new EditorGUI.ChangeCheckScope())
         {
             base.OnInspectorGUI();
-
             if (check.changed)
             {
                 planeManager.UpdatePlaneMesh();
             }
             DrawSettingsEditor(planeManager.ShapeSettings, planeManager.UpdatePlaneMesh, ref ShapeSettingsFouldOut, ref shapeEditor);
+        }
+        if (GUILayout.Button("GeneratePlane"))
+        {
+            planeManager.CreatePlane();
         }
     }
     private void OnEnable()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlaneGenerator
 {
+
+    //private GameObject newPlane;
     private Material material;
     private NoiseFilter noiseFilter;
     private int resolution;
@@ -20,7 +22,9 @@ public class PlaneGenerator
 
     public MeshFace CreatePlaneItem()
     {
+
         GameObject newPlane = new GameObject("Custom Plane");
+
 
         MeshRenderer meshRenderer = newPlane.AddComponent<MeshRenderer>();
         MeshFilter meshFilter = newPlane.AddComponent<MeshFilter>();
@@ -95,6 +99,6 @@ public class PlaneGenerator
     {
         resolution = _resolution;
 
-        DrawPlaneMesh(_meshface.MeshFilter.mesh, collider);
+        DrawPlaneMesh(_meshface.MeshFilter.sharedMesh, collider);
     }
 }
