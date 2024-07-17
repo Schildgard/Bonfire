@@ -30,15 +30,12 @@ public class PlaneManager : MonoBehaviour
     {
         planeGenerator = new PlaneGenerator(planeMaterial, noiseFilter, resolution);
 
-        if (plane == null)
+        if (plane != null)
         {
-            plane = planeGenerator.CreatePlaneItem();
-            Debug.Log("Plane was created");
+            plane = null;
         }
 
-
-        Debug.Log("There is already CustomPlane in Scene");
-
+            plane = planeGenerator.CreatePlaneItem();
     }
 
     public void UpdatePlaneMesh()
