@@ -70,8 +70,10 @@ public class PlayerActionScript : MonoBehaviour
 
     private int velocityHashX;
     private int velocityHashZ;
-    [SerializeField]private float acceleration;
+    [SerializeField] private float acceleration;
     [SerializeField] private float decceleration;
+
+    private float maxVelocity;
     #endregion
 
     [SerializeField] private WeaponScript currentWeapon;
@@ -140,118 +142,48 @@ public class PlayerActionScript : MonoBehaviour
         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
 
-    //  if (RotationScript.LockOn)
-    //  {
-     
-          if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
-          {
-              //  Animator.SetBool("isWalking", true);
-              velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, 2f);
-              walkPressed = true;
-          }
-          else
-          {
-             // Animator.SetBool("isWalking", false);
-              walkPressed = false;
-              velocityX = Mathf.Clamp(velocityX - Time.deltaTime *decceleration, 0f, velocityX);
-     
-          }
-     
-     
-          if (MoveInput.y > 0.01f ||  MoveInput.y < -0.01f)
-          {
-              //  Animator.SetBool("isWalking", true);
-              velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, 2f);
-              walkPressed = true;
-          }
-          else
-          {
-              // Animator.SetBool("isWalking", false);
-              walkPressed = false;
-              velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
-          }
-    //  }
 
-    // else
-    // {
-    //      if (MoveInput.y > 0.01f || MoveInput.y < -0.01f || MoveInput.x > 0.01f || MoveInput.x < -0.01f)
-    //      {
-    //          //  Animator.SetBool("isWalking", true);
-    //          velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, 2f);
-    //          walkPressed = true;
-    //      }
-    //      else
-    //      {
-    //          // Animator.SetBool("isWalking", false);
-    //          walkPressed = false;
-    //          velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
-    //      }
-    //  }
+        if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
+        {
+            velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, maxVelocity);
+            walkPressed = true;
+        }
+        else
+        {
+            walkPressed = false;
+            velocityX = Mathf.Clamp(velocityX - Time.deltaTime * decceleration, 0f, velocityX);
+        }
 
 
-
-
-
-
-
-   //  else // if Lock On
-   //  {
-   //      if (MoveInput.x > 0 && MoveInput.y == 0)
-   //      {
-   //          Animator.SetBool("rightStrafe", true);
-   //          Animator.SetBool("leftStrafe", false);
-   //      }
-   //      else if (MoveInput.x < 0 && MoveInput.y == 0)
-   //      {
-   //          Animator.SetBool("leftStrafe", true);
-   //          Animator.SetBool("rightStrafe", false);
-   //      }
-   //      else if (MoveInput.y > 0 || MoveInput.y < 0)
-   //      {
-   //          Animator.SetBool("isWalking", true);
-   //          Animator.SetBool("rightStrafe", false);
-   //          Animator.SetBool("leftStrafe", false);
-   //      }
-   //      else
-   //      {
-   //          Animator.SetBool("isWalking", false);
-   //          Animator.SetBool("rightStrafe", false);
-   //          Animator.SetBool("leftStrafe", false);
-   //      }
-   //  }
+        if (MoveInput.y > 0.01f || MoveInput.y < -0.01f)
+        {
+            velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, maxVelocity);
+            walkPressed = true;
+        }
+        else
+        {
+            walkPressed = false;
+            velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
+        }
     }
 
 
     private void Run()
     {
 
-        if (playerRigidbody.velocity.x > 0.1f || playerRigidbody.velocity.x < -0.1f || playerRigidbody.velocity.z > 0.1f || playerRigidbody.velocity.z < -0.1f)
+
+        if (runButtonPressed && Stamina.CurrentStamina > 0)
         {
-
-
-
-            if (runButtonPressed && Stamina.CurrentStamina > 0)
-            {
-                accelerationMultiplier = 1;
-                Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
-                //Animator.SetBool("isRunning", true);
-            }
-            else
-            {
-                accelerationMultiplier = -1;
-               // Animator.SetBool("isRunning", false);
-            }
+            accelerationMultiplier = 1;
+            Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+            maxVelocity = 2f;
         }
         else
         {
             accelerationMultiplier = -1;
-          //  Animator.SetBool("isRunning", false);
+            maxVelocity = Mathf.Clamp(maxVelocity - Time.deltaTime * decceleration, 0.5f, maxVelocity);
         }
 
-        if (Stamina.CurrentStamina < 0)
-        {
-            //Stamina.CurrentStamina = 0;
-        }
         CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
 
 
@@ -326,14 +258,12 @@ public class PlayerActionScript : MonoBehaviour
         if (_context.started)
         {
             runButtonPressed = true;
-            runPressed = true;
         }
 
 
         if (_context.canceled)
         {
             runButtonPressed = false;
-            runPressed = false;
         }
     }
 
