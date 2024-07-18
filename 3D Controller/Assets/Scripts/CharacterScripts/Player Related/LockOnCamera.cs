@@ -10,6 +10,8 @@ public class LockOnCamera : MonoBehaviour
     private CinemachineVirtualCamera lockOnCamera;
     private CinemachineFreeLook freeLook;
 
+    private Animator animator;
+
 
     [SerializeField] private float scanRadius;
 
@@ -17,6 +19,8 @@ public class LockOnCamera : MonoBehaviour
     {
         lockOnCamera = GetComponent<CinemachineVirtualCamera>();
         freeLook = FindAnyObjectByType<CinemachineFreeLook>();
+
+        animator = playerTransform.GetComponent<Animator>();
     }
 
 
@@ -64,6 +68,7 @@ public class LockOnCamera : MonoBehaviour
                 lockOnCamera.LookAt = null;
                 freeLook.enabled = true;
                 playerRotation.LockOn = false;
+                animator.SetBool("LockOn", false);
                 return;
             }
 
@@ -74,6 +79,8 @@ public class LockOnCamera : MonoBehaviour
             lockOnCamera.LookAt = Target;
             freeLook.enabled = false;
             playerRotation.LockOn = true;
+           animator.SetBool("LockOn", true);
+
         }
 
     }

@@ -59,6 +59,21 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float maxDashCooldown;
     #endregion
 
+
+    #region new WalkSection
+
+    private bool walkPressed;
+    private bool runPressed;
+
+    private float velocityX;
+    private float velocityZ;
+
+    private int velocityHashX;
+    private int velocityHashZ;
+    [SerializeField]private float acceleration;
+    [SerializeField] private float decceleration;
+    #endregion
+
     [SerializeField] private WeaponScript currentWeapon;
 
 
@@ -82,12 +97,19 @@ public class PlayerActionScript : MonoBehaviour
 
         MainCamera = Camera.main;
 
+        velocityHashX = Animator.StringToHash("VelocityX");
+        velocityHashZ = Animator.StringToHash("VelocityZ");
+
+
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        Animator.SetFloat(velocityHashX, velocityX);
+        Animator.SetFloat(velocityHashZ, velocityZ);
 
         if (!movementIsBlocked)
         {
@@ -118,45 +140,85 @@ public class PlayerActionScript : MonoBehaviour
         playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
 
 
-        if (!RotationScript.LockOn)
-        {
+    //  if (RotationScript.LockOn)
+    //  {
+     
+          if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
+          {
+              //  Animator.SetBool("isWalking", true);
+              velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, 2f);
+              walkPressed = true;
+          }
+          else
+          {
+             // Animator.SetBool("isWalking", false);
+              walkPressed = false;
+              velocityX = Mathf.Clamp(velocityX - Time.deltaTime *decceleration, 0f, velocityX);
+     
+          }
+     
+     
+          if (MoveInput.y > 0.01f ||  MoveInput.y < -0.01f)
+          {
+              //  Animator.SetBool("isWalking", true);
+              velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, 2f);
+              walkPressed = true;
+          }
+          else
+          {
+              // Animator.SetBool("isWalking", false);
+              walkPressed = false;
+              velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
+          }
+    //  }
 
-            if (movementVector.x > 0.1f || movementVector.z > 0.1f || movementVector.x < -0.1f || movementVector.z < -0.1f)
-            {
-                Animator.SetBool("isWalking", true);
-            }
-            else
-            {
-                Animator.SetBool("isWalking", false);
+    // else
+    // {
+    //      if (MoveInput.y > 0.01f || MoveInput.y < -0.01f || MoveInput.x > 0.01f || MoveInput.x < -0.01f)
+    //      {
+    //          //  Animator.SetBool("isWalking", true);
+    //          velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, 2f);
+    //          walkPressed = true;
+    //      }
+    //      else
+    //      {
+    //          // Animator.SetBool("isWalking", false);
+    //          walkPressed = false;
+    //          velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
+    //      }
+    //  }
 
-            }
-        }
 
-        else // if Lock On
-        {
-            if (MoveInput.x > 0 && MoveInput.y == 0)
-            {
-                Animator.SetBool("rightStrafe", true);
-                Animator.SetBool("leftStrafe", false);
-            }
-            else if (MoveInput.x < 0 && MoveInput.y == 0)
-            {
-                Animator.SetBool("leftStrafe", true);
-                Animator.SetBool("rightStrafe", false);
-            }
-            else if (MoveInput.y > 0 || MoveInput.y < 0)
-            {
-                Animator.SetBool("isWalking", true);
-                Animator.SetBool("rightStrafe", false);
-                Animator.SetBool("leftStrafe", false);
-            }
-            else
-            {
-                Animator.SetBool("isWalking", false);
-                Animator.SetBool("rightStrafe", false);
-                Animator.SetBool("leftStrafe", false);
-            }
-        }
+
+
+
+
+
+   //  else // if Lock On
+   //  {
+   //      if (MoveInput.x > 0 && MoveInput.y == 0)
+   //      {
+   //          Animator.SetBool("rightStrafe", true);
+   //          Animator.SetBool("leftStrafe", false);
+   //      }
+   //      else if (MoveInput.x < 0 && MoveInput.y == 0)
+   //      {
+   //          Animator.SetBool("leftStrafe", true);
+   //          Animator.SetBool("rightStrafe", false);
+   //      }
+   //      else if (MoveInput.y > 0 || MoveInput.y < 0)
+   //      {
+   //          Animator.SetBool("isWalking", true);
+   //          Animator.SetBool("rightStrafe", false);
+   //          Animator.SetBool("leftStrafe", false);
+   //      }
+   //      else
+   //      {
+   //          Animator.SetBool("isWalking", false);
+   //          Animator.SetBool("rightStrafe", false);
+   //          Animator.SetBool("leftStrafe", false);
+   //      }
+   //  }
     }
 
 
@@ -172,18 +234,18 @@ public class PlayerActionScript : MonoBehaviour
             {
                 accelerationMultiplier = 1;
                 Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
-                Animator.SetBool("isRunning", true);
+                //Animator.SetBool("isRunning", true);
             }
             else
             {
                 accelerationMultiplier = -1;
-                Animator.SetBool("isRunning", false);
+               // Animator.SetBool("isRunning", false);
             }
         }
         else
         {
             accelerationMultiplier = -1;
-            Animator.SetBool("isRunning", false);
+          //  Animator.SetBool("isRunning", false);
         }
 
         if (Stamina.CurrentStamina < 0)
@@ -264,12 +326,14 @@ public class PlayerActionScript : MonoBehaviour
         if (_context.started)
         {
             runButtonPressed = true;
+            runPressed = true;
         }
 
 
         if (_context.canceled)
         {
             runButtonPressed = false;
+            runPressed = false;
         }
     }
 
