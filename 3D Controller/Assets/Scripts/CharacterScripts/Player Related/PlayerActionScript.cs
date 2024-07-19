@@ -146,11 +146,9 @@ public class PlayerActionScript : MonoBehaviour
         if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
         {
             velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, maxVelocity);
-            walkPressed = true;
         }
         else
         {
-            walkPressed = false;
             velocityX = Mathf.Clamp(velocityX - Time.deltaTime * decceleration, 0f, velocityX);
         }
 
@@ -158,11 +156,9 @@ public class PlayerActionScript : MonoBehaviour
         if (MoveInput.y > 0.01f || MoveInput.y < -0.01f)
         {
             velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, maxVelocity);
-            walkPressed = true;
         }
         else
         {
-            walkPressed = false;
             velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
         }
     }
