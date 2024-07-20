@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-   
+
     public static AudioManager instance;
 
     private void Awake()
     {
-        if (instance == null) 
+        if (instance == null)
         {
             instance = this;
         }
-        else 
+        else
         {
             Destroy(this);
         }
@@ -25,10 +25,12 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> SFX;
 
+    public List<Sound> PlayerSFX;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
         foreach (var sound in Music)
         {
             sound.source = gameObject.AddComponent<AudioSource>();
@@ -40,22 +42,24 @@ public class AudioManager : MonoBehaviour
             sound.source.volume = sound.volume;
             sound.source.clip = sound.clip;
         }
-    }
+        foreach (var sound in PlayerSFX)
+        {
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.volume = sound.volume;
+            sound.source.clip = sound.clip;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
 
 [Serializable]
 public class Sound
 {
     public string name;
     public AudioClip clip;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float volume;
     public AudioSource source;
-    
+
 }

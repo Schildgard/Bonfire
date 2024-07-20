@@ -7,7 +7,6 @@ public class WeaponScript : MonoBehaviour
     private StatScript WielderStats;
 
     [SerializeField] private float staminaAttackCost;
-    [SerializeField] AudioSource audiosource;
     public float StaminaAttackCost { get { return staminaAttackCost; } set { staminaAttackCost = value; } }
 
     [SerializeField] private float weaponDamage;
@@ -17,7 +16,6 @@ public class WeaponScript : MonoBehaviour
     private void Start()
     {
         WielderStats = GetComponentInParent<StatScript>();
-        audiosource = GetComponent<AudioSource>();
     }
 
 
@@ -25,8 +23,7 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider _target)
     {
-        Debug.Log("Hit");
-        audiosource.Play();
+        AudioManager.instance.PlayerSFX[0].source.Play();
         float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
         IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
         Debug.Log("Array contains" + hittableTarget.Length + " Objects");
