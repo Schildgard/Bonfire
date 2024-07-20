@@ -35,22 +35,27 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         Animator.SetTrigger("Get Damage");
         if (HealthScript.currentHealth <= 0)
         { Die(); }
-        else 
+        else if (AudioManager.instance != null)
         {
             AudioManager.instance.SFX[getDamageSoundIndex].source.Play();
         }
+        else { Debug.Log("Character Script Failed to Find Audio Manager"); }
     }
 
     public virtual void Respawn() { }
 
-    public virtual void Die() 
+    public virtual void Die()
     {
         if (!HealthScript.isAlive)
         { return; }
         HealthScript.isAlive = false;
 
         Animator.SetTrigger("Died");
-        AudioManager.instance.SFX[deathSoundIndex].source.Play();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.SFX[deathSoundIndex].source.Play();
+        }
+        else { Debug.Log("Character Script Failed to Find Audio Manager"); }
         Debug.Log(gameObject.name + "died");
     }
 

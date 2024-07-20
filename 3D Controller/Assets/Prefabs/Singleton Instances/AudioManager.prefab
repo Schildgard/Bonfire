@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4890723164085173157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5463234265905991380}
+  - component: {fileID: 2972889492318657184}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5463234265905991380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890723164085173157}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2972889492318657184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890723164085173157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419a88e780a6cdf45b583d2febad0cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Music: []
+  SFX:
+  - name: FootStep_01
+    clip: {fileID: 8300000, guid: c025c43d1749af5469c7dd8af13e162f, type: 3}
+    volume: 0.075
+    source: {fileID: 0}
+  - name: Attack_Swing
+    clip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Attack_Swing_2
+    clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Water Shield
+    clip: {fileID: 8300000, guid: dddde2397affa4973880bcc238b6ad30, type: 3}
+    volume: 0.45
+    source: {fileID: 0}
+  - name: Lightning Cast
+    clip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
+    volume: 0.413
+    source: {fileID: 0}
+  - name: Lightning Impact
+    clip: {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
+    volume: 0.429
+    source: {fileID: 0}
+  - name: Fire Cast
+    clip: {fileID: 8300000, guid: 07d8a32d80e5eaf4db02646aa40b1f72, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Fire Impact
+    clip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Electrified
+    clip: {fileID: 8300000, guid: aefc2111571d1a84da4b1838d7beb4fd, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Impact
+    clip: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Zombie Impact
+    clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
+    volume: 0.623
+    source: {fileID: 0}
+  - name: Zombie Death
+    clip: {fileID: 8300000, guid: d0dd5a8e1fcf88c4c990c0c54c58a2ea, type: 3}
+    volume: 0.623
+    source: {fileID: 0}
+  PlayerSFX:
+  - name: Weapon Hit
+    clip: {fileID: 8300000, guid: a7b477ca5dacdef429a56b2623392c12, type: 3}
+    volume: 1
+    source: {fileID: 0}

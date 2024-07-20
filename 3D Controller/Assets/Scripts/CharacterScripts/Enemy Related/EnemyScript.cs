@@ -27,13 +27,21 @@ public class EnemyScript : CharacterScript
 
     public override void GetDamage(float _damage)
     {
+        if(AudioManager.instance != null)
+        {
         AudioManager.instance.SFX[10].source.pitch = 1.84f;
+        }
+        else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
         base.GetDamage(_damage);
         
     }
     public override void Die()
     {
+        if (AudioManager.instance != null)
+        {
         AudioManager.instance.SFX[10].source.pitch = 1.84f;
+        }
+        else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
         base.Die();
         SoulsSystem.instance.GainSouls(Stats.SoulsValue);
         Collider.enabled = false;

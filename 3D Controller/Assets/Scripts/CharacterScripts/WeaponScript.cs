@@ -23,7 +23,11 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider _target)
     {
-        AudioManager.instance.PlayerSFX[0].source.Play();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayerSFX[0].source.Play();
+        }
+        else { Debug.Log("WeaponCollider tries to play Weapon Hit Sound, but could find no AUdioManager in Scene"); }
         float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
         IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
         Debug.Log("Array contains" + hittableTarget.Length + " Objects");
@@ -31,7 +35,7 @@ public class WeaponScript : MonoBehaviour
         foreach (var hit in hittableTarget)
         {
             hit.GetDamage(weaponDamage + damageMultiplier);
-            AudioManager.instance.SFX[9].source.Play();
+           // AudioManager.instance.SFX[9].source.Play();
             Debug.Log($"Weapon dealt{weaponDamage + damageMultiplier} Damage");
         }
     }
