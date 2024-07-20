@@ -5,7 +5,7 @@ public class PlayerActionScript : MonoBehaviour
 {
     private StaminaScript Stamina;
     private Rigidbody playerRigidbody;
-    private GroundCheck collisionDetection;
+   // private GroundCheck collisionDetection;
     private Animator Animator;
     private Spelllist Spelllist;
     private bool movementIsBlocked;
@@ -79,20 +79,18 @@ public class PlayerActionScript : MonoBehaviour
     //Wasted
     private float blockInput;
 
-    private PlayerRotation RotationScript;
-
-
+   // private PlayerRotation RotationScript;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        collisionDetection = GetComponent<GroundCheck>();
+        //collisionDetection = GetComponent<GroundCheck>();
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
 
-        RotationScript = GetComponent<PlayerRotation>();
+       // RotationScript = GetComponent<PlayerRotation>();
 
         MainCamera = Camera.main;
 
@@ -109,11 +107,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         Animator.SetFloat(velocityHashX, velocityX);
         Animator.SetFloat(velocityHashZ, velocityZ);
-
-      //  if (!movementIsBlocked)
-      //  {
-            Walk();
-       // }
+        Walk();
         Run();
 
         Block();
