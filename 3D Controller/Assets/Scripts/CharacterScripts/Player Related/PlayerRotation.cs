@@ -11,6 +11,8 @@ public class PlayerRotation : MonoBehaviour
     private PlayerActionScript ActionScript;
     private Vector3 TargetRotationDirection;
 
+    [SerializeField]private bool blockRotation;
+
 
     private bool lockOn;
     public bool LockOn { get { return lockOn; } set { lockOn = value; } }
@@ -23,7 +25,7 @@ public class PlayerRotation : MonoBehaviour
 
 
     // Update is called once per frame
-    void  FixedUpdate()
+    void FixedUpdate()
     {
         Rotate();
     }
@@ -49,11 +51,23 @@ public class PlayerRotation : MonoBehaviour
 
         Quaternion turnRotation = Quaternion.LookRotation(TargetRotationDirection);
         Quaternion newRotation = Quaternion.Slerp(transform.rotation, turnRotation, rotationSpeed * Time.deltaTime);
-        transform.rotation = newRotation;
+
+        if (!blockRotation)
+        {
+            transform.rotation = newRotation;
+        }
     }
 
 
 
+    public void BlockRotation()
+    {
+        Debug.Log("Rotation is blocked");
+        blockRotation = true;
+    }
 
-
+    public void UnblockRotation()
+    {
+        blockRotation = false;
+    }
 }
