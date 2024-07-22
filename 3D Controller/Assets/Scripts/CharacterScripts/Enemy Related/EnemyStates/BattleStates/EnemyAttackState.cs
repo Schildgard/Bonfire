@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyBaseState
 {
-    private Animator Animator;
-    public EnemyAttackState(EnemyBattleStateMachine _enemyStateMachine, Animator animator) : base(_enemyStateMachine)
+    public EnemyAttackState(EnemyBattleStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh) : base(_enemyStateMachine, _animator, _navMesh)
     {
-        Animator = animator;
+
     }
 
 
@@ -15,7 +15,6 @@ public class EnemyAttackState : EnemyBaseState
     {
 
         base.StateEnter();
-        //Choose Attack
         Attack();
     }
 
@@ -38,14 +37,15 @@ public class EnemyAttackState : EnemyBaseState
 
         if (randomAttackIndex == 0)
         {
-            Animator.SetTrigger("Attack Trigger");
+            animator.SetTrigger("Attack Trigger");
             //Debug.Log("Enemy performed normal Attack");
         }
         else if (randomAttackIndex == 1)
         {
-            Animator.SetTrigger("Heavy Attack");
+            animator.SetTrigger("Heavy Attack");
            // Debug.Log("Enemy performed Heavy Attack");
         }
+        navMesh.isStopped = true;
 
     }
 

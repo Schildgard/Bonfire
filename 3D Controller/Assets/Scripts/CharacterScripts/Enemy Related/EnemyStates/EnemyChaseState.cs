@@ -6,36 +6,40 @@ using UnityEngine.AI;
 public class EnemyChaseState : EnemyBaseState
 {
 
-    private NavMeshAgent NavMeshAgent;
     private Transform PlayerPosition;
-    private Animator Animator;
     private Transform EnemyTransform;
 
-    public EnemyChaseState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Transform _playerPosition, Animator animator, Transform enemyTransform) : base(_enemyStateMachine)
+    public EnemyChaseState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Transform _playerPosition, Animator _animator, Transform enemyTransform) : base(_enemyStateMachine, _animator, _navMesh)
     {
-        NavMeshAgent = _navMeshAgent;
         PlayerPosition = _playerPosition;
-        Animator = animator;
         EnemyTransform = enemyTransform;
+
+        velocityHashZ = Animator.StringToHash("VelocityZ");
     }
 
 
     public override void StateEnter()
     {
-        //Debug.Log("Enter Chase State");
+       Debug.Log("Enter Chase State");
     }
 
     public override void StateUpdate()
     {
         EnemyTransform.LookAt(PlayerPosition);
-         NavMeshAgent.SetDestination(PlayerPosition.position);
-        NavMeshAgent.isStopped = false;
-        Animator.SetBool("isWalking", true);
+        navMesh.SetDestination(PlayerPosition.position);
+        navMesh.isStopped = false;
+
+        animator.SetFloat(velocityHashZ, velocityZ);
+
+        velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityX, maxVelocity);
+        // Animator.SetBool("isWalking", true);
     }
 
     public override void StateExit()
     {
-        Animator.SetBool("isWalking", false);
+        velocityZ = 0f;
+        animator.SetFloat(velocityHashZ, velocityZ);
+        //Animator.SetBool("isWalking", false);
     }
 
 }

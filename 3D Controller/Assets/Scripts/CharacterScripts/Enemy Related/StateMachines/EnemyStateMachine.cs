@@ -25,10 +25,10 @@ public class EnemyStateMachine : EnemyStateMachineBase
 
     public override void InitializeStateMachine()
     {
-        EnemyIdleState EnemyIdleState = new EnemyIdleState(this);
+        EnemyIdleState EnemyIdleState = new EnemyIdleState(this, Animator, NavMeshAgent);
         EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform);
         EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator);
-        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine);
+        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine, Animator, NavMeshAgent);
 
 
         CurrentState = EnemyIdleState;

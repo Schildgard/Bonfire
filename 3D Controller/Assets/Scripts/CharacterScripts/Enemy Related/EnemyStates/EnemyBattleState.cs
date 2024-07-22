@@ -11,7 +11,7 @@ public class EnemyBattleState : EnemyBaseState
 
     private EnemyBattleStateMachine EnemyBattleStateMachine;
 
-    public EnemyBattleState(EnemyStateMachine _enemyStateMachine, EnemyBattleStateMachine _enemyBattleStateMachine) : base(_enemyStateMachine)
+    public EnemyBattleState(EnemyStateMachine _enemyStateMachine, EnemyBattleStateMachine _enemyBattleStateMachine, Animator _animator, NavMeshAgent _navMesh) : base(_enemyStateMachine, _animator, _navMesh   )
     {
         EnemyBattleStateMachine = _enemyBattleStateMachine;
     }

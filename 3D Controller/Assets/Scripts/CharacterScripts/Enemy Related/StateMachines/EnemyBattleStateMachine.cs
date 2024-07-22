@@ -27,10 +27,10 @@ public class EnemyBattleStateMachine : EnemyStateMachineBase
     public override void InitializeStateMachine()
     {
 
-        EnemyWaitState EnemyWaitState = new EnemyWaitState(this,NavMeshAgent);
+        EnemyWaitState EnemyWaitState = new EnemyWaitState(this,NavMeshAgent, Animator);
         EnemyGoAroundState EnemyGoAroundState = new EnemyGoAroundState(this, NavMeshAgent, Animator, EnemyDetection, PlayerPosition);
-        EnemyAttackState EnemyAttackState = new EnemyAttackState(this,Animator);
-        EnemyBlockState EnemyBlockState = new EnemyBlockState(this);
+        EnemyAttackState EnemyAttackState = new EnemyAttackState(this,Animator, NavMeshAgent);
+        EnemyBlockState EnemyBlockState = new EnemyBlockState(this, Animator, NavMeshAgent);
 
         CurrentState = EnemyWaitState;
         CurrentState.StateEnter();

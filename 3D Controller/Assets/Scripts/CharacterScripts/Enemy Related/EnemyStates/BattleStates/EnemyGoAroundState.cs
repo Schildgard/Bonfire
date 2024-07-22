@@ -7,30 +7,18 @@ using Vector3 = UnityEngine.Vector3;
 
 public class EnemyGoAroundState : EnemyBaseState
 {
-    private NavMeshAgent NavMeshAgent;
-    private Animator Animator;
     private EnemyDetectionScript EnemyDetection;
     private Transform Player;
 
     private Vector3 Destination;
 
-    private float velocityX;
-    private float velocityZ;
 
-    private int VelocityHashX;
-    private int VelocityHashZ;
-
-    private float acceleration = 5f;
-    private float maxVelocity = 0.5f;
-    public EnemyGoAroundState(EnemyBattleStateMachine _enemyStateMachine, NavMeshAgent _navMeshAgent, Animator _animator, EnemyDetectionScript _enemyDetectionScript, Transform _player) : base(_enemyStateMachine)
+    public EnemyGoAroundState(EnemyBattleStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Animator _animator, EnemyDetectionScript _enemyDetectionScript, Transform _player) : base(_enemyStateMachine, _animator, _navMesh)
     {
-        NavMeshAgent = _navMeshAgent;
-        Animator = _animator;
         Player = _player;
         EnemyDetection = _enemyDetectionScript;
 
-        Animator.SetFloat(VelocityHashX, velocityX);
-        Animator.SetFloat(VelocityHashZ, velocityZ);
+
     }
 
     public override void StateEnter()
@@ -41,9 +29,9 @@ public class EnemyGoAroundState : EnemyBaseState
         
 
         //Set Destination within Battle Range, but not behind Player
-        NavMeshAgent.SetDestination(Destination);
-        NavMeshAgent.isStopped = false;
-        Animator.SetBool("isWalking", true);
+        navMesh.SetDestination(Destination);
+        navMesh.isStopped = false;
+        //Animator.SetBool("isWalking", true);
 
 
 
@@ -51,35 +39,48 @@ public class EnemyGoAroundState : EnemyBaseState
 
     public override void StateUpdate()
     {
-        if (Destination.x > BattleStateMachine.EnemyPosition.position.x) // Comparison of float Vector3! Exchange with Distance formular!!
+
+        Vector3 DistanceToDestination = Destination - BattleStateMachine.EnemyPosition.position;
+
+        if (DistanceToDestination.x > 0f + distanceTolerance) // Comparison of float Vector3! Exchange with Distance formular!!
         {
             //Increase BlendTree Velocity X
             velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, maxVelocity);
         }
-        if (Destination.x < BattleStateMachine.EnemyPosition.position.x) 
+        else if (DistanceToDestination.x < 0f - distanceTolerance) 
         {
             //Decrease BlendTree Velocity X
             velocityX = Mathf.Clamp(velocityX - Time.deltaTime * acceleration, -maxVelocity, velocityX);
         }
-        if (Destination.y > BattleStateMachine.EnemyPosition.position.y)
+        else
+        {
+            velocityX = velocityX = 0f;
+        }
+        if (DistanceToDestination.y > 0f + distanceTolerance)
         {
             //Increase BlendTree Velocity Y
             velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, maxVelocity);
         }
-        if (Destination.y < BattleStateMachine.EnemyPosition.position.y)
+        else if (DistanceToDestination.y < 0f - distanceTolerance)
         {
             //Decrease BlendTree Velocity Y
             velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * acceleration, -maxVelocity, velocityZ);
         }
+        else
+        {
+            velocityZ = velocityZ = 0f;
+        }
 
+        animator.SetFloat(velocityHashX, velocityX);
+        animator.SetFloat(velocityHashZ, velocityZ);
 
 
     }
 
     public override void StateExit()
     {
-        NavMeshAgent.isStopped = true;
-        Animator.SetBool("isWalking", false);
+        navMesh.isStopped = true;
+        animator.SetBool("isWalking", false);
     }
 
 }

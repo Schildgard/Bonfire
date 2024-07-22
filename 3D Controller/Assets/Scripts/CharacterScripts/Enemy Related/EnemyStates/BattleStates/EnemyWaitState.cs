@@ -5,16 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyWaitState : EnemyBaseState
 {
-    private NavMeshAgent NavMeshAgent;
-    public EnemyWaitState(EnemyBattleStateMachine _enemyStateMachine, NavMeshAgent navMeshAgent) : base(_enemyStateMachine)
+    public EnemyWaitState(EnemyBattleStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Animator _animator) : base(_enemyStateMachine, _animator, _navMesh)
     {
-        NavMeshAgent = navMeshAgent;
     }
 
     public override void StateEnter()
     {
         base.StateEnter();
-        NavMeshAgent.isStopped = true;
+        navMesh.isStopped = true;
         //Debug.Log("Enter Wait State");
     }
 
