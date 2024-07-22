@@ -28,7 +28,7 @@ public class EnemyChaseState : EnemyBaseState
     public override void StateUpdate()
     {
         EnemyTransform.LookAt(PlayerPosition);
-        NavMeshAgent.SetDestination(PlayerPosition.position);
+         NavMeshAgent.SetDestination(PlayerPosition.position);
         NavMeshAgent.isStopped = false;
         Animator.SetBool("isWalking", true);
     }
@@ -37,4 +37,5 @@ public class EnemyChaseState : EnemyBaseState
     {
         Animator.SetBool("isWalking", false);
     }
+
 }

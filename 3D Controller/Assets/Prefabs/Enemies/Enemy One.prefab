@@ -1244,6 +1244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8246025367079112713}
   - component: {fileID: 7783232989354091214}
+  - component: {fileID: 2624545796930930887}
   m_Layer: 0
   m_Name: Weapon Slot
   m_TagString: Untagged
@@ -1287,6 +1288,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2624545796930930887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824517334628028382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784e864d6d6b9e747806f0b68bc3ab08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaAttackCost: 0
+  weaponDamage: 450
+  strengthScaling: 0
 --- !u!1 &3958391918085086574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3997754368158722235
 Transform:
   m_ObjectHideFlags: 0
@@ -1646,7 +1662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8a904990c6ac94b9125f8fb0e8183a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponCollider: {fileID: 3997754368158722233}
+  WeaponCollider: {fileID: 7783232989354091214}
   IsWeaponOnBack: 0
   WeaponOnBack: {fileID: 0}
   WeaponInHand: {fileID: 0}
