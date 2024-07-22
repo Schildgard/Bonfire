@@ -25,6 +25,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (AudioManager.instance != null)
         {
+            Debug.Log("Played Sound because of Collision with "+ _target.name);
             AudioManager.instance.PlayerSFX[0].source.Play();
         }
         else { Debug.Log("WeaponCollider tries to play Weapon Hit Sound, but could find no AUdioManager in Scene"); }

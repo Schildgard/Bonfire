@@ -17,6 +17,8 @@ public class AbilityBarSlot : MonoBehaviour, IDropHandler
 
     private void Start()
     {
+        Spelllist = GameObject.FindObjectOfType<Spelllist>();
+
         if (Spelllist.Spells.Count <= spelllistIndex)
         {
             Spelllist.Spells.Add(spell);

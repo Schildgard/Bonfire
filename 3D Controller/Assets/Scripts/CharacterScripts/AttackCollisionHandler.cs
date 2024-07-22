@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AttackCollisionHandler : MonoBehaviour
 {
-    [SerializeField ]private Collider WeaponCollider;
+    [SerializeField] private Collider WeaponCollider;
 
     [SerializeField] private bool IsWeaponOnBack;
 
@@ -18,22 +18,25 @@ public class AttackCollisionHandler : MonoBehaviour
     void Start()
     {
         WeaponCollider.enabled = false;
-
-        if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
+        if (this.gameObject.tag == "Player")
         {
-            WeaponInHand.SetActive(false);
-            IsWeaponOnBack = true;
+
+            if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
+            {
+                WeaponInHand.SetActive(false);
+                IsWeaponOnBack = true;
+            }
         }
     }
 
 
-    public void ActivateWeaponCollider() 
+    public void ActivateWeaponCollider()
     {
         WeaponCollider.enabled = true;
 
     }
-    
-    public void DeActivateWeaponCollider() 
+
+    public void DeActivateWeaponCollider()
     {
         WeaponCollider.enabled = false;
 
@@ -52,7 +55,7 @@ public class AttackCollisionHandler : MonoBehaviour
 
     public void ShowWeaponOnBack()
     {
-        if(!IsWeaponOnBack)
+        if (!IsWeaponOnBack)
         {
             WeaponInHand.SetActive(false);
             WeaponOnBack.SetActive(true);
