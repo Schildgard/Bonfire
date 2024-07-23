@@ -14,7 +14,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void StateEnter()
     {
-        //Debug.Log("OnIdleEnter");
+        Debug.Log("OnIdleEnter");
     }
 
     public override void StateUpdate()

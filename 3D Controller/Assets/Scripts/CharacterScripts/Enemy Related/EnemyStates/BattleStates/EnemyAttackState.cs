@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyBaseState
 {
-    public EnemyAttackState(EnemyBattleStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh) : base(_enemyStateMachine, _animator, _navMesh)
+    public EnemyAttackState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh) : base(_enemyStateMachine, _animator, _navMesh)
     {
 
     }
@@ -13,8 +13,9 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void StateEnter()
     {
-
-        base.StateEnter();
+        Debug.Log("Enter Attack State");
+        StateMachine.transform.LookAt(StateMachine.PlayerPosition);
+        StateMachine.IsAttacking = true;
         Attack();
     }
 
@@ -26,27 +27,46 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void StateExit()
     {
-        //Debug.Log("Attack has been performed");
+        Debug.Log("Exit Attack State");
     }
 
 
     public void Attack()
     {
-
-        int randomAttackIndex = Random.Range(0, 2);
-
-        if (randomAttackIndex == 0)
+        if (StateMachine.EnemyDetection.CheckRange(StateMachine.EnemyDetection.AttackSphereRadius) == true)
         {
-            animator.SetTrigger("Attack Trigger");
-            //Debug.Log("Enemy performed normal Attack");
-        }
-        else if (randomAttackIndex == 1)
-        {
-            animator.SetTrigger("Heavy Attack");
-           // Debug.Log("Enemy performed Heavy Attack");
-        }
-        navMesh.isStopped = true;
+            Debug.Log("Enemy is in Range for Close Attack");
+            int randomAttackIndex = Random.Range(0, 2);
 
+            if (randomAttackIndex == 0)
+            {
+                animator.SetTrigger("Attack Trigger");
+                Debug.Log("Enemy performs normal Attack");
+            }
+            else if (randomAttackIndex == 1)
+            {
+                animator.SetTrigger("Heavy Attack");
+                 Debug.Log("Enemy performs Heavy Attack");
+            }
+
+        }
+
+        else
+        {
+            RushAttack();
+        }
     }
 
+
+    private void RushAttack()
+    {
+
+        Debug.Log("Enemy has to Rush");
+        //Set Destination To Player
+
+        //When Attack Range is Reached: Attack
+
+        //Set Trigger to Exit State
+        StateMachine.IsAttacking = false;
+    }
 }

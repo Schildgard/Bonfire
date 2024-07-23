@@ -20,26 +20,26 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void StateEnter()
     {
-       Debug.Log("Enter Chase State");
+        Debug.Log("Enter Chase State");
+        navMesh.isStopped = false;
     }
 
     public override void StateUpdate()
     {
         EnemyTransform.LookAt(PlayerPosition);
         navMesh.SetDestination(PlayerPosition.position);
-        navMesh.isStopped = false;
-
-        animator.SetFloat(velocityHashZ, velocityZ);
 
         velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityX, maxVelocity);
-        // Animator.SetBool("isWalking", true);
+
+        animator.SetFloat(velocityHashZ, velocityZ);
     }
 
     public override void StateExit()
     {
         velocityZ = 0f;
         animator.SetFloat(velocityHashZ, velocityZ);
-        //Animator.SetBool("isWalking", false);
+        navMesh.isStopped = true;
+
     }
 
 }

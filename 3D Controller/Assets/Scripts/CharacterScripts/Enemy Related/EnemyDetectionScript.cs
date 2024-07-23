@@ -10,6 +10,7 @@ public class EnemyDetectionScript : MonoBehaviour
     [SerializeField]private float viewRange;
     [SerializeField]private float chaseSphereRadius;
     [SerializeField]private float battleSphereRadius;
+    [SerializeField] private float attackSphereRadius;
     [SerializeField] private LayerMask PlayerLayer;
 
     public float ViewRange 
@@ -25,6 +26,11 @@ public class EnemyDetectionScript : MonoBehaviour
     {
         get { return battleSphereRadius; }
         set { battleSphereRadius = value; }
+    }
+    public float AttackSphereRadius
+    {
+        get { return attackSphereRadius; }
+        set { attackSphereRadius = value; }
     }
 
 
@@ -50,6 +56,9 @@ public class EnemyDetectionScript : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, battleSphereRadius);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackSphereRadius);
 
         Gizmos.color = Color.black;
         Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(radiusVectorX, 0, radiusVectorZ)) * 10);

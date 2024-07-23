@@ -13,9 +13,12 @@ public class WeaponScript : MonoBehaviour
 
     [SerializeField] private float strengthScaling;
 
+    [SerializeField] private AudioSource attackSound;
+
     private void Start()
     {
         WielderStats = GetComponentInParent<StatScript>();
+        attackSound = GetComponent<AudioSource>();
     }
 
 
@@ -23,10 +26,11 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider _target)
     {
-        if (AudioManager.instance != null)
+        if (attackSound != null)
         {
             Debug.Log("Played Sound because of Collision with "+ _target.name);
-            AudioManager.instance.PlayerSFX[0].source.Play();
+            //AudioManager.instance.PlayerSFX[0].source.Play();
+            attackSound.Play();
         }
         else { Debug.Log("WeaponCollider tries to play Weapon Hit Sound, but could find no AUdioManager in Scene"); }
         float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;

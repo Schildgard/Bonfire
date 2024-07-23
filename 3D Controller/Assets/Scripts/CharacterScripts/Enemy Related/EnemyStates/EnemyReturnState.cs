@@ -9,23 +9,28 @@ public class EnemyReturnState : EnemyBaseState
     public EnemyReturnState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Vector3 _startPosition, Animator _animator) : base(_enemyStateMachine, _animator, _navMesh)
     {
         StartPosition = _startPosition;
+        velocityHashZ = Animator.StringToHash("VelocityZ");
     }
 
 
     public override void StateEnter()
     {
         //Debug.Log("OnReturnEnter");
+        navMesh.isStopped = false;
     }
 
     public override void StateUpdate()
     {
         navMesh.SetDestination(StartPosition);
-        animator.SetBool("isWalking", true);
+        velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityX, maxVelocity);
+
+        animator.SetFloat(velocityHashZ, velocityZ);
     }
 
     public override void StateExit()
     {
-        animator.SetBool("isWalking", false);
+        velocityZ = 0f;
+        navMesh.isStopped=true;
     }
 
 }

@@ -17,6 +17,17 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     protected NavMeshAgent NavMeshAgent;
     protected Animator Animator;
 
+    protected bool isAttacking;
+
+    public bool IsAttacking {  get { return isAttacking; } set { isAttacking = value; } }
+
+    protected float stateTimer;
+    public float StateTimer
+    {
+        get { return stateTimer; }
+        set { stateTimer = value; }
+    }
+
 
 
 
@@ -106,5 +117,16 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
 
     }
 
+    public void TriggerAttackAnimationEndBool()
+    {
+        if (!isAttacking) return;
+        isAttacking = false;
+    }
+
+    public void TriggerAttackAnimationStartBool()
+    {
+        if (isAttacking) return;
+        isAttacking = true;
+    }
 
 }

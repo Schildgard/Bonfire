@@ -17,8 +17,8 @@ public abstract class EnemyBaseState
     protected int velocityHashX;
     protected int velocityHashZ;
 
-    protected float acceleration = 5f;
-    protected float decceleration = 7f;
+    protected float acceleration = 1f;
+    protected float decceleration = 1.5f;
 
     protected float maxVelocity = 0.5f;
     protected float distanceTolerance = 0.05f;
