@@ -52,6 +52,7 @@ public class PlaneGenerator
         Vector2[] uvs = new Vector2[vertexCount];
 
         int triangleIndex = 0;
+        float falloff = 0;
 
         for (int y = 0, i = 0; y < resolution; y++)
         {
@@ -64,32 +65,41 @@ public class PlaneGenerator
                 Vector3 planePosition = Vector3.zero;
                 Vector3 transformedPosition = Vector3.zero;
 
-             //  if (percent.x >= 0.4f)
-             //  {
-             //      planePosition = (Vector3.right * 0.4f) + (Vector3.forward * percent.y); // + (Vector3.down *  )
-             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.right);
-             //  }
-             //  else if (percent.x <= -0.4f)
-             //  {
-             //      planePosition = (Vector3.right * -0.4f) + (Vector3.forward * percent.y); // + (Vector3.down *  )
-             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.left);
-             //  }
-             //  else if (percent.y >= 0.4f)
-             //  {
-             //      planePosition = (Vector3.right * percent.x) + (Vector3.forward * 0.4f); // + (Vector3.down *  )
-             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.forward);
-             //  }
-             //  else if (percent.y <= -0.4f)
-             //  {
-             //      planePosition = (Vector3.right * percent.x) + (Vector3.forward * -0.4f); // + (Vector3.down *  )
-             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.back);
-             //  }
+                if (percent.x >= 0.4f)
+                {
+                    falloff = (0.5f - percent.x) * 10; // Falloff Multiplier gets lower the closer you get to the Edge.
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+                 else if (percent.x <= -0.4f)
+                {
+                    falloff = (0.5f + percent.x) * 10;
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+                 else if (percent.y >= 0.4f)
+                {
+                    falloff = (0.5f - percent.y) * 10;
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+                 else if (percent.y <= -0.4f)
+                {
+                    falloff = (0.5f + percent.y) * 10;
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
 
-               if (percent.x >= 0.4f || percent.x <= -0.4f || percent.y >= 0.4f || percent.y <= -0.4f)
-               {
-                   planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
-                   transformedPosition = noiseFilter.SetNoiseDownwards(planePosition);
-               }
+
+
+
+
+
+                if (percent.x >= 0.4f || percent.x <= -0.4f || percent.y >= 0.4f || percent.y <= -0.4f)
+                {
+                    //  planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    //  transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
 
 
 

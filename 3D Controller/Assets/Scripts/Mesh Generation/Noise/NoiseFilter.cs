@@ -50,10 +50,9 @@ public class NoiseFilter
         return (_vertexPosition * shapeSettings.size) + (_noiseDirection * (noiseValue ));
     }
 
-    public Vector3 SetNoiseDownwards(Vector3 _vertexPosition)
+    public Vector3 SetNoiseDownwards(Vector3 _vertexPosition, float _falloff)
     {
-        //  float noiseValue = noise.Evaluate(_vertexPosition);
-        //  Vector3 transformedVertexPosition = _vertexPosition + (Vector3dd.up)
+
         float noiseValue = 0;
 
         foreach (var layer in shapeSettings.NoiseLayers)
@@ -74,16 +73,14 @@ public class NoiseFilter
                 currentValue = (currentValue + 1) * 0.5f; //remaps the value between 0 and 1
 
                 layerValue += currentValue * currentAmplitude;
-
                 currentFrequency *= roughness;
                 currentAmplitude *= persistence;
             }
 
             layerValue = Mathf.Max(0, layerValue - noiseSettings.GroundLevel);
             noiseValue += layerValue;
-            noiseValue = noiseValue * 0.9f;
+            noiseValue *= _falloff;
         }
-        // OCE Version return _vertexPosition * (1 + noiseValue)
         return (_vertexPosition * shapeSettings.size) + (Vector3.up * (noiseValue));
     }
 }
