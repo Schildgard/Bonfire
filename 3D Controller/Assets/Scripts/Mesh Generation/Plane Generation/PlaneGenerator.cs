@@ -61,11 +61,25 @@ public class PlaneGenerator
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);  //Calculate Vertex Position
                 percent -= Vector2.one * 0.5f; //translate position to percentage of full mesh
 
-                Vector3 planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                Vector3 planePosition = Vector3.zero;
+                Vector3 transformedPosition = Vector3.zero;
 
 
-                //Here: Add Noise Position before setting vertex!
-                Vector3 transformedPosition = noiseFilter.SetNoisePosition(planePosition);
+                if (percent.x >= 0.4f|| percent.x <= -0.4f || percent.y >= 0.4f || percent.y <= -0.4f)
+                {
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.down));
+                    transformedPosition = noiseFilter.Test(planePosition);
+
+                }
+                else
+                {
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+
+                    //Here: Add Noise Position before setting vertex!
+                    transformedPosition = noiseFilter.SetNoisePosition(planePosition);
+
+                }
+
 
                 verticies[i] = transformedPosition;
                 uvs[i] = new Vector2(x, y);
