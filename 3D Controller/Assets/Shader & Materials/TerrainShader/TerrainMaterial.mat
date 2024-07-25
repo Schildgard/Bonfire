@@ -69,7 +69,7 @@ Material:
     - _MountainHeight: 10.6
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Tiling_Mountain: -0.27
+    - _Tiling_Mountain: 0.06
     - _Tiling_Plane: 1
     - _max: 14.8
     - _min: 10.14

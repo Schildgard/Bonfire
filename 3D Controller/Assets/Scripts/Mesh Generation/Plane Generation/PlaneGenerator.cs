@@ -64,19 +64,39 @@ public class PlaneGenerator
                 Vector3 planePosition = Vector3.zero;
                 Vector3 transformedPosition = Vector3.zero;
 
+             //  if (percent.x >= 0.4f)
+             //  {
+             //      planePosition = (Vector3.right * 0.4f) + (Vector3.forward * percent.y); // + (Vector3.down *  )
+             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.right);
+             //  }
+             //  else if (percent.x <= -0.4f)
+             //  {
+             //      planePosition = (Vector3.right * -0.4f) + (Vector3.forward * percent.y); // + (Vector3.down *  )
+             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.left);
+             //  }
+             //  else if (percent.y >= 0.4f)
+             //  {
+             //      planePosition = (Vector3.right * percent.x) + (Vector3.forward * 0.4f); // + (Vector3.down *  )
+             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.forward);
+             //  }
+             //  else if (percent.y <= -0.4f)
+             //  {
+             //      planePosition = (Vector3.right * percent.x) + (Vector3.forward * -0.4f); // + (Vector3.down *  )
+             //      transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.back);
+             //  }
 
-                if (percent.x >= 0.4f|| percent.x <= -0.4f || percent.y >= 0.4f || percent.y <= -0.4f)
-                {
-                    planePosition = ((Vector3.right * percent.x) + (Vector3.down));
-                    transformedPosition = noiseFilter.Test(planePosition);
+               if (percent.x >= 0.4f || percent.x <= -0.4f || percent.y >= 0.4f || percent.y <= -0.4f)
+               {
+                   planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                   transformedPosition = noiseFilter.SetNoiseDownwards(planePosition);
+               }
 
-                }
+
+
                 else
                 {
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
-
-                    //Here: Add Noise Position before setting vertex!
-                    transformedPosition = noiseFilter.SetNoisePosition(planePosition);
+                    transformedPosition = noiseFilter.SetNoisePosition(planePosition, Vector3.up);
 
                 }
 

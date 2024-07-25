@@ -14,10 +14,10 @@ public class NoiseFilter
         shapeSettings = _shapeSettings;
     }
 
-    public Vector3 SetNoisePosition(Vector3 _vertexPosition)
+    public Vector3 SetNoisePosition(Vector3 _vertexPosition, Vector3 _noiseDirection)
     {
         //  float noiseValue = noise.Evaluate(_vertexPosition);
-        //  Vector3 transformedVertexPosition = _vertexPosition + (Vector3.up)
+        //  Vector3 transformedVertexPosition = _vertexPosition + (Vector3dd.up)
         float noiseValue = 0;
 
         foreach (var layer in shapeSettings.NoiseLayers)
@@ -47,12 +47,13 @@ public class NoiseFilter
             noiseValue += layerValue;
         }
         // OCE Version return _vertexPosition * (1 + noiseValue)
-        return (_vertexPosition * shapeSettings.size) + (Vector3.up * (noiseValue ));
+        return (_vertexPosition * shapeSettings.size) + (_noiseDirection * (noiseValue ));
     }
 
-
-    public Vector3 Test (Vector3 _vertexPosition)
+    public Vector3 SetNoiseDownwards(Vector3 _vertexPosition)
     {
+        //  float noiseValue = noise.Evaluate(_vertexPosition);
+        //  Vector3 transformedVertexPosition = _vertexPosition + (Vector3dd.up)
         float noiseValue = 0;
 
         foreach (var layer in shapeSettings.NoiseLayers)
@@ -80,8 +81,9 @@ public class NoiseFilter
 
             layerValue = Mathf.Max(0, layerValue - noiseSettings.GroundLevel);
             noiseValue += layerValue;
+            noiseValue = noiseValue * 0.9f;
         }
         // OCE Version return _vertexPosition * (1 + noiseValue)
-        return (_vertexPosition * shapeSettings.size);
+        return (_vertexPosition * shapeSettings.size) + (Vector3.up * (noiseValue));
     }
 }
