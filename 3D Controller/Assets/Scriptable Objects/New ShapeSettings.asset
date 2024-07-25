@@ -28,7 +28,7 @@ MonoBehaviour:
       LayerCount: 8
       BaseRoughness: 1.71
       Roughness: 2.85
-      Strength: 109.9
+      Strength: 130.3
       Persistence: 0.3
-      NoiseCenter: {x: -0.3, y: 0, z: 0}
-      GroundLevel: 65.4
+      NoiseCenter: {x: -0.3, y: 0, z: 0.41}
+      GroundLevel: 72.6

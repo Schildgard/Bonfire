@@ -18,6 +18,7 @@ public abstract class EnvironmentGenerator
 
 
     protected float Threshold;
+    protected float maxYPosition;
 
     protected Vector3 Offset;
     protected Vector3 ScaleMultiplier;
@@ -49,7 +50,7 @@ public abstract class EnvironmentGenerator
         {
             spawnValue = noise.Evaluate(position);
 
-            if (spawnValue >= Threshold)
+            if (spawnValue >= Threshold && position.y <= maxYPosition)
             {
                 vegetationSpawnPositions.Add(position);
             }

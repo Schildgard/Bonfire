@@ -4,7 +4,7 @@ using UnityEngine;
 public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 {
 
-    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, bool _randomRotation, bool _randomizedOffset)
+    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, bool _randomRotation, bool _randomizedOffset, float _maxYPos)
     {
         noise = new Noise();
         planeMesh = _planeMesh;
@@ -18,9 +18,11 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
         randomizedOffset = _randomizedOffset;
 
         renderMesh = null;
+
+        maxYPosition = _maxYPos;
     }
 
-    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, Mesh _mesh, bool _randomRotation, bool _randomizedOffset)
+    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier, Mesh _mesh, bool _randomRotation, bool _randomizedOffset, float _maxYPos)
     {
         noise = new Noise();
         planeMesh = _planeMesh;
@@ -34,6 +36,7 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
         ScaleMultiplier = _scaleMultiplier;
 
         renderMesh = _mesh;
+        maxYPosition = _maxYPos;
     }
 
 

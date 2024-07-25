@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class EnvironmentManager : MonoBehaviour
 {
     private Mesh planeMesh;
-    private List<GameObject> prefabsInScene;
+    [SerializeField]private List<GameObject> prefabsInScene;
 
     [SerializeField] private List<RenderableVegetation> renderableEnvironment;
     [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
