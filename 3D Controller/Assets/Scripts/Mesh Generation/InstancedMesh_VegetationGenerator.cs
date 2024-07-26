@@ -9,7 +9,7 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
         noise = new Noise();
         planeMesh = _planeMesh;
 
-        matrices = CalculateMatrices();
+       // matrices = CalculateMatrices();
 
         Threshold = _threshold;
         Offset = _offset;
@@ -27,7 +27,7 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
         noise = new Noise();
         planeMesh = _planeMesh;
 
-        matrices = CalculateMatrices();
+       // matrices = CalculateMatrices();
 
         Threshold = _threshold;
         Offset = _offset;
@@ -49,12 +49,15 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
             new List<Matrix4x4>()
         };
 
+        Debug.Log($"{this} SpawnPositions: { vegetationSpawnPositions.Count}");
+        Debug.Log($"{this} NormalsPositions: { vegetationNormals.Count}");
         //These variables shortens the expression for adding the offset and random height to each matrix.
 
         int ListIndex = 0;
         int counter = 0;
 
         Vector3 matrixPosition;
+        Vector3 matrixNormal;
         Vector3 randomizedHeightScale;
         for (int i = 0; i < vegetationSpawnPositions.Count; i++)
         {
@@ -73,17 +76,21 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
             }
 
             matrixPosition = new Vector3(vegetationSpawnPositions[i].x + Offset.x, vegetationSpawnPositions[i].y, vegetationSpawnPositions[i].z + Offset.z);
+            matrixNormal = vegetationNormals[i];
+            
             randomizedHeightScale = new Vector3(ScaleMultiplier.x, Random.Range(ScaleMultiplier.y * 0.8f, ScaleMultiplier.y * 1.2f), ScaleMultiplier.z);
 
             if (randomRotation)
             {
                 //Insert randomized Rotation here
                 ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(matrixPosition, Quaternion.Euler(0, Random.Range(0, 181), 0), randomizedHeightScale));
+
+
             }
             else
             {
                 // ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(vegetationSpawnPositions[i] + Offset, Quaternion.identity, ScaleMultiplier));
-                ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(matrixPosition, Quaternion.identity, randomizedHeightScale));
+                ListofMatrixLists[ListIndex].Add(Matrix4x4.TRS(matrixPosition, Quaternion.Euler(matrixNormal), randomizedHeightScale));
             }
             counter++;
 
@@ -143,6 +150,6 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
         {
             return renderMesh;
         }
-    }
+    } 
 
 }

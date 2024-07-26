@@ -71,28 +71,28 @@ public class PlaneGenerator
                 //EAST
                 if (percent.x >= 0.4f && percent.y <= 0.4f && percent.y >= -0.4f)
                 {
-                    falloff = (0.5f - percent.x) * 10; // Falloff Multiplier gets lower the closer you get to the Edge.
+                    falloff = (0.5f - percent.x) * 10f; // Falloff Multiplier gets lower the closer you get to the Edge.
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
                 //WEST
                 else if (percent.x <= -0.4f && percent.y <= 0.4f && percent.y >= -0.4f)
                 {
-                    falloff = (0.5f + percent.x) * 10;
+                    falloff = (0.5f + percent.x) * 10f;
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
                 //NORTH
                  else if (percent.y >= 0.4f && percent.x <= 0.4f && percent.x >= -0.4f)
                 {
-                    falloff = (0.5f - percent.y) * 10;
+                    falloff = (0.5f - percent.y) * 10f;
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
                 //SOUTH
                 else if (percent.y <= -0.4f && percent.x <= 0.4f && percent.x >= -0.4f)
                 {
-                    falloff = (0.5f + percent.y) * 10;
+                    falloff = (0.5f + percent.y) * 10f;
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
@@ -102,28 +102,28 @@ public class PlaneGenerator
                 //SOUTHEAST CORNER
                 else if (percent.y <= -0.4f && percent.x >= 0.4f) 
                 {
-                    falloff = ((0.5f + percent.y) * 10) * ((0.5f - percent.x) * 10);
+                    falloff = ((0.5f + percent.y) * 10f) * ((0.5f - percent.x) * 10f);
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
                 //SOUTHWEST CORNER
                 else if (percent.y <= -0.4f && percent.x <= -0.4f)
                 {
-                    falloff = ((0.5f + percent.y) * 10) * ((0.5f + percent.x) * 10);
+                    falloff = ((0.5f + percent.y) * 10f) * ((0.5f + percent.x) * 10f);
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
                 //NORTHEAST CORNER
                 else if (percent.y>= 0.4f && percent.x >= 0.4f)
                 {
-                    falloff = ((0.5f - percent.y) * 10) * ((0.5f - percent.x) * 10);
+                    falloff = ((0.5f - percent.y) * 10f) * ((0.5f - percent.x) * 10f);
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }
                 //NORTHWEST CORNER
                 else if (percent.y >= 0.4f && percent.x <= -0.4f)
                 {
-                    falloff = ((0.5f - percent.y) * 10) * ((0.5f + percent.x) * 10);
+                    falloff = ((0.5f - percent.y) * 10f) * ((0.5f + percent.x) * 10f);
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoisePosition(planePosition, falloff);
                 }

@@ -10,10 +10,11 @@ public abstract class EnvironmentGenerator
 
 
     protected Vector3[] planePositions;
+    protected Vector3[] positionNormals;
+    protected List<Vector3> vegetationNormals = new List<Vector3>();
+
     protected List<List<Matrix4x4>> matrices;
 
-    //protected EnvironmentalSettings environmentalSettings;
-    //public EnvironmentalSettings EnvironmentalSettings => environmentalSettings;
     public List<List<Matrix4x4>> Matrices => matrices;
 
 
@@ -42,19 +43,36 @@ public abstract class EnvironmentGenerator
 
         vegetationSpawnPositions.Clear();
         planePositions = _planeMesh.vertices;
+        positionNormals = _planeMesh.normals;
+
 
         float spawnValue;
         //Evaluate Positions in Noise so it returns a Value between 0 and 1
 
-        foreach (var position in planePositions)
-        {
-            spawnValue = noise.Evaluate(position);
+      //  foreach (var position in planePositions)
+      //  {
+      //      spawnValue = noise.Evaluate(position);
+      //
+      //      if (spawnValue >= Threshold && position.y <= maxYPosition)
+      //      {
+      //          vegetationSpawnPositions.Add(position);
+      //      }
+      //  }
 
-            if (spawnValue >= Threshold && position.y <= maxYPosition)
+
+
+        for (int i = 0; i < planePositions.Length; i++)
+        {
+            spawnValue = noise.Evaluate(planePositions[i]);
+
+            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition)
             {
-                vegetationSpawnPositions.Add(position);
+                vegetationSpawnPositions.Add(planePositions[i]);
+                vegetationNormals.Add(positionNormals[i]);
             }
         }
+
         return vegetationSpawnPositions;
+
     }
 }
