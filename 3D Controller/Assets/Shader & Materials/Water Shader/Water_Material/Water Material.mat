@@ -62,7 +62,7 @@ Material:
     - _BaseTiling: 35
     - _DetailSpeedMultiplier: 0.65
     - _DetailTiling: 65
-    - _Foam_Distance: 3
+    - _Foam_Distance: 0.15
     - _Foam_Noise_Scale: 150
     - _Fresnel_Power: 4
     - _Noise_Speed: 0.001
