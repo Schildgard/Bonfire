@@ -65,43 +65,68 @@ public class PlaneGenerator
                 Vector3 planePosition = Vector3.zero;
                 Vector3 transformedPosition = Vector3.zero;
 
-                if (percent.x >= 0.4f && percent.y >= 0.4f)
-                {
-                    falloff = (0.5f - percent.x) * 10; // Falloff Multiplier gets lower the closer you get to the Edge.
-                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
-                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
-                }
-                else if (percent.x <= -0.4f && percent.y <= -0.4f)
-                {
-                    falloff = (0.5f + percent.x) * 10; // Falloff Multiplier gets lower the closer you get to the Edge.
-                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
-                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
-                }
 
-                else if (percent.x >= 0.4f)
+
+
+                //EAST
+                if (percent.x >= 0.4f && percent.y <= 0.4f && percent.y >= -0.4f)
                 {
                     falloff = (0.5f - percent.x) * 10; // Falloff Multiplier gets lower the closer you get to the Edge.
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
                 }
-                 else if (percent.x <= -0.4f)
+                //WEST
+                else if (percent.x <= -0.4f && percent.y <= 0.4f && percent.y >= -0.4f)
                 {
                     falloff = (0.5f + percent.x) * 10;
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
                 }
-                 else if (percent.y >= 0.4f)
+                //NORTH
+                 else if (percent.y >= 0.4f && percent.x <= 0.4f && percent.x >= -0.4f)
                 {
                     falloff = (0.5f - percent.y) * 10;
                     planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
                     transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
                 }
-                 else if (percent.y <= -0.4f)
+                //SOUTH
+                else if (percent.y <= -0.4f && percent.x <= 0.4f && percent.x >= -0.4f)
                 {
-                   falloff = (0.5f + percent.y) * 10;
-                   planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
-                   transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                    falloff = (0.5f + percent.y) * 10;
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
                 }
+
+                //SOUTHEAST CORNER
+                else if (percent.y <= -0.4f && percent.x >= 0.4f) 
+                {
+                    falloff = ((0.5f + percent.y) * 10) * ((0.5f - percent.x) * 10);
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+                //SOUTHWEST CORNER
+                else if (percent.y <= -0.4f && percent.x <= -0.4f)
+                {
+                    falloff = ((0.5f + percent.y) * 10) * ((0.5f + percent.x) * 10);
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+                //NORTHEAST CORNER
+                else if (percent.y>= 0.4f && percent.x >= 0.4f)
+                {
+                    falloff = ((0.5f - percent.y) * 10) * ((0.5f - percent.x) * 10);
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+                //NORTHWEST CORNER
+                else if (percent.y >= 0.4f && percent.x <= -0.4f)
+                {
+                    falloff = ((0.5f - percent.y) * 10) * ((0.5f + percent.x) * 10);
+                    planePosition = ((Vector3.right * percent.x) + (Vector3.forward * percent.y));
+                    transformedPosition = noiseFilter.SetNoiseDownwards(planePosition, falloff);
+                }
+
+
 
 
 
