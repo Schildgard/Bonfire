@@ -232,6 +232,16 @@ public class PlayerActionScript : MonoBehaviour
         Debug.Log("Movement unblocked");
     }
 
+    public void ActivateRootMotion()
+    {
+        Animator.applyRootMotion = true;
+    }
+
+    public void DeactivateRootMotion()
+    {
+        Animator.applyRootMotion = false;
+    }
+
 
     #region InputCallBackEvents
     public void WalkEvent(InputAction.CallbackContext _context)
