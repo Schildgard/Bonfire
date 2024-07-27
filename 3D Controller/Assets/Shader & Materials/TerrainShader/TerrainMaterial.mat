@@ -44,12 +44,24 @@ Material:
         m_Texture: {fileID: 2800000, guid: d3edbf87e43c12145a7061af9abcf0a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalFromTexture_14ae82ab2c2b47939137e8807d9c3243_Texture_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_02fed13e028a40bba1101dd039a115e1_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: d3edbf87e43c12145a7061af9abcf0a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_bccd4d0c7e484161b864349c0e1f71b1_Texture_1_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_cddfd3e8288a4158975c6fb50db0339d_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 92865002af9b3a14ea425c4e1d9f0c68, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_d3e45e6805964d25bbc58c0e13127375_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: cf63fe044dd7e8b49abd97c7cccd3158, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -66,6 +78,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _1: 0.5
+    - _2: 7
     - _Float: 2
     - _Float_1: 5
     - _MountainHeight: 10.6
@@ -75,6 +89,7 @@ Material:
     - _Noise_Value: 5
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Strength: 6.4
     - _Tiling_Mountain: 0.06
     - _Tiling_Plane: 1
     - _max: 14.8
