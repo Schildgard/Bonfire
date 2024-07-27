@@ -125,8 +125,8 @@ Material:
     - Alpha_Clip_Threshold: 0.86
     - Animation_Cutoff: 20
     - Boolean_42a44e347a464bd59e694ae00ebc61d5: 0
-    - Distance_Fade_End: 80
-    - Distance_Fade_Start: 40
+    - Distance_Fade_End: 100
+    - Distance_Fade_Start: 60
     - Dither_Scale: 1.5
     - Enable_Blend_Terrain_Color: 0
     - Normal_Scale: 1
