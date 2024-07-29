@@ -55,10 +55,16 @@ public class LightningBoltCollider : MonoBehaviour
         {
             damageableTarget.GetDamage(particleDamage);
         }
+
         if (electrizableTargets != null)
         {
             foreach (var target in electrizableTargets)
             {
+                if (_target.gameObject.layer == 4)
+                {
+                    target.Electrify(hitPosition);
+                }
+                else
                 target.Electrify();
             }
             return;

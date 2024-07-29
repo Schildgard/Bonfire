@@ -39,6 +39,13 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
         electrified = true;
     }
 
+    public void Electrify(Vector3 _hitpoint)
+    {
+        Debug.Log("Call of Electrified Method used a Vector3 as Input, which is not intended for this Effect." +
+        "Go the Scripit in which the Electrify Method is called and remove the Vector3 Paramater.");
+        Electrify();
+    }
+
     public void Die()
     {
         Destroy(this.gameObject);

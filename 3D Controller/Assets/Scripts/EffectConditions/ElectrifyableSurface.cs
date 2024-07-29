@@ -10,8 +10,11 @@ public class ElectrifyableSurface : MonoBehaviour, IElectrilizable
 
     public void Electrify()
     {
-
       ElectrifiedSurfaceVFX.SetActive(true);
+    }
 
+    public void Electrify(Vector3 _hitpoint)
+    {
+        Instantiate(ElectrifiedSurfaceVFX, _hitpoint, Quaternion.Euler(-90,0,0));
     }
 }
