@@ -69,6 +69,7 @@ public class LockOnCamera : MonoBehaviour
                 freeLook.enabled = true;
                 playerRotation.LockOn = false;
                 animator.SetBool("LockOn", false);
+                animator.SetTrigger("Unarm");
                 return;
             }
 
@@ -80,6 +81,7 @@ public class LockOnCamera : MonoBehaviour
             freeLook.enabled = false;
             playerRotation.LockOn = true;
            animator.SetBool("LockOn", true);
+            animator.SetTrigger("Equip");
 
         }
 

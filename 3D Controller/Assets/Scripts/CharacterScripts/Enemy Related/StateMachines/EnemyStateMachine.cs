@@ -70,7 +70,7 @@ public class EnemyStateMachine : EnemyStateMachineBase
                 EnemyAttackState, new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
                     { ()=> EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius) && !isAttacking, EnemyAttackState},
-                    { ()=> !EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyChaseState},
+                    { ()=> !EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius) && !isAttacking, EnemyChaseState},
 
                 }
 
