@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlaneGenerator
 {
@@ -35,6 +36,7 @@ public class PlaneGenerator
         meshFilter.mesh = mesh;
 
         newPlane.isStatic = true;
+        newPlane.AddComponent<NavMeshSurface>();
 
         DrawPlaneMesh(mesh, collider);
 
