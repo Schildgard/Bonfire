@@ -15,6 +15,8 @@ public class WeaponScript : MonoBehaviour
 
     [SerializeField] private AudioSource attackSound;
 
+    [SerializeField] private List<GameObject> onHitVFX;
+
     private void Start()
     {
         WielderStats = GetComponentInParent<StatScript>();
@@ -29,10 +31,13 @@ public class WeaponScript : MonoBehaviour
         if (attackSound != null)
         {
             Debug.Log("Played Sound because of Collision with "+ _target.name);
-            //AudioManager.instance.PlayerSFX[0].source.Play();
             attackSound.Play();
         }
         else { Debug.Log("WeaponCollider tries to play Weapon Hit Sound, but could find no AUdioManager in Scene"); }
+
+        var closestPoint = _target.ClosestPoint(transform.position);
+        Instantiate(onHitVFX[0], closestPoint, Quaternion.identity);
+
         float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
         IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
         Debug.Log("Array contains" + hittableTarget.Length + " Objects");

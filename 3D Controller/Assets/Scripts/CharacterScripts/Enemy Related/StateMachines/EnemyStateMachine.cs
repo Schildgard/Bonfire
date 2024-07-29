@@ -47,7 +47,7 @@ public class EnemyStateMachine : EnemyStateMachineBase
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
                     { ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState },
-                    { () => EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius), EnemyBattleState }
+                    { () => EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyAttackState }
 
                  // {
                  //   //MultiThreading
@@ -69,7 +69,6 @@ public class EnemyStateMachine : EnemyStateMachineBase
             {
                 EnemyAttackState, new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
-                    //   {() => !isAttacking, EnemyStrafingState },
                     { ()=> EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius) && !isAttacking, EnemyAttackState},
                     { ()=> !EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyChaseState},
 
