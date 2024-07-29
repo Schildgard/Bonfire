@@ -8,18 +8,13 @@ public class BonfireScript : MonoBehaviour
     public GameEvent RestEvent;
 
     [SerializeField]private GameObject Tooltip;
-    private bool bonfireActivated;
+    [SerializeField]private bool bonfireActivated;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y) && bonfireActivated) 
+        if (Input.GetKeyDown(KeyCode.M) && bonfireActivated)
         {
             RestEvent.Raise();
         }

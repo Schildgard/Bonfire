@@ -199,6 +199,7 @@ public class PlayerActionScript : MonoBehaviour
     public void RestAtFire()
     {
         Animator.SetTrigger("Resting");
+        Debug.Log("Rest Trigger");
     }
 
 
@@ -241,7 +242,6 @@ public class PlayerActionScript : MonoBehaviour
     {
         Animator.applyRootMotion = false;
     }
-
 
     #region InputCallBackEvents
     public void WalkEvent(InputAction.CallbackContext _context)

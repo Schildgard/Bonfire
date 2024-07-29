@@ -6,8 +6,6 @@ public class Flicker : MonoBehaviour
 {
 
     private Light Lightsource;
-    private float startIntensity;
-
     private float timer;
     private float flickerIntervall;
     [SerializeField]private float minInterval;
@@ -19,7 +17,6 @@ public class Flicker : MonoBehaviour
     void Start()
     {
         Lightsource = GetComponent<Light>();
-        startIntensity = Lightsource.intensity;
         flickerIntervall = Random.Range(minInterval, maxInterval);
     }
 
