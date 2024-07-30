@@ -29,10 +29,8 @@ public class EnemyStateMachine : EnemyStateMachineBase
         EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform);
         EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator);
 
-        EnemyBattleState EnemyBattleState = new EnemyBattleState(this, EnemyBattleStateMachine, Animator, NavMeshAgent);
-
-        EnemyAttackState EnemyAttackState = new EnemyAttackState(this, Animator, NavMeshAgent);  //Remove Battle StateMachine Later
-        EnemyStrafingState EnemyStrafingState = new EnemyStrafingState(this, NavMeshAgent, Animator); //Check Paramters for correctness
+        EnemyAttackState EnemyAttackState = new EnemyAttackState(this, Animator, NavMeshAgent);
+        EnemyStrafingState EnemyStrafingState = new EnemyStrafingState(this, NavMeshAgent, Animator);
 
 
         CurrentState = EnemyIdleState;
@@ -87,14 +85,6 @@ public class EnemyStateMachine : EnemyStateMachineBase
 
                 }
 
-            },
-
-            {
-                EnemyBattleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
-                {
-                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius) && !isAttacking, EnemyChaseState},
-                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.ChaseSphereRadius) && !isAttacking, EnemyReturnState}
-                }
             },
 
             {

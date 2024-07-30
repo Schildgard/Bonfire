@@ -1526,7 +1526,6 @@ GameObject:
   - component: {fileID: 3997754368316317066}
   - component: {fileID: 3997754368316317064}
   - component: {fileID: 3997754368316317068}
-  - component: {fileID: 3997754368316317079}
   - component: {fileID: 3997754368316317067}
   - component: {fileID: 3997754368316317078}
   - component: {fileID: 3997754368316317075}
@@ -1614,21 +1613,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71aa62f40cac7624c872b1594cac7ec7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerPosition: {fileID: 0}
-  EnemyPosition: {fileID: 0}
-  EnemyDetection: {fileID: 0}
---- !u!114 &3997754368316317079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3997754368316317070}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666cdd35a0fe804449670884152004e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPosition: {fileID: 0}
@@ -1740,8 +1724,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getDamageSoundIndex: 10
   deathSoundIndex: 11
-  EnemyStateMachines: []
   enemyID: 1
+  enemySounds:
+  - name: Spotted Player
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
+  - name: Agony Scream
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
+  - name: Die
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
 --- !u!114 &-6551806193598819533
 MonoBehaviour:
   m_ObjectHideFlags: 0

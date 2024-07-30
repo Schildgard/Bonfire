@@ -1,31 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : CharacterScript
 {
-    [SerializeField] private EnemyStateMachineBase[] EnemyStateMachines;
     [SerializeField] private int enemyID;
+    [SerializeField] private List<Sound> enemySounds;
 
-    private Vector3 SpawnPosition;
 
     public int EnemyID => enemyID;
 
     protected override void Start()
     {
         base.Start();
-        EnemyStateMachines = GetComponents<EnemyStateMachineBase>();
-        SpawnPosition = transform.position;
-    }
-
-    public override void Respawn()
-    {
-        transform.position = SpawnPosition;
-        Collider.enabled = true;
-
-        EnemyStateMachines[0].enabled = true;
-        Animator.SetTrigger("Respawn");
-
-        HealthScript.ResetHealth();
-        HealthScript.isAlive = true;
     }
 
     public override void GetDamage(float _damage)
@@ -49,9 +35,10 @@ public class EnemyScript : CharacterScript
         SoulsSystem.instance.GainSouls(Stats.SoulsValue);
         Collider.enabled = false;
         //drop Item
-        foreach (var enemyStateMachine in EnemyStateMachines)
-        {
-            enemyStateMachine.enabled = false;
-        }
+    }
+
+    public void PlaySoundSFX(int _index)
+    {
+        enemySounds[_index].source.Play();
     }
 }

@@ -15,7 +15,6 @@ public class EnemyReturnState : EnemyBaseState
 
     public override void StateEnter()
     {
-        //Debug.Log("OnReturnEnter");
         navMesh.isStopped = false;
     }
 
