@@ -33,26 +33,25 @@ public class AudioManager : MonoBehaviour
 
         foreach (var sound in Music)
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
+            InitializeAudioSources(sound);
         }
         foreach (var sound in SFX)
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
+            InitializeAudioSources(sound);
         }
         foreach (var sound in PlayerSFX)
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
+            InitializeAudioSources(sound);
         }
 
+    }
+
+    private void InitializeAudioSources(Sound _sound)
+    {
+        _sound.source = gameObject.AddComponent<AudioSource>();
+        _sound.source.clip = _sound.clip;
+        _sound.source.volume = _sound.volume;
+        _sound.source.pitch = _sound.pitch;
     }
 }
 

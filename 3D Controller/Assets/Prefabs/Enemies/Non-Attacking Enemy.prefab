@@ -1987,9 +1987,14 @@ MonoBehaviour:
   chaseSphereRadius: 0
   battleSphereRadius: 0
   attackSphereRadius: 0
+  alarmRadius: 10
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  Detected: 0
 --- !u!114 &7203789102157618689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2075,7 +2080,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getDamageSoundIndex: 10
   deathSoundIndex: 11
-  EnemyStateMachines: []
+  enemyID: 0
+  enemySounds: []
 --- !u!114 &7246262684698904536
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,11 +7,18 @@ public class EnemyDetectionScript : MonoBehaviour
 
     [SerializeField]private float radiusVectorX;
     [SerializeField]private float radiusVectorZ;
+
     [SerializeField]private float viewRange;
+
     [SerializeField]private float chaseSphereRadius;
     [SerializeField]private float battleSphereRadius;
-    [SerializeField] private float attackSphereRadius;
+    [SerializeField]private float attackSphereRadius;
+    [SerializeField] private float alarmRadius;
+
     [SerializeField] private LayerMask PlayerLayer;
+    [SerializeField] private LayerMask EnemyLayer;
+
+    public bool Detected;
 
     public float ViewRange 
     {
@@ -19,7 +26,7 @@ public class EnemyDetectionScript : MonoBehaviour
     }
     public float ChaseSphereRadius
     {
-        get { return chaseSphereRadius; }
+        get { return chaseSphereRadius; } 
         set { chaseSphereRadius = value; }
     }
     public float BattleSphereRadius
@@ -33,7 +40,7 @@ public class EnemyDetectionScript : MonoBehaviour
         set { attackSphereRadius = value; }
     }
 
-
+    public float AlarmRadius => alarmRadius;
 
 
     public bool CheckRange(float _checkRadius)
@@ -46,6 +53,21 @@ public class EnemyDetectionScript : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void Alarm()
+    {
+        Collider[] col;
+        col = Physics.OverlapSphere(transform.position, alarmRadius, layerMask: EnemyLayer);
+
+        if (col.Length > 0)
+        {
+            foreach (var enemy in col)
+            {
+                enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected = true;
+            }
+        }
+       
     }
 
 
@@ -61,11 +83,16 @@ public class EnemyDetectionScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackSphereRadius);
 
         Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, alarmRadius);
+
+        Gizmos.color = Color.black;
         Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(radiusVectorX, 0, radiusVectorZ)) * 10);
         Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(-radiusVectorX, 0, radiusVectorZ)) * 10);
 
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(transform.position, transform.forward * viewRange);
+
+
     }
 }

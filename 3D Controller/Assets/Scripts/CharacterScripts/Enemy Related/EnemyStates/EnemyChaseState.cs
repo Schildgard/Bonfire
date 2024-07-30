@@ -10,7 +10,7 @@ public class EnemyChaseState : EnemyBaseState
     private Transform EnemyTransform;
     
 
-    public EnemyChaseState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Transform _playerPosition, Animator _animator, Transform enemyTransform, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
+    public EnemyChaseState(EnemyStateMachineBase _enemyStateMachine, NavMeshAgent _navMesh, Transform _playerPosition, Animator _animator, Transform enemyTransform, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
     {
         PlayerPosition = _playerPosition;
         EnemyTransform = enemyTransform;

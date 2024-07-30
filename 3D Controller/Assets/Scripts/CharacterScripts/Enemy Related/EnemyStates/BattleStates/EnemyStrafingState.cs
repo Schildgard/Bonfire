@@ -10,7 +10,7 @@ public class EnemyStrafingState : EnemyBaseState
     private Vector3 Destination;
 
 
-    public EnemyStrafingState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Animator _animator, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
+    public EnemyStrafingState(EnemyStateMachineBase _enemyStateMachine, NavMeshAgent _navMesh, Animator _animator, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
     {
 
 

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyBaseState
 {
-    public EnemyAttackState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
+    public EnemyAttackState(EnemyStateMachineBase _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
     {
 
     }

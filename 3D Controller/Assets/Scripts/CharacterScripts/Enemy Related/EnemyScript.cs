@@ -7,7 +7,6 @@ public class EnemyScript : CharacterScript
     [SerializeField] private List<Sound> enemySounds;
 
 
-
     public int EnemyID => enemyID;
 
     protected override void Start()

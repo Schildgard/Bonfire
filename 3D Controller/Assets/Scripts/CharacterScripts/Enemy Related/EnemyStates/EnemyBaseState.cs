@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyBaseState
 {
-    protected EnemyStateMachine StateMachine;
+    protected EnemyStateMachineBase StateMachine;
 
     protected Animator animator;
     protected NavMeshAgent navMesh;
@@ -24,7 +24,7 @@ public abstract class EnemyBaseState
     protected float distanceTolerance = 0.05f;
     #endregion
 
-    public EnemyBaseState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh, EnemyScript _enemyScript)
+    public EnemyBaseState(EnemyStateMachineBase _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh, EnemyScript _enemyScript)
     {
         StateMachine = _enemyStateMachine;
         animator = _animator;
