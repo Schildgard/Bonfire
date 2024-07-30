@@ -16,6 +16,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
     public EnemyDetectionScript EnemyDetection;
     protected NavMeshAgent NavMeshAgent;
     protected Animator Animator;
+    protected EnemyScript enemyScript;
 
     protected bool isAttacking;
 
@@ -38,6 +39,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
         EnemyDetection = GetComponent<EnemyDetectionScript>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
+        enemyScript = GetComponent<EnemyScript>();
     }
 
 

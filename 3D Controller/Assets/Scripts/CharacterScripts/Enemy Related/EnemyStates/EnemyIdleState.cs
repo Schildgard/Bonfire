@@ -5,10 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyIdleState : EnemyBaseState
 {
-
-    public EnemyIdleState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh) : base(_enemyStateMachine, _animator, _navMesh) 
+    public EnemyIdleState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript) 
     {
-
+        
     }
 
 
@@ -23,6 +22,6 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void StateExit()
     {
-       // Debug.Log("OnIdleExit");
+        enemyScript.PlaySoundSFX(0);
     }
 }

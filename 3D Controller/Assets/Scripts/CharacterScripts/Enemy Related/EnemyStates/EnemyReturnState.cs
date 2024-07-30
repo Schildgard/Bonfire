@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyReturnState : EnemyBaseState
 {
     private Vector3 StartPosition;
-    public EnemyReturnState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Vector3 _startPosition, Animator _animator) : base(_enemyStateMachine, _animator, _navMesh)
+    public EnemyReturnState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Vector3 _startPosition, Animator _animator, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
     {
         StartPosition = _startPosition;
         velocityHashZ = Animator.StringToHash("VelocityZ");

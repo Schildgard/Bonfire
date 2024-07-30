@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : EnemyStateMachineBase
 {
-    private EnemyBattleStateMachine EnemyBattleStateMachine;
     private Vector3 StartPosition;
 
     #region MultiThreading
@@ -18,19 +17,18 @@ public class EnemyStateMachine : EnemyStateMachineBase
     {
         base.Awake();
         StartPosition = transform.position;
-        EnemyBattleStateMachine = GetComponent<EnemyBattleStateMachine>();
     }
 
 
 
     public override void InitializeStateMachine()
     {
-        EnemyIdleState EnemyIdleState = new EnemyIdleState(this, Animator, NavMeshAgent);
-        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform);
-        EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator);
+        EnemyIdleState EnemyIdleState = new EnemyIdleState(this, Animator, NavMeshAgent, enemyScript);
+        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform, enemyScript);
+        EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator, enemyScript);
 
-        EnemyAttackState EnemyAttackState = new EnemyAttackState(this, Animator, NavMeshAgent);
-        EnemyStrafingState EnemyStrafingState = new EnemyStrafingState(this, NavMeshAgent, Animator);
+        EnemyAttackState EnemyAttackState = new EnemyAttackState(this, Animator, NavMeshAgent, enemyScript);
+        EnemyStrafingState EnemyStrafingState = new EnemyStrafingState(this, NavMeshAgent, Animator, enemyScript);
 
 
         CurrentState = EnemyIdleState;

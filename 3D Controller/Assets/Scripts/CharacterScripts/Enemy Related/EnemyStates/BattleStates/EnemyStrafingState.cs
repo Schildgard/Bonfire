@@ -10,7 +10,7 @@ public class EnemyStrafingState : EnemyBaseState
     private Vector3 Destination;
 
 
-    public EnemyStrafingState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Animator _animator) : base(_enemyStateMachine, _animator, _navMesh)
+    public EnemyStrafingState(EnemyStateMachine _enemyStateMachine, NavMeshAgent _navMesh, Animator _animator, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
     {
 
 
@@ -18,12 +18,6 @@ public class EnemyStrafingState : EnemyBaseState
 
     public override void StateEnter()
     {
-
-        Debug.Log("Enter Strafing State");
-        //  Destination = BattleStateMachine.EnemyPosition.position + new Vector3(BattleStateMachine.EnemyPosition.right.x *Random.Range(-2, 3), 0, BattleStateMachine.EnemyPosition.forward.z * Random.Range(0, 2));
-        //  BattleStateMachine.TargetPosition = Destination;
-
-
         //Set Destination within Battle Range, but not behind Player
 
         StateMachine.StateTimer = Random.Range(1f, 8f);

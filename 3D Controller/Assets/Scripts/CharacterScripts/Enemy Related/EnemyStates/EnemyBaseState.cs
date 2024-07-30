@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public abstract class EnemyBaseState
 {
     protected EnemyStateMachine StateMachine;
-    protected EnemyBattleStateMachine BattleStateMachine;
 
     protected Animator animator;
     protected NavMeshAgent navMesh;
+    protected EnemyScript enemyScript;
     #region BlendTreeRelated
     protected float velocityX;
     protected float velocityZ;
@@ -24,27 +24,17 @@ public abstract class EnemyBaseState
     protected float distanceTolerance = 0.05f;
     #endregion
 
-    public EnemyBaseState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh)
+    public EnemyBaseState(EnemyStateMachine _enemyStateMachine, Animator _animator, NavMeshAgent _navMesh, EnemyScript _enemyScript)
     {
         StateMachine = _enemyStateMachine;
         animator = _animator;
         navMesh = _navMesh;
-    }
-
-    public EnemyBaseState(EnemyBattleStateMachine _enemyBattleStateMachine, Animator _animator, NavMeshAgent _navMesh)
-    {
-        BattleStateMachine = _enemyBattleStateMachine;
-        animator = _animator;
-        navMesh = _navMesh;
-
+        enemyScript = _enemyScript;
     }
 
     public virtual void StateEnter()
     {
-        if(BattleStateMachine != null)
-        {
-            BattleStateMachine.StateTimer = Random.Range(1, 4);
-        }
+
     }
 
     public virtual void StateUpdate()

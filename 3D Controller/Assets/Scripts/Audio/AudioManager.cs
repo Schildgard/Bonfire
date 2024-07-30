@@ -63,8 +63,8 @@ public class Sound
     public string name;
     public AudioClip clip;
     public AudioSource source;
-    [Range(0, 1)] public float volume;
-    [Range(-3f, 3f)] public float pitch;
+    [Range(0, 1)] public float volume =0.5f;
+    [Range(-3f, 3f)] public float pitch = 1f;
 
 
 

@@ -7,11 +7,20 @@ public class EnemyScript : CharacterScript
     [SerializeField] private List<Sound> enemySounds;
 
 
+
     public int EnemyID => enemyID;
 
     protected override void Start()
     {
         base.Start();
+
+        foreach(var sound in enemySounds)
+        {
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = sound.clip;
+            sound.source.volume = sound.volume;
+            sound.source.pitch = sound.pitch;
+        }
     }
 
     public override void GetDamage(float _damage)

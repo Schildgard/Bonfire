@@ -1727,20 +1727,25 @@ MonoBehaviour:
   enemyID: 1
   enemySounds:
   - name: Spotted Player
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 24b617db03a924c4ab49c13feb18c10d, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.5
+    pitch: 1.5
   - name: Agony Scream
     clip: {fileID: 0}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.5
+    pitch: 1
   - name: Die
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.5
+    pitch: 1
+  - name: Heavy Attack Scream
+    clip: {fileID: 8300000, guid: 90054576c036ea44096d20cc89ff4da2, type: 3}
+    source: {fileID: 0}
+    volume: 0.5
+    pitch: 1
 --- !u!114 &-6551806193598819533
 MonoBehaviour:
   m_ObjectHideFlags: 0
