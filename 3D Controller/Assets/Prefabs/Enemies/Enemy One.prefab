@@ -1537,7 +1537,7 @@ GameObject:
   - component: {fileID: -919524074775619080}
   m_Layer: 8
   m_Name: Enemy One
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1741,6 +1741,7 @@ MonoBehaviour:
   getDamageSoundIndex: 10
   deathSoundIndex: 11
   EnemyStateMachines: []
+  enemyID: 1
 --- !u!114 &-6551806193598819533
 MonoBehaviour:
   m_ObjectHideFlags: 0

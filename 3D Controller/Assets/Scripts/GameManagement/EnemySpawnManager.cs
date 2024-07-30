@@ -2,34 +2,50 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
 {
 
-    public static EnemySpawnManager instance;
+      public static EnemySpawnManager instance;
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else { Destroy(gameObject); }
-        DontDestroyOnLoad(gameObject);
+           if (instance == null) instance = this;
+           else { Destroy(gameObject); }
+           DontDestroyOnLoad(gameObject);
 
-        
+
     }
+    [SerializeField] private GameObject[] EnemyPrefabs;
 
 
-    private EnemyScript[] RespawnableEnemies;
-    [SerializeField]private GameObject SoulscratePrefab;
-    [SerializeField]private PlayerScript PlayerReference;
-    [SerializeField]private Transform PlayerSpawnPosition;
+    [SerializeField] private GameObject[] Enemies;
+
+    [SerializeField] private EnemyData[] EnemyDataArray;
+
+
+    [SerializeField] private GameObject SoulscratePrefab;
+    [SerializeField] private PlayerScript PlayerReference;
+    [SerializeField] private Transform PlayerSpawnPosition;
 
 
 
 
     private void Start()
     {
-        RespawnableEnemies = (FindObjectsByType<EnemyScript>(FindObjectsSortMode.None));
+        //   RespawnableEnemies = (FindObjectsByType<EnemyScript>(FindObjectsSortMode.None));
+
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        EnemyDataArray = new EnemyData[Enemies.Length];
+
+        for (int i = 0; i < Enemies.Length; i++)
+        {
+            EnemyDataArray[i].EnemyID = Enemies[i].GetComponent<EnemyScript>().EnemyID;
+            EnemyDataArray[i].Position = Enemies[i].transform.position;
+            EnemyDataArray[i].Rotation = Enemies[i].transform.rotation;
+        }
 
     }
 
@@ -40,13 +56,18 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void RespawnList()
     {
-        foreach (EnemyScript Enemy in RespawnableEnemies)
+        for (int i = 0; i < Enemies.Length; i++)
         {
-            Enemy.Respawn();
+            Destroy(Enemies[i].gameObject);
+        }
+        for (int i = 0; i < EnemyDataArray.Length; i++)
+        {
+            Enemies[i] = RespawnEnemy(EnemyDataArray[i].EnemyID, EnemyDataArray[i].Position, EnemyDataArray[i].Rotation);
+
         }
     }
 
-    public void SpawnSoulsCrate() 
+    public void SpawnSoulsCrate()
     {
         Debug.Log("Try to spawn SoulsCrate");
         Instantiate(SoulscratePrefab, PlayerReference.transform.position, Quaternion.identity);
@@ -59,4 +80,19 @@ public class EnemySpawnManager : MonoBehaviour
         PlayerReference.Respawn();
         PlayerReference.transform.position = PlayerSpawnPosition.position;
     }
+
+    public GameObject RespawnEnemy(int _enemyID, Vector3 _position, Quaternion _rotation)
+    {
+      GameObject Enemy = Instantiate(EnemyPrefabs[_enemyID], _position, _rotation);
+        return Enemy;
+    }
+}
+
+
+[Serializable]
+public struct EnemyData
+{
+    public int EnemyID;
+    public Vector3 Position;
+    public Quaternion Rotation;
 }

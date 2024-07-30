@@ -3,8 +3,11 @@ using UnityEngine;
 public class EnemyScript : CharacterScript
 {
     [SerializeField] private EnemyStateMachineBase[] EnemyStateMachines;
+    [SerializeField] private int enemyID;
 
     private Vector3 SpawnPosition;
+
+    public int EnemyID => enemyID;
 
     protected override void Start()
     {
