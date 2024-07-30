@@ -20,7 +20,6 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void StateEnter()
     {
-        Debug.Log("Enter Chase State");
         navMesh.isStopped = false;
     }
 
@@ -39,6 +38,7 @@ public class EnemyChaseState : EnemyBaseState
         velocityZ = 0f;
         animator.SetFloat(velocityHashZ, velocityZ);
         navMesh.isStopped = true;
+        Debug.Log(velocityZ);
 
     }
 

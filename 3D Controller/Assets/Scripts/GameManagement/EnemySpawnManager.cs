@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
@@ -35,8 +31,6 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void Start()
     {
-        //   RespawnableEnemies = (FindObjectsByType<EnemyScript>(FindObjectsSortMode.None));
-
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         EnemyDataArray = new EnemyData[Enemies.Length];
 
@@ -63,7 +57,6 @@ public class EnemySpawnManager : MonoBehaviour
         for (int i = 0; i < EnemyDataArray.Length; i++)
         {
             Enemies[i] = RespawnEnemy(EnemyDataArray[i].EnemyID, EnemyDataArray[i].Position, EnemyDataArray[i].Rotation);
-
         }
     }
 

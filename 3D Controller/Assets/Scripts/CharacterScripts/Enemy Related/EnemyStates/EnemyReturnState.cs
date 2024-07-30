@@ -30,6 +30,7 @@ public class EnemyReturnState : EnemyBaseState
     public override void StateExit()
     {
         velocityZ = 0f;
+        animator.SetFloat(velocityHashZ, velocityZ);
         navMesh.isStopped=true;
     }
 
