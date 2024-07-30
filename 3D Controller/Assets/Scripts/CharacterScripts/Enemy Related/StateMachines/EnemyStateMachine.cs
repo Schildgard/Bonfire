@@ -24,8 +24,8 @@ public class EnemyStateMachine : EnemyStateMachineBase
     public override void InitializeStateMachine()
     {
         EnemyIdleState EnemyIdleState = new EnemyIdleState(this, Animator, NavMeshAgent, enemyScript);
-        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform, enemyScript);
-        EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator, enemyScript);
+        EnemyChaseState EnemyChaseState = new EnemyChaseState(this, NavMeshAgent, PlayerPosition, Animator, this.transform, enemyScript, EnemyDetection);
+        EnemyReturnState EnemyReturnState = new EnemyReturnState(this, NavMeshAgent, StartPosition, Animator, enemyScript, EnemyDetection);
 
         EnemyAttackState EnemyAttackState = new EnemyAttackState(this, Animator, NavMeshAgent, enemyScript);
         EnemyStrafingState EnemyStrafingState = new EnemyStrafingState(this, NavMeshAgent, Animator, enemyScript);
@@ -43,7 +43,8 @@ public class EnemyStateMachine : EnemyStateMachineBase
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
                     { ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState },
-                    { () => EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyAttackState }
+                    { () => EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyChaseState },
+                    { ()=> EnemyDetection.Detected,EnemyChaseState }
 
                  // {
                  //   //MultiThreading

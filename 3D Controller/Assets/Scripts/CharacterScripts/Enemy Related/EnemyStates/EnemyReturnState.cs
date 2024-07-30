@@ -6,9 +6,12 @@ using UnityEngine.AI;
 public class EnemyReturnState : EnemyBaseState
 {
     private Vector3 StartPosition;
-    public EnemyReturnState(EnemyStateMachineBase _enemyStateMachine, NavMeshAgent _navMesh, Vector3 _startPosition, Animator _animator, EnemyScript _enemyScript) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
+    private EnemyDetectionScript detection;
+    public EnemyReturnState(EnemyStateMachineBase _enemyStateMachine, NavMeshAgent _navMesh, Vector3 _startPosition, Animator _animator, EnemyScript _enemyScript, EnemyDetectionScript _detection) : base(_enemyStateMachine, _animator, _navMesh, _enemyScript)
     {
         StartPosition = _startPosition;
+        detection = _detection;
+
         velocityHashZ = Animator.StringToHash("VelocityZ");
     }
 
@@ -16,6 +19,7 @@ public class EnemyReturnState : EnemyBaseState
     public override void StateEnter()
     {
         navMesh.isStopped = false;
+        detection.Detected = false;
     }
 
     public override void StateUpdate()

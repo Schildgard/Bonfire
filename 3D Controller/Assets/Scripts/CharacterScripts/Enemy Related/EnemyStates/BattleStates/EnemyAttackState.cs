@@ -13,7 +13,6 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void StateEnter()
     {
-        Debug.Log("Enter Attack State");
         StateMachine.transform.LookAt(StateMachine.PlayerPosition);
         StateMachine.IsAttacking = true;
         Attack();
@@ -27,7 +26,6 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void StateExit()
     {
-        Debug.Log("Exit Attack State");
     }
 
 
@@ -35,18 +33,15 @@ public class EnemyAttackState : EnemyBaseState
     {
         if (StateMachine.EnemyDetection.CheckRange(StateMachine.EnemyDetection.AttackSphereRadius) == true)
         {
-            Debug.Log("Enemy is in Range for Close Attack");
             int randomAttackIndex = Random.Range(0, 2);
 
             if (randomAttackIndex == 0)
             {
                 animator.SetTrigger("Attack Trigger");
-                Debug.Log("Enemy performs normal Attack");
             }
             else if (randomAttackIndex == 1)
             {
                 animator.SetTrigger("Heavy Attack");
-                 Debug.Log("Enemy performs Heavy Attack");
             }
 
         }

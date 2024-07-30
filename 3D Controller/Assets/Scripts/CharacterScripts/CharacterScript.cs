@@ -30,7 +30,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         HealthScript.currentHealth -= (_damage - defMultiplier);
         HealthScript.UpdateHealthBar();
 
-        Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage");
+        Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage ({_damage} - {defMultiplier})");
 
         Animator.SetTrigger("Get Damage");
         if (HealthScript.currentHealth <= 0)
@@ -56,7 +56,6 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
             AudioManager.instance.SFX[deathSoundIndex].source.Play();
         }
         else { Debug.Log("Character Script Failed to Find Audio Manager"); }
-        Debug.Log(gameObject.name + "died");
     }
 
 }

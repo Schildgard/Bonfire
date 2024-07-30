@@ -46,7 +46,7 @@ public class WeaponScript : MonoBehaviour
         {
             hit.GetDamage(weaponDamage + damageMultiplier);
            // AudioManager.instance.SFX[9].source.Play();
-            Debug.Log($"Weapon dealt{weaponDamage + damageMultiplier} Damage");
+            Debug.Log($"Weapon striked for {weaponDamage + damageMultiplier} Damage ({weaponDamage} + {damageMultiplier}");
         }
     }
 }
