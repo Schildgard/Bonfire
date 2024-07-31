@@ -49,4 +49,6 @@ public class EnemyScript : CharacterScript
     {
         enemySounds[_index].source.Play();
     }
+
+ 
 }

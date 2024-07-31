@@ -23,5 +23,6 @@ public class AgonizedEnemy_IdleState : EnemyBaseState
     public override void StateExit()
     {
         //Call For Help
+        animator.SetTrigger("Attention");
     }
 }

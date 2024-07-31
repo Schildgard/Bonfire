@@ -30,7 +30,6 @@ public class WeaponScript : MonoBehaviour
     {
         if (attackSound != null)
         {
-            Debug.Log("Played Sound because of Collision with "+ _target.name);
             attackSound.Play();
         }
         else { Debug.Log("WeaponCollider tries to play Weapon Hit Sound, but could find no AUdioManager in Scene"); }
@@ -40,7 +39,6 @@ public class WeaponScript : MonoBehaviour
 
         float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
         IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
-        Debug.Log("Array contains" + hittableTarget.Length + " Objects");
         if (hittableTarget == null) return;
         foreach (var hit in hittableTarget)
         {

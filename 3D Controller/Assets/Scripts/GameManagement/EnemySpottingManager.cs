@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class EnemySpottingManager : MonoBehaviour
 {
-    [SerializeField] private List<EnemyDetectionScript> EnemiesInScene;
+ private IAggroable[] Enemies;
 
+    [SerializeField] private EnemySpawnManager EnemySpawnManager;
     private void Update()
     {
-        foreach (var enemy in EnemiesInScene)
+        // TO DO: Check if calculation is handled when Enemy is dead.
+        foreach(var enemy in Enemies) 
         {
-            if (enemy.Detected)
-            {
-                enemy.Alarm();
-            }
+            enemy.CheckAggressiveBehaviour();
         }
+
     }
 
-}
+    public void UpdateEnemiyList()
+    {
+        Enemies = new IAggroable[EnemySpawnManager.Enemies.Length];
 
-
-
-
-public class Data
-{
-    public EnemyScript enemyScript;
-    public EnemyDetectionScript detectionScript;
-
+        for(int i = 0; i < EnemySpawnManager.Enemies.Length; i++)
+        {
+            Enemies[i] = EnemySpawnManager.Enemies[i].GetComponent<IAggroable>();
+        }
+    }
 
 }

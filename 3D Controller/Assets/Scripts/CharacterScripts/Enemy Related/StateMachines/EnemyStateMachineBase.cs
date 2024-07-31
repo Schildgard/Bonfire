@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyStateMachineBase : MonoBehaviour
+public abstract class EnemyStateMachineBase : MonoBehaviour, IAggroable
 {
     public delegate bool StateMachineDelegate();
     public Dictionary<EnemyBaseState, Dictionary<StateMachineDelegate, EnemyBaseState>> EnemyStateDictionary;
@@ -131,4 +131,8 @@ public abstract class EnemyStateMachineBase : MonoBehaviour
         isAttacking = true;
     }
 
+    public virtual void CheckAggressiveBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
 }

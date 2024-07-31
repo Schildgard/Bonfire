@@ -97,7 +97,19 @@ public class EnemyStateMachine : EnemyStateMachineBase
         };
     }
 
+    public override void CheckAggressiveBehaviour()
+    {
+        Collider[] col;
+        col = Physics.OverlapSphere(transform.position, EnemyDetection.AlarmRadius, layerMask: EnemyDetection.EnemyLayer);
 
+        if (col.Length > 0)
+        {
+            foreach (var enemy in col)
+            {
+                enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected = true;
+            }
+        }
+    }
 
 
 }

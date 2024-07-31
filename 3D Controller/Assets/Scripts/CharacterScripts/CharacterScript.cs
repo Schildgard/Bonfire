@@ -32,7 +32,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
         Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage ({_damage} - {defMultiplier})");
 
-        Animator.SetTrigger("Get Damage");
+        Animator.SetTrigger("Stagger");
         if (HealthScript.currentHealth <= 0)
         { Die(); }
         else if (AudioManager.instance != null)

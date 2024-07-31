@@ -1282,7 +1282,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -1304,7 +1304,8 @@ MonoBehaviour:
   weaponDamage: 450
   strengthScaling: 0
   attackSound: {fileID: 0}
-  onHitVFX: []
+  onHitVFX:
+  - {fileID: 6390966103519915430, guid: 52a4bff356c2eb643aebe7bb10ead6c6, type: 3}
 --- !u!1 &3958391918085086574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,7 +2255,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -3020,7 +3021,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 80d6e3472eb58004db3afafbe207deab, type: 3}
+  - {fileID: 2100000, guid: d9f7820f4186b6e479ccd0862b6986cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

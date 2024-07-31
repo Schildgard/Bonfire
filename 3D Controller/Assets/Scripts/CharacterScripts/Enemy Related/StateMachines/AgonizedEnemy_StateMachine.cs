@@ -5,6 +5,7 @@ using UnityEngine;
 public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
 {
     private Vector3 StartPosition;
+    private bool CallAnimationIsPlaying;
 
     #region MultiThreading
     private bool taskBool;
@@ -21,7 +22,8 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
 
     public override void InitializeStateMachine()
     {
-        EnemyIdleState EnemyIdleState = new EnemyIdleState(this, Animator, NavMeshAgent, enemyScript);
+        AgonizedEnemy_IdleState EnemyIdleState = new AgonizedEnemy_IdleState(this, Animator, NavMeshAgent, enemyScript);
+        AgonizedEnemy_CallForHelpState CallforHelpState = new AgonizedEnemy_CallForHelpState(this, Animator, NavMeshAgent, enemyScript);
 
 
 
@@ -43,10 +45,20 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                      //
+                      {()=> EnemyDetection.Detected, CallforHelpState }
                   }
 
              },
+
+
+             {
+                  CallforHelpState, new Dictionary<StateMachineDelegate,EnemyBaseState>
+                  {
+                      {()=> CallAnimationIsPlaying, EnemyChaseState }
+                  }
+
+             },
+
 
 
             {
@@ -89,5 +101,28 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
             },
 
         };
+    }
+
+    public void SetCallAnimationStartedBool()
+    {
+        CallAnimationIsPlaying = true;
+    }
+    public void SetCallAnimationBoolEnded()
+    {
+        CallAnimationIsPlaying = false;
+    }
+
+    public override void CheckAggressiveBehaviour()
+    {
+        Collider[] col;
+        col = Physics.OverlapSphere(transform.position, EnemyDetection.AlarmRadius, layerMask: EnemyDetection.EnemyLayer);
+
+        foreach (var enemy in col)
+        {
+            if (enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected)
+            {
+                EnemyDetection.Detected = true;
+            }
+        }
     }
 }

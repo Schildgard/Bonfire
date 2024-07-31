@@ -5,28 +5,30 @@ using UnityEngine;
 public class EnemyDetectionScript : MonoBehaviour
 {
 
-    [SerializeField]private float radiusVectorX;
-    [SerializeField]private float radiusVectorZ;
+    [SerializeField] private float radiusVectorX;
+    [SerializeField] private float radiusVectorZ;
 
-    [SerializeField]private float viewRange;
+    [SerializeField] private float viewRange;
 
-    [SerializeField]private float chaseSphereRadius;
-    [SerializeField]private float battleSphereRadius;
-    [SerializeField]private float attackSphereRadius;
+    [SerializeField] private float chaseSphereRadius;
+    [SerializeField] private float battleSphereRadius;
+    [SerializeField] private float attackSphereRadius;
     [SerializeField] private float alarmRadius;
 
     [SerializeField] private LayerMask PlayerLayer;
-    [SerializeField] private LayerMask EnemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
 
     public bool Detected;
 
-    public float ViewRange 
+    public LayerMask EnemyLayer => enemyLayer;
+
+    public float ViewRange
     {
-        get { return viewRange;}
+        get { return viewRange; }
     }
     public float ChaseSphereRadius
     {
-        get { return chaseSphereRadius; } 
+        get { return chaseSphereRadius; }
         set { chaseSphereRadius = value; }
     }
     public float BattleSphereRadius
@@ -53,21 +55,6 @@ public class EnemyDetectionScript : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void Alarm()
-    {
-        Collider[] col;
-        col = Physics.OverlapSphere(transform.position, alarmRadius, layerMask: EnemyLayer);
-
-        if (col.Length > 0)
-        {
-            foreach (var enemy in col)
-            {
-                enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected = true;
-            }
-        }
-       
     }
 
 
