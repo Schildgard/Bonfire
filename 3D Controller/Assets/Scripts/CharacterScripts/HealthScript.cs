@@ -10,7 +10,7 @@ public class HealthScript : MonoBehaviour
     public float MaxHealth { get { return maxHealth; } set { MaxHealth = value; } }
     public bool isAlive;
     private StatScript Stats;
-    private Image Healthbar;
+    [SerializeField] private Image Healthbar;
 
 
 
@@ -19,9 +19,6 @@ public class HealthScript : MonoBehaviour
     private void Awake()
     {
         Stats = GetComponent<StatScript>();
-        Healthbar = GetComponentInChildren<Image>();
-
-
     }
 
     private void Start()
@@ -56,7 +53,6 @@ public class HealthScript : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        Debug.Log(gameObject.name + "Healthbar updated");
         Healthbar.fillAmount = (1 / maxHealth) * currentHealth;
     }
 }

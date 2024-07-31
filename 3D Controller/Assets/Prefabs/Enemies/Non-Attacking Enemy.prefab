@@ -2098,6 +2098,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   isAlive: 0
+  Healthbar: {fileID: 727238025618415998}
 --- !u!114 &2718749254380536916
 MonoBehaviour:
   m_ObjectHideFlags: 0
