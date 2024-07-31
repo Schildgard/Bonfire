@@ -1637,11 +1637,11 @@ MonoBehaviour:
   chaseSphereRadius: 20.2
   battleSphereRadius: 2.33
   attackSphereRadius: 1.3
-  alarmRadius: 3
+  alarmRadius: 8
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 128
-  EnemyLayer:
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 256
   Detected: 0

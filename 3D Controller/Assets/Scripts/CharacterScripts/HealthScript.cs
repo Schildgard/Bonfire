@@ -56,6 +56,7 @@ public class HealthScript : MonoBehaviour
 
     public void UpdateHealthBar()
     {
+        Debug.Log(gameObject.name + "Healthbar updated");
         Healthbar.fillAmount = (1 / maxHealth) * currentHealth;
     }
 }

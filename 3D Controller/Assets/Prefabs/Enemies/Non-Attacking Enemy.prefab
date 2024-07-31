@@ -1975,7 +1975,7 @@ Animator:
   m_GameObject: {fileID: 5571949759734527651}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 80d6e3472eb58004db3afafbe207deab, type: 3}
-  m_Controller: {fileID: 9100000, guid: e9062420205435343b1edad15f91af3d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 97b55f935d746e64398f0fde9ba2f932, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2016,16 +2016,16 @@ MonoBehaviour:
   radiusVectorX: 0
   radiusVectorZ: 0
   viewRange: 0
-  chaseSphereRadius: 0
-  battleSphereRadius: 0
-  attackSphereRadius: 0
-  alarmRadius: 10
+  chaseSphereRadius: 35
+  battleSphereRadius: 2.33
+  attackSphereRadius: 1.3
+  alarmRadius: 25
   PlayerLayer:
     serializedVersion: 2
-    m_Bits: 0
-  EnemyLayer:
+    m_Bits: 128
+  enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   Detected: 0
 --- !u!114 &7203789102157618689
 MonoBehaviour:

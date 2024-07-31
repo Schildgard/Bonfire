@@ -38,8 +38,11 @@ public class EnemyScript : CharacterScript
         {
         AudioManager.instance.SFX[10].source.pitch = 1.84f;
         }
+
         else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
+
         base.Die();
+
         SoulsSystem.instance.GainSouls(Stats.SoulsValue);
         Collider.enabled = false;
         //drop Item
@@ -47,6 +50,7 @@ public class EnemyScript : CharacterScript
 
     public void PlaySoundSFX(int _index)
     {
+        Debug.Log($"try to play Sounds of {this.gameObject.name} Index of {_index} ");
         enemySounds[_index].source.Play();
     }
 
