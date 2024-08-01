@@ -9,6 +9,11 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
 
     [SerializeField] private GameObject ElectrifyEffect;
     [SerializeField] private GameObject SparkEffect;
+
+    [SerializeField] private float scaleIncreaseSpeed;
+    [SerializeField] private Transform sphereObject;
+    [SerializeField] private GameObject instantiationEffect;
+    private float transformScale;
     private bool electrified;
 
 
@@ -21,6 +26,18 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
     private void Start()
     {
         BoostDefense();
+    }
+    private void Update()
+    {
+        if (transformScale < 2f)
+        {
+            transformScale = Mathf.Clamp(transformScale + (Time.deltaTime * scaleIncreaseSpeed), 0f, 2f);
+            sphereObject.localScale = new Vector3(transformScale, transformScale, transformScale);
+        }
+        else if (transformScale >=2 && instantiationEffect.activeSelf)
+        {
+            instantiationEffect.SetActive(false);
+        }
     }
 
     private void BoostDefense()
