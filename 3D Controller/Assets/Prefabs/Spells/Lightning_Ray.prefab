@@ -4948,8 +4948,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitSphereRadius: 0.5
-  particleDamage: 1
-  maxHitDistance: 9
+  particleDamage: 450
+  maxHitDistance: 3
 --- !u!1 &3260627752454508614
 GameObject:
   m_ObjectHideFlags: 0

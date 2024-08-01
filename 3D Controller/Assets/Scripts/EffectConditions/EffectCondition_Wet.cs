@@ -8,12 +8,14 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
 
     private Material ElectrifiedMaterial;
     private Material WetMaterial;
+    
 
 
     protected override void Awake()
     {
         maxduration = 20;
         base.Awake();
+        
     }
 
     protected override void Update()
@@ -41,7 +43,7 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
         {
             var Condition = SkinnedMeshRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
 
-            SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial }; ;
+            SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial }; 
         }
         else
         {

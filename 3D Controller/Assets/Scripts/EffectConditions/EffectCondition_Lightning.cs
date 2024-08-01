@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class EffectCondition_Lightning : StatusEffect
 {
-    
+    private Animator animator;
+
     protected override void Awake()
     {
+        animator = GetComponentInParent<Animator>();
+        animator.SetBool("Electrified", true);
         maxduration = 5;
         sfxIndex = 8;
         base.Awake();
@@ -22,5 +25,12 @@ public class EffectCondition_Lightning : StatusEffect
     protected override void Update()
     {
         base.Update();
+    }
+
+
+    private void OnDestroy()
+    {
+        animator.SetBool("Electrified", false);
+        Debug.Log("Electrified" + animator.GetBool("Electrified"));
     }
 }

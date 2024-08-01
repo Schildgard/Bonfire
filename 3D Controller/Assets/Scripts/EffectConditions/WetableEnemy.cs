@@ -7,11 +7,15 @@ public class WetableEnemy : MonoBehaviour, IWetable
 {
     [SerializeField] private GameObject ObjectToPlaceEffectCondition;
     [SerializeField]private GameObject WetCondition;
+    private Animator animator;
 
     public Material ElectrifiedMaterial; // Used by EffectCondition - Wet (which is neccessary since EffectCondition_Wet is added via Runtime, and contains no serializable fields
     public Material WetMaterial;
 
-
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     public void GetWet()
     {
         WetCondition.SetActive(true); // Can probably be handled by EffectConditionScript_Wet as well
@@ -22,5 +26,6 @@ public class WetableEnemy : MonoBehaviour, IWetable
     public void GetDry() 
     {
         WetCondition.SetActive(false); // Can probably be handled by EffectConditionScript_Wet as well
+        animator.SetBool("Electrified", false);
     }
 }
