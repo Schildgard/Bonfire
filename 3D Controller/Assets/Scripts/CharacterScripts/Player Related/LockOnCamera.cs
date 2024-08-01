@@ -80,7 +80,7 @@ public class LockOnCamera : MonoBehaviour
             lockOnCamera.LookAt = Target;
             freeLook.enabled = false;
             playerRotation.LockOn = true;
-           animator.SetBool("LockOn", true);
+            animator.SetBool("LockOn", true);
             animator.SetTrigger("Equip");
 
         }

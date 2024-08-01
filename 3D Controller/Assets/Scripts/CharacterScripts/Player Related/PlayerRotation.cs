@@ -7,12 +7,9 @@ using UnityEngine.InputSystem;
 public class PlayerRotation : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private CinemachineVirtualCamera lockOnCamera;
     private PlayerActionScript ActionScript;
     private Vector3 TargetRotationDirection;
-
-    [SerializeField]private bool blockRotation;
-
+    private bool blockRotation;
 
     private bool lockOn;
     public bool LockOn { get { return lockOn; } set { lockOn = value; } }
@@ -39,7 +36,8 @@ public class PlayerRotation : MonoBehaviour
         }
         else
         {
-            TargetRotationDirection = lockOnCamera.transform.forward;
+            TargetRotationDirection = Camera.main.transform.forward;
+
         }
 
         TargetRotationDirection.Normalize();

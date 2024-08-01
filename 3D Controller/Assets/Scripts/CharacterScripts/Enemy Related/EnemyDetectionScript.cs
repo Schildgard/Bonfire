@@ -18,7 +18,9 @@ public class EnemyDetectionScript : MonoBehaviour
     [SerializeField] private LayerMask PlayerLayer;
     [SerializeField] private LayerMask enemyLayer;
 
-    public bool Detected;
+    private bool detected;
+
+    public bool Detected { get { return detected; } set { detected = value; } }
 
     public LayerMask EnemyLayer => enemyLayer;
 
