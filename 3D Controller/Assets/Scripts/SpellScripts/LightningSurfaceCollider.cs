@@ -42,7 +42,8 @@ public class LightningSurfaceCollider : MonoBehaviour
     private IEnumerator DespawnVFX(GameObject _object)
     {
         yield return new WaitForSeconds(despawnTimer);
-        _object.SetActive(false);
+        //_object.SetActive(false);
+        Destroy(gameObject);
 
     }
 
