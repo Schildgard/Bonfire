@@ -125,12 +125,15 @@ Material:
     - _Tiling_Plane: 1
     - _max: 14.8
     - _min: 10.14
+    - _test: 0.5
     - _threshold: 0
     - _tiling: 0.09
     - _y_Pos: 0
     m_Colors:
     - _Diffusion_Profile_Asset: {r: 0, g: 0, b: 0, a: 0}
     - _DontKnow: {r: 1, g: 1, b: 0, a: 0}
+    - _Grass_Base_Color: {r: 5.5827193, g: 2.3877113, b: 0, a: 1}
+    - _Mountain_Base_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Mountain_Normal_Tiling: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _Plane_Normal_Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Tiling: {r: 0.06, g: 0.06, b: 0, a: 0}

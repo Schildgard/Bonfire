@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DiffusionProfileReferences:
-  - {fileID: 11400000, guid: a4f9b0b21cfa10140b76854ccb395dcf, type: 2}
+  - {fileID: 0}
   m_MaterialReferences: []
 --- !u!21 &2100000
 Material:
@@ -263,6 +263,7 @@ Material:
     - _Diffusion_Profile_Asset: {r: -0.00000002060262, g: 7.3194675e-27, b: 69972056, a: -3.7115523e+9}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ReColoring: {r: 2.970815, g: 2.5955544, b: 0, a: 0}
     - _SSSColor: {r: 0.95744157, g: 1, b: 0.5424528, a: 0}
     - _Subsurface_Scattering_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Thickness_Remap: {r: 0, g: 1, b: 0, a: 0}
