@@ -271,7 +271,7 @@ MonoBehaviour:
   SplashEffect: {fileID: 9019369910736256646, guid: f7896242638a398499eb10e046522bad, type: 3}
   ElectrifyEffect: {fileID: 6588983083394686789}
   SparkEffect: {fileID: 9019369910736256646, guid: 3bec345dc6b946348b0402a504b66d3d, type: 3}
-  scaleIncreaseSpeed: 0.5
+  scaleIncreaseSpeed: 0.8
   sphereObject: {fileID: 6588983082124742370}
   instantiationEffect: {fileID: 9022403282820134918}
 --- !u!1 &9022403282820134918
@@ -431,7 +431,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3808753618014953185, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
       propertyPath: m_Name
-      value: Particle System
+      value: Electrify Effect
       objectReference: {fileID: 0}
     - target: {fileID: 3808753618014953185, guid: a7a6ef3069cd0c64aab9910542778884, type: 3}
       propertyPath: m_IsActive

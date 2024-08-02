@@ -121,7 +121,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.74
       minScalar: 0.8
       maxCurve:
         serializedVersion: 2
@@ -670,10 +670,10 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 7.74
+    angle: 0.77
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0.7
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -4949,7 +4949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSphereRadius: 0.5
   particleDamage: 450
-  maxHitDistance: 3
+  maxHitDistance: 13
 --- !u!1 &3260627752454508614
 GameObject:
   m_ObjectHideFlags: 0
@@ -9877,6 +9877,22 @@ PrefabInstance:
     - target: {fileID: 746397308321392792, guid: 846d7aaf821a95e4bba7b8219d46a279, type: 3}
       propertyPath: m_Name
       value: Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 746397308321392793, guid: 846d7aaf821a95e4bba7b8219d46a279, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 2.2040886e-35
+      objectReference: {fileID: 0}
+    - target: {fileID: 746397308321392793, guid: 846d7aaf821a95e4bba7b8219d46a279, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 746397308321392793, guid: 846d7aaf821a95e4bba7b8219d46a279, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 746397308321392793, guid: 846d7aaf821a95e4bba7b8219d46a279, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.0968e-41
       objectReference: {fileID: 0}
     - target: {fileID: 746397308321392799, guid: 846d7aaf821a95e4bba7b8219d46a279, type: 3}
       propertyPath: m_RootOrder

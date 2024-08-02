@@ -65,7 +65,8 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
 
     public void Die()
     {
-        Destroy(this.gameObject);
+       // Destroy(this.gameObject);
+       this.gameObject.SetActive(false);
     }
 
 

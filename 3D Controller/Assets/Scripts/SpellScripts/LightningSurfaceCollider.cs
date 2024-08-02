@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class LightningSurfaceCollider : MonoBehaviour
 {
-    private List<IDamageable> DamageableTargets = new List<IDamageable>();
-    private List<IElectrilizable> ElectrilizableTargets = new List<IElectrilizable>();
-
     [SerializeField] private float despawnTimer;
-
     [SerializeField] private float damage;
 
     [SerializeField] private float tickIntervall;
@@ -19,68 +15,55 @@ public class LightningSurfaceCollider : MonoBehaviour
     }
     private void Update()
     {
-        timer += Time.deltaTime;
-        if(timer >= tickIntervall)
-        {
-            foreach(var target in DamageableTargets)
-            {
-                target.GetDamage(damage);
-            }
-            foreach(var target in ElectrilizableTargets)
-            {
-                target.Electrify(); // Problem! Object gets Destroyed while in List, Error occurs because this script still tries to access the reference of the List
-            }
-            timer = 0;
-        }
+        timer -= Time.deltaTime;
+
+        
     }
     private void OnTriggerEnter(Collider _target)
     {
-
-        var hittableTarget = _target.gameObject.GetComponent<IDamageable>();
-        IElectrilizable[] electrilizableTargets = _target.gameObject.GetComponentsInChildren<IElectrilizable>();
-        if (hittableTarget != null)
-        {
-
-            DamageableTargets.Add(hittableTarget);
-            hittableTarget.GetDamage(damage);
-
-        }
-
-        if (electrilizableTargets != null)
-        {
-            foreach (var target in electrilizableTargets)
-            {
-                ElectrilizableTargets.Add(target);
-                target.Electrify();
-            }
-        }
-
+        DamageTargetsOnSurface(_target.gameObject);
+        ElectrifyTargetsOnSurface(_target.gameObject);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider _target)
     {
-        // Apply Damage/Effect over time?
+
+        if(timer<= 0)
+        {
+            DamageTargetsOnSurface(_target.gameObject);
+            ElectrifyTargetsOnSurface(_target.gameObject);
+            timer = tickIntervall;
+        }
+
+
     }
 
-    private void OnTriggerExit(Collider _target)
-    {
-        IDamageable hittableTarget = _target.gameObject.GetComponent<IDamageable>();
-        IElectrilizable electrilizableTarget = _target.gameObject.GetComponentInChildren<IElectrilizable>();
-        if (DamageableTargets.Contains(hittableTarget))
-        {
-            DamageableTargets.Remove(hittableTarget);
-            Debug.Log(_target.name + " Damageable has been removed from Surface Collider List");
-        }
-        if (ElectrilizableTargets.Contains(electrilizableTarget))
-        {
-            ElectrilizableTargets.Remove(electrilizableTarget); //Potential Error ?
-            Debug.Log(_target.name + " Electrilizable has been removed from Surface Collider List");
-        }
-    }
+
     private IEnumerator DespawnVFX(GameObject _object)
     {
         yield return new WaitForSeconds(despawnTimer);
         _object.SetActive(false);
 
+    }
+
+
+    private void DamageTargetsOnSurface(GameObject _target)
+    {
+        var hittableTarget = _target.GetComponent<IDamageable>();
+        if (hittableTarget != null)
+        {
+            hittableTarget.GetDamage(damage);
+        }
+    }
+    private void ElectrifyTargetsOnSurface(GameObject _target)
+    {
+        IElectrilizable[] electrilizableTargets = _target.GetComponentsInChildren<IElectrilizable>();
+        if (electrilizableTargets != null)
+        {
+            foreach (var target in electrilizableTargets)
+            {
+                target.Electrify();
+            }
+        }
     }
 }
