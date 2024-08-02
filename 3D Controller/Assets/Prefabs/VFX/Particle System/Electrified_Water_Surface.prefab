@@ -282,4 +282,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   despawnTimer: 10
   damage: 200
-  tickIntervall: 0.8
+  tickIntervall: 1.3

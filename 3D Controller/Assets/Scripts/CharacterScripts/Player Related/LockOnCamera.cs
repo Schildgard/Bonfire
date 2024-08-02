@@ -7,6 +7,7 @@ public class LockOnCamera : MonoBehaviour
 {
     [SerializeField] private PlayerRotation playerRotation;
     [SerializeField] private Transform playerTransform;
+
     private CinemachineVirtualCamera lockOnCamera;
     private CinemachineFreeLook freeLook;
 
@@ -138,8 +139,6 @@ public class LockOnCamera : MonoBehaviour
         GameObject lockOnTarget = GetNearestEnemy(viableTargets);
 
         lockOnCamera.LookAt = lockOnTarget.transform;
-
-
     }
 
 

@@ -286,11 +286,8 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_context.started)
         {
-            Debug.Log($"Input Context is: {_context.ReadValue<float>()}");
             int spellIndex = (int)_context.ReadValue<float>();  // ReadValue returns a float, the Num =InputMap has a ScaleFactor, according to its spellIndex in the spelllist, so by pressing 3, this line retuns: spellindex =  1 x 2 = 2. So Spell of Index 2 is selected.
             Spelllist.CastSpell(spellIndex);
-            Debug.Log($"Cast Spell with Index{spellIndex}");
-
             //To prevent a wrong InputEvent applied to this Method, I could set Index 1 an Placeholder, which returns an Debug. Since no Scale factor is applied, the Index of a non cast spell will be 1.
         }
     }
