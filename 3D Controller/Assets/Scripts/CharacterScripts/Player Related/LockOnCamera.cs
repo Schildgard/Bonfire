@@ -7,6 +7,7 @@ public class LockOnCamera : MonoBehaviour
 {
     [SerializeField] private PlayerRotation playerRotation;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private GameObject LockOnCanvas;
 
     private CinemachineVirtualCamera lockOnCamera;
     private CinemachineFreeLook freeLook;
@@ -71,6 +72,7 @@ public class LockOnCamera : MonoBehaviour
                 playerRotation.LockOn = false;
                 animator.SetBool("LockOn", false);
                 animator.SetTrigger("Unarm");
+                LockOnCanvas.SetActive(false);
                 return;
             }
 
@@ -83,6 +85,9 @@ public class LockOnCamera : MonoBehaviour
             playerRotation.LockOn = true;
             animator.SetBool("LockOn", true);
             animator.SetTrigger("Equip");
+            LockOnCanvas.SetActive(true);
+            LockOnCanvas.transform.parent = Target;
+            LockOnCanvas.transform.position = Target.position;
 
         }
 
@@ -138,7 +143,13 @@ public class LockOnCamera : MonoBehaviour
 
         GameObject lockOnTarget = GetNearestEnemy(viableTargets);
 
-        lockOnCamera.LookAt = lockOnTarget.transform;
+        Transform FocusPoint = lockOnTarget.transform.Find("FocusPoint");
+
+        lockOnCamera.LookAt = FocusPoint;
+
+         LockOnCanvas.transform.parent = FocusPoint;
+         LockOnCanvas.transform.position = FocusPoint.position;
+
     }
 
 
