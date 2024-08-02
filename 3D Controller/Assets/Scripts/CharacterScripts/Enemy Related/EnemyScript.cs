@@ -45,6 +45,7 @@ public class EnemyScript : CharacterScript
 
         SoulsSystem.instance.GainSouls(Stats.SoulsValue);
         Collider.enabled = false;
+        //gameObject.SetActive(false);
         //drop Item
     }
 
