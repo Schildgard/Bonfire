@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class AttackCollisionHandler : MonoBehaviour
 {
-    [SerializeField] private Collider WeaponCollider;
+   // [SerializeField] private Collider WeaponCollider;
 
-    [SerializeField] private bool IsWeaponOnBack;
+    [SerializeField] private Collider[] WeaponColliderArray;
+
+    private bool IsWeaponOnBack;
 
     [SerializeField] private GameObject WeaponOnBack;
 
@@ -17,14 +19,29 @@ public class AttackCollisionHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WeaponCollider.enabled = false;
-        if (this.gameObject.tag == "Player")
-        {
+   //    WeaponCollider.enabled = false;
+   //    if (this.gameObject.tag == "Player")
+   //    {
+   //
+   //        if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
+   //        {
+   //            WeaponInHand.SetActive(false);
+   //            IsWeaponOnBack = true;
+   //        }
+   //    }
 
-            if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
+
+        foreach (var weapon in WeaponColliderArray)
+        {
+            weapon.enabled = false;
+            if (this.gameObject.tag == "Player")
             {
-                WeaponInHand.SetActive(false);
-                IsWeaponOnBack = true;
+
+                if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
+                {
+                    WeaponInHand.SetActive(false);
+                    IsWeaponOnBack = true;
+                }
             }
         }
     }
@@ -32,13 +49,16 @@ public class AttackCollisionHandler : MonoBehaviour
 
     public void ActivateWeaponCollider()
     {
-        WeaponCollider.enabled = true;
+      //  WeaponCollider.enabled = true;
+
+        foreach (var weapon in WeaponColliderArray) { weapon.enabled = true; }
 
     }
 
     public void DeActivateWeaponCollider()
     {
-        WeaponCollider.enabled = false;
+    //    WeaponCollider.enabled = false;
+        foreach (var weapon in WeaponColliderArray) { weapon.enabled = false; }
 
     }
 

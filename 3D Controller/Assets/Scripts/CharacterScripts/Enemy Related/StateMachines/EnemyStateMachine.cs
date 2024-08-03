@@ -108,6 +108,7 @@ public class EnemyStateMachine : EnemyStateMachineBase
             {
                 foreach (var enemy in col)
                 {
+                    Debug.Log("Found Enemy: " + enemy.gameObject.name);
                     enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected = true;
                 }
             }

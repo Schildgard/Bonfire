@@ -16,7 +16,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         HealthScript = GetComponent<HealthScript>();
         Stats = GetComponent<StatScript>();
         Animator = GetComponent<Animator>();
-        Collider = GetComponent<Collider>();
+        Collider = GetComponentInChildren<Collider>();
     }
 
 
@@ -24,7 +24,6 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     {
         if (!HealthScript.isAlive)
         { return; }
-
 
         float defMultiplier = (_damage / 100) * (Stats.Defense * 3f);
         HealthScript.currentHealth -= (_damage - defMultiplier);

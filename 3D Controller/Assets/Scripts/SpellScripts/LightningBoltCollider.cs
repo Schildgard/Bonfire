@@ -45,11 +45,8 @@ public class LightningBoltCollider : MonoBehaviour
         GameObject _target = CastHitSphere();
         if (_target == null) return;
 
-
-
         IDamageable damageableTarget = _target.gameObject.GetComponent<IDamageable>();
         IElectrilizable[] electrizableTargets = _target.gameObject.GetComponentsInChildren<IElectrilizable>();
-
 
         if (damageableTarget != null)
         {
