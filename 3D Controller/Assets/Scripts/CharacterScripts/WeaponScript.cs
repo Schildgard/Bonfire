@@ -39,6 +39,7 @@ public class WeaponScript : MonoBehaviour
 
         float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
         IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
+
         if (hittableTarget == null) return;
         foreach (var hit in hittableTarget)
         {
