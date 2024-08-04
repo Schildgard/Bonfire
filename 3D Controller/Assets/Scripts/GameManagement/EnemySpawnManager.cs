@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     public GameObject[] Enemies => enemies;
 
-    [SerializeField] private EnemyData[] EnemyDataArray;
+    [SerializeField] private List<EnemyData> EnemyDataArray;
 
 
     [SerializeField] private GameObject SoulscratePrefab;
@@ -35,13 +36,15 @@ public class EnemySpawnManager : MonoBehaviour
     private void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemyDataArray = new EnemyData[enemies.Length];
+       // EnemyDataArray = new EnemyData[enemies.Length];
+        EnemyDataArray = new List<EnemyData>();
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            EnemyDataArray[i].EnemyID = enemies[i].GetComponent<EnemyScript>().EnemyID;
-            EnemyDataArray[i].Position = enemies[i].transform.position;
-            EnemyDataArray[i].Rotation = enemies[i].transform.rotation;
+            //   EnemyDataArray[i].EnemyID = enemies[i].GetComponent<EnemyScript>().EnemyID;
+            //   EnemyDataArray[i].Position = enemies[i].transform.position;
+            //   EnemyDataArray[i].Rotation = enemies[i].transform.rotation;
+            EnemyDataArray.Add(new EnemyData(enemies[i].GetComponent<EnemyScript>().EnemyID, enemies[i].transform.position, enemies[i].transform.rotation));
         }
         UpdateEnemyEvent.Raise();
 
@@ -58,7 +61,8 @@ public class EnemySpawnManager : MonoBehaviour
         {
             Destroy(enemies[i].gameObject);
         }
-        for (int i = 0; i < EnemyDataArray.Length; i++)
+        enemies = new GameObject[EnemyDataArray.Count];
+        for (int i = 0; i < EnemyDataArray.Count; i++)
         {
             enemies[i] = RespawnEnemy(EnemyDataArray[i].EnemyID, EnemyDataArray[i].Position, EnemyDataArray[i].Rotation);
         }
@@ -81,12 +85,34 @@ public class EnemySpawnManager : MonoBehaviour
         GameObject Enemy = Instantiate(EnemyPrefabs[_enemyID], _position, _rotation);
         return Enemy;
     }
+
+    public void RemoveBossFromRespawnList()
+    {
+        int indexToRemove =0;
+        for (int i = 0;i < EnemyDataArray.Count; i++)
+        {
+            if (EnemyDataArray[i].EnemyID == 2)
+            {
+                indexToRemove = i;
+            }
+        }
+        EnemyDataArray.Remove(EnemyDataArray[indexToRemove]);
+        Debug.Log("Index ´to remove was" + indexToRemove);
+
+        UpdateEnemyEvent.Raise();
+    }
 }
 
 
 [Serializable]
-public struct EnemyData
+public class EnemyData
 {
+    public EnemyData(int _iD, Vector3 _position, Quaternion _rotation)
+    {
+        EnemyID = _iD;
+        Position = _position;
+        Rotation = _rotation;
+    }
     public int EnemyID;
     public Vector3 Position;
     public Quaternion Rotation;

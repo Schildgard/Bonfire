@@ -1644,7 +1644,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  Detected: 0
 --- !u!114 &3997754368316317078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,8 +1656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8a904990c6ac94b9125f8fb0e8183a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponCollider: {fileID: 7783232989354091214}
-  IsWeaponOnBack: 0
+  WeaponColliderArray:
+  - {fileID: 7783232989354091214}
   WeaponOnBack: {fileID: 0}
   WeaponInHand: {fileID: 0}
 --- !u!65 &3997754368316317075

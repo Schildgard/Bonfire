@@ -233,6 +233,7 @@ public class LockOnCamera : MonoBehaviour
         }
         else
         {
+            LockOnCanvas.transform.parent = null;
             DeactivateLockOn();
         }
     }

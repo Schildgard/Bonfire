@@ -43,6 +43,7 @@ public class WeaponScript : MonoBehaviour
         if (hittableTarget == null) return;
         foreach (var hit in hittableTarget)
         {
+            Debug.Log("Damage on " + hit);
             hit.GetDamage(weaponDamage + damageMultiplier);
            // AudioManager.instance.SFX[9].source.Play();
             Debug.Log($"Weapon striked for {weaponDamage + damageMultiplier} Damage ({weaponDamage} + {damageMultiplier}");
