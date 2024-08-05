@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8288255683147048809}
   - component: {fileID: 6111722105364812790}
-  - component: {fileID: 9012164194949791666}
+  - component: {fileID: 5734599964872360019}
   - component: {fileID: 7233754656215689553}
   - component: {fileID: 6083627893238239750}
   - component: {fileID: 6750734180919991549}
@@ -289,7 +289,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9012164194949791666
+--- !u!114 &5734599964872360019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,36 +298,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 803006282978671105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 693ef20a2af119340a73de07d1bd98cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 82e3886a7c1bf4543a45aedd5f77a5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterSounds:
-  - name: Footsteps
-    clip: {fileID: 0}
+  - name: Footsteps 1
+    clip: {fileID: 8300000, guid: d1096c874360d654db0f82bb568b8145, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.1
+    pitch: 1
+  - name: Footstep 2
+    clip: {fileID: 8300000, guid: 215c08d8d2b727847a0703d5c87189b4, type: 3}
+    source: {fileID: 0}
+    volume: 0.1
+    pitch: 1
   - name: Aggro
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 27b98a8c68f991b408c5c6afff25358c, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.5
+    pitch: 1
   - name: Get Hit
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.5
+    pitch: 1
   - name: Death
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: WeaponSwing
-    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+  - name: Weapon Swing
+    clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
     source: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 0.5
+    pitch: 1
   enemyID: 2
+  bossDied: {fileID: 11400000, guid: a550f26fda97ac5438b5c9be969cdb60, type: 2}
 --- !u!54 &7233754656215689553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -717,7 +723,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6664358993437552698, guid: 26b889af798fe5f49941748ef861abeb, type: 3}
+  - {fileID: 2100000, guid: 837304bc6dc20d64baeda542d783f55c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2059,7 +2065,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9f7820f4186b6e479ccd0862b6986cf, type: 2}
+  - {fileID: 2100000, guid: c840c1ffc50bdde4ea8e6c04cb8d64e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2463,7 +2469,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6664358993437552698, guid: 26b889af798fe5f49941748ef861abeb, type: 3}
+  - {fileID: 2100000, guid: 837304bc6dc20d64baeda542d783f55c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

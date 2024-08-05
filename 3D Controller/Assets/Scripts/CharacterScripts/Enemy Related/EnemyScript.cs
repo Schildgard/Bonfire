@@ -49,11 +49,6 @@ public class EnemyScript : CharacterScript
         //drop Item
     }
 
-    public void PlaySoundSFX(int _index)
-    {
-        Debug.Log($"try to play Sounds of {this.gameObject.name} Index of {_index} ");
-      //  CharacterSounds[_index].source.Play();
-    }
 
  
 }

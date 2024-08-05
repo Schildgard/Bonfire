@@ -22,6 +22,6 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void StateExit()
     {
-        enemyScript.PlaySoundSFX(0);
+        enemyScript.PlaySFXSound(2);
     }
 }
