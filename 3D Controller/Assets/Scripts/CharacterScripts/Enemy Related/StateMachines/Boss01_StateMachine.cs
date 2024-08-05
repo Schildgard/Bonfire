@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boss01_StateMachine : EnemyStateMachineBase
 {
     private Vector3 StartPosition;
+    
 
     #region MultiThreading
     private bool taskBool;

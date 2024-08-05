@@ -9,9 +9,6 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     protected Animator Animator;
     protected Collider Collider;
 
-    // [SerializeField] private int getDamageSoundIndex;
-    // [SerializeField] private int deathSoundIndex;
-
     [SerializeField] protected List<Sound> CharacterSounds;
 
     protected virtual void Start()

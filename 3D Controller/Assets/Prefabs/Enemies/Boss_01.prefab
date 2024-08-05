@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 1318338212772238265}
   - component: {fileID: 3077475254052455554}
   - component: {fileID: 4806474355161429039}
+  - component: {fileID: 329448695936647651}
   m_Layer: 8
   m_Name: Boss_01
   m_TagString: Enemy
@@ -303,17 +304,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSounds:
   - name: Footsteps 1
-    clip: {fileID: 8300000, guid: d1096c874360d654db0f82bb568b8145, type: 3}
+    clip: {fileID: 8300000, guid: ca3dd8b9c575627449cb6445daad286f, type: 3}
     source: {fileID: 0}
-    volume: 0.1
+    volume: 0.5
     pitch: 1
   - name: Footstep 2
-    clip: {fileID: 8300000, guid: 215c08d8d2b727847a0703d5c87189b4, type: 3}
+    clip: {fileID: 8300000, guid: 01246ea9816dfbb4586f8dd7907376ca, type: 3}
     source: {fileID: 0}
-    volume: 0.1
+    volume: 0.5
     pitch: 1
   - name: Aggro
-    clip: {fileID: 8300000, guid: 27b98a8c68f991b408c5c6afff25358c, type: 3}
+    clip: {fileID: 8300000, guid: 50cd1773a790d8d43860f83bd8c52960, type: 3}
     source: {fileID: 0}
     volume: 0.5
     pitch: 1
@@ -323,7 +324,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
   - name: Death
-    clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
+    clip: {fileID: 8300000, guid: 5a2c0e5f401912f4ca7812ebf4cce8f0, type: 3}
     source: {fileID: 0}
     volume: 0.5
     pitch: 1
@@ -333,6 +334,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
   enemyID: 2
+  lifeCanvas: {fileID: 0}
   bossDied: {fileID: 11400000, guid: a550f26fda97ac5438b5c9be969cdb60, type: 2}
 --- !u!54 &7233754656215689553
 Rigidbody:
@@ -512,6 +514,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17, y: 0.44, z: 0.22}
   m_Center: {x: 0, y: 0.24, z: 0}
+--- !u!114 &329448695936647651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803006282978671105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765f8aa026a1856428083a7c9cfc4011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCanvas: {fileID: 8444945406835031326}
 --- !u!1 &825519558746453677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,7 +2645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3519746400190220862
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2687,10 +2702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
