@@ -53,6 +53,11 @@ public class AudioManager : MonoBehaviour
         _sound.source.volume = _sound.volume;
         _sound.source.pitch = _sound.pitch;
     }
+
+    public void PlayAudioSound(Sound _sound)
+    {
+        _sound.source.Play();
+    }
 }
 
 

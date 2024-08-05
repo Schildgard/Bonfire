@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Dialogues : MonoBehaviour
 {
-    public List<TMP_Text> Lines;
 
+    [SerializeField]private List<Dialogue> dialogue;
 
-    public Collider Collider;
+    [SerializeField]private Collider Collider;
 
     private bool talkRange;
 
+    private int currentDialogueIndex = 0;
     private int currentTextIndex = 0;
 
 
@@ -23,7 +24,8 @@ public class Dialogues : MonoBehaviour
             {
 
                 DialogueManager.instance.Canvas.gameObject.SetActive(true);
-                DialogueManager.instance.ActiveCanvasText.text = Lines[currentTextIndex].text;
+                //DialogueManager.instance.ActiveCanvasText.text = Lines[currentTextIndex].text;
+                DialogueManager.instance.ActiveCanvasText.text = dialogue[currentDialogueIndex].Lines[currentTextIndex].text;
             }
         }
         else if (talkRange && DialogueManager.instance.Canvas.gameObject.activeSelf == true)
@@ -31,7 +33,7 @@ public class Dialogues : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                if (currentTextIndex >= Lines.Count - 1)
+                if (currentTextIndex >= dialogue[currentDialogueIndex].Lines.Count - 1)
                 {
                     DialogueManager.instance.Canvas.gameObject.SetActive(false);
                     currentTextIndex = 0;
@@ -39,7 +41,7 @@ public class Dialogues : MonoBehaviour
                 else
                 {
                     currentTextIndex += 1;
-                    DialogueManager.instance.ActiveCanvasText.text = Lines[currentTextIndex].text;
+                    DialogueManager.instance.ActiveCanvasText.text = dialogue[currentDialogueIndex].Lines[currentTextIndex].text;
                 }
 
             }
@@ -61,5 +63,9 @@ public class Dialogues : MonoBehaviour
             talkRange = false;
             DialogueManager.instance.Canvas.gameObject.SetActive(false);
         }
+    }
+    public void ChangeActiveDialogue()
+    {
+        currentDialogueIndex++;
     }
 }

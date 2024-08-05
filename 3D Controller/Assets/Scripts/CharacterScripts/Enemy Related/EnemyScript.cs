@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyScript : CharacterScript
 {
     [SerializeField] private int enemyID;
-    [SerializeField] private List<Sound> enemySounds;
+   // [SerializeField] private List<Sound> CharacterSounds;
 
 
     public int EnemyID => enemyID;
@@ -13,33 +13,33 @@ public class EnemyScript : CharacterScript
     {
         base.Start();
 
-        foreach(var sound in enemySounds)
-        {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-        }
+    //  foreach(var sound in CharacterSounds)
+    //  {
+    //      sound.source = gameObject.AddComponent<AudioSource>();
+    //      sound.source.clip = sound.clip;
+    //      sound.source.volume = sound.volume;
+    //      sound.source.pitch = sound.pitch;
+    //  }
     }
 
     public override void GetDamage(float _damage)
     {
-        if(AudioManager.instance != null)
-        {
-        AudioManager.instance.SFX[10].source.pitch = 1.84f;
-        }
-        else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
+     //  if(AudioManager.instance != null)
+     //  {
+     //  AudioManager.instance.SFX[10].source.pitch = 1.84f;
+     //  }
+     //  else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
         base.GetDamage(_damage);
         
     }
     public override void Die()
     {
-        if (AudioManager.instance != null)
-        {
-        AudioManager.instance.SFX[10].source.pitch = 1.84f;
-        }
-
-        else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
+     //  if (AudioManager.instance != null)
+     //  {
+     //  AudioManager.instance.SFX[10].source.pitch = 1.84f;
+     //  }
+     //
+     //  else { Debug.Log("Enemy tried to play Get Hit Sound Effect, but couldnt find Audio Manager in Scene"); }
 
         base.Die();
 
@@ -52,7 +52,7 @@ public class EnemyScript : CharacterScript
     public void PlaySoundSFX(int _index)
     {
         Debug.Log($"try to play Sounds of {this.gameObject.name} Index of {_index} ");
-        enemySounds[_index].source.Play();
+      //  CharacterSounds[_index].source.Play();
     }
 
  

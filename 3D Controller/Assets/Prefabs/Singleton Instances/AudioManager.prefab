@@ -48,54 +48,47 @@ MonoBehaviour:
   SFX:
   - name: FootStep_01
     clip: {fileID: 8300000, guid: c025c43d1749af5469c7dd8af13e162f, type: 3}
-    volume: 0.075
     source: {fileID: 0}
+    volume: 0.075
+    pitch: 1
   - name: Attack_Swing
     clip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Attack_Swing_2
     clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Water Shield
     clip: {fileID: 8300000, guid: dddde2397affa4973880bcc238b6ad30, type: 3}
-    volume: 0.45
     source: {fileID: 0}
+    volume: 0.45
+    pitch: 1
   - name: Lightning Cast
     clip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
-    volume: 0.413
     source: {fileID: 0}
+    volume: 0.413
+    pitch: 1
   - name: Lightning Impact
     clip: {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
-    volume: 0.429
     source: {fileID: 0}
+    volume: 0.429
+    pitch: 1
   - name: Fire Cast
     clip: {fileID: 8300000, guid: 07d8a32d80e5eaf4db02646aa40b1f72, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Fire Impact
     clip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Electrified
     clip: {fileID: 8300000, guid: aefc2111571d1a84da4b1838d7beb4fd, type: 3}
+    source: {fileID: 0}
     volume: 1
-    source: {fileID: 0}
-  - name: Impact
-    clip: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
-    volume: 1
-    source: {fileID: 0}
-  - name: Zombie Impact
-    clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
-    volume: 0.623
-    source: {fileID: 0}
-  - name: Zombie Death
-    clip: {fileID: 8300000, guid: d0dd5a8e1fcf88c4c990c0c54c58a2ea, type: 3}
-    volume: 0.623
-    source: {fileID: 0}
-  PlayerSFX:
-  - name: Weapon Hit
-    clip: {fileID: 8300000, guid: a7b477ca5dacdef429a56b2623392c12, type: 3}
-    volume: 1
-    source: {fileID: 0}
+    pitch: 1
+  PlayerSFX: []

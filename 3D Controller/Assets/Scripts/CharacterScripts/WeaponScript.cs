@@ -21,6 +21,7 @@ public class WeaponScript : MonoBehaviour
     {
         WielderStats = GetComponentInParent<StatScript>();
         attackSound = GetComponent<AudioSource>();
+        
     }
 
 
@@ -45,7 +46,6 @@ public class WeaponScript : MonoBehaviour
         {
             Debug.Log("Damage on " + hit);
             hit.GetDamage(weaponDamage + damageMultiplier);
-           // AudioManager.instance.SFX[9].source.Play();
             Debug.Log($"Weapon striked for {weaponDamage + damageMultiplier} Damage ({weaponDamage} + {damageMultiplier}");
         }
     }

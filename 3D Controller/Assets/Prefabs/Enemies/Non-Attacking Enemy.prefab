@@ -2026,7 +2026,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  Detected: 0
 --- !u!114 &7203789102157618689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2039,8 +2038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8a904990c6ac94b9125f8fb0e8183a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponCollider: {fileID: 5897522189863999432}
-  IsWeaponOnBack: 0
+  WeaponColliderArray: []
   WeaponOnBack: {fileID: 0}
   WeaponInHand: {fileID: 0}
 --- !u!65 &7379722327926926247
@@ -2111,25 +2109,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693ef20a2af119340a73de07d1bd98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getDamageSoundIndex: 10
-  deathSoundIndex: 11
-  enemyID: 0
-  enemySounds:
-  - name: Call For Help
-    clip: {fileID: 8300000, guid: 24b617db03a924c4ab49c13feb18c10d, type: 3}
-    source: {fileID: 0}
-    volume: 0.5
-    pitch: 1
-  - name: Agony Scream
+  CharacterSounds:
+  - name: Footsteps
     clip: {fileID: 0}
     source: {fileID: 0}
-    volume: 0.5
-    pitch: 1
-  - name: Die
-    clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
+    volume: 0
+    pitch: 0
+  - name: Aggro
+    clip: {fileID: 0}
     source: {fileID: 0}
-    volume: 0.5
-    pitch: 1
+    volume: 0
+    pitch: 0
+  - name: Get Hit
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
+  - name: Death
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
+  - name: Scream
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
+  - name: Weapon Swing
+    clip: {fileID: 0}
+    source: {fileID: 0}
+    volume: 0
+    pitch: 0
+  enemyID: 0
 --- !u!114 &7246262684698904536
 MonoBehaviour:
   m_ObjectHideFlags: 0

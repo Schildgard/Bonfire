@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class CharacterScript : MonoBehaviour, IDamageable
@@ -8,8 +9,10 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     protected Animator Animator;
     protected Collider Collider;
 
-    [SerializeField] private int getDamageSoundIndex;
-    [SerializeField] private int deathSoundIndex;
+    // [SerializeField] private int getDamageSoundIndex;
+    // [SerializeField] private int deathSoundIndex;
+
+    [SerializeField] protected List<Sound> CharacterSounds;
 
     protected virtual void Start()
     {
@@ -17,6 +20,14 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         Stats = GetComponent<StatScript>();
         Animator = GetComponent<Animator>();
         Collider = GetComponentInChildren<Collider>();
+
+        foreach (var sound in CharacterSounds)
+        {
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = sound.clip;
+            sound.source.volume = sound.volume;
+            sound.source.pitch = sound.pitch;
+        }
     }
 
 
@@ -34,11 +45,8 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         Animator.SetTrigger("Stagger");
         if (HealthScript.currentHealth <= 0)
         { Die(); }
-        else if (AudioManager.instance != null)
-        {
-            AudioManager.instance.SFX[getDamageSoundIndex].source.Play();
-        }
-        else { Debug.Log("Character Script Failed to Find Audio Manager"); }
+
+        PlaySFXSound("Get Hit");
     }
 
     public virtual void Respawn() { }
@@ -50,11 +58,25 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         HealthScript.isAlive = false;
 
         Animator.SetTrigger("Died");
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.SFX[deathSoundIndex].source.Play();
-        }
-        else { Debug.Log("Character Script Failed to Find Audio Manager"); }
+        PlaySFXSound("Death");
     }
 
+    public void PlaySFXSound(int _soundIndex)
+    {
+        CharacterSounds[_soundIndex].source.Play();
+        Debug.Log("Play "+ CharacterSounds[_soundIndex].name);
+    }
+
+    public void PlaySFXSound(string _soundname)
+    {
+        foreach (var sound in CharacterSounds)
+        {
+            if (sound.name == _soundname)
+            {
+                sound.source.Play();
+                return;
+            }
+        }
+        Debug.Log($"No Sound with name of {_soundname} was found in {this.gameObject.name}s SoundList. Please check for exact wording or typos");
+    }
 }
