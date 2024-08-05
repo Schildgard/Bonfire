@@ -108,7 +108,7 @@ public class EnemyStateMachine : EnemyStateMachineBase
             {
                 foreach (var enemy in col)
                 {
-                    enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected = true;
+                    enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected = true; // Umwandlung der Methode in Rückgabewert Bool, so, dass das Enemy DetectionScript das handeld?
                 }
             }
         }

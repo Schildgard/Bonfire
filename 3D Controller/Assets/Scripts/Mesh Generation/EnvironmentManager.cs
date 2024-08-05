@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class EnvironmentManager : MonoBehaviour
 {
     private Mesh planeMesh;
-    [SerializeField]private List<GameObject> prefabsInScene;
+    [SerializeField] private List<GameObject> prefabsInScene;
 
     [SerializeField] private List<RenderableVegetation> renderableEnvironment;
     [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
@@ -22,7 +22,7 @@ public class EnvironmentManager : MonoBehaviour
 
     public void Initialize()
     {
-        RemoveEnvironmentPrefabs();
+          RemoveEnvironmentPrefabs();
 
         var customPlane = GameObject.Find("Custom Plane");
         if (customPlane == null)
@@ -36,6 +36,10 @@ public class EnvironmentManager : MonoBehaviour
         GenerateVegetations();
     }
 
+    private void Start()
+    {
+        Initialize();
+    }
 
     private void Update()
     {
@@ -53,7 +57,6 @@ public class EnvironmentManager : MonoBehaviour
         {
             environment.InitializeGenerator(planeMesh);
         }
-
         foreach (var environment in spawnableEnvironment)
         {
             environment.InitializeGenerator(planeMesh);

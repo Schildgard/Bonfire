@@ -7,6 +7,7 @@ public class EnemySpottingManager : MonoBehaviour
  private IAggroable[] Enemies;
 
     [SerializeField] private EnemySpawnManager EnemySpawnManager;
+
     private void Update()
     {
         // TO DO: Check if calculation is handled when Enemy is dead.

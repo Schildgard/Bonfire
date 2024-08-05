@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
         foreach (var sound in Music)
         {
             InitializeAudioSources(sound);
+            sound.source.loop = true;
         }
         foreach (var sound in SFX)
         {
@@ -43,6 +44,8 @@ public class AudioManager : MonoBehaviour
         {
             InitializeAudioSources(sound);
         }
+
+        Music[0].source.Play();
 
     }
 

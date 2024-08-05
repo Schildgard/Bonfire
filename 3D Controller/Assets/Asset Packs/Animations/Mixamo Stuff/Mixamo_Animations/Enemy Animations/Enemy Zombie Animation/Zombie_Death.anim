@@ -94879,13 +94879,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0
-    functionName: PlaySFXSound
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 4
-    messageOptions: 0
-  - time: 0
     functionName: DeActivateWeaponCollider
     data: 
     objectReferenceParameter: {fileID: 0}

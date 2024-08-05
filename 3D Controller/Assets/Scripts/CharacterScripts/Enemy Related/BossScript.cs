@@ -10,7 +10,6 @@ public class BossScript : EnemyScript
     protected override void Start()
     {
         base.Start();
-        Debug.Log("Health Script found!" + HealthScript.isAlive);
     }
     public override void Die()
     {
