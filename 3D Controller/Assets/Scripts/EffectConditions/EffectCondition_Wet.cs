@@ -10,7 +10,6 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
     private Material WetMaterial;
     
 
-
     protected override void Awake()
     {
         maxduration = 20;

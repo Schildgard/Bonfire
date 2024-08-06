@@ -20,8 +20,6 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void StateUpdate()
     {
-
-
     }
 
     public override void StateExit()

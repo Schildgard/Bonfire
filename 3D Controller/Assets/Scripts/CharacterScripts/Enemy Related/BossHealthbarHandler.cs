@@ -22,4 +22,15 @@ public class BossHealthbarHandler : MonoBehaviour
             healthCanvas.SetActive(false);
         }
     }
+
+    public void DisableHealthCanvas()
+    {
+        enemyDetectionScript.Detected = false;
+        if (healthCanvas.activeSelf)
+        {
+            healthCanvas.SetActive(false);
+        }
+
+        Destroy(this);
+    }
 }

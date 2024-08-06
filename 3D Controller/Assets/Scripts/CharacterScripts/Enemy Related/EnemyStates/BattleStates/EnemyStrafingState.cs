@@ -19,7 +19,6 @@ public class EnemyStrafingState : EnemyBaseState
     public override void StateEnter()
     {
         //Set Destination within Battle Range, but not behind Player
-
         StateMachine.StateTimer = Random.Range(1f, 8f);
         Destination = StateMachine.transform.localPosition - new Vector3(0, 0, Time.deltaTime * 5f);
 
@@ -46,21 +45,7 @@ public class EnemyStrafingState : EnemyBaseState
 
 
         Vector3 DistanceToDestination = StateMachine.transform.InverseTransformPoint(Destination);
-        //
-        //  if (DistanceToDestination.x > 0f + distanceTolerance) // Comparison of float Vector3! Exchange with Distance formular!!
-        //  {
-        //      //Increase BlendTree Velocity X
-        //      velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, maxVelocity);
-        //  }
-        //  else if (DistanceToDestination.x < 0f - distanceTolerance) 
-        //  {
-        //      //Decrease BlendTree Velocity X
-        //      velocityX = Mathf.Clamp(velocityX - Time.deltaTime * acceleration, -maxVelocity, velocityX);
-        //  }
-        //  else
-        //  {
-        //      velocityX = velocityX = 0f;
-        //  }
+
         if (DistanceToDestination.z > 0f + distanceTolerance)
         {
             //Increase BlendTree Velocity Y

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Boss Enem is Down!
+  m_text: Boss Enemy is Down!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd35bb53917d9bb4aa2e59d3e55e6e9c, type: 2}
   m_sharedMaterial: {fileID: -5188916216688128101, guid: bd35bb53917d9bb4aa2e59d3e55e6e9c, type: 2}
