@@ -8,7 +8,7 @@ public class AbilityBarSlot : MonoBehaviour, IDropHandler
 {
 
     [SerializeField] private SO_Spell spell;
-    [SerializeField] private Spelllist Spelllist;
+    private Spelllist Spelllist;
 
     [SerializeField]private int spelllistIndex;
 

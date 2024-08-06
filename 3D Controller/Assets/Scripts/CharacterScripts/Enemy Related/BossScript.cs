@@ -7,7 +7,7 @@ using UnityEngine;
 public class BossScript : EnemyScript, IElectrilizable
 {
     [SerializeField]private  GameEvent bossDied;
-    [SerializeField] private Material electrifiedMaterial;
+    [SerializeField]private Material electrifiedMaterial;
 
     protected override void Start()
     {

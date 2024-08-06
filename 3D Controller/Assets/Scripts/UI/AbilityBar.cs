@@ -43,6 +43,7 @@ public class AbilityBar : MonoBehaviour
                 Ability.Spell = _spell;
                 CreateSlotIcon(Ability, _spell);
                 Ability.AssignNewAbilityToEmptySlot(_spell);
+                return;
             }
         }
     }
