@@ -11,5 +11,8 @@ public class Dialogue :ScriptableObject
 
     public List<TMP_Text> Lines;
 
+    public GameEvent dialogueEvent;
+
+
 
 }

@@ -126,10 +126,10 @@ public class PlayerActionScript : MonoBehaviour
         movementVector.y = playerRigidbody.velocity.y;
 
         SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, movementVector, lerpSpeed * Time.deltaTime);
-      //  if (!movementIsBlocked)
-      //  {
-      //      playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
-      //  }
+       // if (!movementIsBlocked)
+       // {
+       //     playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+       // }
 
 
 

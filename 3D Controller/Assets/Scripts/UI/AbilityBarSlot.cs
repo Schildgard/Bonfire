@@ -62,4 +62,9 @@ public class AbilityBarSlot : MonoBehaviour, IDropHandler
         _enteringObject.TargetSlot = _existingObject.TargetSlot;
         _existingObject.MoveSlotItem(tempTargetSlot);
     }
+
+    public void AssignNewAbilityToEmptySlot(SO_Spell _spell)
+    {
+        Spelllist.Spells[spelllistIndex] = _spell;
+    }
 }

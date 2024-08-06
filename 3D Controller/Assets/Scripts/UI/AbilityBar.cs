@@ -34,6 +34,19 @@ public class AbilityBar : MonoBehaviour
         }
     }
 
+    public void AddNewSpell(SO_Spell _spell)
+    {
+        foreach(var Ability in AbilityBarSlots)
+        {
+            if(Ability.Spell == null)
+            {
+                Ability.Spell = _spell;
+                CreateSlotIcon(Ability, _spell);
+                Ability.AssignNewAbilityToEmptySlot(_spell);
+            }
+        }
+    }
+
     private void CreateSlotIcon(AbilityBarSlot _abilityBarSlot, SO_Spell _spell)
     {
         var slotItem = Instantiate(SlotItemPrefab, _abilityBarSlot.transform);

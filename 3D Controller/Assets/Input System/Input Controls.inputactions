@@ -87,6 +87,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Cast Spell 5",
+                    "type": "Button",
+                    "id": "ca26ab6b-ca0c-48c7-9933-b7d2d5579ce7",
+                    "expectedControlType": "Button",
+                    "processors": "Scale(factor=4)",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SwitchTarget",
                     "type": "Value",
                     "id": "27c5e435-9226-4a13-8566-0fd7e7aa4e4b",
@@ -199,7 +208,7 @@
                 {
                     "name": "",
                     "id": "2a935720-6780-42e0-9ad3-a77fbd8a7f78",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -210,7 +219,7 @@
                 {
                     "name": "",
                     "id": "a4f0dea3-29fd-4aba-9200-2cec35a00634",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -221,7 +230,7 @@
                 {
                     "name": "",
                     "id": "6ff72ec8-6005-4574-9626-443584a8bbd2",
-                    "path": "<Keyboard>/4",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -232,7 +241,7 @@
                 {
                     "name": "",
                     "id": "0fa9e5ef-c357-4d84-a0bb-f4ec1578a53d",
-                    "path": "<Keyboard>/5",
+                    "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -272,6 +281,17 @@
                     "action": "SwitchTarget",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9e2948e2-7578-4594-945d-ea4d0bcfb341",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast Spell 5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

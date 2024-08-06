@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 1234414886045995200, guid: a97c9b8f952c81845a8b1b743a9e9c55, type: 3}
   - {fileID: 1716186525083055190, guid: 48ba8cfff1c40f448ae677d8529c66c9, type: 3}
   - {fileID: 4825256287420156518, guid: 05573445e2ee95247b63382d94206f7a, type: 3}
+  dialogueEvent: {fileID: 11400000, guid: 89bc72887f71dbf449e7a55abca92a30, type: 2}
