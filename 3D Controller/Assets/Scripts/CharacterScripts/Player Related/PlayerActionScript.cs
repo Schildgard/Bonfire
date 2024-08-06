@@ -73,7 +73,7 @@ public class PlayerActionScript : MonoBehaviour
     private float maxVelocity;
     #endregion
 
-    private bool isWalking;
+    private float runningThreshold = 3f;
 
     [SerializeField] private WeaponScript currentWeapon;
 
@@ -167,9 +167,13 @@ public class PlayerActionScript : MonoBehaviour
 
         if (runButtonPressed && Stamina.CurrentStamina > 0)
         {
-            accelerationMultiplier = 1;
-            Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
-            maxVelocity = 2f;
+            if (playerRigidbody.velocity.x > runningThreshold || playerRigidbody.velocity.x < -runningThreshold ||
+                playerRigidbody.velocity.z > runningThreshold || playerRigidbody.velocity.z < -runningThreshold)
+            {
+                accelerationMultiplier = 1;
+                Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+                maxVelocity = 2f;
+            }
         }
         else
         {
