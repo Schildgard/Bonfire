@@ -67,11 +67,17 @@ public class StaminaScript : MonoBehaviour
 
     public void BlockStaminaRegeneration()
     {
-        regenerationBlocked = true;
+        if (!regenerationBlocked)
+        {
+            regenerationBlocked = true;
+        }
     }
     public void ContinueStaminaRegeneration()
     {
-        regenerationBlocked = false;
+        if (regenerationBlocked)
+        {
+            regenerationBlocked = false;
+        }
     }
 
     public void UpdateStaminaBar()

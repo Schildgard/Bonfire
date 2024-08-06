@@ -5,7 +5,7 @@ public class PlayerActionScript : MonoBehaviour
 {
     private StaminaScript Stamina;
     private Rigidbody playerRigidbody;
-   // private GroundCheck collisionDetection;
+    // private GroundCheck collisionDetection;
     private Animator Animator;
     private Spelllist Spelllist;
     private bool movementIsBlocked;
@@ -73,13 +73,14 @@ public class PlayerActionScript : MonoBehaviour
     private float maxVelocity;
     #endregion
 
+    private bool isWalking;
+
     [SerializeField] private WeaponScript currentWeapon;
 
 
     //Wasted
     private float blockInput;
 
-   // private PlayerRotation RotationScript;
 
     // Start is called before the first frame update
     void Start()
@@ -89,8 +90,6 @@ public class PlayerActionScript : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stamina = GetComponent<StaminaScript>();
         Spelllist = GetComponent<Spelllist>();
-
-       // RotationScript = GetComponent<PlayerRotation>();
 
         MainCamera = Camera.main;
 
@@ -108,9 +107,10 @@ public class PlayerActionScript : MonoBehaviour
         Animator.SetFloat(velocityHashX, velocityX);
         Animator.SetFloat(velocityHashZ, velocityZ);
         Walk();
+
         Run();
 
-        Block();
+        //  Block();
 
         //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
@@ -139,10 +139,12 @@ public class PlayerActionScript : MonoBehaviour
         if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
         {
             velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, maxVelocity);
+
         }
         else
         {
             velocityX = Mathf.Clamp(velocityX - Time.deltaTime * decceleration, 0f, velocityX);
+
         }
 
 
@@ -153,7 +155,9 @@ public class PlayerActionScript : MonoBehaviour
         else
         {
             velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
+
         }
+
     }
 
 
@@ -215,8 +219,6 @@ public class PlayerActionScript : MonoBehaviour
     public void AttackDrainStamina()
     {
         Stamina.DrainStamina(currentWeapon.StaminaAttackCost);
-        // Stamina.CurrentStamina -= currentWeapon.StaminaAttackCost;
-        // Stamina.UpdateStaminaBar();
     }
 
     public void BlockMovement()
