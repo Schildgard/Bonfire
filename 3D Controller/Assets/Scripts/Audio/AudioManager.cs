@@ -27,6 +27,8 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> PlayerSFX;
 
+    private int currentMusicIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +62,30 @@ public class AudioManager : MonoBehaviour
     public void PlayAudioSound(Sound _sound)
     {
         _sound.source.Play();
+    }
+
+    public void ChangeBackGroundMusic(int _musicListIndex)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeBetweenTracks(_musicListIndex));
+    }
+
+    IEnumerator FadeBetweenTracks(int _musicListIndex)
+    {
+        float fadeTimer = 1.25f;
+        float elapseTime = 0;
+
+        Music[_musicListIndex].source.Play();
+        while (elapseTime < fadeTimer)
+        {
+            Music[_musicListIndex].source.volume = Mathf.Lerp(0, 0.5f, elapseTime / fadeTimer);
+            Music[currentMusicIndex].source.volume = Mathf.Lerp(0.5f,0,elapseTime/fadeTimer);
+            elapseTime += Time.deltaTime;
+            yield return null;
+        }
+        Music[currentMusicIndex].source.Stop();
+        currentMusicIndex = _musicListIndex;
+
     }
 }
 
