@@ -97,8 +97,6 @@ public class EnemySpawnManager : MonoBehaviour
             }
         }
         EnemyDataArray.Remove(EnemyDataArray[indexToRemove]);
-        Debug.Log("Index ´to remove was" + indexToRemove);
-
         UpdateEnemyEvent.Raise();
     }
 }

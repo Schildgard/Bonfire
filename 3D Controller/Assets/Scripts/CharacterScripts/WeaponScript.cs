@@ -29,11 +29,10 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider _target)
     {
-        if (attackSound != null)
-        {
-            attackSound.Play();
-        }
-        else { Debug.Log("WeaponCollider tries to play Weapon Hit Sound, but could find no AUdioManager in Scene"); }
+       if (attackSound != null)
+       {
+           attackSound.Play();
+       }
 
         var closestPoint = _target.ClosestPoint(transform.position);
         Instantiate(onHitVFX[0], closestPoint, Quaternion.identity);

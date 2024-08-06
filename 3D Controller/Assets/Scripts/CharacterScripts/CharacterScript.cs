@@ -61,7 +61,6 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
     public void PlaySFXSound(int _soundIndex)
     {
         CharacterSounds[_soundIndex].source.Play();
-        Debug.Log("Play "+ CharacterSounds[_soundIndex].name);
     }
 
     public void PlaySFXSound(string _soundname)

@@ -62,7 +62,6 @@ public class PlayerRotation : MonoBehaviour
 
     public void BlockRotation()
     {
-        Debug.Log("Rotation is blocked");
         blockRotation = true;
     }
 
