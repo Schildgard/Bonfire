@@ -167,9 +167,12 @@ public class PlayerActionScript : MonoBehaviour
 
         if (runButtonPressed && Stamina.CurrentStamina > 0)
         {
-            accelerationMultiplier = 1;
-            Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
-            maxVelocity = 2f;
+            if (playerRigidbody.velocity.x > 2.5f || playerRigidbody.velocity.x < -2.5f || playerRigidbody.velocity.z > 2.5f || playerRigidbody.velocity.z < -2.5f)
+            {
+                accelerationMultiplier = 1;
+                Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+                maxVelocity = 2f;
+            }
         }
         else
         {
