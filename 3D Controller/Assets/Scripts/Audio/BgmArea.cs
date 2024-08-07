@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BgmArea : MonoBehaviour
 {
-   // [SerializeField] private GameEvent bgmChangeEvent;
-    [SerializeField] private int audioManagerMusicIndex;
+    [SerializeField] private GameEvent enterAreaEvent;
+    [SerializeField] private GameEvent exitAreaEvent;
+    //[SerializeField] private int audioManagerMusicIndex;
 
 
     private void OnTriggerEnter(Collider _other)
     {
         if (_other.gameObject.layer == 7)
         {
-            AudioManager.instance.ChangeBackGroundMusic(audioManagerMusicIndex);
+            enterAreaEvent.Raise();
+           // AudioManager.instance.ChangeBackGroundMusic(audioManagerMusicIndex);
         }
     }
 
@@ -20,7 +22,8 @@ public class BgmArea : MonoBehaviour
     {
         if (_other.gameObject.layer == 7)
         {
-            AudioManager.instance.ChangeBackGroundMusic(0);
+            exitAreaEvent.Raise();
+            //AudioManager.instance.ChangeBackGroundMusic(0);
         }
     }
 }

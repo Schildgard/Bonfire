@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class LightningBoltCollider : MonoBehaviour
 {
@@ -46,28 +41,28 @@ public class LightningBoltCollider : MonoBehaviour
         if (_target == null) return;
 
         IDamageable damageableTarget = _target.gameObject.GetComponent<IDamageable>();
-        IElectrilizable[] electrizableTargets = _target.gameObject.GetComponentsInChildren<IElectrilizable>();
+        IElectrilizable[] electrizableTargets = _target.gameObject.GetComponentsInChildren<IElectrilizable>(false);
 
+        if (damageableTarget != null && electrizableTargets.Length > 0)
+        {
+
+            damageableTarget.GetDamage(particleDamage * 1.5f);
+            SearchAndTriggerElectrifyComponents(_target, electrizableTargets);
+
+           
+            return;
+        }
         if (damageableTarget != null)
         {
             damageableTarget.GetDamage(particleDamage);
         }
 
-        if (electrizableTargets != null)
+        if (electrizableTargets.Length > 0)
         {
-            foreach (var target in electrizableTargets)
-            {
-                if (_target.gameObject.layer == 4)
-                {
-                    target.Electrify(hitPosition);
-                }
-                else
-                target.Electrify();
-            }
+            SearchAndTriggerElectrifyComponents(_target, electrizableTargets);
+
             return;
         }
-        Debug.Log(_target.name + "  is neither damageable nor electrilizable");
-
     }
 
 
@@ -82,27 +77,22 @@ public class LightningBoltCollider : MonoBehaviour
     }
 
 
+    private void SearchAndTriggerElectrifyComponents(GameObject _target, IElectrilizable[] _electrilizables)
+    {
+        foreach (var item in _electrilizables)
+        {
+            if (_target.gameObject.layer == 4)
+            {
+                item.Electrify(hitPosition);
+            }
+            else
+            {
+                item.Electrify();
+            }
+        }
+    }
 
 
-
-
-    //  private void ElectrifyTarget(GameObject _target)
-    //  {
-    //
-    //      var targetRenderer = _target.GetComponentInChildren<SkinnedMeshRenderer>();
-    //      if (targetRenderer.materials.Length <= 2) // Indicator if the the Second Material, which is the Electrify Material, already has been added or not
-    //      {
-    //          var Condition = targetRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
-    //
-    //          targetRenderer.materials = new Material[] { Condition.OriginalMaterial[0], EffectMaterial }; ;
-    //      }
-    //      else
-    //      {
-    //          var EnemyCondition = targetRenderer.gameObject.GetComponent<EffectCondition_Lightning>();
-    //          EnemyCondition.duration = EnemyCondition.maxduration;
-    //          Debug.Log(_target.name + "has already been electrified");
-    //      }
-    //  }
 
 
 
