@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PlaneGenerationScene/Plane Generation Scene.unity
+    guid: 766c91088828f324b8317a6014b6e127
   m_configObjects: {}
