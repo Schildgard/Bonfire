@@ -30,7 +30,7 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float walkSpeedAcceleration;
     [SerializeField] private float staminaExhaustion;
 
-    private float runningThreshold = 3f;
+    private float runningThreshold = 2f;
     private bool runButtonPressed;
     private float accelerationMultiplier;
     #endregion
@@ -107,10 +107,10 @@ public class PlayerActionScript : MonoBehaviour
         //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
-    private void FixedUpdate()
-    {
-        MoveCharacter();
-    }
+  //  private void FixedUpdate()
+  //  {
+  //      MoveCharacter();
+  //  }
 
 
     private void CalculateMovement()
@@ -126,10 +126,10 @@ public class PlayerActionScript : MonoBehaviour
         movementVector.y = playerRigidbody.velocity.y;
 
         SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, movementVector, lerpSpeed * Time.deltaTime);
-       // if (!movementIsBlocked)
-       // {
-       //     playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
-       // }
+        if (!movementIsBlocked)
+        {
+            playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+        }
 
 
 

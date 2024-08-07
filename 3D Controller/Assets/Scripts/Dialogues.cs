@@ -76,4 +76,11 @@ public class Dialogues : MonoBehaviour
     {
         currentDialogueIndex++;
     }
+
+    public void ChangeActiveDialogueAfterBossDown()
+    {
+        currentDialogueIndex = 3;
+    }
+
+
 }

@@ -41,6 +41,7 @@ public class AudioManager : MonoBehaviour
         foreach (var sound in SFX)
         {
             InitializeAudioSources(sound);
+           // sound.source.spatialBlend = 1;
         }
         foreach (var sound in PlayerSFX)
         {
@@ -57,6 +58,7 @@ public class AudioManager : MonoBehaviour
         _sound.source.clip = _sound.clip;
         _sound.source.volume = _sound.volume;
         _sound.source.pitch = _sound.pitch;
+        
     }
 
     public void PlayAudioSound(Sound _sound)
