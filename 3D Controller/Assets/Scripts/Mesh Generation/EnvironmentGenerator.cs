@@ -47,19 +47,6 @@ public abstract class EnvironmentGenerator
 
 
         float spawnValue;
-        //Evaluate Positions in Noise so it returns a Value between 0 and 1
-
-      //  foreach (var position in planePositions)
-      //  {
-      //      spawnValue = noise.Evaluate(position);
-      //
-      //      if (spawnValue >= Threshold && position.y <= maxYPosition)
-      //      {
-      //          vegetationSpawnPositions.Add(position);
-      //      }
-      //  }
-
-
 
         for (int i = 0; i < planePositions.Length; i++)
         {
