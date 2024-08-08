@@ -73,8 +73,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        PlayerReference.Respawn();
-        PlayerReference.gameObject.transform.position = new Vector3(PlayerSpawnPosition.position.x, PlayerSpawnPosition.position.y, PlayerSpawnPosition.position.z);
+       // PlayerReference.Respawn();
+       // PlayerReference.gameObject.transform.position = new Vector3(PlayerSpawnPosition.position.x, PlayerSpawnPosition.position.y, PlayerSpawnPosition.position.z);
     }
 
     public GameObject RespawnEnemy(int _enemyID, Vector3 _position, Quaternion _rotation)

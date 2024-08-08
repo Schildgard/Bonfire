@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : CharacterScript
 {
-
+    [SerializeField] private Transform respawnPoint;
     [SerializeField] GameEvent YouDied;
     [SerializeField] PlayerInput PlayerInput;
 
@@ -33,7 +33,7 @@ public class PlayerScript : CharacterScript
 
     public void Respawn()
     {
-        Debug.Log("Player respawned");
+        transform.position = respawnPoint.position;
         HealthScript.ResetHealth();
         PlayerInput.enabled = true;
         HealthScript.isAlive = true;
