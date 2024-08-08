@@ -65,14 +65,21 @@ public abstract class EnvironmentGenerator
         {
             spawnValue = noise.Evaluate(planePositions[i]);
 
-            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition)
+            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition && CompareNormalToGlobalUp(positionNormals[i]) >= 0.95f) // Add Normal Comparison
             {
                 vegetationSpawnPositions.Add(planePositions[i]);
                 vegetationNormals.Add(positionNormals[i]);
+               // Debug.Log($"")
             }
         }
 
         return vegetationSpawnPositions;
 
+    }
+
+    private float CompareNormalToGlobalUp(Vector3 _normal)
+    {
+        float dotProduct = Vector3.Dot(Vector3.up, _normal);
+        return dotProduct;
     }
 }
