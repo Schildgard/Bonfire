@@ -46,7 +46,6 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         PlaySFXSound("Get Hit");
     }
 
-    public virtual void Respawn() { }
 
     public virtual void Die()
     {

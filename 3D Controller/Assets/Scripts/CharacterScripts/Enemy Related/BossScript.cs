@@ -14,7 +14,7 @@ public class BossScript : EnemyScript, IElectrilizable
         base.Start();
     }
 
-    public override void GetDamage(float _damage)
+    public override void GetDamage(float _damage) //Only Difference in this method to Enemy Script is the LifeCanvas. Looks like something fixworthy.
     {
         if (!HealthScript.isAlive)
         { return; }

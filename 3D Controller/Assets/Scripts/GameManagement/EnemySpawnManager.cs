@@ -12,41 +12,38 @@ public class EnemySpawnManager : MonoBehaviour
         if (instance == null) instance = this;
         else { Destroy(gameObject); }
         DontDestroyOnLoad(gameObject);
-
-
     }
-    [SerializeField] private GameObject[] EnemyPrefabs;
 
-
-    [SerializeField] private GameObject[] enemies;
+    #region Enemies
+    [SerializeField] private GameObject[] EnemyPrefabs; // Stores the Prefabs of all Enemies so they can be respawned after destroy
+    [SerializeField] private GameObject[] enemies; // stores all enemies in Scene
     public GameObject[] Enemies => enemies;
-
-    [SerializeField] private List<EnemyData> EnemyDataArray;
+    [SerializeField] private List<EnemyData> EnemyDataArray; //stores important informations of enemies in Scene, so they can respawn on their correct Position
+    [SerializeField] private GameEvent UpdateEnemyEvent;
+    #endregion
 
 
     [SerializeField] private GameObject SoulscratePrefab;
-    [SerializeField] private PlayerScript PlayerReference;
+
+
+    #region Player
     [SerializeField] private Transform PlayerSpawnPosition;
-
-    [SerializeField] private GameEvent UpdateEnemyEvent;
-
-
+    [SerializeField] private PlayerScript PlayerReference;
+    #endregion
 
 
     private void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-       // EnemyDataArray = new EnemyData[enemies.Length];
+
         EnemyDataArray = new List<EnemyData>();
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            //   EnemyDataArray[i].EnemyID = enemies[i].GetComponent<EnemyScript>().EnemyID;
-            //   EnemyDataArray[i].Position = enemies[i].transform.position;
-            //   EnemyDataArray[i].Rotation = enemies[i].transform.rotation;
             EnemyDataArray.Add(new EnemyData(enemies[i].GetComponent<EnemyScript>().EnemyID, enemies[i].transform.position, enemies[i].transform.rotation));
         }
         UpdateEnemyEvent.Raise();
+
 
     }
 
@@ -55,7 +52,7 @@ public class EnemySpawnManager : MonoBehaviour
         PlayerSpawnPosition.position = PlayerReference.transform.position;
     }
 
-    public void RespawnList()
+    public void RespawnEnemies()
     {
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -77,7 +74,7 @@ public class EnemySpawnManager : MonoBehaviour
     public void RespawnPlayer()
     {
         PlayerReference.Respawn();
-        PlayerReference.transform.position = PlayerSpawnPosition.position;
+        PlayerReference.gameObject.transform.position = new Vector3(PlayerSpawnPosition.position.x, PlayerSpawnPosition.position.y, PlayerSpawnPosition.position.z);
     }
 
     public GameObject RespawnEnemy(int _enemyID, Vector3 _position, Quaternion _rotation)
@@ -88,8 +85,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void RemoveBossFromRespawnList()
     {
-        int indexToRemove =0;
-        for (int i = 0;i < EnemyDataArray.Count; i++)
+        int indexToRemove = 0;
+        for (int i = 0; i < EnemyDataArray.Count; i++)
         {
             if (EnemyDataArray[i].EnemyID == 2)
             {
