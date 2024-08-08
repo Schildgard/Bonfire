@@ -17,11 +17,13 @@ public class WeaponScript : MonoBehaviour
 
     [SerializeField] private List<GameObject> onHitVFX;
 
+    [SerializeField] private int viableLayers;
+
     private void Start()
     {
         WielderStats = GetComponentInParent<StatScript>();
         attackSound = GetComponent<AudioSource>();
-        
+
     }
 
 
@@ -29,23 +31,26 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider _target)
     {
-       if (attackSound != null)
-       {
-           attackSound.Play();
-       }
+        if (attackSound != null)
+        {
+            attackSound.Play();
+        }
 
         var closestPoint = _target.ClosestPoint(transform.position);
         Instantiate(onHitVFX[0], closestPoint, Quaternion.identity);
-
-        float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
-        IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
-
-        if (hittableTarget == null) return;
-        foreach (var hit in hittableTarget)
+        if (_target.gameObject.layer == viableLayers)
         {
-            Debug.Log("Damage on " + hit);
-            hit.GetDamage(weaponDamage + damageMultiplier);
-            Debug.Log($"Weapon striked for {weaponDamage + damageMultiplier} Damage ({weaponDamage} + {damageMultiplier}");
+
+            IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
+            float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
+
+            if (hittableTarget == null) return;
+            foreach (var hit in hittableTarget)
+            {
+                Debug.Log("Damage on " + hit);
+                hit.GetDamage(weaponDamage + damageMultiplier);
+                Debug.Log($"Weapon striked for {weaponDamage + damageMultiplier} Damage ({weaponDamage} + {damageMultiplier}");
+            }
         }
     }
 }

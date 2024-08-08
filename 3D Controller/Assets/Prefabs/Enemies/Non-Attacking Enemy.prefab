@@ -748,6 +748,7 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   onHitVFX:
   - {fileID: 6390966103519915430, guid: 52a4bff356c2eb643aebe7bb10ead6c6, type: 3}
+  viableLayers: 7
 --- !u!1 &1481276459158566619
 GameObject:
   m_ObjectHideFlags: 0
