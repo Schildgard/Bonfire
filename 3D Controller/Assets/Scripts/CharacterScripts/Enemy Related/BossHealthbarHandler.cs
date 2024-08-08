@@ -26,13 +26,18 @@ public class BossHealthbarHandler : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        AudioManager.instance.ChangeBackGroundMusic(0);
+    }
+
     public void DisableHealthCanvas() // WIrd das irgendwo aufgerufen? Anscheinend als Event irgendwo.
     {
         enemyDetectionScript.Detected = false;
         if (healthCanvas.activeSelf)
         {
             healthCanvas.SetActive(false);
-            AudioManager.instance.ChangeBackGroundMusic(0);
+        AudioManager.instance.ChangeBackGroundMusic(0);
         }
 
         Destroy(this);
