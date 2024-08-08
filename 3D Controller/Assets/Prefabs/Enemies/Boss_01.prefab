@@ -412,11 +412,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   level: 0
-  strength: 3
-  vitality: 10
+  strength: 6
+  vitality: 25
   speed: 1
-  defense: 1
-  soulsValue: 0
+  defense: 20
+  soulsValue: 800
 --- !u!114 &4441997395994878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,8 +448,8 @@ MonoBehaviour:
   radiusVectorX: 1
   radiusVectorZ: 1.5
   viewRange: 54.4
-  chaseSphereRadius: 77.4
-  battleSphereRadius: 14.7
+  chaseSphereRadius: 80.4
+  battleSphereRadius: 15.6
   attackSphereRadius: 9.29
   alarmRadius: 8
   PlayerLayer:
