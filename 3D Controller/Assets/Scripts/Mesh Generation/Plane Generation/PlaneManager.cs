@@ -6,41 +6,34 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class PlaneManager : MonoBehaviour
 {
-    private PlaneGenerator planeGenerator;
-
+    [SerializeField] private List<CustomPlane> generatedPlanes;
     [SerializeField] private ShapeSettings shapeSettings;
-    [SerializeField] private Material planeMaterial;
-
-    [SerializeField, Range(4, 240)] private int resolution;
-
-    private MeshFace plane;
-    private NoiseFilter noiseFilter;
 
     public ShapeSettings ShapeSettings => shapeSettings;
-    private Vector3 SpawnOffset;
+
 
     public void CreatePlane()
     {
-        noiseFilter = new NoiseFilter(shapeSettings);
         GeneratePlanes();
     }
 
 
     private void GeneratePlanes()
     {
-        planeGenerator = new PlaneGenerator(planeMaterial, noiseFilter, resolution);
-
-        if (plane != null)
+        foreach (var item in generatedPlanes)
         {
-            plane = null;
+            if (item.PlaneObject != null) { continue; }
+            item.PlaneGenerator = new PlaneGenerator(item.planeMaterial, new NoiseFilter(item.ShapeSettings), item.resolution);
+            item.PlaneObject = item.PlaneGenerator.CreatePlaneItem();
         }
-
-            plane = planeGenerator.CreatePlaneItem();
     }
 
     public void UpdatePlaneMesh()
     {
-        if (plane == null) { return; }
-        planeGenerator.UpdatePlaneMesh(plane, resolution);
+        foreach (var item in generatedPlanes)
+        {
+            if (item.PlaneObject == null) { return; }
+            item.PlaneGenerator.UpdatePlaneMesh(item.PlaneObject, item.resolution);
+        }
     }
 }
