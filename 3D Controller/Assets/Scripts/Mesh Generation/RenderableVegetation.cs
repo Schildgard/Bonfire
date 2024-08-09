@@ -14,7 +14,7 @@ public class RenderableVegetation
     [SerializeField]private float Threshold;
     [SerializeField] private float maxYPosition;
 
-    [SerializeField]private Vector3 Offset;
+   // [SerializeField]private Vector3 Offset;
     [SerializeField]private Vector3 ScaleMultiplier;
 
     [SerializeField]private Mesh mesh;
@@ -31,14 +31,14 @@ public class RenderableVegetation
             switch (RenderMode)
             {
                 case 0:
-                    environmentGenerator = new VegetationGenerator(_mesh, Material, Threshold, Offset, ScaleMultiplier);
+                    environmentGenerator = new VegetationGenerator(_mesh, Material,Threshold, ScaleMultiplier);
                     break;
                 case 1:
-                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, Offset, ScaleMultiplier, randomRotation, randomizedOffset, maxYPosition);
+                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, ScaleMultiplier, randomRotation, randomizedOffset, maxYPosition);
                     if (Material.enableInstancing == false) { Material.enableInstancing = true; }
                     break;
                 default:
-                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, Offset, ScaleMultiplier, randomRotation, randomizedOffset, maxYPosition);
+                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, ScaleMultiplier, randomRotation, randomizedOffset, maxYPosition);
                     if (Material.enableInstancing == false) { Material.enableInstancing = true; }
                     break;
             }
@@ -50,14 +50,14 @@ public class RenderableVegetation
             switch (RenderMode)
             {
                 case 0:
-                    environmentGenerator = new VegetationGenerator(_mesh, Material, Threshold, Offset, ScaleMultiplier);
+                    environmentGenerator = new VegetationGenerator(_mesh, Material, Threshold, ScaleMultiplier);
                     break;
                 case 1:
-                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, Offset, ScaleMultiplier, mesh, randomRotation, randomizedOffset, maxYPosition);
+                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, ScaleMultiplier, mesh, randomRotation, randomizedOffset, maxYPosition);
                     if (Material.enableInstancing == false) { Material.enableInstancing = true; }
                     break;
                 default:
-                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, Offset, ScaleMultiplier, mesh, randomRotation, randomizedOffset, maxYPosition);
+                    environmentGenerator = new InstancedMesh_VegetationGenerator(_mesh, Threshold, ScaleMultiplier, mesh, randomRotation, randomizedOffset, maxYPosition);
                     if (Material.enableInstancing == false) { Material.enableInstancing = true; }
                     break;
             }

@@ -41,7 +41,7 @@ public abstract class EnvironmentGenerator
     {
         List<Vector3> vegetationSpawnPositions = new List<Vector3>();
 
-        vegetationSpawnPositions.Clear();
+        vegetationSpawnPositions.Clear(); //delete later
         planePositions = _planeMesh.vertices;
         positionNormals = _planeMesh.normals;
 
