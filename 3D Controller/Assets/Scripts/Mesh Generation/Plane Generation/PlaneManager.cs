@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class PlaneManager : MonoBehaviour
 {
     [SerializeField] private List<CustomPlane> generatedPlanes;
-    [SerializeField] private ShapeSettings shapeSettings;
+    [SerializeField] private ShapeSettings[] shapeSettings;
 
-    public ShapeSettings ShapeSettings => shapeSettings;
+    public ShapeSettings[] ShapeSettings => shapeSettings;
 
 
     public void CreatePlane()

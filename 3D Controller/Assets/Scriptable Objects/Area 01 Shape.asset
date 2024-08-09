@@ -16,7 +16,7 @@ MonoBehaviour:
   NoiseLayers:
   - enabled: 1
     NoiseSettings:
-      LayerCount: 3
+      LayerCount: 2
       BaseRoughness: 3.33
       Roughness: 1.7
       Strength: 13.7
