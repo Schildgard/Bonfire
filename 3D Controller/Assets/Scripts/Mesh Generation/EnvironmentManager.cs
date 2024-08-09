@@ -73,11 +73,11 @@ public class EnvironmentManager : MonoBehaviour
         {
             foreach (var environment in area.renderableEnvironment)
             {
-                environment.InitializeGenerator(area.planeMesh);
+                environment.InitializeGenerator(area.planeMesh, area.areaPlane.transform);
             }
             foreach (var environment in area.spawnableEnvironment)
             {
-                environment.InitializeGenerator(area.planeMesh);
+                environment.InitializeGenerator(area.planeMesh, area.areaPlane.transform);
             }
         }
     }

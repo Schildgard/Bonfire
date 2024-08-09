@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public abstract class EnvironmentGenerator
 {
+    protected Transform planeTransform; //TEst
+
+
     protected Mesh planeMesh;
     protected Noise noise;
 
@@ -42,7 +46,9 @@ public abstract class EnvironmentGenerator
         List<Vector3> vegetationSpawnPositions = new List<Vector3>();
 
         vegetationSpawnPositions.Clear(); //delete later
-        planePositions = _planeMesh.vertices;
+                                          // planePositions = _planeMesh.vertices;
+
+        planePositions = TranslateVertexToWorldPos(_planeMesh.vertices, planeTransform);
         positionNormals = _planeMesh.normals;
 
 
@@ -68,5 +74,17 @@ public abstract class EnvironmentGenerator
     {
         float dotProduct = Vector3.Dot(Vector3.up, _normal);
         return dotProduct;
+    }
+
+    private Vector3[] TranslateVertexToWorldPos(Vector3[] _inputArray, Transform _transform)
+    {
+        Vector3[] worldPositions = new Vector3[_inputArray.Length];
+
+        for (int i = 0; i < _inputArray.Length; i++)
+        {
+            worldPositions[i] = _transform.TransformPoint(_inputArray[i]);
+        }
+
+        return worldPositions;
     }
 }
