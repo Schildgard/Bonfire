@@ -6,6 +6,8 @@ public class BossHealthbarHandler : MonoBehaviour
 {
     private EnemyDetectionScript enemyDetectionScript;
     [SerializeField] private GameObject healthCanvas;
+    [SerializeField] private GameEvent bossTriggerEvent;
+    [SerializeField] private GameEvent bossDetriggerEvent;
 
     private void Start()
     {
@@ -16,19 +18,19 @@ public class BossHealthbarHandler : MonoBehaviour
         if (enemyDetectionScript.Detected && !healthCanvas.activeSelf)
         {
             healthCanvas.SetActive(true);
-            AudioManager.instance.ChangeBackGroundMusic(1); // Hat hier im Script nichts verloren. Ich sollte ein Event system dafür nutzen.
+            bossTriggerEvent.Raise();
         }
         else if (!enemyDetectionScript.Detected && healthCanvas.activeSelf)
         {
             healthCanvas.SetActive(false);
-            AudioManager.instance.ChangeBackGroundMusic(0);
+            bossDetriggerEvent.Raise();
 
         }
     }
 
     private void OnDestroy()
     {
-        AudioManager.instance.ChangeBackGroundMusic(0);
+        //bossDetriggerEvent.Raise();
     }
 
     public void DisableHealthCanvas() // WIrd das irgendwo aufgerufen? Anscheinend als Event irgendwo.

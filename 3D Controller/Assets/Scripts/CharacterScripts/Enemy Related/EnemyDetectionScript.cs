@@ -11,7 +11,7 @@ public class EnemyDetectionScript : MonoBehaviour
     [SerializeField] private float viewRange;
 
     [SerializeField] private float chaseSphereRadius;
-    [SerializeField] private float battleSphereRadius;
+    [SerializeField] private float strafingSphereRadius;
     [SerializeField] private float attackSphereRadius;
     [SerializeField] private float alarmRadius;
 
@@ -33,10 +33,10 @@ public class EnemyDetectionScript : MonoBehaviour
         get { return chaseSphereRadius; }
         set { chaseSphereRadius = value; }
     }
-    public float BattleSphereRadius
+    public float StrafingSphereRadius
     {
-        get { return battleSphereRadius; }
-        set { battleSphereRadius = value; }
+        get { return strafingSphereRadius; }
+        set { strafingSphereRadius = value; }
     }
     public float AttackSphereRadius
     {
@@ -66,7 +66,7 @@ public class EnemyDetectionScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseSphereRadius);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, battleSphereRadius);
+        Gizmos.DrawWireSphere(transform.position, strafingSphereRadius);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackSphereRadius);

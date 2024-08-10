@@ -72,7 +72,7 @@ public class Boss01_StateMachine : EnemyStateMachineBase
                 EnemyStrafingState, new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
                     {   () => stateTimer <= 0f, EnemyAttackState  },
-                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius), EnemyChaseState},
+                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.StrafingSphereRadius), EnemyChaseState},
                     {   ()=>!EnemyDetection.CheckRange(EnemyDetection.ChaseSphereRadius), EnemyReturnState}
 
 

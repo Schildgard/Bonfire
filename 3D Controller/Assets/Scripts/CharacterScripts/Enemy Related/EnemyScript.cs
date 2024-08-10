@@ -9,10 +9,10 @@ public class EnemyScript : CharacterScript
 
     public int EnemyID => enemyID;
 
-    protected override void Start()
-    { 
-        base.Start();
-    }
+  //  protected override void Start()
+  //  { 
+  //      base.Start();
+  //  }
     public override void Die()
     {
         base.Die();

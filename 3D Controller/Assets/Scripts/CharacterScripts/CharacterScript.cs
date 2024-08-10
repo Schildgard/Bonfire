@@ -24,6 +24,11 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
             sound.source.clip = sound.clip;
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
+            sound.source.spatialBlend = 1f;
+            sound.source.spread = 360f;
+            sound.source.rolloffMode = AudioRolloffMode.Linear;
+            sound.source.maxDistance = 50f;
+            
         }
     }
 
