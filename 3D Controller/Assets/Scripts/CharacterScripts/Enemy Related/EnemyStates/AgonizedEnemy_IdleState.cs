@@ -12,17 +12,25 @@ public class AgonizedEnemy_IdleState : EnemyBaseState
 
     public override void StateEnter()
     {
+        StateMachine.StateTimer = Random.Range(5f, 16f);
     }
 
     public override void StateUpdate()
     {
-        //Check Health of Nearby Enemies
+        //if timer runs down > Set Animation Trigger Agonized
+        StateMachine.StateTimer -= Time.deltaTime;
+        if (StateMachine.StateTimer <= 0)
+        {
+            animator.SetTrigger("Agony");
+            StateMachine.StateTimer = Random.Range(5f, 16f);
+        }    
+
         
     }
 
     public override void StateExit()
     {
         //Call For Help
-        animator.SetTrigger("Attention");
+        
     }
 }

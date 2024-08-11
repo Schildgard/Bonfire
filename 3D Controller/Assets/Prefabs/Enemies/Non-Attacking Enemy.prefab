@@ -2123,11 +2123,11 @@ MonoBehaviour:
     source: {fileID: 0}
     volume: 0.1
     pitch: 1
-  - name: Aggro
-    clip: {fileID: 8300000, guid: 27b98a8c68f991b408c5c6afff25358c, type: 3}
+  - name: Agony
+    clip: {fileID: 8300000, guid: 97343e0fb4c1382469dd527eb0644e07, type: 3}
     source: {fileID: 0}
-    volume: 0.25
-    pitch: 1
+    volume: 0.5
+    pitch: 0.6
   - name: Get Hit
     clip: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
     source: {fileID: 0}
@@ -2144,10 +2144,10 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
   - name: Scream
-    clip: {fileID: 8300000, guid: c35b1f489447c164f99deded2c2a9a6a, type: 3}
+    clip: {fileID: 8300000, guid: e47bc7bd044ef8e4f8c2101d55bc8bfd, type: 3}
     source: {fileID: 0}
-    volume: 0.3
-    pitch: 1
+    volume: 0.5
+    pitch: 0.62
   enemyID: 0
   lifeCanvas: {fileID: 2737773681035258321}
 --- !u!114 &7246262684698904536

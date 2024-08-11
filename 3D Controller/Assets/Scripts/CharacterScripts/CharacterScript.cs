@@ -28,7 +28,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
             sound.source.spread = 360f;
             sound.source.rolloffMode = AudioRolloffMode.Linear;
             sound.source.maxDistance = 50f;
-            
+
         }
     }
 
@@ -64,7 +64,10 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
     public void PlaySFXSound(int _soundIndex)
     {
-        CharacterSounds[_soundIndex].source.Play();
+        if (!CharacterSounds[_soundIndex].source.isPlaying)
+        {
+            CharacterSounds[_soundIndex].source.Play();
+        }
     }
 
     public void PlaySFXSound(string _soundname)

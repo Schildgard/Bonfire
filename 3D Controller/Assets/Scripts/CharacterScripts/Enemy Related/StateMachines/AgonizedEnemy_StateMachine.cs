@@ -7,6 +7,8 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
     private Vector3 StartPosition;
     private bool CallAnimationIsPlaying;
 
+    private bool CallAnimationhasEnded;
+
     #region MultiThreading
     private bool taskBool;
     public bool TaskBool { get => taskBool; set => taskBool = value; }
@@ -54,7 +56,7 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
              {
                   CallforHelpState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                      {()=> CallAnimationIsPlaying, EnemyChaseState }
+                      {()=> CallAnimationhasEnded, EnemyChaseState }
                   }
 
              },
@@ -109,8 +111,11 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
     }
     public void SetCallAnimationBoolEnded()
     {
-        CallAnimationIsPlaying = false;
+        CallAnimationhasEnded = true;
+        Animator.SetTrigger("Chase");
     }
+
+    
 
     public override void CheckAggressiveBehaviour()
     {
@@ -121,8 +126,14 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
         {
             if (enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected)
             {
-                EnemyDetection.Detected = true;
+                StartCoroutine(TriggerEnemy());
             }
         }
+    }
+
+    IEnumerator TriggerEnemy()
+    {
+        yield return new WaitForSeconds(1.5f);
+        EnemyDetection.Detected = true;
     }
 }
