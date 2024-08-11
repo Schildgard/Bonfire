@@ -7,14 +7,14 @@ public class VegetationGenerator : EnvironmentGenerator
     private Material material;
 
 
-    public VegetationGenerator(Mesh _mesh, Material _material, float _threshold, Vector3 _offset, Vector3 _scaleMultiplier)
+    public VegetationGenerator(Mesh _mesh, Material _material, float _threshold, Vector3 _scaleMultiplier)
     {
         planeMesh = _mesh;
         material = _material;
         noise = new Noise();
 
         Threshold = _threshold;
-        Offset = _offset;
+       // Offset = _offset;
         ScaleMultiplier = _scaleMultiplier;
 
         renderMesh = null;

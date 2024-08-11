@@ -21,7 +21,7 @@ public class PlaneGenerator
     }
 
 
-    public MeshFace CreatePlaneItem()
+    public GameObject CreatePlaneItem()
     {
 
         GameObject newPlane = new GameObject("Custom Plane");
@@ -39,8 +39,8 @@ public class PlaneGenerator
         newPlane.AddComponent<NavMeshSurface>();
 
         DrawPlaneMesh(mesh, collider);
-
-        return new MeshFace(meshRenderer, meshFilter);
+        return newPlane;
+       // return new MeshFace(meshRenderer, meshFilter);
     }
 
 
@@ -172,10 +172,10 @@ public class PlaneGenerator
 
     }
 
-    public void UpdatePlaneMesh(MeshFace _meshface, int _resolution)
+    public void UpdatePlaneMesh(GameObject _meshface, int _resolution)
     {
         resolution = _resolution;
 
-        DrawPlaneMesh(_meshface.MeshFilter.sharedMesh, collider);
+        DrawPlaneMesh(_meshface.GetComponent<MeshFilter>().sharedMesh, collider);
     }
 }

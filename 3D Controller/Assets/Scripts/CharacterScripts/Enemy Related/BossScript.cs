@@ -9,10 +9,10 @@ public class BossScript : EnemyScript, IElectrilizable
     [SerializeField]private  GameEvent bossDied;
     [SerializeField]private Material electrifiedMaterial;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
+  //  protected override void Start()
+  //  {
+  //      base.Start();
+  //  }
 
     public override void GetDamage(float _damage) //Only Difference in this method to Enemy Script is the LifeCanvas. Looks like something fixworthy.
     {

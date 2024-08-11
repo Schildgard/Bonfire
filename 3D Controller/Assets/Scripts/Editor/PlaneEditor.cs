@@ -18,7 +18,11 @@ public class PlaneEditor : Editor
             {
                 planeManager.UpdatePlaneMesh();
             }
-            DrawSettingsEditor(planeManager.ShapeSettings, planeManager.UpdatePlaneMesh, ref ShapeSettingsFouldOut, ref shapeEditor);
+            foreach (var item in planeManager.ShapeSettings)
+            {
+            DrawSettingsEditor(item, planeManager.UpdatePlaneMesh, ref ShapeSettingsFouldOut, ref shapeEditor);
+
+            }
         }
         if (GUILayout.Button("GeneratePlane"))
         {

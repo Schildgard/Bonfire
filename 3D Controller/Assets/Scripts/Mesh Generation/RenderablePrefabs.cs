@@ -24,9 +24,9 @@ public class RenderablePrefabs
 
     public bool RandomRotation => randomRotation;
 
-    public PrefabGenerator InitializeGenerator(Mesh _mesh)
+    public PrefabGenerator InitializeGenerator(Mesh _mesh, Transform _planeTransform)
     {
-        environmentGenerator = new PrefabGenerator(_mesh, maxPrefabCount, enableMaxCount, Threshold, Offset, randomizedOffset);
+        environmentGenerator = new PrefabGenerator(_mesh, maxPrefabCount, enableMaxCount, Threshold, Offset, randomizedOffset, _planeTransform);
         return environmentGenerator;
     }
 }

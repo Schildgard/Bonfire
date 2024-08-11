@@ -6,11 +6,20 @@ using UnityEngine.UIElements;
 [ExecuteInEditMode]
 public class EnvironmentManager : MonoBehaviour
 {
-    private Mesh planeMesh;
+
+    #region Refactoring
+    [SerializeField] private Area[] areas;
+
+    #endregion
+
+
+  //  private Mesh planeMesh;
+    // [SerializeField] private GameObject planes;
+
     [SerializeField] private List<GameObject> prefabsInScene;
 
-    [SerializeField] private List<RenderableVegetation> renderableEnvironment;
-    [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
+  //  [SerializeField] private List<RenderableVegetation> renderableEnvironment;
+  //  [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
@@ -22,15 +31,22 @@ public class EnvironmentManager : MonoBehaviour
 
     public void Initialize()
     {
-          RemoveEnvironmentPrefabs();
+        RemoveEnvironmentPrefabs();
 
-        var customPlane = GameObject.Find("Custom Plane");
-        if (customPlane == null)
+
+        //  var customPlane = GameObject.Find("Custom Plane");
+        //  if (customPlane == null)
+        //  {
+        //      Debug.Log("No Custom Plane was found. Please make sure if a Plane called 'Custom Plane' is in your Hierarchy");
+        //      return;
+        //  }
+        //  planeMesh = customPlane.GetComponent<MeshFilter>().sharedMesh;
+
+        foreach (var area in areas)
         {
-            Debug.Log("No Custom Plane was found. Please make sure if a Plane called 'Custom Plane' is in your Hierarchy");
-            return;
+            area.planeMesh = area.areaPlane.GetComponent<MeshFilter>().sharedMesh;
         }
-        planeMesh = customPlane.GetComponent<MeshFilter>().sharedMesh;
+
 
         InitializeGenerators();
         GenerateVegetations();
@@ -53,61 +69,76 @@ public class EnvironmentManager : MonoBehaviour
 
     private void InitializeGenerators()
     {
-        foreach (var environment in renderableEnvironment)
+        foreach (var area in areas)
         {
-            environment.InitializeGenerator(planeMesh);
-        }
-        foreach (var environment in spawnableEnvironment)
-        {
-            environment.InitializeGenerator(planeMesh);
+            foreach (var environment in area.renderableEnvironment)
+            {
+                environment.InitializeGenerator(area.planeMesh, area.areaPlane.transform);
+            }
+            foreach (var environment in area.spawnableEnvironment)
+            {
+                environment.InitializeGenerator(area.planeMesh, area.areaPlane.transform);
+            }
         }
     }
 
     private void GenerateVegetations()
     {
         instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
-        foreach (var environment in renderableEnvironment)
-        {
-            if (environment.RenderMode == 0)
-            {
-                environment.EnvironmentGenerator.CreateEnvironmentalMesh();
-            }
 
-            if (environment.RenderMode == 1)
+        foreach (var area in areas)
+        {
+
+
+
+            foreach (var environment in area.renderableEnvironment)
             {
-                instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
+                if (environment.RenderMode == 0)
+                {
+                    environment.EnvironmentGenerator.CreateEnvironmentalMesh();
+                }
+
+                if (environment.RenderMode == 1)
+                {
+                    instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
+                }
             }
         }
 
 
         prefabsInScene = new List<GameObject>();
-        foreach (var environment in spawnableEnvironment)
+
+        foreach (var area in areas)
         {
 
-            environment.EnvironmentGenerator.SetSpawnPositions();
-            int index = 0;
 
-
-            if (environment.RandomRotation)
+            foreach (var environment in area.spawnableEnvironment)
             {
-                foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
-                {
 
-                    prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
-                    index++;
+                environment.EnvironmentGenerator.SetSpawnPositions();
+                int index = 0; // ??
+
+
+                if (environment.RandomRotation)
+                {
+                    foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+                    {
+
+                        prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
+                        index++;
+                    }
+                }
+                else
+                {
+                    foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+                    {
+                        prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
+                        index++;
+                    }
                 }
             }
-            else
-            {
-                foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
-                {
-                    prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
-                    index++;
-                }
-            }
+
         }
-
-
         renderInstancedMeshes = true;
     }
 

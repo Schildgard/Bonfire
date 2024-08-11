@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> SFX;
 
-    public List<Sound> PlayerSFX;
+   // public List<Sound> PlayerSFX;
 
     private int currentMusicIndex = 0;
 
@@ -41,12 +41,12 @@ public class AudioManager : MonoBehaviour
         foreach (var sound in SFX)
         {
             InitializeAudioSources(sound);
-           // sound.source.spatialBlend = 1;
+            // sound.source.spatialBlend = 1;
         }
-        foreach (var sound in PlayerSFX)
-        {
-            InitializeAudioSources(sound);
-        }
+      //  foreach (var sound in PlayerSFX)
+      //  {
+      //      InitializeAudioSources(sound);
+      //  }
 
         Music[0].source.Play();
 
@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         _sound.source.clip = _sound.clip;
         _sound.source.volume = _sound.volume;
         _sound.source.pitch = _sound.pitch;
-        
+
     }
 
     public void PlayAudioSound(Sound _sound)
@@ -72,21 +72,33 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeBetweenTracks(_musicListIndex));
     }
 
+    public void ChangeBackGroundMusic()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeBetweenTracks(currentMusicIndex));
+    }
+
     IEnumerator FadeBetweenTracks(int _musicListIndex)
     {
-        float fadeTimer = 1.25f;
-        float elapseTime = 0;
-
-        Music[_musicListIndex].source.Play();
-        while (elapseTime < fadeTimer)
+        if (_musicListIndex != currentMusicIndex)
         {
-            Music[_musicListIndex].source.volume = Mathf.Lerp(0, 0.5f, elapseTime / fadeTimer);
-            Music[currentMusicIndex].source.volume = Mathf.Lerp(0.5f,0,elapseTime/fadeTimer);
-            elapseTime += Time.deltaTime;
-            yield return null;
+
+            float fadeTimer = 1.25f;
+            float elapseTime = 0;
+
+            Music[_musicListIndex].source.Play();
+            while (elapseTime < fadeTimer)
+            {
+                Music[_musicListIndex].source.volume = Mathf.Lerp(0, 0.5f, elapseTime / fadeTimer);
+                Music[currentMusicIndex].source.volume = Mathf.Lerp(0.5f, 0, elapseTime / fadeTimer);
+                elapseTime += Time.deltaTime;
+                yield return null;
+            }
+            Music[currentMusicIndex].source.Stop();
         }
-        Music[currentMusicIndex].source.Stop();
-        currentMusicIndex = _musicListIndex;
+
+
+         currentMusicIndex = _musicListIndex;
 
     }
 }
@@ -97,8 +109,8 @@ public class Sound
 {
     public string name;
     public AudioClip clip;
-    [HideInInspector] public AudioSource source;
-    [Range(0, 1)] public float volume =0.5f;
+    public AudioSource source;
+    [Range(0, 1)] public float volume = 0.5f;
     [Range(-3f, 3f)] public float pitch = 1f;
 
 

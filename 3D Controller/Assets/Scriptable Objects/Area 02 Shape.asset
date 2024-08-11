@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d19935eb8baf3bb43abe067790ef3ba6, type: 3}
-  m_Name: New ShapeSettings
+  m_Name: Area 02 Shape
   m_EditorClassIdentifier: 
   size: 500
   NoiseLayers:
@@ -18,17 +18,8 @@ MonoBehaviour:
     NoiseSettings:
       LayerCount: 3
       BaseRoughness: 3.33
-      Roughness: 1.7
-      Strength: 13.7
-      Persistence: 0.15
-      NoiseCenter: {x: 0, y: 0, z: 0}
-      GroundLevel: 0.45
-  - enabled: 1
-    NoiseSettings:
-      LayerCount: 8
-      BaseRoughness: 1.71
-      Roughness: 2.85
-      Strength: 130.3
-      Persistence: 0.3
-      NoiseCenter: {x: -0.3, y: 0, z: 0.41}
-      GroundLevel: 72.6
+      Roughness: 1.5
+      Strength: 15
+      Persistence: 2.2
+      NoiseCenter: {x: 2.73, y: 0, z: 0}
+      GroundLevel: -0.81

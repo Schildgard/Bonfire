@@ -7,6 +7,8 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
     private Vector3 StartPosition;
     private bool CallAnimationIsPlaying;
 
+    private bool CallAnimationhasEnded;
+
     #region MultiThreading
     private bool taskBool;
     public bool TaskBool { get => taskBool; set => taskBool = value; }
@@ -54,7 +56,7 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
              {
                   CallforHelpState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                      {()=> CallAnimationIsPlaying, EnemyChaseState }
+                      {()=> CallAnimationhasEnded, EnemyChaseState }
                   }
 
              },
@@ -84,7 +86,7 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
                 EnemyStrafingState, new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
                     {   () => stateTimer <= 0f, EnemyAttackState  },
-                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius), EnemyChaseState},
+                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.StrafingSphereRadius), EnemyChaseState},
                     {   ()=>!EnemyDetection.CheckRange(EnemyDetection.ChaseSphereRadius), EnemyReturnState}
 
 
@@ -109,20 +111,33 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
     }
     public void SetCallAnimationBoolEnded()
     {
-        CallAnimationIsPlaying = false;
+        CallAnimationhasEnded = true;
+        Animator.SetTrigger("Chase");
     }
+
+
 
     public override void CheckAggressiveBehaviour()
     {
-        Collider[] col;
-        col = Physics.OverlapSphere(transform.position, EnemyDetection.AlarmRadius, layerMask: EnemyDetection.EnemyLayer);
-
-        foreach (var enemy in col)
+        if (EnemyDetection.Detected == false)
         {
-            if (enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected)
+            Collider[] col;
+            col = Physics.OverlapSphere(transform.position, EnemyDetection.AlarmRadius, layerMask: EnemyDetection.EnemyLayer);
+
+            foreach (var enemy in col)
             {
-                EnemyDetection.Detected = true;
+                if (enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected)
+                {
+                    StartCoroutine(TriggerEnemy());
+                    return;
+                }
             }
         }
+    }
+
+    IEnumerator TriggerEnemy()
+    {
+        yield return new WaitForSeconds(1.5f);
+        EnemyDetection.Detected = true;
     }
 }
