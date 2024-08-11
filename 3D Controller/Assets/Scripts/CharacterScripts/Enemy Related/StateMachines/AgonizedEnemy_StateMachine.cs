@@ -115,18 +115,22 @@ public class AgonizedEnemy_StateMachine : EnemyStateMachineBase
         Animator.SetTrigger("Chase");
     }
 
-    
+
 
     public override void CheckAggressiveBehaviour()
     {
-        Collider[] col;
-        col = Physics.OverlapSphere(transform.position, EnemyDetection.AlarmRadius, layerMask: EnemyDetection.EnemyLayer);
-
-        foreach (var enemy in col)
+        if (EnemyDetection.Detected == false)
         {
-            if (enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected)
+            Collider[] col;
+            col = Physics.OverlapSphere(transform.position, EnemyDetection.AlarmRadius, layerMask: EnemyDetection.EnemyLayer);
+
+            foreach (var enemy in col)
             {
-                StartCoroutine(TriggerEnemy());
+                if (enemy.gameObject.GetComponent<EnemyDetectionScript>().Detected)
+                {
+                    StartCoroutine(TriggerEnemy());
+                    return;
+                }
             }
         }
     }

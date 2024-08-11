@@ -2144,10 +2144,10 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
   - name: Scream
-    clip: {fileID: 8300000, guid: e47bc7bd044ef8e4f8c2101d55bc8bfd, type: 3}
+    clip: {fileID: 8300000, guid: 43a588943e5c54a4eae3d86d378002aa, type: 3}
     source: {fileID: 0}
-    volume: 0.5
-    pitch: 0.62
+    volume: 1
+    pitch: 0.85
   enemyID: 0
   lifeCanvas: {fileID: 2737773681035258321}
 --- !u!114 &7246262684698904536
