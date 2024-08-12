@@ -21,7 +21,7 @@ public class PlayerActionScript : MonoBehaviour
     private Vector3 SmoothMovement;
     private Vector3 movementVector;
 
-    public Vector3 MovementVector { get { return movementVector; } }
+    public Vector3 MovementVector { get { return movementVector; } } //Unnötig?
     #endregion
 
     #region Run
