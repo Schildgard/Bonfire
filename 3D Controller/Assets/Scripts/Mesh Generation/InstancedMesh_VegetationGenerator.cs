@@ -4,44 +4,40 @@ using UnityEngine;
 public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 {
 
-    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _scaleMultiplier, bool _randomRotation, bool _randomizedOffset, float _maxYPos, Transform _planeTransform)
-    {
-        noise = new Noise();
-        planeMesh = _planeMesh;
+  public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _scaleMultiplier, bool _randomRotation, bool _randomizedOffset, float _maxYPos, Transform _planeTransform)
+  {
+        // This Constructor operates when no Mesh is transmitted.  The Material will be rendered on a Quad Mesh in that Case.
+      noise = new Noise();
+      planeMesh = _planeMesh;
+ 
+      Threshold = _threshold;
+ 
+      ScaleMultiplier = _scaleMultiplier;
+      randomRotation = _randomRotation;
+      randomizedOffset = _randomizedOffset;
+ 
+      renderMesh = null;
+      maxYPosition = _maxYPos;
+ 
+      planeTransform = _planeTransform;
+  }
 
-       // matrices = CalculateMatrices();
-
-        Threshold = _threshold;
-     //   Offset = _offset;
-        ScaleMultiplier = _scaleMultiplier;
-        randomRotation = _randomRotation;
-        randomizedOffset = _randomizedOffset;
-
-        renderMesh = null;
-
-        maxYPosition = _maxYPos;
-
-        planeTransform = _planeTransform;
-    }
-
-    public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _scaleMultiplier, Mesh _mesh, bool _randomRotation, bool _randomizedOffset, float _maxYPos, Transform _planeTransform)
-    {
-        noise = new Noise();
-        planeMesh = _planeMesh;
-
-       // matrices = CalculateMatrices();
-
-        Threshold = _threshold;
-       // Offset = _offset;
-        randomRotation = _randomRotation;
-        randomizedOffset = _randomizedOffset;
-        ScaleMultiplier = _scaleMultiplier;
-
-        renderMesh = _mesh;
-        maxYPosition = _maxYPos;
-
-        planeTransform = _planeTransform;
-    }
+  public InstancedMesh_VegetationGenerator(Mesh _planeMesh, float _threshold, Vector3 _scaleMultiplier, Mesh _mesh, bool _randomRotation, bool _randomizedOffset, float _maxYPos, Transform _planeTransform)
+  {
+      noise = new Noise();
+      planeMesh = _planeMesh;
+ 
+      Threshold = _threshold;
+ 
+      ScaleMultiplier = _scaleMultiplier;
+      randomRotation = _randomRotation;
+      randomizedOffset = _randomizedOffset;
+ 
+      renderMesh = _mesh;
+      maxYPosition = _maxYPos;
+ 
+      planeTransform = _planeTransform;
+  }
 
 
 
@@ -107,7 +103,7 @@ public class InstancedMesh_VegetationGenerator : EnvironmentGenerator
 
     public Mesh GenerateMesh()
     {
-
+        // If Constructor was calles without an transmitted Mesh, render a Quad Shape.
         if (renderMesh == null)
         {
             Mesh mesh = new Mesh();

@@ -6,17 +6,13 @@ using UnityEngine.UIElements;
 [ExecuteInEditMode]
 public class EnvironmentManager : MonoBehaviour
 {
-
-
     [SerializeField] private Area[] areas;
     [SerializeField] private List<GameObject> prefabsInScene;
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
-    private bool renderInstancedMeshes;
-
-
-
+    private bool renderInstancedMeshes; // The point of this bool is to disable the rendering when 'Remove Environment' Button is pressed
+                                        // and optimize performance while editing other stuff in Editor
 
 
     public void Initialize()
@@ -97,8 +93,6 @@ public class EnvironmentManager : MonoBehaviour
             {
 
                 environment.EnvironmentGenerator.SetSpawnPositions();
-                int index = 0; // ??
-
 
                 if (environment.RandomRotation)
                 {
@@ -106,7 +100,6 @@ public class EnvironmentManager : MonoBehaviour
                     {
 
                         prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
-                        index++;
                     }
                 }
                 else
@@ -114,7 +107,6 @@ public class EnvironmentManager : MonoBehaviour
                     foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                     {
                         prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
-                        index++;
                     }
                 }
             }
@@ -140,8 +132,6 @@ public class EnvironmentManager : MonoBehaviour
         foreach (var environment in instancedEnvironment)
         {
             RenderInstancedMesh(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
-
-            //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
         }
     }
 

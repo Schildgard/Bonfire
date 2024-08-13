@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37eced2b57fd9b94ab38c24ae435f6d9, type: 3}
+  m_Name: NPC 01 Dialogue 1
+  m_EditorClassIdentifier: 
+  DialogueTitle: Greetings
+  Lines:
+  - {fileID: 1587721947641918431, guid: 52d15f1b781d97944b116e219b01553c, type: 3}
+  - {fileID: 5052062175714669944, guid: 5e1d91198bd146c49a20d6ea5b5a6579, type: 3}
+  - {fileID: 843648343373385436, guid: a8d1563b4ff929345b47d65770210e10, type: 3}
+  - {fileID: 7439324994341167098, guid: fb33641c1c3231348b057d733d824b03, type: 3}
+  - {fileID: 8540045008374415134, guid: 15d2037774eb1374185ecad5586eeb3a, type: 3}
+  dialogueEvent: {fileID: 11400000, guid: 3c60dc327fc95d0428e067ab474b7c8f, type: 2}

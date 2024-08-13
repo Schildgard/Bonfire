@@ -62,7 +62,6 @@ public abstract class EnvironmentGenerator
             {
                 vegetationSpawnPositions.Add(planePositions[i]);
                 vegetationNormals.Add(positionNormals[i]);
-               // Debug.Log($"")
             }
         }
 
