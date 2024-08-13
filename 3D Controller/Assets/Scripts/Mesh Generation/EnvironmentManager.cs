@@ -7,19 +7,9 @@ using UnityEngine.UIElements;
 public class EnvironmentManager : MonoBehaviour
 {
 
-    #region Refactoring
+
     [SerializeField] private Area[] areas;
-
-    #endregion
-
-
-  //  private Mesh planeMesh;
-    // [SerializeField] private GameObject planes;
-
     [SerializeField] private List<GameObject> prefabsInScene;
-
-  //  [SerializeField] private List<RenderableVegetation> renderableEnvironment;
-  //  [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
@@ -32,15 +22,6 @@ public class EnvironmentManager : MonoBehaviour
     public void Initialize()
     {
         RemoveEnvironmentPrefabs();
-
-
-        //  var customPlane = GameObject.Find("Custom Plane");
-        //  if (customPlane == null)
-        //  {
-        //      Debug.Log("No Custom Plane was found. Please make sure if a Plane called 'Custom Plane' is in your Hierarchy");
-        //      return;
-        //  }
-        //  planeMesh = customPlane.GetComponent<MeshFilter>().sharedMesh;
 
         foreach (var area in areas)
         {
@@ -144,7 +125,7 @@ public class EnvironmentManager : MonoBehaviour
 
 
 
-    private void RenderInstancedMeshes(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
+    private void RenderInstancedMesh(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
     {
 
         foreach (var MatrixList in _matrixLists)
@@ -158,7 +139,7 @@ public class EnvironmentManager : MonoBehaviour
         if (instancedEnvironment == null || instancedEnvironment.Count <= 0) { return; }
         foreach (var environment in instancedEnvironment)
         {
-            RenderInstancedMeshes(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
+            RenderInstancedMesh(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
 
             //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
         }
