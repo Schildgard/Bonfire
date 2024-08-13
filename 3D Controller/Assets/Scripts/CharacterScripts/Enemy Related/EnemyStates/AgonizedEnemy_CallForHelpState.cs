@@ -12,6 +12,7 @@ public class AgonizedEnemy_CallForHelpState : EnemyBaseState
 
     public override void StateEnter()
     {
+        animator.SetTrigger("Attention");
     }
 
     public override void StateUpdate()

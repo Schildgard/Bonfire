@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public abstract class EnvironmentGenerator
 {
+    protected Transform planeTransform; //TEst
+
+
     protected Mesh planeMesh;
     protected Noise noise;
 
@@ -41,38 +45,46 @@ public abstract class EnvironmentGenerator
     {
         List<Vector3> vegetationSpawnPositions = new List<Vector3>();
 
-        vegetationSpawnPositions.Clear();
-        planePositions = _planeMesh.vertices;
+        vegetationSpawnPositions.Clear(); //delete later
+                                          // planePositions = _planeMesh.vertices;
+
+        planePositions = TranslateVertexToWorldPos(_planeMesh.vertices, planeTransform);
         positionNormals = _planeMesh.normals;
 
 
         float spawnValue;
-        //Evaluate Positions in Noise so it returns a Value between 0 and 1
-
-      //  foreach (var position in planePositions)
-      //  {
-      //      spawnValue = noise.Evaluate(position);
-      //
-      //      if (spawnValue >= Threshold && position.y <= maxYPosition)
-      //      {
-      //          vegetationSpawnPositions.Add(position);
-      //      }
-      //  }
-
-
 
         for (int i = 0; i < planePositions.Length; i++)
         {
             spawnValue = noise.Evaluate(planePositions[i]);
 
-            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition)
+            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition && CompareNormalToGlobalUp(positionNormals[i]) >= 0.95f) // Add Normal Comparison
             {
                 vegetationSpawnPositions.Add(planePositions[i]);
                 vegetationNormals.Add(positionNormals[i]);
+               // Debug.Log($"")
             }
         }
 
         return vegetationSpawnPositions;
 
+    }
+
+    private float CompareNormalToGlobalUp(Vector3 _normal)
+    {
+        float dotProduct = Vector3.Dot(Vector3.up, _normal);
+        return dotProduct;
+    }
+
+    private Vector3[] TranslateVertexToWorldPos(Vector3[] _inputArray, Transform _transform)
+    {
+        Vector3[] worldPositions = new Vector3[_inputArray.Length];
+
+        for (int i = 0; i < _inputArray.Length; i++)
+        {
+            worldPositions[i] = _transform.TransformPoint(_inputArray[i]);
+        }
+
+        return worldPositions;
     }
 }

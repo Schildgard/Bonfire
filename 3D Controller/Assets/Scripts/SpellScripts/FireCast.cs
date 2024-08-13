@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 public class FireCast : MonoBehaviour
 {
@@ -13,15 +14,29 @@ public class FireCast : MonoBehaviour
 
     [SerializeField] private GameObject CloudPrefab;
 
+    private CinemachineVirtualCamera lockOnCamera;
+    private Transform target;
+
     private void Awake()
     {
+        lockOnCamera = GameObject.Find("Lock On Camera").GetComponent<CinemachineVirtualCamera>();
         this.transform.parent = null;
         hitTargets = new List<IDamageable>();
         WetTargets = new List<GameObject>();
+        if (lockOnCamera.LookAt != null)
+        {
+            target = lockOnCamera.LookAt.transform;
+        }
+
     }
 
     private void Update()
     {
+        if (target != null)
+        {
+            transform.LookAt(target);
+        }
+
         if (hitTargets.Count > 0)
         {
             timer -= Time.deltaTime;
@@ -33,6 +48,7 @@ public class FireCast : MonoBehaviour
                     target.GetDamage(damagePerIntervall);
                     
                 }
+
                 AudioManager.instance.SFX[7].source.Play();
                 timer = damageIntervall;
 
@@ -42,8 +58,7 @@ public class FireCast : MonoBehaviour
 
                     var wetCondition = target.GetComponentInChildren<EffectCondition_Wet>();
                     wetCondition.duration = 0.01f;
-                }
-                    WetTargets.Clear();
+                } WetTargets.Clear();
             }
 
         }
@@ -62,9 +77,9 @@ public class FireCast : MonoBehaviour
 
         var wetTarget = _target.GetComponentInChildren<EffectCondition_Wet>();
         if (wetTarget == null) return;
-        Debug.Log(_target.name + "has EffectCondition_wet and entered the Fire Collider");
+
         WetTargets.Add(_target.gameObject);
-        Debug.Log(_target.name + "is added to Wet List!");
+
 
     }
 
@@ -72,10 +87,5 @@ public class FireCast : MonoBehaviour
     {
         var damageableTarget = _target.gameObject.GetComponent<IDamageable>();
         hitTargets.Remove(damageableTarget);
-
-      // if (WetTargets.Contains(_target.gameObject))
-      // {
-      //     WetTargets.Remove(_target.gameObject);
-      // }
     }
 }

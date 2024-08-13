@@ -4,13 +4,14 @@ using UnityEngine.UIElements;
 
 public class PrefabGenerator
 {
+    private Transform planeTransform;
     private Mesh planeMesh;
     private Noise noise;
     private int maxSpawnCount;
     private bool enableMaxCount = true;
     private Vector3[] planePositions;
     private float Threshold = -1f;
-    private Vector3 Offset = new Vector3(0,0,0);
+    private Vector3 Offset = new Vector3(0, 0, 0);
     private bool randomizedOffset = false;
 
 
@@ -20,9 +21,10 @@ public class PrefabGenerator
     public List<Vector3> SpawnPositions = new List<Vector3>();
 
 
-    public PrefabGenerator(Mesh _mesh, int _maxSpawnCount, bool _enableMaxCount, float _threshold, Vector3 _offset, bool _randomOffset)
+    public PrefabGenerator(Mesh _mesh, int _maxSpawnCount, bool _enableMaxCount, float _threshold, Vector3 _offset, bool _randomOffset, Transform _planeTransform)
     {
         planeMesh = _mesh;
+        planeTransform = _planeTransform;
         noise = new Noise();
         maxSpawnCount = _maxSpawnCount;
         enableMaxCount = _enableMaxCount;
@@ -36,9 +38,12 @@ public class PrefabGenerator
     public virtual List<Vector3> CalculateSpawnPositions(Mesh _planeMesh)
     {
         SpawnPositions.Clear();
-        planePositions = _planeMesh.vertices;
+        //  planePositions = _planeMesh.vertices;
+        planePositions = TranslateVertexToWorldPos(_planeMesh.vertices, planeTransform);
         Vector3 offsetPosition;
         float spawnValue;
+
+
         if (enableMaxCount)
         {
             for (int i = 0, c = 0; i < planePositions.Length; i++, c++)
@@ -77,5 +82,18 @@ public class PrefabGenerator
     public void SetSpawnPositions()
     {
         SpawnPositions = CalculateSpawnPositions(planeMesh);
+    }
+
+
+    private Vector3[] TranslateVertexToWorldPos(Vector3[] _inputArray, Transform _transform)
+    {
+        Vector3[] worldPositions = new Vector3[_inputArray.Length];
+
+        for (int i = 0; i < _inputArray.Length; i++)
+        {
+            worldPositions[i] = _transform.TransformPoint(_inputArray[i]);
+        }
+
+        return worldPositions;
     }
 }

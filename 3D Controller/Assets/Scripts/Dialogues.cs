@@ -6,9 +6,11 @@ using UnityEngine;
 public class Dialogues : MonoBehaviour
 {
 
-    [SerializeField]private List<Dialogue> dialogue;
+    [SerializeField] private List<Dialogue> dialogue;
 
-    [SerializeField]private Collider Collider;
+    [SerializeField] private Collider talkRangeCollider;
+
+    [SerializeField] private GameEvent gameEvent;
 
     private bool talkRange;
 
@@ -26,6 +28,7 @@ public class Dialogues : MonoBehaviour
                 DialogueManager.instance.Canvas.gameObject.SetActive(true);
                 //DialogueManager.instance.ActiveCanvasText.text = Lines[currentTextIndex].text;
                 DialogueManager.instance.ActiveCanvasText.text = dialogue[currentDialogueIndex].Lines[currentTextIndex].text;
+
             }
         }
         else if (talkRange && DialogueManager.instance.Canvas.gameObject.activeSelf == true)
@@ -36,6 +39,11 @@ public class Dialogues : MonoBehaviour
                 if (currentTextIndex >= dialogue[currentDialogueIndex].Lines.Count - 1)
                 {
                     DialogueManager.instance.Canvas.gameObject.SetActive(false);
+                    if (dialogue[currentDialogueIndex].dialogueEvent != null)
+                    {
+                        dialogue[currentDialogueIndex].dialogueEvent.Raise();
+                    }
+
                     currentTextIndex = 0;
                 }
                 else
@@ -68,4 +76,11 @@ public class Dialogues : MonoBehaviour
     {
         currentDialogueIndex++;
     }
+
+    public void ChangeActiveDialogueAfterBossDown()
+    {
+        currentDialogueIndex = 3;
+    }
+
+
 }

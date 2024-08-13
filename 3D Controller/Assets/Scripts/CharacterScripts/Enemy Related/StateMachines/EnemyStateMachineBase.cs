@@ -133,6 +133,7 @@ public abstract class EnemyStateMachineBase : MonoBehaviour, IAggroable
 
     public virtual void CheckAggressiveBehaviour()
     {
+        Debug.Log("No Override");
         throw new System.NotImplementedException();
     }
 }

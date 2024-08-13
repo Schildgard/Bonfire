@@ -14,4 +14,6 @@ public class SO_Spell : ScriptableObject
     [Range(0,2)]
     public int spellTypeIndex;
 
+    public GameObject spellCastAnimEffect;
+
 }

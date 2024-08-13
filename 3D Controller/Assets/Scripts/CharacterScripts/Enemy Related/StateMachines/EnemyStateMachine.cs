@@ -42,14 +42,14 @@ public class EnemyStateMachine : EnemyStateMachineBase
              {
                   EnemyIdleState, new Dictionary<StateMachineDelegate,EnemyBaseState>
                   {
-                    { ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState },
-                    { () => EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyChaseState },
-                    { ()=> EnemyDetection.Detected,EnemyChaseState }
+                //    { ()=> GetRadius(transform, PlayerPosition) >= 0.7f,EnemyChaseState },
+                //    { () => EnemyDetection.CheckRange(EnemyDetection.AttackSphereRadius), EnemyChaseState },
+                //    { ()=> EnemyDetection.Detected,EnemyChaseState }
 
-                 // {
-                 //   //MultiThreading
-                 //   () => TaskBool, EnemyChaseState
-                 // }
+                  {
+                    //MultiThreading
+                    () => TaskBool, EnemyChaseState
+                  }
                   }
 
              },
@@ -78,7 +78,7 @@ public class EnemyStateMachine : EnemyStateMachineBase
                 EnemyStrafingState, new Dictionary<StateMachineDelegate, EnemyBaseState>
                 {
                     {   () => stateTimer <= 0f, EnemyAttackState  },
-                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.BattleSphereRadius), EnemyChaseState},
+                    {   ()=>!EnemyDetection.CheckRange(EnemyDetection.StrafingSphereRadius), EnemyChaseState},
                     {   ()=>!EnemyDetection.CheckRange(EnemyDetection.ChaseSphereRadius), EnemyReturnState}
 
 

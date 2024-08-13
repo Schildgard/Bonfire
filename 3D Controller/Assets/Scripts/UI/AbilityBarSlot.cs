@@ -8,7 +8,7 @@ public class AbilityBarSlot : MonoBehaviour, IDropHandler
 {
 
     [SerializeField] private SO_Spell spell;
-    [SerializeField] private Spelllist Spelllist;
+    private Spelllist Spelllist;
 
     [SerializeField]private int spelllistIndex;
 
@@ -61,5 +61,10 @@ public class AbilityBarSlot : MonoBehaviour, IDropHandler
         Transform tempTargetSlot = _enteringObject.TargetSlot;
         _enteringObject.TargetSlot = _existingObject.TargetSlot;
         _existingObject.MoveSlotItem(tempTargetSlot);
+    }
+
+    public void AssignNewAbilityToEmptySlot(SO_Spell _spell)
+    {
+        Spelllist.Spells[spelllistIndex] = _spell;
     }
 }

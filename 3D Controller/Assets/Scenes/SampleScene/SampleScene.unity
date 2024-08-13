@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 3
+  m_AmbientIntensity: 6.99
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: eac2ef371405749e0bd050b4c3272f16, type: 2}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0031445988, g: 0.006175951, b: 0.014248031, a: 1}
+  m_IndirectSpecularColor: {r: 0.008686992, g: 0.01706577, b: 0.03933179, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -481,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 195637386}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0066385795, y: 0.028719962, z: -0.00019074262, w: 0.9995655}
-  m_LocalPosition: {x: 45.45, y: 2.1, z: 175.19}
+  m_LocalPosition: {x: 45.45, y: 2.1, z: 145.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -502,6 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRotation: {fileID: 600581471}
   playerTransform: {fileID: 600581485}
+  LockOnCanvas: {fileID: 0}
   scanRadius: 5
 --- !u!1001 &217173437
 PrefabInstance:
@@ -4309,7 +4310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036642316}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000038192058, y: 0.9952496, z: -0.09735514, w: 0.00039043272}
+  m_LocalRotation: {x: 0.000038189904, y: 0.9952496, z: -0.09735516, w: 0.00039041063}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4358,7 +4359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130771527}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000050491264, y: 0.99168265, z: -0.12870666, w: 0.0003890343}
+  m_LocalRotation: {x: 0.000050488296, y: 0.99168265, z: -0.12870668, w: 0.0003890114}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6123,6 +6124,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390644361127740950, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390644361127740950, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390644361127740950, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390644361127740950, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390644361127740950, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443162530609586024, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443162530609586024, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443162530609586024, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443162530609586024, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443162530609586024, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443162530609586024, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 541105876273813363, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6131,6 +6176,26 @@ PrefabInstance:
       propertyPath: lockOnCamera
       value: 
       objectReference: {fileID: 195637387}
+    - target: {fileID: 3276781430585819957, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276781430585819957, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276781430585819957, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276781430585819957, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276781430585819957, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8284630210988700623, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.95
@@ -6186,6 +6251,30 @@ PrefabInstance:
     - target: {fileID: 8586858083323262016, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LockOnToNextTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197830554678594123, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197830554678594123, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197830554678594123, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197830554678594123, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197830554678594123, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197830554678594123, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6534083920151340335, guid: 0b98247cffb0c364a9f785c3a48cdc8d, type: 3}
@@ -7387,8 +7476,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068344956}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00219987, y: 0.9869944, z: -0.16016701, w: 0.013556223}
-  m_LocalPosition: {x: -0.08003998, y: 0, z: -0.0011291504}
+  m_LocalRotation: {x: 0.00006283532, y: 0.9870874, z: -0.1601822, w: 0.00038720883}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10533,7 +10622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2159668165197512083
 GameObject:
   m_ObjectHideFlags: 0
@@ -14413,9 +14502,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0378da5ee72a6e4449e5746fcd092e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyPrefabs: []
+  enemies: []
+  EnemyDataArray: []
+  UpdateEnemyEvent: {fileID: 0}
   SoulscratePrefab: {fileID: 1762738750164056818, guid: d11b081441492a546a50f09bb8f42251, type: 3}
-  PlayerReference: {fileID: 600581480}
   PlayerSpawnPosition: {fileID: 502551701007505100}
+  PlayerReference: {fileID: 600581480}
 --- !u!4 &5331977479562090322
 Transform:
   m_ObjectHideFlags: 0
@@ -15964,57 +16057,64 @@ MonoBehaviour:
   SFX:
   - name: FootStep_01
     clip: {fileID: 8300000, guid: c025c43d1749af5469c7dd8af13e162f, type: 3}
-    volume: 0.075
     source: {fileID: 0}
+    volume: 0.075
+    pitch: 1
   - name: Attack_Swing
     clip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Attack_Swing_2
     clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Water Shield
     clip: {fileID: 8300000, guid: dddde2397affa4973880bcc238b6ad30, type: 3}
-    volume: 0.45
     source: {fileID: 0}
+    volume: 0.45
+    pitch: 1
   - name: Lightning Cast
     clip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
-    volume: 0.413
     source: {fileID: 0}
+    volume: 0.413
+    pitch: 1
   - name: Lightning Impact
     clip: {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
-    volume: 0.429
     source: {fileID: 0}
+    volume: 0.429
+    pitch: 1
   - name: Fire Cast
     clip: {fileID: 8300000, guid: 07d8a32d80e5eaf4db02646aa40b1f72, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Fire Impact
     clip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Electrified
     clip: {fileID: 8300000, guid: aefc2111571d1a84da4b1838d7beb4fd, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Impact
     clip: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
-    volume: 1
     source: {fileID: 0}
+    volume: 1
+    pitch: 1
   - name: Zombie Impact
     clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
-    volume: 0.623
     source: {fileID: 0}
+    volume: 0.623
+    pitch: 1
   - name: Zombie Death
     clip: {fileID: 8300000, guid: d0dd5a8e1fcf88c4c990c0c54c58a2ea, type: 3}
+    source: {fileID: 0}
     volume: 0.623
-    source: {fileID: 0}
-  PlayerSFX:
-  - name: Weapon Hit
-    clip: {fileID: 8300000, guid: a7b477ca5dacdef429a56b2623392c12, type: 3}
-    volume: 1
-    source: {fileID: 0}
+    pitch: 1
 --- !u!114 &6971051364852583772
 MonoBehaviour:
   m_ObjectHideFlags: 0

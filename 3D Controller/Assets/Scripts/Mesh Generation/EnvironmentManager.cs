@@ -6,11 +6,10 @@ using UnityEngine.UIElements;
 [ExecuteInEditMode]
 public class EnvironmentManager : MonoBehaviour
 {
-    private Mesh planeMesh;
-    [SerializeField] private List<GameObject> prefabsInScene;
 
-    [SerializeField] private List<RenderableVegetation> renderableEnvironment;
-    [SerializeField] private List<RenderablePrefabs> spawnableEnvironment;
+
+    [SerializeField] private Area[] areas;
+    [SerializeField] private List<GameObject> prefabsInScene;
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
@@ -22,15 +21,13 @@ public class EnvironmentManager : MonoBehaviour
 
     public void Initialize()
     {
-          RemoveEnvironmentPrefabs();
+        RemoveEnvironmentPrefabs();
 
-        var customPlane = GameObject.Find("Custom Plane");
-        if (customPlane == null)
+        foreach (var area in areas)
         {
-            Debug.Log("No Custom Plane was found. Please make sure if a Plane called 'Custom Plane' is in your Hierarchy");
-            return;
+            area.planeMesh = area.areaPlane.GetComponent<MeshFilter>().sharedMesh;
         }
-        planeMesh = customPlane.GetComponent<MeshFilter>().sharedMesh;
+
 
         InitializeGenerators();
         GenerateVegetations();
@@ -53,67 +50,82 @@ public class EnvironmentManager : MonoBehaviour
 
     private void InitializeGenerators()
     {
-        foreach (var environment in renderableEnvironment)
+        foreach (var area in areas)
         {
-            environment.InitializeGenerator(planeMesh);
-        }
-        foreach (var environment in spawnableEnvironment)
-        {
-            environment.InitializeGenerator(planeMesh);
+            foreach (var environment in area.renderableEnvironment)
+            {
+                environment.InitializeGenerator(area.planeMesh, area.areaPlane.transform);
+            }
+            foreach (var environment in area.spawnableEnvironment)
+            {
+                environment.InitializeGenerator(area.planeMesh, area.areaPlane.transform);
+            }
         }
     }
 
     private void GenerateVegetations()
     {
         instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
-        foreach (var environment in renderableEnvironment)
-        {
-            if (environment.RenderMode == 0)
-            {
-                environment.EnvironmentGenerator.CreateEnvironmentalMesh();
-            }
 
-            if (environment.RenderMode == 1)
+        foreach (var area in areas)
+        {
+
+
+
+            foreach (var environment in area.renderableEnvironment)
             {
-                instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
+                if (environment.RenderMode == 0)
+                {
+                    environment.EnvironmentGenerator.CreateEnvironmentalMesh();
+                }
+
+                if (environment.RenderMode == 1)
+                {
+                    instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
+                }
             }
         }
 
 
         prefabsInScene = new List<GameObject>();
-        foreach (var environment in spawnableEnvironment)
+
+        foreach (var area in areas)
         {
 
-            environment.EnvironmentGenerator.SetSpawnPositions();
-            int index = 0;
 
-
-            if (environment.RandomRotation)
+            foreach (var environment in area.spawnableEnvironment)
             {
-                foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
-                {
 
-                    prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
-                    index++;
+                environment.EnvironmentGenerator.SetSpawnPositions();
+                int index = 0; // ??
+
+
+                if (environment.RandomRotation)
+                {
+                    foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+                    {
+
+                        prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
+                        index++;
+                    }
+                }
+                else
+                {
+                    foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
+                    {
+                        prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
+                        index++;
+                    }
                 }
             }
-            else
-            {
-                foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
-                {
-                    prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
-                    index++;
-                }
-            }
+
         }
-
-
         renderInstancedMeshes = true;
     }
 
 
 
-    private void RenderInstancedMeshes(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
+    private void RenderInstancedMesh(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
     {
 
         foreach (var MatrixList in _matrixLists)
@@ -127,7 +139,7 @@ public class EnvironmentManager : MonoBehaviour
         if (instancedEnvironment == null || instancedEnvironment.Count <= 0) { return; }
         foreach (var environment in instancedEnvironment)
         {
-            RenderInstancedMeshes(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
+            RenderInstancedMesh(environment.Value, environment.Key.Material, environment.Key.EnvironmentGenerator.Matrices);
 
             //Änderung : Die Matrizen zwischenspeichern, oder Unity sagen, dass da aufjedenfall ne Matrix drin ist.
         }

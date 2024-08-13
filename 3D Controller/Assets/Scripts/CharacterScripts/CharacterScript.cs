@@ -24,6 +24,11 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
             sound.source.clip = sound.clip;
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
+            sound.source.spatialBlend = 1f;
+            sound.source.spread = 360f;
+            sound.source.rolloffMode = AudioRolloffMode.Linear;
+            sound.source.maxDistance = 50f;
+
         }
     }
 
@@ -46,7 +51,6 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         PlaySFXSound("Get Hit");
     }
 
-    public virtual void Respawn() { }
 
     public virtual void Die()
     {
@@ -60,8 +64,10 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
     public void PlaySFXSound(int _soundIndex)
     {
-        CharacterSounds[_soundIndex].source.Play();
-        Debug.Log("Play "+ CharacterSounds[_soundIndex].name);
+        if (!CharacterSounds[_soundIndex].source.isPlaying)
+        {
+            CharacterSounds[_soundIndex].source.Play();
+        }
     }
 
     public void PlaySFXSound(string _soundname)

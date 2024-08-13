@@ -215,6 +215,7 @@ public class LockOnCamera : MonoBehaviour
     }
     public void DeactivateLockOn()
     {
+        LockOnCanvas.transform.parent = null;
         lockOnCamera.LookAt = null;
         freeLook.enabled = true;
         playerRotation.LockOn = false;

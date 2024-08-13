@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5543659430663024688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,11 +52,35 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 60
+        m_Name: Cloud SpawnRate
+        m_Overridden: 1
+      - m_Value: 8
+        m_Name: Fixed CloudParticle Size
+        m_Overridden: 1
+      - m_Value: 15
+        m_Name: Cloud Minimum Lifetime
+        m_Overridden: 1
+      - m_Value: 20
+        m_Name: Cloud Maximum Lifetime
+        m_Overridden: 1
+      - m_Value: 2500
+        m_Name: RainSpawnRate
+        m_Overridden: 1
+      - m_Value: 17
+        m_Name: Rain Velocity
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 20, y: 2, z: 20}
+        m_Name: Size of CloudSpawnBox
+        m_Overridden: 1
+      - m_Value: {x: 30, y: 5, z: 26}
+        m_Name: Size of RainSpawnBox
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -72,7 +96,13 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: Fix CloudParticle Size
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: Fixed Rain Velocity
+        m_Overridden: 1
 --- !u!73398921 &2848212664280298972
 VFXRenderer:
   serializedVersion: 1
@@ -144,5 +174,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.476746, y: 15, z: 10}
-  m_Center: {x: 0.0030593872, y: -5.7021446, z: 0}
+  m_Size: {x: 30.8, y: 15, z: 26}
+  m_Center: {x: 0.0030593872, y: -14.59, z: 0}

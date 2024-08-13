@@ -109,6 +109,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Cast Spell 5"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca26ab6b-ca0c-48c7-9933-b7d2d5579ce7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SwitchTarget"",
                     ""type"": ""Value"",
                     ""id"": ""27c5e435-9226-4a13-8566-0fd7e7aa4e4b"",
@@ -221,7 +230,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2a935720-6780-42e0-9ad3-a77fbd8a7f78"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -232,7 +241,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a4f0dea3-29fd-4aba-9200-2cec35a00634"",
-                    ""path"": ""<Keyboard>/3"",
+                    ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -243,7 +252,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6ff72ec8-6005-4574-9626-443584a8bbd2"",
-                    ""path"": ""<Keyboard>/4"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -254,7 +263,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0fa9e5ef-c357-4d84-a0bb-f4ec1578a53d"",
-                    ""path"": ""<Keyboard>/5"",
+                    ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -294,6 +303,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e2948e2-7578-4594-945d-ea4d0bcfb341"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast Spell 5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -339,6 +359,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_CastSpell2 = m_Player.FindAction("Cast Spell 2", throwIfNotFound: true);
         m_Player_CastSpell3 = m_Player.FindAction("Cast Spell 3", throwIfNotFound: true);
         m_Player_CastSpell4 = m_Player.FindAction("Cast Spell 4", throwIfNotFound: true);
+        m_Player_CastSpell5 = m_Player.FindAction("Cast Spell 5", throwIfNotFound: true);
         m_Player_SwitchTarget = m_Player.FindAction("SwitchTarget", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
@@ -413,6 +434,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CastSpell2;
     private readonly InputAction m_Player_CastSpell3;
     private readonly InputAction m_Player_CastSpell4;
+    private readonly InputAction m_Player_CastSpell5;
     private readonly InputAction m_Player_SwitchTarget;
     public struct PlayerActions
     {
@@ -427,6 +449,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @CastSpell2 => m_Wrapper.m_Player_CastSpell2;
         public InputAction @CastSpell3 => m_Wrapper.m_Player_CastSpell3;
         public InputAction @CastSpell4 => m_Wrapper.m_Player_CastSpell4;
+        public InputAction @CastSpell5 => m_Wrapper.m_Player_CastSpell5;
         public InputAction @SwitchTarget => m_Wrapper.m_Player_SwitchTarget;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -464,6 +487,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @CastSpell4.started += instance.OnCastSpell4;
             @CastSpell4.performed += instance.OnCastSpell4;
             @CastSpell4.canceled += instance.OnCastSpell4;
+            @CastSpell5.started += instance.OnCastSpell5;
+            @CastSpell5.performed += instance.OnCastSpell5;
+            @CastSpell5.canceled += instance.OnCastSpell5;
             @SwitchTarget.started += instance.OnSwitchTarget;
             @SwitchTarget.performed += instance.OnSwitchTarget;
             @SwitchTarget.canceled += instance.OnSwitchTarget;
@@ -498,6 +524,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @CastSpell4.started -= instance.OnCastSpell4;
             @CastSpell4.performed -= instance.OnCastSpell4;
             @CastSpell4.canceled -= instance.OnCastSpell4;
+            @CastSpell5.started -= instance.OnCastSpell5;
+            @CastSpell5.performed -= instance.OnCastSpell5;
+            @CastSpell5.canceled -= instance.OnCastSpell5;
             @SwitchTarget.started -= instance.OnSwitchTarget;
             @SwitchTarget.performed -= instance.OnSwitchTarget;
             @SwitchTarget.canceled -= instance.OnSwitchTarget;
@@ -575,6 +604,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnCastSpell2(InputAction.CallbackContext context);
         void OnCastSpell3(InputAction.CallbackContext context);
         void OnCastSpell4(InputAction.CallbackContext context);
+        void OnCastSpell5(InputAction.CallbackContext context);
         void OnSwitchTarget(InputAction.CallbackContext context);
     }
     public interface ICameraActions

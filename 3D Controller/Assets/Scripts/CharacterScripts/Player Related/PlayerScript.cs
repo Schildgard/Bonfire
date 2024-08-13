@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : CharacterScript
 {
+    [SerializeField] private Transform respawnPoint;
     [SerializeField] GameEvent YouDied;
     [SerializeField] PlayerInput PlayerInput;
 
@@ -30,19 +31,18 @@ public class PlayerScript : CharacterScript
     }
 
 
-    public override void Respawn()
+    public void Respawn()
     {
-        base.Respawn();
+        transform.position = respawnPoint.position;
         HealthScript.ResetHealth();
-       PlayerInput.enabled = true;
+        PlayerInput.enabled = true;
         HealthScript.isAlive = true;
     }
 
     IEnumerator WaitRespawn()
     {
         yield return new WaitForSeconds(3.5f);
-        Debug.Log("Die Event Raise");
         YouDied.Raise();
-        
+
     }
 }

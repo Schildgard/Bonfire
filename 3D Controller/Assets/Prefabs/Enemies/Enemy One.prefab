@@ -1306,6 +1306,7 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   onHitVFX:
   - {fileID: 6390966103519915430, guid: 52a4bff356c2eb643aebe7bb10ead6c6, type: 3}
+  viableLayers: 7
 --- !u!1 &3958391918085086574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1564,7 @@ MonoBehaviour:
   radiusVectorZ: 1.5
   viewRange: 18
   chaseSphereRadius: 20.2
-  battleSphereRadius: 2.33
+  strafingSphereRadius: 0
   attackSphereRadius: 1.3
   alarmRadius: 8
   PlayerLayer:
@@ -1660,32 +1661,32 @@ MonoBehaviour:
   - name: Footsteps 1
     clip: {fileID: 8300000, guid: d1096c874360d654db0f82bb568b8145, type: 3}
     source: {fileID: 0}
-    volume: 0.1
+    volume: 1
     pitch: 1
-  - name: Weapon Swing 2
+  - name: Footsteps 2
     clip: {fileID: 8300000, guid: 215c08d8d2b727847a0703d5c87189b4, type: 3}
     source: {fileID: 0}
-    volume: 0.1
+    volume: 1
     pitch: 1
   - name: Aggro
-    clip: {fileID: 8300000, guid: 27b98a8c68f991b408c5c6afff25358c, type: 3}
+    clip: {fileID: 8300000, guid: 9a8b83560b145034bb75951f5e615a88, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 1
     pitch: 1
   - name: Get Hit
     clip: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 1
     pitch: 1
   - name: Death
     clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 1
     pitch: 1
   - name: Weapon Swing
     clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 1
     pitch: 1
   enemyID: 1
   lifeCanvas: {fileID: 7766357555098298374}

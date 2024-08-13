@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WetableEnemy : MonoBehaviour, IWetable
 {
-    [SerializeField] private GameObject ObjectToPlaceEffectCondition;
+    [SerializeField] private GameObject ObjectToPlaceEffectCondition; //Target Child on which the EffectConditiongetsAdded
     [SerializeField]private GameObject WetCondition;
     private Animator animator;
 

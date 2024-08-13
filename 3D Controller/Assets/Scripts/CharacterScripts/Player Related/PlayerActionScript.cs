@@ -9,32 +9,19 @@ public class PlayerActionScript : MonoBehaviour
     private Animator Animator;
     private Spelllist Spelllist;
     private bool movementIsBlocked;
+    private Camera MainCamera;
 
     #region Walk
     [Header("Walking Parameters")]
-    private Camera MainCamera;
     [SerializeField] private float normalWalkSpeed;
-    public float NormalWalkSpeed
-    {
-        get { return normalWalkSpeed; }
-        set { normalWalkSpeed = value; }
-    }
     [SerializeField] private float currentWalkSpeed;
-    public float CurrentWalkSpeed
-    {
-        get { return currentWalkSpeed; }
-        set { currentWalkSpeed = value; }
-
-    }
-
     [SerializeField] private float lerpSpeed;
-
 
     private Vector2 MoveInput;
     private Vector3 SmoothMovement;
     private Vector3 movementVector;
 
-    public Vector3 MovementVector { get { return movementVector; } }
+    public Vector3 MovementVector { get { return movementVector; } } //Unnötig?
     #endregion
 
     #region Run
@@ -43,37 +30,39 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float walkSpeedAcceleration;
     [SerializeField] private float staminaExhaustion;
 
+    private float runningThreshold = 2f;
     private bool runButtonPressed;
     private float accelerationMultiplier;
     #endregion
     #region Jump
-    [Header("Jump Parameters")]
-    [SerializeField] private float jumpPower;
+    // [Header("Jump Parameters")]
+    // [SerializeField] private float jumpPower;
     #endregion
 
     #region Dash
-    [Header("Dash Parameters")]
-    [SerializeField] private float dashPower;
-
-    [SerializeField] private float currentDashCoolDown;
-    [SerializeField] private float maxDashCooldown;
+    //  [Header("Dash Parameters")]
+    //  [SerializeField] private float dashPower;
+    //
+    //  [SerializeField] private float currentDashCoolDown;
+    //  [SerializeField] private float maxDashCooldown;
     #endregion
 
 
-    #region new WalkSection
+    #region BlendTree Parameters
+    [Header("Blend Tree Parameters")]
+    [SerializeField] private float blendTreeAcceleration;
+    [SerializeField] private float blendTreeDecceleration;
 
     private float velocityX;
     private float velocityZ;
 
     private int velocityHashX;
     private int velocityHashZ;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float decceleration;
 
     private float maxVelocity;
     #endregion
 
-    private bool isWalking;
+
 
     [SerializeField] private WeaponScript currentWeapon;
 
@@ -106,18 +95,26 @@ public class PlayerActionScript : MonoBehaviour
     {
         Animator.SetFloat(velocityHashX, velocityX);
         Animator.SetFloat(velocityHashZ, velocityZ);
-        Walk();
 
-        Run();
+ 
+        CalculateMovement();
+
+        CalculateRunning();
+ 
+
 
         //  Block();
-
         //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
+  //  private void FixedUpdate()
+  //  {
+  //      MoveCharacter();
+  //  }
 
 
-    private void Walk()
+    private void CalculateMovement()
+
     {
         movementVector = MainCamera.transform.forward * MoveInput.y;
         movementVector += MainCamera.transform.right * MoveInput.x;
@@ -138,36 +135,43 @@ public class PlayerActionScript : MonoBehaviour
 
         if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
         {
-            velocityX = Mathf.Clamp(velocityX + Time.deltaTime * acceleration, velocityX, maxVelocity);
+            velocityX = Mathf.Clamp(velocityX + Time.deltaTime * blendTreeAcceleration, velocityX, maxVelocity);
 
         }
         else
         {
-            velocityX = Mathf.Clamp(velocityX - Time.deltaTime * decceleration, 0f, velocityX);
+            velocityX = Mathf.Clamp(velocityX - Time.deltaTime * blendTreeDecceleration, 0f, velocityX);
 
         }
 
 
         if (MoveInput.y > 0.01f || MoveInput.y < -0.01f)
         {
-            velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * acceleration, velocityZ, maxVelocity);
+            velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * blendTreeAcceleration, velocityZ, maxVelocity);
         }
         else
         {
-            velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * decceleration, 0f, velocityZ);
+            velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * blendTreeDecceleration, 0f, velocityZ);
 
         }
 
     }
 
-
-    private void Run()
+    private void MoveCharacter()
+    {
+        if (!movementIsBlocked)
+        {
+            playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+        }
+    }
+    private void CalculateRunning()
     {
 
 
         if (runButtonPressed && Stamina.CurrentStamina > 0)
         {
-            if (playerRigidbody.velocity.x > 2.5f || playerRigidbody.velocity.x < -2.5f || playerRigidbody.velocity.z > 2.5f || playerRigidbody.velocity.z < -2.5f)
+            if (playerRigidbody.velocity.x > runningThreshold || playerRigidbody.velocity.x < -runningThreshold ||
+                playerRigidbody.velocity.z > runningThreshold || playerRigidbody.velocity.z < -runningThreshold)
             {
                 accelerationMultiplier = 1;
                 Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
@@ -177,10 +181,10 @@ public class PlayerActionScript : MonoBehaviour
         else
         {
             accelerationMultiplier = -1;
-            maxVelocity = Mathf.Clamp(maxVelocity - Time.deltaTime * decceleration, 0.5f, maxVelocity);
+            maxVelocity = Mathf.Clamp(maxVelocity - Time.deltaTime * blendTreeDecceleration, 0.5f, maxVelocity);
         }
 
-        CurrentWalkSpeed = Mathf.Clamp(CurrentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
+        currentWalkSpeed = Mathf.Clamp(currentWalkSpeed + (accelerationMultiplier * walkSpeedAcceleration) * Time.deltaTime, normalWalkSpeed, maxRunSpeed);
 
 
     }
@@ -219,7 +223,7 @@ public class PlayerActionScript : MonoBehaviour
         AudioManager.instance.SFX[_index].source.Play();
     }
 
-    public void AttackDrainStamina()
+    public void DrainStamina()
     {
         Stamina.DrainStamina(currentWeapon.StaminaAttackCost);
     }

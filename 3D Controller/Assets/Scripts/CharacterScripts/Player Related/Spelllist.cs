@@ -42,6 +42,8 @@ public class Spelllist : MonoBehaviour
             Animator.SetTrigger("Cast Spell");
         }
 
+        Instantiate(Spells[spellIndex].spellCastAnimEffect,ProjectileTransform, false);
+
 
     }
 

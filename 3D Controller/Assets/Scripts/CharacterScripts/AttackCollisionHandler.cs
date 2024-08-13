@@ -19,16 +19,6 @@ public class AttackCollisionHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   //    WeaponCollider.enabled = false;
-   //    if (this.gameObject.tag == "Player")
-   //    {
-   //
-   //        if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
-   //        {
-   //            WeaponInHand.SetActive(false);
-   //            IsWeaponOnBack = true;
-   //        }
-   //    }
 
 
         foreach (var weapon in WeaponColliderArray)

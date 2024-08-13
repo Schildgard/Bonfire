@@ -240,7 +240,6 @@ GameObject:
   - component: {fileID: 6750734180919991549}
   - component: {fileID: 4979423326382015013}
   - component: {fileID: 4441997395994878821}
-  - component: {fileID: 5172943890140026297}
   - component: {fileID: 1318338212772238265}
   - component: {fileID: 3077475254052455554}
   - component: {fileID: 4806474355161429039}
@@ -339,6 +338,7 @@ MonoBehaviour:
   enemyID: 2
   lifeCanvas: {fileID: 0}
   bossDied: {fileID: 11400000, guid: a550f26fda97ac5438b5c9be969cdb60, type: 2}
+  electrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
 --- !u!54 &7233754656215689553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -412,11 +412,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   level: 0
-  strength: 3
-  vitality: 10
+  strength: 6
+  vitality: 25
   speed: 1
-  defense: 1
-  soulsValue: 0
+  defense: 20
+  soulsValue: 800
 --- !u!114 &4441997395994878821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,22 +433,6 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 0
   Healthbar: {fileID: 8491379750781160615}
---- !u!114 &5172943890140026297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803006282978671105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9665c66a4d5248a489420a5308fa4cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectToPlaceEffectCondition: {fileID: 9005491166466169103}
-  WetCondition: {fileID: 5061622370707893053}
-  ElectrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
-  WetMaterial: {fileID: 2100000, guid: c840c1ffc50bdde4ea8e6c04cb8d64e4, type: 2}
 --- !u!114 &1318338212772238265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,8 +448,8 @@ MonoBehaviour:
   radiusVectorX: 1
   radiusVectorZ: 1.5
   viewRange: 54.4
-  chaseSphereRadius: 77.4
-  battleSphereRadius: 14.7
+  chaseSphereRadius: 80.4
+  battleSphereRadius: 15.6
   attackSphereRadius: 9.29
   alarmRadius: 8
   PlayerLayer:
@@ -2058,6 +2042,7 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   onHitVFX:
   - {fileID: 6390966103519915430, guid: 52a4bff356c2eb643aebe7bb10ead6c6, type: 3}
+  viableLayers: 7
 --- !u!1 &7935010074512419756
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,6 +2913,7 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   onHitVFX:
   - {fileID: 6390966103519915430, guid: 52a4bff356c2eb643aebe7bb10ead6c6, type: 3}
+  viableLayers: 7
 --- !u!1 &9005491166466169103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,11 +3162,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
---- !u!1 &5061622370707893053 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3059933155240588563, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
-  m_PrefabInstance: {fileID: 7802889070211292718}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5476829140290907790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2326378937811529888, guid: 9c09f9d5a6092d1469bf7f81a7616f78, type: 3}
