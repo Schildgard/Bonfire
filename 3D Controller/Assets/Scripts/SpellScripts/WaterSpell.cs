@@ -5,6 +5,7 @@ public class WaterSpell : MonoBehaviour
     private void Awake()
     {
         this.transform.parent = null;
+        transform.rotation = Quaternion.identity;
     }
 
 

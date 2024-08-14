@@ -31,7 +31,7 @@ public class LockOnCamera : MonoBehaviour
     {
         if (lockOnCamera.LookAt == null) return;
 
-        if (!targetsHealthScript.isAlive)
+        if (targetsHealthScript != null && !targetsHealthScript.isAlive)
         {
             ChangeTarget();
         }

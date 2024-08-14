@@ -28,12 +28,8 @@ public class BossHealthbarHandler : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        //bossDetriggerEvent.Raise();
-    }
 
-    public void DisableHealthCanvas() // WIrd das irgendwo aufgerufen? Anscheinend als Event irgendwo.
+    public void DisableHealthCanvas()
     {
         enemyDetectionScript.Detected = false;
         if (healthCanvas.activeSelf)

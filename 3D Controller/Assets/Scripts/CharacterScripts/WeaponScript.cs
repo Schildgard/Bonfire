@@ -19,11 +19,13 @@ public class WeaponScript : MonoBehaviour
 
     [SerializeField] private int viableLayers;
 
+    [SerializeField] private List<AudioClip> hitSounds;
+
+
     private void Start()
     {
         WielderStats = GetComponentInParent<StatScript>();
         attackSound = GetComponent<AudioSource>();
-
     }
 
 
@@ -31,26 +33,26 @@ public class WeaponScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider _target)
     {
-        if (attackSound != null)
-        {
-            attackSound.Play();
-        }
 
-        var closestPoint = _target.ClosestPoint(transform.position);
-        Instantiate(onHitVFX[0], closestPoint, Quaternion.identity);
         if (_target.gameObject.layer == viableLayers)
         {
-
             IDamageable[] hittableTarget = _target.GetComponentsInChildren<IDamageable>();
             float damageMultiplier = (WielderStats.Strength * strengthScaling) * 50;
 
             if (hittableTarget == null) return;
             foreach (var hit in hittableTarget)
             {
-                Debug.Log("Damage on " + hit);
                 hit.GetDamage(weaponDamage + damageMultiplier);
+                attackSound.PlayOneShot(hitSounds[1]);
                 Debug.Log($"Weapon striked for {weaponDamage + damageMultiplier} Damage ({weaponDamage} + {damageMultiplier}");
             }
         }
+
+            attackSound.PlayOneShot(hitSounds[0]);
+
+        var closestPoint = _target.ClosestPoint(transform.position);
+        Instantiate(onHitVFX[0], closestPoint, Quaternion.identity);
+
+
     }
 }

@@ -220,7 +220,7 @@ public class PlayerActionScript : MonoBehaviour
             Debug.Log("Player ActionScript tried to play an Sound Effect, but the AudioManager is Null. Please check if there is an AudioManager in the Scene, and if so, if there is an SFX List of Sound Effects");
             return;
         }
-        AudioManager.instance.SFX[_index].source.Play();
+        AudioManager.instance.EnvironmentalSFX[_index].source.Play();
     }
 
     public void DrainStamina()

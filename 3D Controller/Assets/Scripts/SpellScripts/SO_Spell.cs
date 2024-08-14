@@ -12,7 +12,7 @@ public class SO_Spell : ScriptableObject
 
     public Sprite SpellIcon;
     [Range(0,2)]
-    public int spellTypeIndex;
+    public int spellTypeIndex; //remove ?
 
     public GameObject spellCastAnimEffect;
 

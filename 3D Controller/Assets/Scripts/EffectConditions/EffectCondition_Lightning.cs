@@ -6,21 +6,21 @@ using UnityEngine;
 public class EffectCondition_Lightning : StatusEffect
 {
     private Animator animator;
+    private AudioClip electrifiedSound;
 
     protected override void Awake()
     {
         animator = GetComponentInParent<Animator>();
         animator.SetBool("Electrified", true);
         maxduration = 5;
-        sfxIndex = 8;
+        electrifiedSound = AudioManager.instance.EnvironmentalSFX[0].source.clip;
+
         base.Awake();
     }
     protected override void Start()
     {
+        AudioManager.instance.EnvironmentalSFX[0].source.PlayOneShot(electrifiedSound);
         base.Start();
-        AudioSource.clip = AudioManager.instance.SFX[sfxIndex].clip;
-        AudioSource.volume = 0.4f;
-        AudioSource.Play();
     }
     protected override void Update()
     {

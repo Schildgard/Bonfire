@@ -18,3 +18,4 @@ MonoBehaviour:
   alernativeCastAnimation: 1
   SpellIcon: {fileID: 21300000, guid: a96f5f25e6b399d4ea75828a29498b73, type: 3}
   spellTypeIndex: 1
+  spellCastAnimEffect: {fileID: 1391561733109674361, guid: 1981f1ef5a7295a4b8e997fa462148d7, type: 3}

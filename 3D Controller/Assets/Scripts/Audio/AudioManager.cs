@@ -23,9 +23,7 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> Music;
 
-    public List<Sound> SFX;
-
-   // public List<Sound> PlayerSFX;
+    public List<Sound> EnvironmentalSFX;
 
     private int currentMusicIndex = 0;
 
@@ -38,18 +36,11 @@ public class AudioManager : MonoBehaviour
             InitializeAudioSources(sound);
             sound.source.loop = true;
         }
-        foreach (var sound in SFX)
+        foreach (var sound in EnvironmentalSFX)
         {
             InitializeAudioSources(sound);
-            // sound.source.spatialBlend = 1;
         }
-      //  foreach (var sound in PlayerSFX)
-      //  {
-      //      InitializeAudioSources(sound);
-      //  }
-
         Music[0].source.Play();
-
     }
 
     private void InitializeAudioSources(Sound _sound)

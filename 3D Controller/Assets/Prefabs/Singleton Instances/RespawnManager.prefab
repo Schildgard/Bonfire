@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8101547098908263565}
   - component: {fileID: 9202461958918899106}
   - component: {fileID: 2005381341627500079}
+  - component: {fileID: 8442811805382832487}
+  - component: {fileID: 138473806743513797}
   m_Layer: 0
   m_Name: RespawnManager
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704941964737792480}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,9 +49,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0378da5ee72a6e4449e5746fcd092e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyPrefabs:
+  - {fileID: 5571949759734527651, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
+  - {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
+  - {fileID: 803006282978671105, guid: 302641ddb6559a943b9d8576fdb19655, type: 3}
+  enemies: []
+  EnemyDataArray: []
+  UpdateEnemyEvent: {fileID: 11400000, guid: c2a63a45c83561c4f8b8c762f3f5d241, type: 2}
   SoulscratePrefab: {fileID: 1762738750164056818, guid: d11b081441492a546a50f09bb8f42251, type: 3}
-  PlayerReference: {fileID: 0}
   PlayerSpawnPosition: {fileID: 4546443897798052177}
+  PlayerReference: {fileID: 0}
 --- !u!114 &9202461958918899106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +89,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8101547098908263565}
         m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
-        m_MethodName: RespawnList
+        m_MethodName: RespawnEnemies
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -108,7 +117,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8101547098908263565}
         m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
-        m_MethodName: RespawnList
+        m_MethodName: RespawnEnemies
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -130,9 +139,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8442811805382832487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704941964737792480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8d6dea4c048d4cb3af9482c5c9c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a550f26fda97ac5438b5c9be969cdb60, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 8101547098908263565}
         m_TargetAssemblyTypeName: EnemySpawnManager, Assembly-CSharp
-        m_MethodName: RespawnPlayer
+        m_MethodName: RemoveBossFromRespawnList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -142,6 +167,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &138473806743513797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704941964737792480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5693c16927ef4e843ab94bf09b23a8b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventlisteners:
+  - {fileID: 0}
 --- !u!1 &6355651682175456313
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4546443897798052177}
   m_Layer: 0
-  m_Name: PlayerStartingPoint
+  m_Name: PlayerRespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 6355651682175456313}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50, y: 0.6, z: 181.5}
+  m_LocalPosition: {x: 8.5, y: 10.14, z: -153.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
