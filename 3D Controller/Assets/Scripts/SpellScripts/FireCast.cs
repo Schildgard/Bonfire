@@ -17,12 +17,15 @@ public class FireCast : MonoBehaviour
     private CinemachineVirtualCamera lockOnCamera;
     private Transform target;
 
+    AudioSource flameHitSound;
+
     private void Awake()
     {
         lockOnCamera = GameObject.Find("Lock On Camera").GetComponent<CinemachineVirtualCamera>();
         this.transform.parent = null;
         hitTargets = new List<IDamageable>();
         WetTargets = new List<GameObject>();
+        flameHitSound = GetComponent<AudioSource>();
         if (lockOnCamera.LookAt != null)
         {
             target = lockOnCamera.LookAt.transform;
@@ -46,6 +49,7 @@ public class FireCast : MonoBehaviour
                 foreach (IDamageable target in hitTargets)
                 {
                     target.GetDamage(damagePerIntervall);
+                    flameHitSound.PlayOneShot(flameHitSound.clip);
                     
                 }
                 timer = damageIntervall;
@@ -60,7 +64,7 @@ public class FireCast : MonoBehaviour
             }
 
         }
-        else { timer = 0.1f;} //investigte further
+        else { timer = 0.1f;}
     }
     private void OnTriggerEnter(Collider _target)
     {

@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
         {
             InitializeAudioSources(sound);
         }
+        Music[0].source.Play();
     }
 
     private void InitializeAudioSources(Sound _sound)
