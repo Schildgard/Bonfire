@@ -5,12 +5,6 @@ using UnityEngine;
 public class EnvironmentManager : MonoBehaviour
 {
 
-   // public EnvironmentManager(AreaCollection _areaCollection)
-   // {
-   //     areaCollection = _areaCollection;
-   //     areas = areaCollection.Areas;
-   //
-   // }
     private AreaCollection areaCollection;
     private Area[] areas;
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
@@ -19,12 +13,11 @@ public class EnvironmentManager : MonoBehaviour
     private void Awake()
     {
         areaCollection = GetComponent<AreaCollection>();
-        areas = areaCollection.Areas;
     }
     public void Initialize()
     {
         RemoveEnvironmentPrefabs();
-
+        areas = areaCollection.Areas;
         foreach (var area in areas)
         {
             area.planeMesh = area.areaPlane.GetComponent<MeshFilter>().sharedMesh;

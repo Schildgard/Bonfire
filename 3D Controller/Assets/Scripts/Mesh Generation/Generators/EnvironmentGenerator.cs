@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class EnvironmentGenerator
 {
-    protected Transform planeTransform; //TEst
+    protected Transform planeTransform;
 
 
     protected Mesh planeMesh;
@@ -33,6 +33,7 @@ public abstract class EnvironmentGenerator
     protected bool randomRotation;
     protected bool randomizedOffset;
 
+    protected float minimumVertexFlatness;
 
 
     public virtual Mesh CreateEnvironmentalMesh()
@@ -45,9 +46,6 @@ public abstract class EnvironmentGenerator
     {
         List<Vector3> vegetationSpawnPositions = new List<Vector3>();
 
-        vegetationSpawnPositions.Clear(); //delete later
-                                          // planePositions = _planeMesh.vertices;
-
         planePositions = TranslateVertexToWorldPos(_planeMesh.vertices, planeTransform);
         positionNormals = _planeMesh.normals;
 
@@ -58,7 +56,7 @@ public abstract class EnvironmentGenerator
         {
             spawnValue = noise.Evaluate(planePositions[i]);
 
-            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition && CompareNormalToGlobalUp(positionNormals[i]) >= 0.95f) // Add Normal Comparison
+            if (spawnValue >= Threshold && planePositions[i].y <= maxYPosition && CompareNormalToGlobalUp(positionNormals[i]) >= minimumVertexFlatness) // Add Normal Comparison
             {
                 vegetationSpawnPositions.Add(planePositions[i]);
                 vegetationNormals.Add(positionNormals[i]);
