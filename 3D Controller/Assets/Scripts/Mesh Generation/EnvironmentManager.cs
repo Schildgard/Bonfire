@@ -11,8 +11,8 @@ public class EnvironmentManager : MonoBehaviour
 
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
-    private bool renderInstancedMeshes; // The point of this bool is to disable the rendering when 'Remove Environment' Button is pressed
-                                        // and optimize performance while editing other stuff in Editor
+    [SerializeField] private bool renderInstancedMeshes; // The point of this bool is to disable the rendering when 'Remove Environment' Button is pressed
+                                                         // and optimize performance while editing other stuff in Editor
 
 
     public void Initialize()
@@ -26,7 +26,7 @@ public class EnvironmentManager : MonoBehaviour
 
 
         InitializeGenerators();
-        GenerateVegetations();
+        GenerateEnvironment();
     }
 
     private void Start()
@@ -59,39 +59,25 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    private void GenerateVegetations()
+    private void GenerateEnvironment()
     {
         instancedEnvironment = new Dictionary<RenderableVegetation, Mesh>();
 
         foreach (var area in areas)
         {
-
-
-
             foreach (var environment in area.renderableEnvironment)
             {
-                if (environment.RenderMode == 0)
-                {
-                    environment.EnvironmentGenerator.CreateEnvironmentalMesh();
-                }
-
-                if (environment.RenderMode == 1)
-                {
-                    instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
-                }
+                //   environment.EnvironmentGenerator.CreateEnvironmentalMesh();
+                instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
             }
         }
-
 
         prefabsInScene = new List<GameObject>();
 
         foreach (var area in areas)
         {
-
-
             foreach (var environment in area.spawnableEnvironment)
             {
-
                 environment.EnvironmentGenerator.SetSpawnPositions();
 
                 if (environment.RandomRotation)
@@ -112,14 +98,13 @@ public class EnvironmentManager : MonoBehaviour
             }
 
         }
-        renderInstancedMeshes = true;
+     //   renderInstancedMeshes = true;
     }
 
 
 
     private void RenderInstancedMesh(Mesh _mesh, Material _material, List<List<Matrix4x4>> _matrixLists)
     {
-
         foreach (var MatrixList in _matrixLists)
         {
             Graphics.DrawMeshInstanced(_mesh, 0, _material, MatrixList);
@@ -140,7 +125,7 @@ public class EnvironmentManager : MonoBehaviour
         RemoveEnvironmentPrefabs();
 
         InitializeGenerators();
-        GenerateVegetations();
+        GenerateEnvironment();
     }
 
 
@@ -157,6 +142,11 @@ public class EnvironmentManager : MonoBehaviour
             DestroyImmediate(prefab.gameObject);
         }
         prefabsInScene.Clear();
-        renderInstancedMeshes = false;
+       // renderInstancedMeshes = false;
+    }
+
+    public void ClearPrefabList()
+    {
+        prefabsInScene.Clear();
     }
 }

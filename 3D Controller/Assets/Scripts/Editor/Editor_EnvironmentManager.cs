@@ -19,21 +19,27 @@ public class Editor_EnvironmentManager : Editor
         {
             base.OnInspectorGUI();
 
-            if (check.changed)
-            {
-                manager.UpdateEnvironment();
-            }
+          //  if (check.changed)
+          //  {
+          //      manager.UpdateEnvironment();
+          //  }
         }
 
         if (GUILayout.Button("Generate Environment"))
         {
             manager.Initialize();
         }
+        if (GUILayout.Button("Keep Environmental Prefabs"))
+        {
+            manager.ClearPrefabList();
+        }
 
         if (GUILayout.Button("Remove Environmental Prefabs"))
         {
             manager.RemoveEnvironmentPrefabs();
         }
+
+
     }
 
 

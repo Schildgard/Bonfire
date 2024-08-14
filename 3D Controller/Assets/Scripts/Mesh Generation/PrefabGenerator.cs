@@ -14,14 +14,12 @@ public class PrefabGenerator
     private Vector3 Offset = new Vector3(0, 0, 0);
     private bool randomizedOffset = false;
 
-
-
-    public Vector3[] PlanePositions => planePositions;
+    private float maxYPosition;
 
     public List<Vector3> SpawnPositions = new List<Vector3>();
 
 
-    public PrefabGenerator(Mesh _mesh, int _maxSpawnCount, bool _enableMaxCount, float _threshold, Vector3 _offset, bool _randomOffset, Transform _planeTransform)
+    public PrefabGenerator(Mesh _mesh, int _maxSpawnCount, bool _enableMaxCount, float _threshold, Vector3 _offset, bool _randomOffset, Transform _planeTransform, float _maxYPosition)
     {
         planeMesh = _mesh;
         planeTransform = _planeTransform;
@@ -32,13 +30,14 @@ public class PrefabGenerator
         Threshold = _threshold;
         Offset = _offset;
         randomizedOffset = _randomOffset;
+
+        maxYPosition = _maxYPosition;
     }
 
 
     public virtual List<Vector3> CalculateSpawnPositions(Mesh _planeMesh)
     {
         SpawnPositions.Clear();
-        //  planePositions = _planeMesh.vertices;
         planePositions = TranslateVertexToWorldPos(_planeMesh.vertices, planeTransform);
         Vector3 offsetPosition;
         float spawnValue;
@@ -46,11 +45,14 @@ public class PrefabGenerator
 
         if (enableMaxCount)
         {
-            for (int i = 0, c = 0; i < planePositions.Length; i++, c++)
+            List<Vector3> filteredPositions = FilterPositionsForHeight(planePositions, maxYPosition);
+            for (int i = 0, c = 0; i < filteredPositions.Count; i++, c++)
             {
                 if (c >= maxSpawnCount) return SpawnPositions;
 
-                Vector3 randomizedPosition = planePositions[Random.Range(0, planePositions.Length)];
+                 Vector3 randomizedPosition = planePositions[Random.Range(0, filteredPositions.Count)];
+
+
                 randomizedPosition.y = randomizedPosition.y + Offset.y;
                 SpawnPositions.Add(randomizedPosition);
             }
@@ -64,7 +66,7 @@ public class PrefabGenerator
                 //Evaluate Positions in Noise so it returns a Value between 0 and 1
                 spawnValue = noise.Evaluate(position);
 
-                if (spawnValue > Threshold)
+                if (position.y <= maxYPosition && spawnValue > Threshold)
                 {
                     if (randomizedOffset)
                     {
@@ -95,5 +97,19 @@ public class PrefabGenerator
         }
 
         return worldPositions;
+    }
+
+    private List<Vector3> FilterPositionsForHeight(Vector3[] _positions, float _maxHeight)
+    {
+        List<Vector3> validPositions = new List<Vector3>();
+
+        foreach (var positon in _positions)
+        {
+            if (positon.y <= _maxHeight)
+            {
+                validPositions.Add(positon);
+            }
+        }
+        return validPositions;
     }
 }
