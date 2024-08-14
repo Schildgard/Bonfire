@@ -27,7 +27,6 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
             WetConditionVariable.GetDry();
             SkinnedMeshRenderer.materials = OriginalMaterial;
             Destroy(this);
-            Destroy(AudioSource);
         }
     }
 

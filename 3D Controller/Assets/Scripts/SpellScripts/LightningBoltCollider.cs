@@ -26,7 +26,6 @@ public class LightningBoltCollider : MonoBehaviour
         if (hit)
         {
             hitPosition = hitInfo.point;
-            Debug.Log(hitInfo.transform.gameObject.name + " was hit");
             return hitInfo.transform.gameObject;
         };
         return null;
@@ -92,27 +91,6 @@ public class LightningBoltCollider : MonoBehaviour
         }
     }
 
-
-
-
-
-
-    //  private Vector3 GetCollisionPosition(GameObject _target)
-    //  {
-    //      int numCollisionEvents = ParticleSystem.GetCollisionEvents(_target, CollisionEvents); //when Particle collides, return 1 and add to CollisionEvents List
-    //
-    //      for (int i = 0; i < numCollisionEvents; i++)
-    //      {
-    //          Vector3 pos = CollisionEvents[i].intersection;
-    //          i++;
-    //          return pos;
-    //
-    //      }
-    //      Debug.Log("Vector3.Zero was returned");
-    //      return Vector3.zero;
-    //
-    //
-    //  }
 
 }
 

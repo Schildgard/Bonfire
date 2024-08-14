@@ -19,7 +19,10 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
 
     private void Awake()
     {
+
+        transform.parent = GameObject.Find("Player").transform;
         Stats = GetComponentInParent<StatScript>();
+
     }
 
 
@@ -65,7 +68,6 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
 
     public void Die()
     {
-       // Destroy(this.gameObject);
        this.gameObject.SetActive(false);
     }
 
@@ -81,13 +83,13 @@ public class WaterShield : MonoBehaviour, IDamageable, IElectrilizable
         if (!electrified)
         {
             GameObject Splash = Instantiate(SplashEffect, transform.root);
-            Destroy(Splash, 0.2f);
+            Destroy(Splash, 0.5f);
         }
 
         else
         {
             GameObject Spark = Instantiate(SparkEffect, transform.position, Quaternion.identity);
-            Destroy(Spark, 0.1f);
+            Destroy(Spark, 0.5f);
         }
 
     }

@@ -12,15 +12,11 @@ public class EffectCondition_Lightning : StatusEffect
         animator = GetComponentInParent<Animator>();
         animator.SetBool("Electrified", true);
         maxduration = 5;
-        sfxIndex = 8;
         base.Awake();
     }
     protected override void Start()
     {
         base.Start();
-        AudioSource.clip = AudioManager.instance.SFX[sfxIndex].clip;
-        AudioSource.volume = 0.4f;
-        AudioSource.Play();
     }
     protected override void Update()
     {

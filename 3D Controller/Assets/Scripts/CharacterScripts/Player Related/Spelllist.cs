@@ -13,7 +13,7 @@ public class Spelllist : MonoBehaviour
     [SerializeField] private Transform AOETransform;
 
     private Transform SpawnPosition;
-
+    private GameObject castVFX;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class Spelllist : MonoBehaviour
     {
         spellIndex = _index;
 
-        if (Spells[spellIndex] == null )
+        if (Spells[spellIndex] == null)
         {
             Debug.Log("No Spell Attached");
             return;
@@ -42,7 +42,7 @@ public class Spelllist : MonoBehaviour
             Animator.SetTrigger("Cast Spell");
         }
 
-        Instantiate(Spells[spellIndex].spellCastAnimEffect,ProjectileTransform, false);
+        castVFX = Instantiate(Spells[spellIndex].spellCastAnimEffect, ProjectileTransform, false);
 
 
     }
@@ -68,8 +68,9 @@ public class Spelllist : MonoBehaviour
 
     public void InstantiateSpell()
     {
-        GameObject SpellObject = Instantiate(Spells[spellIndex].spellPrefab, SpawnPosition);
+        GameObject SpellObject = Instantiate(Spells[spellIndex].spellPrefab, SpawnPosition.position, Camera.main.transform.localRotation); // TO DO: Clamp spell rotation
 
+        Destroy(castVFX,0.7f);
         Destroy(SpellObject, Spells[spellIndex].spellDuration);
         spellIndex = 0;
     }

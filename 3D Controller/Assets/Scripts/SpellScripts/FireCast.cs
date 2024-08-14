@@ -48,8 +48,6 @@ public class FireCast : MonoBehaviour
                     target.GetDamage(damagePerIntervall);
                     
                 }
-
-                AudioManager.instance.SFX[7].source.Play();
                 timer = damageIntervall;
 
                 foreach (GameObject target in WetTargets)
@@ -62,7 +60,7 @@ public class FireCast : MonoBehaviour
             }
 
         }
-        else { timer = 0.1f;} //WTF? //Probably setted this to make cure the flame directly hits, but it doesnt work anyway
+        else { timer = 0.1f;} //investigte further
     }
     private void OnTriggerEnter(Collider _target)
     {
