@@ -4,47 +4,38 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(EnvironmentManager))]
+[CustomEditor(typeof(AreaCollection))]
 public class Editor_EnvironmentManager : Editor
 {
 
-    private EnvironmentManager manager;
+    private AreaCollection manager;
 
 
     public override void OnInspectorGUI()
     {
-
-
         using (var check = new EditorGUI.ChangeCheckScope())
         {
             base.OnInspectorGUI();
-
-          //  if (check.changed)
-          //  {
-          //      manager.UpdateEnvironment();
-          //  }
         }
 
         if (GUILayout.Button("Generate Environment"))
         {
-            manager.Initialize();
+            manager.GenerateEnvironment();
         }
         if (GUILayout.Button("Keep Environmental Prefabs"))
         {
-            manager.ClearPrefabList();
+            manager.KeepPrefabsInScene();
         }
 
         if (GUILayout.Button("Remove Environmental Prefabs"))
         {
-            manager.RemoveEnvironmentPrefabs();
+            manager.RemoveEnvironmentFromScene();
         }
-
-
     }
 
 
     private void OnEnable()
     {
-        manager = (EnvironmentManager)target;
+        manager = (AreaCollection)target;
     }
 }

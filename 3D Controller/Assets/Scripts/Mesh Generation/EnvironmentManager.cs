@@ -4,21 +4,25 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class EnvironmentManager : MonoBehaviour
 {
+
+   // public EnvironmentManager(AreaCollection _areaCollection)
+   // {
+   //     areaCollection = _areaCollection;
+   //     areas = areaCollection.Areas;
+   //
+   // }
     private AreaCollection areaCollection;
     private Area[] areas;
-    private List<GameObject> prefabsInScene;
-
     private Dictionary<RenderableVegetation, Mesh> instancedEnvironment;
 
-    [SerializeField] private bool renderInstancedMeshes; // The point of this bool is to disable the rendering when 'Remove Environment' Button is pressed
-                                                         // and optimize performance while editing other stuff in Editor
 
-
-    public void Initialize()
+    private void Awake()
     {
         areaCollection = GetComponent<AreaCollection>();
         areas = areaCollection.Areas;
-        prefabsInScene = areaCollection.PrefabsInScene;
+    }
+    public void Initialize()
+    {
         RemoveEnvironmentPrefabs();
 
         foreach (var area in areas)
@@ -31,14 +35,9 @@ public class EnvironmentManager : MonoBehaviour
         GenerateEnvironment();
     }
 
-    private void Start()
-    {
-        Initialize();
-    }
-
     private void Update()
     {
-        if (renderInstancedMeshes)
+        if (areaCollection.RenderInstancedMeshes)
         {
             RenderAllInstancedMeshes();
         }
@@ -69,12 +68,11 @@ public class EnvironmentManager : MonoBehaviour
         {
             foreach (var environment in area.renderableEnvironment)
             {
-                //   environment.EnvironmentGenerator.CreateEnvironmentalMesh();
                 instancedEnvironment.Add(environment, environment.EnvironmentGenerator.CreateEnvironmentalMesh());
             }
         }
 
-        prefabsInScene = new List<GameObject>();
+        //  prefabsInScene = new List<GameObject>();
 
         foreach (var area in areas)
         {
@@ -86,8 +84,6 @@ public class EnvironmentManager : MonoBehaviour
                 {
                     foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                     {
-
-                        // prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
                         areaCollection.PrefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
                     }
                 }
@@ -95,14 +91,12 @@ public class EnvironmentManager : MonoBehaviour
                 {
                     foreach (var position in environment.EnvironmentGenerator.SpawnPositions)
                     {
-                      //  prefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.identity));
                         areaCollection.PrefabsInScene.Add(Instantiate(environment.Prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0)));
                     }
                 }
             }
 
         }
-     //   renderInstancedMeshes = true;
     }
 
 
@@ -146,7 +140,6 @@ public class EnvironmentManager : MonoBehaviour
             DestroyImmediate(prefab.gameObject);
         }
         areaCollection.PrefabsInScene.Clear();
-       // renderInstancedMeshes = false;
     }
 
     public void ClearPrefabList()
