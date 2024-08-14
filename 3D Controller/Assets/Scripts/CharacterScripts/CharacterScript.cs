@@ -11,6 +11,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
     [SerializeField] protected List<Sound> CharacterSounds;
 
+
     protected virtual void Start()
     {
         HealthScript = GetComponent<HealthScript>();
@@ -64,10 +65,7 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
     public void PlaySFXSound(int _soundIndex)
     {
-        if (!CharacterSounds[_soundIndex].source.isPlaying)
-        {
             CharacterSounds[_soundIndex].source.Play();
-        }
     }
 
     public void PlaySFXSound(string _soundname)
