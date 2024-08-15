@@ -13,6 +13,7 @@ public class EnvironmentManager : MonoBehaviour
     private void Awake()
     {
         areaCollection = GetComponent<AreaCollection>();
+        Initialize();
     }
     public void Initialize()
     {

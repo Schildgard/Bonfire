@@ -88,9 +88,6 @@
             "m_Id": "898313a1dbb3429dba8e8a880f8849b7"
         },
         {
-            "m_Id": "61b23ff701894b22b5b9c7b533ddfd06"
-        },
-        {
             "m_Id": "cd26fe8af0264d5c8cbc2ebd74108ccc"
         },
         {
@@ -729,7 +726,6 @@
     "m_OutputNode": {
         "m_Id": ""
     },
-    "m_SubDatas": [],
     "m_ActiveTargets": [
         {
             "m_Id": "b7b4a6e9227a42e480553628831e75b4"
@@ -1139,10 +1135,10 @@
     "m_Guid": {
         "m_GuidSerialized": "292a442f-9261-4749-909a-b12d5df94f3c"
     },
-    "m_Name": "NormalThreshold",
+    "m_Name": "DotProductMaxValue",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "NormalThreshold",
-    "m_DefaultReferenceName": "_NormalThreshold",
+    "m_RefNameGeneratedByDisplayName": "DotProductMaxValue",
+    "m_DefaultReferenceName": "_DotProductMaxValue",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1871,7 +1867,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "2a4c2128f0914e6db2ac93869bed8ab7",
     "m_Id": 0,
-    "m_DisplayName": "NormalThreshold",
+    "m_DisplayName": "DotProductMaxValue",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2741,42 +2737,6 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "61b23ff701894b22b5b9c7b533ddfd06",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -2721.0,
-            "y": 702.0000610351563,
-            "width": 108.0,
-            "height": 34.00006103515625
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "e6bdb11e980f4b168a86ae1d06db2bd9"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "4f4b4f3805d04e7889d12cd4b29ca0c1"
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "636c884dc3d34a5aadefda99a40e7ee5",
     "m_Group": {
         "m_Id": ""
@@ -3288,10 +3248,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2445.0,
-            "y": 112.0,
+            "x": -2449.000244140625,
+            "y": 68.00003051757813,
             "width": 208.0,
-            "height": 315.0000305175781
+            "height": 314.9999694824219
         }
     },
     "m_Slots": [
@@ -4296,10 +4256,10 @@
     "m_Guid": {
         "m_GuidSerialized": "ffa84879-9ca0-41d8-b5c1-70b7f509547f"
     },
-    "m_Name": "NormalThreshold 2",
+    "m_Name": "DotProductMinValue",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "NormalThreshold 2",
-    "m_DefaultReferenceName": "_NormalThreshold_2",
+    "m_RefNameGeneratedByDisplayName": "DotProductMinValue",
+    "m_DefaultReferenceName": "_DotProductMinValue",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -5132,18 +5092,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.VirtualTextureMaterialSlot",
-    "m_ObjectId": "e6bdb11e980f4b168a86ae1d06db2bd9",
-    "m_Id": 0,
-    "m_DisplayName": "Test",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "e6fb6119b3e24899aeb1f2a21536ec13",
     "m_Id": 4,
@@ -5304,7 +5252,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "f19203802fcc4a26b04748db821d9bc4",
     "m_Id": 0,
-    "m_DisplayName": "NormalThreshold 2",
+    "m_DisplayName": "DotProductMinValue",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

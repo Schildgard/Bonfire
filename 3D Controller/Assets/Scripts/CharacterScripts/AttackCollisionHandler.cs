@@ -1,26 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class AttackCollisionHandler : MonoBehaviour
 {
-   // [SerializeField] private Collider WeaponCollider;
-
     [SerializeField] private Collider[] WeaponColliderArray;
 
+    //TODO: This Values are only relevant for the PlayerWeapon and should not be handled in a Script that is used by other entities.
     private bool IsWeaponOnBack;
-
     [SerializeField] private GameObject WeaponOnBack;
-
     [SerializeField] private GameObject WeaponInHand;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-
-
         foreach (var weapon in WeaponColliderArray)
         {
             weapon.enabled = false;
@@ -39,17 +31,13 @@ public class AttackCollisionHandler : MonoBehaviour
 
     public void ActivateWeaponCollider()
     {
-      //  WeaponCollider.enabled = true;
-
         foreach (var weapon in WeaponColliderArray) { weapon.enabled = true; }
 
     }
 
     public void DeActivateWeaponCollider()
     {
-    //    WeaponCollider.enabled = false;
         foreach (var weapon in WeaponColliderArray) { weapon.enabled = false; }
-
     }
 
     public void ShowWeaponInHand()

@@ -109,6 +109,8 @@ Material:
     - _1: 0.5
     - _2: 7
     - _Diffusion_Profile: 0
+    - _DotProductMaxValue: 1
+    - _DotProductMinValue: 0.85
     - _Float: 0
     - _Float_1: 5
     - _MountainHeight: 94.51
