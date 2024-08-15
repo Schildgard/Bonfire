@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9133391724288197085
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TerrainMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 4db8660a3a43ba34b95ff50e0abf618c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: _Tiling_Plane
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Layer_3D062954:
+        m_Texture: {fileID: 2800000, guid: 92865002af9b3a14ea425c4e1d9f0c68, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Layer_8112E239:
+        m_Texture: {fileID: 2800000, guid: d3edbf87e43c12145a7061af9abcf0a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalFromTexture_14ae82ab2c2b47939137e8807d9c3243_Texture_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalFromTexture_dfdc1e2d9ba44ee0a3c22ef22aa1a39e_Texture_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ad11d387ea2f4b24998a0136c7099d39, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_382bc542adab4257ac2db8178e8168db_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 056e11a82fa7347489ac81f7854b18aa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_5f247b1d2b434ed6b955fb405aa08a3a_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 7ee22c40282944f49802d39634f77f64, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_863d37e29d0c4d4f9664dcdb1e90657e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ad11d387ea2f4b24998a0136c7099d39, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_02fed13e028a40bba1101dd039a115e1_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: d3edbf87e43c12145a7061af9abcf0a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_18794366664844b78ba5d4c37446816a_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ad11d387ea2f4b24998a0136c7099d39, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8f7d674a27264530a8ff0c507a43378f_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 7ee22c40282944f49802d39634f77f64, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_bccd4d0c7e484161b864349c0e1f71b1_Texture_1_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_cddfd3e8288a4158975c6fb50db0339d_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 92865002af9b3a14ea425c4e1d9f0c68, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e0e02327b46f4385b2e6f91628aa4ee5_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: d3edbf87e43c12145a7061af9abcf0a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_d3e45e6805964d25bbc58c0e13127375_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: cf63fe044dd7e8b49abd97c7cccd3158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _1: 0.5
+    - _2: 7
+    - _Diffusion_Profile: 0
+    - _Float: 0
+    - _Float_1: 5
+    - _MountainHeight: 94.51
+    - _NoiseValue: 5
+    - _Noise_Density: 5
+    - _Noise_Scale: 5
+    - _Noise_Value: 5
+    - _NormalThreshold: 1
+    - _NormalThreshold_2: 0.85
+    - _Normal_Map_Tiling_Mountain: 0.064
+    - _Normal_Map_Tiling_Plane: 0.08
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Strength: 6.4
+    - _Tiling_Mountain: 0.1
+    - _Tiling_Plane: 1
+    - _max: 14.8
+    - _min: 10.14
+    - _test: 0.5
+    - _threshold: 0
+    - _tiling: 0.09
+    - _y_Pos: 0
+    m_Colors:
+    - _Diffusion_Profile_Asset: {r: 0, g: 0, b: 0, a: 0}
+    - _DontKnow: {r: 1, g: 1, b: 0, a: 0}
+    - _Grass_Base_Color: {r: 5.5827193, g: 2.3877113, b: 0, a: 1}
+    - _Mountain_Base_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Mountain_Normal_Tiling: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _Plane_Normal_Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 0.06, g: 0.06, b: 0, a: 0}
+    - _Vector2: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []

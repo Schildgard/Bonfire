@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7927633072558963638
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water Material
+  m_Shader: {fileID: -6465566751694194690, guid: 4dd2d39dc1bdc9b4683b51564a079945, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Normal_Map:
+        m_Texture: {fileID: 2800000, guid: 008431c67a840924287644ba9b00e081, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BaseSpeed: -0.01
+    - _BaseTiling: 35
+    - _DetailSpeedMultiplier: 0.65
+    - _DetailTiling: 65
+    - _Foam_Distance: 0.15
+    - _Foam_Noise_Scale: 150
+    - _Fresnel_Power: 4
+    - _Noise_Speed: 0.001
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Smoothness: 0.725
+    - _Water_Alpha: 0.9
+    m_Colors:
+    - _Deep_Color: {r: 0.052198283, g: 0.068676546, b: 0.21698111, a: 0}
+    - _Foam_Color: {r: 0.8726415, g: 0.95252997, b: 1, a: 0}
+    - _Main_Color: {r: 0.12771448, g: 0.38203636, b: 0.6603774, a: 0}
+    - _Shallow_Color: {r: 0.43040225, g: 0.68319625, b: 0.9811321, a: 0}
+  m_BuildTextureStacks: []
