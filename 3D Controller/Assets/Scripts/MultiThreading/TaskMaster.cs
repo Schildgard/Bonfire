@@ -1,20 +1,15 @@
- using System.Collections.Generic;
-using System.Threading.Tasks;
 using Unity.Collections;
 using Unity.Jobs;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Jobs;
-using UnityEngine.Rendering;
-using Unity.Burst;
 
 public class TaskMaster : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
 
-    private EnemyStateMachine[] EnemyArray;
-    private TransformAccessArray AccessArray;
-    private Transform[] EnemyTransforms;
+    private EnemyStateMachine[] enemyArray;
+    private TransformAccessArray accessArray;
+    private Transform[] enemyTransforms;
 
 
     void Start()
@@ -25,7 +20,7 @@ public class TaskMaster : MonoBehaviour
 
     private void Update()
     {
-        NativeArray<float> result = new NativeArray<float>(AccessArray.length, Allocator.TempJob);
+        NativeArray<float> result = new NativeArray<float>(accessArray.length, Allocator.TempJob);
 
         Job_EnemyDetection detectionJob = new Job_EnemyDetection
         {
@@ -33,19 +28,17 @@ public class TaskMaster : MonoBehaviour
             results = result,
         };
 
-        JobHandle jobHandle = detectionJob.Schedule(AccessArray);
+        JobHandle jobHandle = detectionJob.Schedule(accessArray);
         jobHandle.Complete();
 
 
-        for (int i = 0; i < EnemyArray.Length; i++)
+        for (int i = 0; i < enemyArray.Length; i++)
         {
             if (detectionJob.results[i] >= 0.7f)
             {
-                EnemyArray[i].TaskBool = true;
-                //Debug.Log($"{EnemyArray[i].name} sees the Player: dotproduct is {detectionJob.results[i]}");
+                enemyArray[i].TaskBool = true;
             }
-            else EnemyArray[i].TaskBool = false;
-            //Debug.Log($"{EnemyArray[i].name} does not see the Player:  dotproduct is {detectionJob.results[i]}");
+            else enemyArray[i].TaskBool = false;
         }
         result.Dispose();
 
@@ -57,28 +50,21 @@ public class TaskMaster : MonoBehaviour
 
     private void Initialize()
     {
-        EnemyArray = FindObjectsByType<EnemyStateMachine>(sortMode: FindObjectsSortMode.None);
-        // Debug.Log($"TaskMaster added {EnemyArray.Length} StateMachines to its StateMachineArray");
+        enemyArray = FindObjectsByType<EnemyStateMachine>(sortMode: FindObjectsSortMode.None);
+        enemyTransforms = new Transform[enemyArray.Length];
 
-        EnemyTransforms = new Transform[EnemyArray.Length];
-        //Debug.Log($"TaskMaster initialized the EnemyTransform Array with the size of {EnemyTransforms.Length}");
-
-
-        for (int i = 0; i < EnemyArray.Length; i++)
+        for (int i = 0; i < enemyArray.Length; i++)
         {
-            EnemyTransforms[i] = EnemyArray[i].transform;
+            enemyTransforms[i] = enemyArray[i].transform;
         }
-        //Debug.Log($"TaskMaster filled the EnemyTransformArray with {EnemyTransforms.Length} enemies. ");
 
-        AccessArray = new TransformAccessArray(EnemyTransforms);
-
-        //Debug.Log("TaskMaster completed its Initialization");
+        accessArray = new TransformAccessArray(enemyTransforms);
 
     }
 
     private void OnDisable()
     {
-        AccessArray.Dispose();
+        accessArray.Dispose();
     }
 
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +9,6 @@ public class HealthScript : MonoBehaviour
     public bool isAlive;
     private StatScript Stats;
     [SerializeField] private Image Healthbar;
-
-
 
 
 

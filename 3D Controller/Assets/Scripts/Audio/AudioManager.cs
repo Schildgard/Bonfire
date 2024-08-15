@@ -22,12 +22,10 @@ public class AudioManager : MonoBehaviour
     }
 
     public List<Sound> Music;
-
     public List<Sound> EnvironmentalSFX;
-
     private int currentMusicIndex = 0;
 
-    // Start is called before the first frame update
+
     void Start()
     {
 

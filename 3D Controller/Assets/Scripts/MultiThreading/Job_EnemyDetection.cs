@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using Unity.Collections;
-using Unity.Jobs;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Jobs;
 using Unity.Burst;
 
+//This Script is only used to show the effect of Multithreading. In Order to to Test MultiThreading you have to Activate/-Deactivate the BurstCompile Line by commenting AND activate Multithreading Transition in Enemy State Machine.
 [BurstCompile]
 public struct Job_EnemyDetection : IJobParallelForTransform
 {

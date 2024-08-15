@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class BossScript : EnemyScript, IElectrilizable
@@ -9,10 +5,6 @@ public class BossScript : EnemyScript, IElectrilizable
     [SerializeField]private  GameEvent bossDied;
     [SerializeField]private Material electrifiedMaterial;
 
-  //  protected override void Start()
-  //  {
-  //      base.Start();
-  //  }
 
     public override void GetDamage(float _damage) //Only Difference in this method to Enemy Script is the LifeCanvas. Looks like something fixworthy.
     {
