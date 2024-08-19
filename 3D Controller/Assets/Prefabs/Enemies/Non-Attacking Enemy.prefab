@@ -172,7 +172,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 0}
+      - m_Value: {fileID: 5197665635085363209}
         m_Name: SkinnedMeshRenderer
         m_Overridden: 1
     m_Bool:
@@ -792,8 +792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9665c66a4d5248a489420a5308fa4cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToPlaceEffectCondition: {fileID: 0}
-  WetCondition: {fileID: 0}
+  ObjectToPlaceEffectCondition: {fileID: 6219898807693938995}
+  WetCondition: {fileID: 3118568457807958137}
   ElectrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
   WetMaterial: {fileID: 2100000, guid: 162cb3af372d73946a898483aabc2fe2, type: 2}
 --- !u!54 &354943961393061899
@@ -1168,6 +1168,11 @@ PrefabInstance:
       addedObject: {fileID: 4580323847697258244}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+--- !u!137 &5197665635085363209 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7108171046957706190, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+  m_PrefabInstance: {fileID: 3063743741184820167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5375917333904186305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6926398677701138438, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
@@ -1176,6 +1181,11 @@ Transform:
 --- !u!4 &6172268827497608438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9163936255024822065, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+  m_PrefabInstance: {fileID: 3063743741184820167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6219898807693938995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8995130678418658036, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
   m_PrefabInstance: {fileID: 3063743741184820167}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6416177310508978864 stripped

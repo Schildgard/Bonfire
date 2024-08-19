@@ -8,7 +8,8 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
 
     private Material ElectrifiedMaterial;
     private Material WetMaterial;
-    
+
+    public bool Electrified;
 
     protected override void Awake()
     {
@@ -37,11 +38,12 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
 
 
         // Material Array Check can probably be replaced with a simple bool which checks if the Target ist electrified.
-        if (SkinnedMeshRenderer.materials.Length <= 2) // Indicator if the the Second or third Material, which is the Electrify Material, already has been added or not
+        if (!Electrified)
         {
             var Condition = SkinnedMeshRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
+            SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial };
 
-            SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial }; 
+            Electrified = true;
         }
         else
         {

@@ -31,5 +31,7 @@ public class EffectCondition_Lightning : StatusEffect
     private void OnDestroy()
     {
         animator.SetBool("Electrified", false);
+        var wetStatus = GetComponentInChildren<EffectCondition_Wet>();
+        wetStatus.Electrified = false;
     }
 }
