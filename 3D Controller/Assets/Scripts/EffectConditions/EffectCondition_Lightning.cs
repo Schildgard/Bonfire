@@ -32,6 +32,9 @@ public class EffectCondition_Lightning : StatusEffect
     {
         animator.SetBool("Electrified", false);
         var wetStatus = GetComponentInChildren<EffectCondition_Wet>();
-        wetStatus.Electrified = false;
+        if (wetStatus != null)
+        {
+            wetStatus.Electrified = false;
+        }
     }
 }

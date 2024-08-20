@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -41,7 +42,8 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
         if (!Electrified)
         {
             var Condition = SkinnedMeshRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
-            SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial };
+            //  SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial };
+            SkinnedMeshRenderer.materials = PrepareNewMaterialArray(OriginalMaterial, ElectrifiedMaterial);
 
             Electrified = true;
         }
@@ -66,6 +68,27 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
     {
         var Wetable = GetComponentInParent<WetableEnemy>();
         WetMaterial = Wetable.WetMaterial;
-        SkinnedMeshRenderer.materials = new Material[] { OriginalMaterial[0], WetMaterial }; ;
+
+        Debug.Log($"Original Materials {OriginalMaterial.Length}");
+
+
+        SkinnedMeshRenderer.materials = PrepareNewMaterialArray(OriginalMaterial, WetMaterial);
+        //SkinnedMeshRenderer.materials = new Material[] { OriginalMaterial[0], WetMaterial }; ;
+    }
+
+    private Material[] PrepareNewMaterialArray(Material[] _inputArray, Material _statusMaterial)
+    {
+        Material[] newArray = new Material[_inputArray.Length +1];
+        Debug.Log($"New Mesh Materials {newArray.Length}");
+        for (int i = 0; i < _inputArray.Length; i++)
+        {
+            newArray[i] = _inputArray[i];
+        }
+        Debug.Log("Ore Test");
+
+        newArray[newArray.Length-1] = _statusMaterial;
+        Debug.Log("Test");
+
+        return newArray;
     }
 }
