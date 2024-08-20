@@ -62,19 +62,19 @@ public class EnemyDetectionScript : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, chaseSphereRadius);
+       // Gizmos.color = Color.red;
+       // Gizmos.DrawWireSphere(transform.position, chaseSphereRadius);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, strafingSphereRadius);
+      //  Gizmos.color = Color.blue;
+      //  Gizmos.DrawWireSphere(transform.position, strafingSphereRadius);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackSphereRadius);
 
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, alarmRadius);
 
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(radiusVectorX, 0, radiusVectorZ)) * 10);
         Gizmos.DrawRay(transform.position, transform.TransformVector(new Vector3(-radiusVectorX, 0, radiusVectorZ)) * 10);
 
