@@ -1,16 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class Dialogues : MonoBehaviour
+public class TalkScript : MonoBehaviour
 {
 
     [SerializeField] private List<Dialogue> dialogue;
-
     [SerializeField] private Collider talkRangeCollider;
-
-    [SerializeField] private GameEvent gameEvent;
+    [SerializeField] private GameObject talkToolTip;
+    //[SerializeField] private GameEvent gameEvent;
 
     private bool talkRange;
 
@@ -20,13 +17,14 @@ public class Dialogues : MonoBehaviour
 
     private void Update()
     {
+
         if (talkRange && DialogueManager.instance.Canvas.gameObject.activeSelf == false)
         {
+            talkToolTip.SetActive(true);
             if (Input.GetKeyDown(KeyCode.M))
             {
-
+                talkToolTip.SetActive(false);
                 DialogueManager.instance.Canvas.gameObject.SetActive(true);
-                //DialogueManager.instance.ActiveCanvasText.text = Lines[currentTextIndex].text;
                 DialogueManager.instance.ActiveCanvasText.text = dialogue[currentDialogueIndex].Lines[currentTextIndex].text;
 
             }
@@ -69,6 +67,7 @@ public class Dialogues : MonoBehaviour
         if (_other.gameObject.layer == 7)
         {
             talkRange = false;
+            talkToolTip.SetActive(false);
             DialogueManager.instance.Canvas.gameObject.SetActive(false);
         }
     }

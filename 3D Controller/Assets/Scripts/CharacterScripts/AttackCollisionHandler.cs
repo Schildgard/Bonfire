@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AttackCollisionHandler : MonoBehaviour
 {
+    //The Array serves in the Case if an Enemy can forexample Attack with both Hands.
     [SerializeField] private Collider[] weaponColliderArray;
 
     //TODO: This Values are only relevant for the PlayerWeapon and should not be handled in a Script that is used by other entities.
@@ -28,7 +29,7 @@ public class AttackCollisionHandler : MonoBehaviour
         }
     }
 
-
+    // Activate / De-Activate Weapon Collider is mainly called in Animation Events.
     public void ActivateWeaponCollider()
     {
         foreach (var weapon in weaponColliderArray) { weapon.enabled = true; }
@@ -40,6 +41,7 @@ public class AttackCollisionHandler : MonoBehaviour
         foreach (var weapon in weaponColliderArray) { weapon.enabled = false; }
     }
 
+    // Show Weapon Methods are by current State only relevant to Player due to Animation Retargeting Issues with Greatsword Animation Set.
     public void ShowWeaponInHand()
     {
         if (weaponOnBack)

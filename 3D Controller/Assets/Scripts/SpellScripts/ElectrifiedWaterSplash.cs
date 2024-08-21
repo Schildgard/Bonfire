@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ElectrifiedWaterSplash : MonoBehaviour
@@ -13,7 +11,7 @@ public class ElectrifiedWaterSplash : MonoBehaviour
         IElectrilizable electrilizableTarget = _target.GetComponentInChildren<IElectrilizable>();
         if (electrilizableTarget == null)
         {
-            Debug.Log("not electrilizable");
+            return;
         }
         electrilizableTarget.Electrify();
 

@@ -6,8 +6,11 @@ public class StatUIScript : MonoBehaviour
     [SerializeField] private TMP_Text[] Attributes;
     [SerializeField] private StatScript PlayerStats;
     [SerializeField] private HealthScript PlayerHealthScript;
+    [SerializeField] private StaminaScript PlayerStamina;
     [SerializeField] private GameObject StatCanvas;
 
+
+    // These are copies of the Players original Stats. In the UI the Player only Changes the values on these copies, which are applied to the player after the Assign button is pressed.
     private float levelReference;
     private float soulsValueReference;
     private float levelUpCostReference;
@@ -16,8 +19,6 @@ public class StatUIScript : MonoBehaviour
     private float speedReference;
     private float defenseReference;
 
-
-    // Start is called before the first frame update
 
     private void OnEnable()
     {
@@ -142,9 +143,10 @@ public class StatUIScript : MonoBehaviour
         SoulsSystem.instance.LevelUpCost = PlayerStats.Level * 50;
         SoulsSystem.instance.UpdateSoulsCounter();
 
-
         PlayerHealthScript.UpdateMaxHealth();
         PlayerHealthScript.ResetHealth();
+
+        PlayerStamina.UpdateMaxStamina();
 
     }
 }

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnManager : MonoBehaviour
+public class RespawnManager : MonoBehaviour
 {
 
-    public static EnemySpawnManager instance;
+    public static RespawnManager instance;
 
     private void Awake()
     {
@@ -69,12 +69,6 @@ public class EnemySpawnManager : MonoBehaviour
     public void SpawnSoulsCrate()
     {
         Instantiate(SoulscratePrefab, PlayerReference.transform.position, Quaternion.identity);
-    }
-
-    public void RespawnPlayer()
-    {
-       // PlayerReference.Respawn();
-       // PlayerReference.gameObject.transform.position = new Vector3(PlayerSpawnPosition.position.x, PlayerSpawnPosition.position.y, PlayerSpawnPosition.position.z);
     }
 
     public GameObject RespawnEnemy(int _enemyID, Vector3 _position, Quaternion _rotation)

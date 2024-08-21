@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [CustomEditor(typeof(AreaCollection))]
 public class Editor_EnvironmentManager : Editor

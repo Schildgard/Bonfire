@@ -838,13 +838,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654892495601231917}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.05217291, y: 0.25469336, z: 0.5464668, w: -0.796105}
+  m_LocalRotation: {x: -0.27591807, y: -0.28833434, z: 0.73669297, w: -0.5459086}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4474841257962015157}
-  m_Father: {fileID: 8709933393320696548}
+  m_Father: {fileID: 8532113791435021394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780212720221688114
 GameObject:
@@ -1729,7 +1729,7 @@ GameObject:
   - component: {fileID: -6551806193598819533}
   - component: {fileID: -919524074775619080}
   m_Layer: 8
-  m_Name: Enemy One
+  m_Name: Regular Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1743,8 +1743,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3997754368316317070}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.8419349, z: -0, w: -0.53957915}
-  m_LocalPosition: {x: -30, y: 8.425142, z: -151.52}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1752,7 +1752,7 @@ Transform:
   - {fileID: 3076441647352479053}
   - {fileID: 7348158640165246243}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 245.31, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &3997754368316317066
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1848,10 +1848,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8a904990c6ac94b9125f8fb0e8183a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponColliderArray:
+  weaponColliderArray:
   - {fileID: 1312394416923959906}
-  WeaponOnBack: {fileID: 0}
-  WeaponInHand: {fileID: 0}
+  weaponOnBack: {fileID: 0}
+  weaponInHand: {fileID: 0}
 --- !u!65 &3997754368316317075
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1905,9 +1905,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
-  currentHealth: 0
+  CurrentHealth: 0
   isAlive: 0
-  Healthbar: {fileID: 8396510280046902068}
+  healthbar: {fileID: 8396510280046902068}
 --- !u!114 &-2961963651066758588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,7 +2439,6 @@ Transform:
   - {fileID: 688512825419957621}
   - {fileID: 8467023761331779122}
   - {fileID: 7161005191550560743}
-  - {fileID: 4217741839188795321}
   m_Father: {fileID: 4806666400922100997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5382586464077749924
@@ -2983,6 +2982,7 @@ Transform:
   - {fileID: 4525225492662626048}
   - {fileID: 532001597783987490}
   - {fileID: 4086358829109439434}
+  - {fileID: 4217741839188795321}
   m_Father: {fileID: 688512825419957621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6485779335838064915

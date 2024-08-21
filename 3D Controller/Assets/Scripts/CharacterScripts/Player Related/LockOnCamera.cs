@@ -23,7 +23,6 @@ public class LockOnCamera : MonoBehaviour
     {
         lockOnCamera = GetComponent<CinemachineVirtualCamera>();
         freeLook = FindAnyObjectByType<CinemachineFreeLook>();
-
         animator = playerTransform.GetComponent<Animator>();
     }
 
@@ -59,9 +58,9 @@ public class LockOnCamera : MonoBehaviour
         }
         else return null;
     }
+
     public Transform CheckPotentialTargets()
     {
-
         List<GameObject> potentialTarget = ScanForEnemiesInRange();
         if (potentialTarget == null)
         {
@@ -99,17 +98,13 @@ public class LockOnCamera : MonoBehaviour
         {
             Vector3 Distance = enemy.transform.position - playerTransform.position;
             float distance = Vector3.SqrMagnitude(Distance);
-            //Debug.Log("Distance between Player and " + enemy.name + " is " + distance);
+
             if (distance < shortestDistanceToPlayer)
             {
                 lockOnTarget = enemy.gameObject;
 
                 shortestDistanceToPlayer = distance;
-                //   Debug.Log("shortestDistance is changed to " + distance);
-            }
-            else
-            {
-                //   Debug.Log("shortestDistance remains the same");
+
             }
         }
         return lockOnTarget;
@@ -177,7 +172,6 @@ public class LockOnCamera : MonoBehaviour
 
         if (viableTargets.Count == 0)
         {
-            //Debug.Log("No Enemy in chosen Direction");
             return;
         }
 

@@ -2192,7 +2192,7 @@ GameObject:
   - component: {fileID: 7246262684698904536}
   - component: {fileID: 354943961393061899}
   m_Layer: 8
-  m_Name: Non-Attacking Enemy
+  m_Name: Blind Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2312,11 +2312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8a904990c6ac94b9125f8fb0e8183a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponColliderArray:
-  - {fileID: 4042298167673361588}
+  weaponColliderArray:
   - {fileID: 653327030257970097}
-  WeaponOnBack: {fileID: 0}
-  WeaponInHand: {fileID: 0}
+  weaponOnBack: {fileID: 0}
+  weaponInHand: {fileID: 0}
 --- !u!65 &7379722327926926247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2370,9 +2369,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
-  currentHealth: 0
+  CurrentHealth: 0
   isAlive: 0
-  Healthbar: {fileID: 727238025618415998}
+  healthbar: {fileID: 727238025618415998}
 --- !u!114 &2718749254380536916
 MonoBehaviour:
   m_ObjectHideFlags: 0

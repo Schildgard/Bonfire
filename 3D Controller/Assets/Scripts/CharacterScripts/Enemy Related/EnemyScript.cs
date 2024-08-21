@@ -33,13 +33,13 @@ public class EnemyScript : CharacterScript
 
 
         float defMultiplier = (_damage / 100) * (Stats.Defense * 3f);
-        HealthScript.currentHealth -= (_damage - defMultiplier);
+        HealthScript.CurrentHealth -= (_damage - defMultiplier);
         HealthScript.UpdateHealthBar();
 
         Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage ({_damage} - {defMultiplier})");
 
         Animator.SetTrigger("Stagger");
-        if (HealthScript.currentHealth <= 0)
+        if (HealthScript.CurrentHealth <= 0)
         { Die(); }
 
         PlaySFXSound("Get Hit");

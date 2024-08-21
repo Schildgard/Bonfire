@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.Examples;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EffectCondition_Wet : StatusEffect, IElectrilizable
 {
 
-    private Material ElectrifiedMaterial;
-    private Material WetMaterial;
+    private Material electrifiedMaterial;
+    private Material wetMaterial;
 
     public bool Electrified;
 
@@ -16,7 +12,7 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
     {
         maxduration = 20;
         base.Awake();
-        
+
     }
 
     protected override void Update()
@@ -35,15 +31,13 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
     public void Electrify()
     {
         var Wetable = GetComponentInParent<WetableEnemy>();
-        ElectrifiedMaterial = Wetable.ElectrifiedMaterial;
+        electrifiedMaterial = Wetable.ElectrifiedMaterial;
 
 
-        // Material Array Check can probably be replaced with a simple bool which checks if the Target ist electrified.
         if (!Electrified)
         {
             var Condition = SkinnedMeshRenderer.gameObject.AddComponent<EffectCondition_Lightning>();
-            //  SkinnedMeshRenderer.materials = new Material[] { Condition.OriginalMaterial[0], ElectrifiedMaterial };
-            SkinnedMeshRenderer.materials = PrepareNewMaterialArray(OriginalMaterial, ElectrifiedMaterial);
+            SkinnedMeshRenderer.materials = PrepareNewMaterialArray(OriginalMaterial, electrifiedMaterial);
 
             Electrified = true;
         }
@@ -67,18 +61,13 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
     private void OnEnable()
     {
         var Wetable = GetComponentInParent<WetableEnemy>();
-        WetMaterial = Wetable.WetMaterial;
-
-        Debug.Log($"Original Materials {OriginalMaterial.Length}");
-
-
-        SkinnedMeshRenderer.materials = PrepareNewMaterialArray(OriginalMaterial, WetMaterial);
-        //SkinnedMeshRenderer.materials = new Material[] { OriginalMaterial[0], WetMaterial }; ;
+        wetMaterial = Wetable.WetMaterial;
+        SkinnedMeshRenderer.materials = PrepareNewMaterialArray(OriginalMaterial, wetMaterial);
     }
 
     private Material[] PrepareNewMaterialArray(Material[] _inputArray, Material _statusMaterial)
     {
-        Material[] newArray = new Material[_inputArray.Length +1];
+        Material[] newArray = new Material[_inputArray.Length + 1];
         Debug.Log($"New Mesh Materials {newArray.Length}");
         for (int i = 0; i < _inputArray.Length; i++)
         {
@@ -86,7 +75,7 @@ public class EffectCondition_Wet : StatusEffect, IElectrilizable
         }
         Debug.Log("Ore Test");
 
-        newArray[newArray.Length-1] = _statusMaterial;
+        newArray[newArray.Length - 1] = _statusMaterial;
         Debug.Log("Test");
 
         return newArray;

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StatScript : MonoBehaviour
 {
+    //Player Name finds no relevance yet, but it is planned to be able to name the Character
     [SerializeField] private string playerName;
     [SerializeField] private float level;
 

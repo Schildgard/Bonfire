@@ -1,30 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
+    // Ground Check is not used in current State, because the Jump feature was taken out. However the Script remains, in case I want to readd it later.
 
     [SerializeField] private LayerMask groundCheckLayerMask;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] Transform CharacterPivot;
 
 
-    // Update is called once per frame
     void Update()
     {
-
         CollisionCheck();
-
     }
 
     public bool CollisionCheck() 
     {
-
         bool hit;
         hit = Physics.Raycast(CharacterPivot.position, Vector3.down, groundCheckDistance, layerMask: groundCheckLayerMask);
         
-
         if (hit)
         {
             return true;
@@ -32,8 +26,7 @@ public class GroundCheck : MonoBehaviour
         else
         {
             return false;
-        }
-        
+        } 
     }
 
     private void OnDrawGizmos()
