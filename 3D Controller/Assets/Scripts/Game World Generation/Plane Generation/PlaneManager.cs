@@ -26,6 +26,7 @@ public class PlaneManager : MonoBehaviour
             item.PlaneGenerator = new PlaneGenerator(item.planeMaterial, new NoiseFilter(item.ShapeSettings), item.resolution);
             item.PlaneObject = item.PlaneGenerator.CreatePlaneItem();
         }
+        
     }
 
     public void UpdatePlaneMesh()

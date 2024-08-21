@@ -16,10 +16,10 @@ MonoBehaviour:
   NoiseLayers:
   - enabled: 1
     NoiseSettings:
-      LayerCount: 3
-      BaseRoughness: 3.33
-      Roughness: 1.5
-      Strength: 15
-      Persistence: 2.2
+      LayerCount: 8
+      BaseRoughness: 1
+      Roughness: 1.61
+      Strength: 3
+      Persistence: 1
       NoiseCenter: {x: 2.73, y: 0, z: 0}
-      GroundLevel: -0.81
+      GroundLevel: 0
