@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> Music;
     public List<Sound> EnvironmentalSFX;
+    public List<Sound> UISFX;
     private int currentMusicIndex = 0;
 
 
@@ -35,6 +36,10 @@ public class AudioManager : MonoBehaviour
             sound.source.loop = true;
         }
         foreach (var sound in EnvironmentalSFX)
+        {
+            InitializeAudioSources(sound);
+        }
+        foreach (var sound in UISFX)
         {
             InitializeAudioSources(sound);
         }

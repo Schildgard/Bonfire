@@ -2388,12 +2388,12 @@ MonoBehaviour:
   - name: Footsteps 1
     clip: {fileID: 8300000, guid: d1096c874360d654db0f82bb568b8145, type: 3}
     source: {fileID: 0}
-    volume: 0.1
+    volume: 0.5
     pitch: 1
   - name: Footsteps 2
     clip: {fileID: 8300000, guid: 215c08d8d2b727847a0703d5c87189b4, type: 3}
     source: {fileID: 0}
-    volume: 0.1
+    volume: 0.5
     pitch: 1
   - name: Agony
     clip: {fileID: 8300000, guid: 97343e0fb4c1382469dd527eb0644e07, type: 3}

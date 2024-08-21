@@ -142,7 +142,7 @@ Material:
     - _QueueOffset: 0
     - _Strength: 6.4
     - _Texture_1_Normal_Tiling: 0.05
-    - _Texture_1_Tiling: 0.4
+    - _Texture_1_Tiling: 0.8
     - _Texture_2_Normal_Tiling: 0.05
     - _Texture_2_Tiling: 0.05
     - _Tiling_Mountain: 0.1

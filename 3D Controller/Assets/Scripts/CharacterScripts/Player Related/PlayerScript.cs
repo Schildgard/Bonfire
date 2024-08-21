@@ -41,7 +41,7 @@ public class PlayerScript : CharacterScript
 
     IEnumerator WaitRespawn()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2f);
         YouDied.Raise();
 
     }
