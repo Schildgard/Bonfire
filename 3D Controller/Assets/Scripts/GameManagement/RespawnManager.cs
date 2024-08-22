@@ -28,12 +28,13 @@ public class RespawnManager : MonoBehaviour
 
     #region Player
     [SerializeField] private Transform PlayerSpawnPosition;
-    [SerializeField] private PlayerScript PlayerReference;
+    private PlayerScript PlayerReference;
     #endregion
 
 
     private void Start()
     {
+        PlayerReference = GameObject.Find("Player").GetComponent<PlayerScript>();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         EnemyDataArray = new List<EnemyData>();

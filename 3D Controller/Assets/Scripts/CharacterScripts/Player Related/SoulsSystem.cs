@@ -13,10 +13,17 @@ public class SoulsSystem : MonoBehaviour
     }
 
 
-    [SerializeField] private TMP_Text soulsCounter;
+    private TMP_Text soulsCounter;
     [SerializeField] private float lostSouls;
-    [SerializeField] private StatScript playerStats;
+    private StatScript playerStats;
     [SerializeField] private float levelUpCost;
+
+
+    private void Start()
+    {
+        playerStats = GameObject.Find("Player").GetComponent<StatScript>();
+        soulsCounter = GetComponentInChildren<TMP_Text>();
+    }
 
     public float LostSouls { get { return lostSouls; } set { lostSouls = value; } }
     public float LevelUpCost { get { return levelUpCost; } set { levelUpCost = value; } }

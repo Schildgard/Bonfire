@@ -504,7 +504,7 @@ MonoBehaviour:
   vitality: 1
   speed: 1
   defense: 1
-  soulsValue: 0
+  soulsValue: 500
 --- !u!114 &6261463938305929367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ MonoBehaviour:
   StaminaBar: {fileID: 3602984456018166458}
   maxStamina: 0
   regMultiplier: 25
-  currentStamina: 0
+  currentStamina: 100
 --- !u!114 &511791655747194923
 MonoBehaviour:
   m_ObjectHideFlags: 0

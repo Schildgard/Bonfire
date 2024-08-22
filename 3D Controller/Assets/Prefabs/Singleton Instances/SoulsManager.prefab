@@ -1663,6 +1663,7 @@ MonoBehaviour:
   - {fileID: 1015906182156058238}
   PlayerStats: {fileID: 0}
   PlayerHealthScript: {fileID: 0}
+  PlayerStamina: {fileID: 0}
   StatCanvas: {fileID: 3696785475629762147}
 --- !u!1 &3707485166293248878
 GameObject:
@@ -3722,9 +3723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b8692200696044da11c28ae070a63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoulsCounter: {fileID: 4987748926738315466}
+  soulsCounter: {fileID: 4987748926738315466}
   lostSouls: 0
-  PlayerStats: {fileID: 0}
+  playerStats: {fileID: 0}
   levelUpCost: 0
 --- !u!114 &8297017227743363574
 MonoBehaviour:
