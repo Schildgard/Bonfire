@@ -38,6 +38,7 @@ public class AudioManager : MonoBehaviour
         foreach (var sound in EnvironmentalSFX)
         {
             InitializeAudioSources(sound);
+            sound.source.loop = true;
         }
         foreach (var sound in UISFX)
         {
@@ -60,6 +61,16 @@ public class AudioManager : MonoBehaviour
     public void PlayAudioSound(Sound _sound)
     {
         _sound.source.Play();
+    }
+
+    public void PlayEnvironmentalSFX(int _sfxIndex)
+    {
+        EnvironmentalSFX[_sfxIndex].source.Play();
+    }
+
+    public void StopPlayEnvironmentalSFX(int _sfxIndex)
+    {
+        EnvironmentalSFX[_sfxIndex].source.Stop();
     }
 
     public void ChangeBackGroundMusic(int _musicListIndex)
