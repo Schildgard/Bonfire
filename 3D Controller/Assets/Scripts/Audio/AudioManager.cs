@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class AudioManager : MonoBehaviour
     public List<Sound> Music;
     public List<Sound> EnvironmentalSFX;
     public List<Sound> UISFX;
-    private int currentMusicIndex = 0;
+    // private int currentMusicIndex = 0;
 
 
     void Start()
@@ -44,10 +46,13 @@ public class AudioManager : MonoBehaviour
         {
             InitializeAudioSources(sound);
         }
-        Music[0].source.Play();
-        EnvironmentalSFX[1].source.loop = true;
-        EnvironmentalSFX[1].source.Play();
+
+        if (GetCurrentSceneIndex() == 0)
+        {
+            Music[0].source.Play();
+        }
     }
+
 
     private void InitializeAudioSources(Sound _sound)
     {
@@ -58,10 +63,11 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void PlayAudioSound(Sound _sound)
-    {
-        _sound.source.Play();
-    }
+    //public void PlayAudioSound(Sound _sound)
+    //{
+    //    _sound.source.Play();
+    //}
+
 
     public void PlayEnvironmentalSFX(int _sfxIndex)
     {
@@ -73,40 +79,64 @@ public class AudioManager : MonoBehaviour
         EnvironmentalSFX[_sfxIndex].source.Stop();
     }
 
-    public void ChangeBackGroundMusic(int _musicListIndex)
+    public void StartMusic(int _musicIndex)
     {
         StopAllCoroutines();
-        StartCoroutine(FadeBetweenTracks(_musicListIndex));
+        StartCoroutine(FadeInTrack(_musicIndex));
     }
-
-    public void ChangeBackGroundMusic()
+    public void StopMusic(int _musicIndex)
     {
         StopAllCoroutines();
-        StartCoroutine(FadeBetweenTracks(currentMusicIndex));
+        StartCoroutine(FadeOutTrack(_musicIndex));
     }
 
-    IEnumerator FadeBetweenTracks(int _musicListIndex)
+    //  public void ChangeBackGroundMusic(int _musicListIndex)
+    //  {
+    //      StopAllCoroutines();
+    //      StartCoroutine(FadeBetweenTracks(_musicListIndex));
+    //  }
+
+    // public void ChangeBackGroundMusic()
+    // {
+    //     StopAllCoroutines();
+    //     StartCoroutine(FadeBetweenTracks(currentMusicIndex));
+    // }
+
+    IEnumerator FadeInTrack(int _musicListIndex)
     {
-        if (_musicListIndex != currentMusicIndex)
+        float fadeTimer = 1.25f;
+        float elapseTime = 0;
+        Music[_musicListIndex].source.Play();
+
+        while (elapseTime < fadeTimer)
         {
-
-            float fadeTimer = 1.25f;
-            float elapseTime = 0;
-
-            Music[_musicListIndex].source.Play();
-            while (elapseTime < fadeTimer)
-            {
-                Music[_musicListIndex].source.volume = Mathf.Lerp(0, 0.5f, elapseTime / fadeTimer);
-                Music[currentMusicIndex].source.volume = Mathf.Lerp(0.5f, 0, elapseTime / fadeTimer);
-                elapseTime += Time.deltaTime;
-                yield return null;
-            }
-            Music[currentMusicIndex].source.Stop();
+            Music[_musicListIndex].source.volume = Mathf.Lerp(0, 0.5f, elapseTime / fadeTimer);
+            elapseTime += Time.deltaTime;
+            yield return null;
         }
+    }
+    IEnumerator FadeOutTrack(int _musicListIndex)
+    {
+        float fadeTimer = 1.25f;
+        float elapseTime = 0;
+
+        while (elapseTime < fadeTimer)
+        {
+            Music[_musicListIndex].source.volume = Mathf.Lerp(0.5f, 0f, elapseTime / fadeTimer);
+            elapseTime += Time.deltaTime;
+            yield return null;
+        }
+        Music[_musicListIndex].source.Stop();
+    }
 
 
-         currentMusicIndex = _musicListIndex;
 
+    private int GetCurrentSceneIndex()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        int sceneIndex = currentScene.buildIndex;
+
+        return sceneIndex;
     }
 }
 
