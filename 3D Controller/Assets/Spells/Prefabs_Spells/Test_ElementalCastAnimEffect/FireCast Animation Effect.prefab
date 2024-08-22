@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1448844623672481626}
   - component: {fileID: 4313753276459622587}
+  - component: {fileID: -8478582826958955792}
   m_Layer: 0
   m_Name: FireCast Animation Effect
   m_TagString: Untagged
@@ -129,6 +130,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8478582826958955792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783976718920378025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aebf45bb78b2e8f488a192e22c6b4fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 3
 --- !u!1 &8884028022614575108
 GameObject:
   m_ObjectHideFlags: 0
