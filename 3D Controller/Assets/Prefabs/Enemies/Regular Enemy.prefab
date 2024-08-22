@@ -508,7 +508,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.261
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1924,13 +1924,13 @@ MonoBehaviour:
   - name: Footsteps 1
     clip: {fileID: 8300000, guid: d1096c874360d654db0f82bb568b8145, type: 3}
     source: {fileID: 0}
-    volume: 0.5
-    pitch: 1
+    volume: 0.25
+    pitch: 0.74
   - name: Footsteps 2
     clip: {fileID: 8300000, guid: 215c08d8d2b727847a0703d5c87189b4, type: 3}
     source: {fileID: 0}
-    volume: 0.5
-    pitch: 1
+    volume: 0.25
+    pitch: 0.9
   - name: Aggro
     clip: {fileID: 8300000, guid: 9a8b83560b145034bb75951f5e615a88, type: 3}
     source: {fileID: 0}
@@ -1939,7 +1939,7 @@ MonoBehaviour:
   - name: Get Hit
     clip: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 0.25
     pitch: 1
   - name: Death
     clip: {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
@@ -1949,7 +1949,7 @@ MonoBehaviour:
   - name: Weapon Swing
     clip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
   enemyID: 1
   lifeCanvas: {fileID: 7766357555098298374}

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9202461958918899106}
   - component: {fileID: 2005381341627500079}
   - component: {fileID: 8442811805382832487}
-  - component: {fileID: 138473806743513797}
   m_Layer: 0
   m_Name: RespawnManager
   m_TagString: Untagged
@@ -53,6 +52,7 @@ MonoBehaviour:
   - {fileID: 5571949759734527651, guid: 5a86a3875f3cb2e4db3a35e829755685, type: 3}
   - {fileID: 3997754368316317070, guid: 3381dc04079185d49a8f978b3aad3ffb, type: 3}
   - {fileID: 803006282978671105, guid: 302641ddb6559a943b9d8576fdb19655, type: 3}
+  - {fileID: 2733550850117711192, guid: 4fc9a23ca7e9d21428533972c606f678, type: 3}
   enemies: []
   EnemyDataArray: []
   UpdateEnemyEvent: {fileID: 11400000, guid: c2a63a45c83561c4f8b8c762f3f5d241, type: 2}
@@ -167,20 +167,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &138473806743513797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704941964737792480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5693c16927ef4e843ab94bf09b23a8b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventlisteners:
-  - {fileID: 0}
 --- !u!1 &6355651682175456313
 GameObject:
   m_ObjectHideFlags: 0
