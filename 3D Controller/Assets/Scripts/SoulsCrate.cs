@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SoulsCrate : MonoBehaviour, IDamageable
+public class SoulsCrate : MonoBehaviour
 {
 
     public float soulsValue;
+
+    private bool activated;
+
+    [SerializeField] private GameObject tooltipCanvas;
+
 
     private void Start()
     {
@@ -13,15 +16,39 @@ public class SoulsCrate : MonoBehaviour, IDamageable
         SoulsSystem.instance.LostSouls = 0;
     }
 
-    public void GetDamage(float _damage)
+    private void Update()
     {
-        Die();
+        if (activated)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SoulsSystem.instance.GainSouls(soulsValue);
+                Destroy(this.gameObject);
+            }
+        }
     }
 
-    public void Die()
+    private void OnTriggerEnter(Collider _other)
     {
-        SoulsSystem.instance.GainSouls(soulsValue);
-        Destroy(this.gameObject);
+        if (_other.gameObject.layer == 7)
+        {
+            bool isAlive = _other.gameObject.GetComponent<HealthScript>().isAlive;
+            if (isAlive)
+            {
+                tooltipCanvas.SetActive(true);
+                activated = true;
+            }
+        }
+    }
+
+
+    private void OnTriggerExit(Collider _other)
+    {
+        if (_other.gameObject.layer == 7)
+        {
+            tooltipCanvas.SetActive(false);
+            activated = false;
+        }
     }
 
 }

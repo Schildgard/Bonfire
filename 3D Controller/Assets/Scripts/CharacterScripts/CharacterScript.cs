@@ -40,13 +40,13 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
         { return; }
 
         float defMultiplier = (_damage / 100) * (Stats.Defense * 3f);
-        HealthScript.currentHealth -= (_damage - defMultiplier);
+        HealthScript.CurrentHealth -= (_damage - defMultiplier);
         HealthScript.UpdateHealthBar();
 
         Debug.Log($"{gameObject.name} got {_damage - defMultiplier} Damage ({_damage} - {defMultiplier})");
 
         Animator.SetTrigger("Stagger");
-        if (HealthScript.currentHealth <= 0)
+        if (HealthScript.CurrentHealth <= 0)
         { Die(); }
 
         PlaySFXSound("Get Hit");
@@ -65,7 +65,10 @@ public abstract class CharacterScript : MonoBehaviour, IDamageable
 
     public void PlaySFXSound(int _soundIndex)
     {
+        if (!CharacterSounds[_soundIndex].source.isPlaying)
+        {
             CharacterSounds[_soundIndex].source.Play();
+        }
     }
 
     public void PlaySFXSound(string _soundname)

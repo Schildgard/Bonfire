@@ -13,6 +13,7 @@ public class HideHealthbar : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
+       transform.LookAt(transform.position+ Camera.main.transform.forward);
 
         if (timer <= 0)
         {

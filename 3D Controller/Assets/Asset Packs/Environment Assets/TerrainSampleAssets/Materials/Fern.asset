@@ -216,6 +216,7 @@ Material:
     - _Diffusion_Profile_Asset: {r: -0.00000002060262, g: 7.3194675e-27, b: 69972056, a: -3.7115523e+9}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ReColoring: {r: 15.517138, g: 15.517138, b: 15.517138, a: 0}
     - _SSSColor: {r: 0.75029343, g: 0.8962264, b: 0.47770557, a: 0}
     - _Subsurface_Scattering_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Thickness_Remap: {r: 0, g: 1, b: 0, a: 0}

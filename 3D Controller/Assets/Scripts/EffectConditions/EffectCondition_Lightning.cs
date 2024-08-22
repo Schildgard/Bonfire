@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EffectCondition_Lightning : StatusEffect
@@ -31,5 +28,10 @@ public class EffectCondition_Lightning : StatusEffect
     private void OnDestroy()
     {
         animator.SetBool("Electrified", false);
+        var wetStatus = GetComponentInChildren<EffectCondition_Wet>();
+        if (wetStatus != null)
+        {
+            wetStatus.Electrified = false;
+        }
     }
 }

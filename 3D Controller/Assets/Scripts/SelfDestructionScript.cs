@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelfDestructionScript : MonoBehaviour
 {
+
+    //This script is mostly used on temporary Effects like Status Conditions
     [SerializeField] private float lifeTime;
     private void OnEnable()
     {

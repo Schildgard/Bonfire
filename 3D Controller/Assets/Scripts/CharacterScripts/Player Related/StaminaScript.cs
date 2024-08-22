@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StaminaScript : MonoBehaviour
 {
 
-    private StatScript Stats;
+    private StatScript stats;
     public Image StaminaBar;
     [SerializeField] private float maxStamina;
     [SerializeField] private float regMultiplier;
@@ -19,7 +18,7 @@ public class StaminaScript : MonoBehaviour
 
     private void Awake()
     {
-        Stats = GetComponent<StatScript>();
+        stats = GetComponent<StatScript>();
     }
     private void Start()
     {
@@ -43,10 +42,12 @@ public class StaminaScript : MonoBehaviour
         }
     }
 
+
+
     public void UpdateMaxStamina()
     {
-        maxStamina = 90 + Stats.Speed * 10;
-        regMultiplier = 20 + Stats.Speed * 5;
+        maxStamina = 90 + stats.Speed * 10;
+        regMultiplier = 20 + stats.Speed * 5;
         UpdateStaminaBar();
     }
     private void RegenerateStamina()

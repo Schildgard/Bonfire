@@ -336,7 +336,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
   enemyID: 2
-  lifeCanvas: {fileID: 0}
+  lifeCanvas: {fileID: 8444945406835031326}
   bossDied: {fileID: 11400000, guid: a550f26fda97ac5438b5c9be969cdb60, type: 2}
   electrifiedMaterial: {fileID: 2100000, guid: 58120dc6b6783d34a8444401ad5769ab, type: 2}
 --- !u!54 &7233754656215689553
@@ -393,11 +393,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8a904990c6ac94b9125f8fb0e8183a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponColliderArray:
-  - {fileID: 7307693720385686471}
+  weaponColliderArray:
   - {fileID: 6701605587995989027}
-  WeaponOnBack: {fileID: 0}
-  WeaponInHand: {fileID: 0}
+  - {fileID: 7307693720385686471}
+  weaponOnBack: {fileID: 0}
+  weaponInHand: {fileID: 0}
 --- !u!114 &4979423326382015013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,9 +430,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
-  currentHealth: 0
+  CurrentHealth: 0
   isAlive: 0
-  Healthbar: {fileID: 8491379750781160615}
+  healthbar: {fileID: 8491379750781160615}
 --- !u!114 &1318338212772238265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,7 +2061,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.248
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3032,7 +3032,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.256
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -12,7 +12,7 @@ public class SO_Spell : ScriptableObject
 
     public Sprite SpellIcon;
     [Range(0,2)]
-    public int spellTypeIndex; //remove ?
+    public int spellTypeIndex; //SpellTyoe Index specifies from which Transform the Spell instantiates.
 
     public GameObject spellCastAnimEffect;
 

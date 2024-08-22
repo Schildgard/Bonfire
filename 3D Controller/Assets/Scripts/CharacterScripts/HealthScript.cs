@@ -4,17 +4,17 @@ using UnityEngine.UI;
 public class HealthScript : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    public float currentHealth;
+    public float CurrentHealth;
     public float MaxHealth { get { return maxHealth; } set { MaxHealth = value; } }
     public bool isAlive;
-    private StatScript Stats;
-    [SerializeField] private Image Healthbar;
+    private StatScript stats;
+    [SerializeField] private Image healthbar;
 
 
 
     private void Awake()
     {
-        Stats = GetComponent<StatScript>();
+        stats = GetComponent<StatScript>();
     }
 
     private void Start()
@@ -29,7 +29,7 @@ public class HealthScript : MonoBehaviour
 
     public void UpdateMaxHealth()
     {
-        maxHealth = 950 + Stats.Vitality *50;
+        maxHealth = 950 + stats.Vitality *50;
         UpdateHealthBar();
     }
 
@@ -42,13 +42,13 @@ public class HealthScript : MonoBehaviour
 
     public void ResetHealth()
     {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
         UpdateHealthBar();
     }
 
 
     public void UpdateHealthBar()
     {
-        Healthbar.fillAmount = (1 / maxHealth) * currentHealth;
+        healthbar.fillAmount = (1 / maxHealth) * CurrentHealth;
     }
 }

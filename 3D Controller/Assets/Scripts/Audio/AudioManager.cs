@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> Music;
     public List<Sound> EnvironmentalSFX;
+    public List<Sound> UISFX;
     private int currentMusicIndex = 0;
 
 
@@ -37,8 +38,15 @@ public class AudioManager : MonoBehaviour
         foreach (var sound in EnvironmentalSFX)
         {
             InitializeAudioSources(sound);
+            sound.source.loop = true;
+        }
+        foreach (var sound in UISFX)
+        {
+            InitializeAudioSources(sound);
         }
         Music[0].source.Play();
+        EnvironmentalSFX[1].source.loop = true;
+        EnvironmentalSFX[1].source.Play();
     }
 
     private void InitializeAudioSources(Sound _sound)
@@ -53,6 +61,16 @@ public class AudioManager : MonoBehaviour
     public void PlayAudioSound(Sound _sound)
     {
         _sound.source.Play();
+    }
+
+    public void PlayEnvironmentalSFX(int _sfxIndex)
+    {
+        EnvironmentalSFX[_sfxIndex].source.Play();
+    }
+
+    public void StopPlayEnvironmentalSFX(int _sfxIndex)
+    {
+        EnvironmentalSFX[_sfxIndex].source.Stop();
     }
 
     public void ChangeBackGroundMusic(int _musicListIndex)

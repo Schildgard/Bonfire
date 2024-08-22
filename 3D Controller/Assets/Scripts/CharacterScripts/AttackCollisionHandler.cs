@@ -3,61 +3,63 @@ using UnityEngine;
 
 public class AttackCollisionHandler : MonoBehaviour
 {
-    [SerializeField] private Collider[] WeaponColliderArray;
+    //The Array serves in the Case if an Enemy can forexample Attack with both Hands.
+    [SerializeField] private Collider[] weaponColliderArray;
 
     //TODO: This Values are only relevant for the PlayerWeapon and should not be handled in a Script that is used by other entities.
-    private bool IsWeaponOnBack;
-    [SerializeField] private GameObject WeaponOnBack;
-    [SerializeField] private GameObject WeaponInHand;
+    private bool isWeaponOnBack;
+    [SerializeField] private GameObject weaponOnBack;
+    [SerializeField] private GameObject weaponInHand;
 
 
     void Start()
     {
-        foreach (var weapon in WeaponColliderArray)
+        foreach (var weapon in weaponColliderArray)
         {
             weapon.enabled = false;
             if (this.gameObject.tag == "Player")
             {
 
-                if (WeaponOnBack.activeSelf && WeaponInHand.activeSelf)
+                if (weaponOnBack.activeSelf && weaponInHand.activeSelf)
                 {
-                    WeaponInHand.SetActive(false);
-                    IsWeaponOnBack = true;
+                    weaponInHand.SetActive(false);
+                    isWeaponOnBack = true;
                 }
             }
         }
     }
 
-
+    // Activate / De-Activate Weapon Collider is mainly called in Animation Events.
     public void ActivateWeaponCollider()
     {
-        foreach (var weapon in WeaponColliderArray) { weapon.enabled = true; }
+        foreach (var weapon in weaponColliderArray) { weapon.enabled = true; }
 
     }
 
     public void DeActivateWeaponCollider()
     {
-        foreach (var weapon in WeaponColliderArray) { weapon.enabled = false; }
+        foreach (var weapon in weaponColliderArray) { weapon.enabled = false; }
     }
 
+    // Show Weapon Methods are by current State only relevant to Player due to Animation Retargeting Issues with Greatsword Animation Set.
     public void ShowWeaponInHand()
     {
-        if (WeaponOnBack)
+        if (weaponOnBack)
         {
-            WeaponOnBack.SetActive(false);
-            WeaponInHand.SetActive(true);
-            IsWeaponOnBack = false;
+            weaponOnBack.SetActive(false);
+            weaponInHand.SetActive(true);
+            isWeaponOnBack = false;
         }
 
     }
 
     public void ShowWeaponOnBack()
     {
-        if (!IsWeaponOnBack)
+        if (!isWeaponOnBack)
         {
-            WeaponInHand.SetActive(false);
-            WeaponOnBack.SetActive(true);
-            IsWeaponOnBack = true;
+            weaponInHand.SetActive(false);
+            weaponOnBack.SetActive(true);
+            isWeaponOnBack = true;
         }
     }
 

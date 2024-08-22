@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 [CustomEditor(typeof(PlaneManager))]
@@ -10,7 +8,7 @@ public class PlaneEditor : Editor
     public bool ShapeSettingsFouldOut;
 
     public override void OnInspectorGUI()
-    { 
+    {
         using (var check = new EditorGUI.ChangeCheckScope())
         {
             base.OnInspectorGUI();
@@ -20,7 +18,7 @@ public class PlaneEditor : Editor
             }
             foreach (var item in planeManager.ShapeSettings)
             {
-            DrawSettingsEditor(item, planeManager.UpdatePlaneMesh, ref ShapeSettingsFouldOut, ref shapeEditor);
+                DrawSettingsEditor(item, planeManager.UpdatePlaneMesh, ref ShapeSettingsFouldOut, ref shapeEditor);
 
             }
         }
@@ -45,7 +43,8 @@ public class PlaneEditor : Editor
 
             if (_fouldOut)
             {
-                CreateCachedEditor(_settings, null, ref _editor); // CachedEditor checks if the reference is null, if so it creates a new one to that reference. if not, it overrides editor values
+                // CachedEditor checks if the reference is null, if so it creates a new one to that reference. if not, it overrides editor values
+                CreateCachedEditor(_settings, null, ref _editor);
                 _editor.OnInspectorGUI();
             }
 

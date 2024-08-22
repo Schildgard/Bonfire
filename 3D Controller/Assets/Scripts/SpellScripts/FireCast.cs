@@ -4,6 +4,7 @@ using UnityEngine;
 public class FireCast : MonoBehaviour
 {
 
+    //Fire Cast collects a List of the Enemies who are in its hit Area and deals damage to them as long as they stay in it. It also checks if the Enemies are wet.
     [SerializeField] private float damagePerIntervall;
 
     private List<IDamageable> hitTargets;
