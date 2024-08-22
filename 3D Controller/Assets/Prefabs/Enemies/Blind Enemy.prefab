@@ -2398,7 +2398,7 @@ MonoBehaviour:
   - name: Agony
     clip: {fileID: 8300000, guid: 97343e0fb4c1382469dd527eb0644e07, type: 3}
     source: {fileID: 0}
-    volume: 0.5
+    volume: 0.25
     pitch: 0.6
   - name: Get Hit
     clip: {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
