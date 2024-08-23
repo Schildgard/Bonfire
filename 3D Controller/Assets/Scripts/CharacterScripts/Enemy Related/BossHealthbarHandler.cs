@@ -33,7 +33,7 @@ public class BossHealthbarHandler : MonoBehaviour
         if (healthCanvas.activeSelf)
         {
             healthCanvas.SetActive(false);
-        AudioManager.instance.ChangeBackGroundMusic(0);
+      //  AudioManager.instance.ChangeBackGroundMusic(0);
         }
 
         Destroy(this);
