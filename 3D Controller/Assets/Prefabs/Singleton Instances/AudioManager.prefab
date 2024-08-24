@@ -55,7 +55,7 @@ MonoBehaviour:
   - name: Main Menu Theme
     clip: {fileID: 8300000, guid: 36b243eec1675dd498841c4adcf2ee54, type: 3}
     source: {fileID: 0}
-    volume: 0.552
+    volume: 0.33
     pitch: 1
   - name: Bonfire Area Theme
     clip: {fileID: 8300000, guid: bbb5f2b61e0f18e489fe2a041cc7215a, type: 3}
@@ -87,7 +87,7 @@ MonoBehaviour:
   - name: You Died
     clip: {fileID: 8300000, guid: 503ab3c02fe6ac5498914431e6cdb37c, type: 3}
     source: {fileID: 0}
-    volume: 0.252
+    volume: 0.318
     pitch: 1
 --- !u!114 &498706116196081594
 MonoBehaviour:
