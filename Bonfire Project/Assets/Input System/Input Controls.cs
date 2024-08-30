@@ -55,15 +55,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Block"",
-                    ""type"": ""Button"",
-                    ""id"": ""6a6999a4-d341-491e-b9c5-14fd3e9e3b9b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Lock On"",
                     ""type"": ""Button"",
                     ""id"": ""459518aa-83e5-4581-8b79-9d3b99544ce9"",
@@ -207,17 +198,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2a36149e-2a6e-4e4d-9436-65df9264ec8d"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Block"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e914c322-0d4d-4e26-9ded-2b335bf205c5"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
@@ -353,7 +333,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_LockOn = m_Player.FindAction("Lock On", throwIfNotFound: true);
         m_Player_CastSpell1 = m_Player.FindAction("Cast Spell 1", throwIfNotFound: true);
         m_Player_CastSpell2 = m_Player.FindAction("Cast Spell 2", throwIfNotFound: true);
@@ -428,7 +407,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_LockOn;
     private readonly InputAction m_Player_CastSpell1;
     private readonly InputAction m_Player_CastSpell2;
@@ -443,7 +421,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @LockOn => m_Wrapper.m_Player_LockOn;
         public InputAction @CastSpell1 => m_Wrapper.m_Player_CastSpell1;
         public InputAction @CastSpell2 => m_Wrapper.m_Player_CastSpell2;
@@ -469,9 +446,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @Block.started += instance.OnBlock;
-            @Block.performed += instance.OnBlock;
-            @Block.canceled += instance.OnBlock;
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
@@ -506,9 +480,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @Block.started -= instance.OnBlock;
-            @Block.performed -= instance.OnBlock;
-            @Block.canceled -= instance.OnBlock;
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
@@ -598,7 +569,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnBlock(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnCastSpell1(InputAction.CallbackContext context);
         void OnCastSpell2(InputAction.CallbackContext context);

@@ -3,13 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerActionScript : MonoBehaviour
 {
-    private StaminaScript Stamina;
+    private StaminaScript stamina;
     private Rigidbody playerRigidbody;
-    // private GroundCheck collisionDetection;
-    private Animator Animator;
-    private Spelllist Spelllist;
+    private Animator animator;
+    private Spelllist spelllist;
     private bool movementIsBlocked;
-    private Camera MainCamera;
+    private Camera mainCamera;
 
     #region Walk
     [Header("Walking Parameters")]
@@ -17,8 +16,8 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private float currentWalkSpeed;
     [SerializeField] private float lerpSpeed;
 
-    private Vector2 MoveInput;
-    private Vector3 SmoothMovement;
+    private Vector2 moveInput;
+    private Vector3 smoothMovement;
     private Vector3 movementVector;
 
     public Vector3 MovementVector { get { return movementVector; } } //Unnötig?
@@ -34,19 +33,6 @@ public class PlayerActionScript : MonoBehaviour
     private bool runButtonPressed;
     private float accelerationMultiplier;
     #endregion
-    #region Jump
-    // [Header("Jump Parameters")]
-    // [SerializeField] private float jumpPower;
-    #endregion
-
-    #region Dash
-    //  [Header("Dash Parameters")]
-    //  [SerializeField] private float dashPower;
-    //
-    //  [SerializeField] private float currentDashCoolDown;
-    //  [SerializeField] private float maxDashCooldown;
-    #endregion
-
 
     #region BlendTree Parameters
     [Header("Blend Tree Parameters")]
@@ -62,119 +48,85 @@ public class PlayerActionScript : MonoBehaviour
     private float maxVelocity;
     #endregion
 
-
-
     [SerializeField] private WeaponScript currentWeapon;
 
-
-    //Wasted
-    private float blockInput;
-
-
-    // Start is called before the first frame update
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        //collisionDetection = GetComponent<GroundCheck>();
-        Animator = GetComponent<Animator>();
-        Stamina = GetComponent<StaminaScript>();
-        Spelllist = GetComponent<Spelllist>();
+        animator = GetComponent<Animator>();
+        stamina = GetComponent<StaminaScript>();
+        spelllist = GetComponent<Spelllist>();
 
-        MainCamera = Camera.main;
+        mainCamera = Camera.main;
 
         velocityHashX = Animator.StringToHash("VelocityX");
         velocityHashZ = Animator.StringToHash("VelocityZ");
 
 
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Animator.SetFloat(velocityHashX, velocityX);
-        Animator.SetFloat(velocityHashZ, velocityZ);
-
- 
+        animator.SetFloat(velocityHashX, velocityX);
+        animator.SetFloat(velocityHashZ, velocityZ);
         CalculateMovement();
 
         CalculateRunning();
- 
-
-
-        //  Block();
-        //currentDashCoolDown = Mathf.Clamp(currentDashCoolDown - Time.deltaTime, 0, maxDashCooldown);
     }
 
-  //  private void FixedUpdate()
-  //  {
-  //      MoveCharacter();
-  //  }
 
 
     private void CalculateMovement()
 
     {
-        movementVector = MainCamera.transform.forward * MoveInput.y;
-        movementVector += MainCamera.transform.right * MoveInput.x;
-
+        movementVector = mainCamera.transform.forward * moveInput.y;
+        movementVector += mainCamera.transform.right * moveInput.x;
 
         movementVector.Normalize();
 
         movementVector *= currentWalkSpeed;
         movementVector.y = playerRigidbody.velocity.y;
 
-        SmoothMovement = Vector3.Lerp(playerRigidbody.velocity, movementVector, lerpSpeed * Time.deltaTime);
+        smoothMovement = Vector3.Lerp(playerRigidbody.velocity, movementVector, lerpSpeed * Time.deltaTime);
+
         if (!movementIsBlocked)
         {
-            playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+            playerRigidbody.velocity = new Vector3(smoothMovement.x, playerRigidbody.velocity.y, smoothMovement.z);
         }
-
-
-
-        if (MoveInput.x > 0.01f || MoveInput.x < -0.01f)
+        if (moveInput.x > 0.01f || moveInput.x < -0.01f)
         {
             velocityX = Mathf.Clamp(velocityX + Time.deltaTime * blendTreeAcceleration, velocityX, maxVelocity);
-
         }
         else
         {
             velocityX = Mathf.Clamp(velocityX - Time.deltaTime * blendTreeDecceleration, 0f, velocityX);
-
         }
-
-
-        if (MoveInput.y > 0.01f || MoveInput.y < -0.01f)
+        if (moveInput.y > 0.01f || moveInput.y < -0.01f)
         {
             velocityZ = Mathf.Clamp(velocityZ + Time.deltaTime * blendTreeAcceleration, velocityZ, maxVelocity);
         }
         else
         {
             velocityZ = Mathf.Clamp(velocityZ - Time.deltaTime * blendTreeDecceleration, 0f, velocityZ);
-
         }
-
     }
 
     private void MoveCharacter()
     {
         if (!movementIsBlocked)
         {
-            playerRigidbody.velocity = new Vector3(SmoothMovement.x, playerRigidbody.velocity.y, SmoothMovement.z);
+            playerRigidbody.velocity = new Vector3(smoothMovement.x, playerRigidbody.velocity.y, smoothMovement.z);
         }
     }
     private void CalculateRunning()
     {
-
-
-        if (runButtonPressed && Stamina.CurrentStamina > 0)
+        if (runButtonPressed && stamina.CurrentStamina > 0)
         {
             if (playerRigidbody.velocity.x > runningThreshold || playerRigidbody.velocity.x < -runningThreshold ||
                 playerRigidbody.velocity.z > runningThreshold || playerRigidbody.velocity.z < -runningThreshold)
             {
                 accelerationMultiplier = 1;
-                Stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
+                stamina.CurrentStamina -= staminaExhaustion * Time.deltaTime;
                 maxVelocity = 2f;
             }
         }
@@ -191,25 +143,16 @@ public class PlayerActionScript : MonoBehaviour
 
     public void Attack()
     {
-        if (Stamina.CurrentStamina > 1f)
+        if (stamina.CurrentStamina > 1f)
         {
-            Animator.SetTrigger("Attack Trigger");
+            animator.SetTrigger("Attack Trigger");
         }
         else Debug.Log("Not Enough Stamina");
-    }
-    public void Block()
-    {
-
-        if (blockInput > 0)
-        {
-            Debug.Log("Block");
-        }
-
     }
 
     public void RestAtFire()
     {
-        Animator.SetTrigger("Resting");
+        animator.SetTrigger("Resting");
     }
 
 
@@ -225,7 +168,7 @@ public class PlayerActionScript : MonoBehaviour
 
     public void DrainStamina()
     {
-        Stamina.DrainStamina(currentWeapon.StaminaAttackCost);
+        stamina.DrainStamina(currentWeapon.StaminaAttackCost);
     }
 
     public void BlockMovement()
@@ -238,36 +181,30 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (!movementIsBlocked) { return; }
         movementIsBlocked = false;
-        Debug.Log("Movement unblocked");
     }
 
     public void ActivateRootMotion()
     {
-        Animator.applyRootMotion = true;
+        animator.applyRootMotion = true;
     }
 
     public void DeactivateRootMotion()
     {
-        Animator.applyRootMotion = false;
+        animator.applyRootMotion = false;
     }
 
     #region InputCallBackEvents
     public void WalkEvent(InputAction.CallbackContext _context)
     {
-        MoveInput = _context.ReadValue<Vector2>();
-
+        moveInput = _context.ReadValue<Vector2>();
     }
 
     public void RunEvent(InputAction.CallbackContext _context)
     {
-
-
         if (_context.started)
         {
             runButtonPressed = true;
         }
-
-
         if (_context.canceled)
         {
             runButtonPressed = false;
@@ -281,22 +218,14 @@ public class PlayerActionScript : MonoBehaviour
         {
             Attack();
         }
-
-
     }
-
-    public void BlockEvent(InputAction.CallbackContext _context)
-    {
-        blockInput = _context.ReadValue<float>();
-    }
-
 
     public void CastSpellEvent(InputAction.CallbackContext _context)
     {
         if (_context.started)
         {
             int spellIndex = (int)_context.ReadValue<float>();  // ReadValue returns a float, the Num =InputMap has a ScaleFactor, according to its spellIndex in the spelllist, so by pressing 3, this line retuns: spellindex =  1 x 2 = 2. So Spell of Index 2 is selected.
-            Spelllist.CastSpell(spellIndex);
+            spelllist.CastSpell(spellIndex);
             //To prevent a wrong InputEvent applied to this Method, I could set Index 1 an Placeholder, which returns an Debug. Since no Scale factor is applied, the Index of a non cast spell will be 1.
         }
     }

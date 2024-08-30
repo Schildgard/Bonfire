@@ -22,9 +22,4 @@ public class StatScript : MonoBehaviour
 
     public float Level { get { return level; } set { level = value; } }
 
-
-
-
-
-
 }

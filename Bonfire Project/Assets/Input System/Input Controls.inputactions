@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Block",
-                    "type": "Button",
-                    "id": "6a6999a4-d341-491e-b9c5-14fd3e9e3b9b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Lock On",
                     "type": "Button",
                     "id": "459518aa-83e5-4581-8b79-9d3b99544ce9",
@@ -180,17 +171,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2a36149e-2a6e-4e4d-9436-65df9264ec8d",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

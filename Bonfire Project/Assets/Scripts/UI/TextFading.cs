@@ -24,6 +24,7 @@ public class TextFading : MonoBehaviour
         }
         else
         {
+            //Blend in. Increase the alpha of the panel color until it reaches its maximum.
             Color panelColor = text.color;
             while (panelColor.a <= 1f)
             {
@@ -33,6 +34,7 @@ public class TextFading : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1f);
+            //Blend out. Decrease the alpha of the panel color until it reaches 0.
             while (panelColor.a > 0f)
             {
                 panelColor.a -= Time.deltaTime * (blendingTime * 2);
