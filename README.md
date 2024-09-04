@@ -21,9 +21,10 @@ The game world is procedurally generated using a custom Landscape Generator Tool
 ### Custom Assets & Technical Artistry
 While the models and textures used are third-party assets, I created the VFX, shaders, and composed the music. This demonstrates my proficiency in technical artistry and my ability to enhance the game’s visual and auditory experience.
 
+![{B922AD28-3370-425D-8117-E25525A6F743}](https://github.com/user-attachments/assets/dd7a8d8b-59c1-4b39-9c1c-a30132c40960)
+
 ## Additional Notes
 
 - **NPC Interactions:** In line with Soulslike game conventions, players need to interact with NPCs multiple times to unlock their full dialogue. This design choice reflects my attention to genre-specific details and player expectations.
 
-![{B922AD28-3370-425D-8117-E25525A6F743}](https://github.com/user-attachments/assets/dd7a8d8b-59c1-4b39-9c1c-a30132c40960)
 
