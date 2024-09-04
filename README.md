@@ -7,12 +7,12 @@
 ## Key Features
 
 ### Immersive Theme
-Bonfire invites players into an open world with a tranquil atmosphere, offering a unique blend of exploration and action. The narrative is light-hearted, featuring a humorous plot that stems from an inside joke among my university friends. (Yes, you may encounter a giant, breakdancing turtle doing push-ups!)
+Bonfire invites players into an open world with a tranquil atmosphere, offering a blend of exploration and action. The narrative is light-hearted, featuring a humorous little plot that stems from an inside joke among my university friends. (In case you wonder why you may encounter a giant, breakdancing turtle doing push-ups.)
 
 ### Core Gameplay Mechanics
 The gameplay is deeply inspired by the Soulslike genre, emphasizing strategic combat and resource management:
 - **Stamina System:** Player actions are governed by a stamina bar, ensuring that every move counts.
-- **Combat & Progression:** Defeat enemies to earn experience points (EXP), which can be used at shrines to enhance player stats. Resting at shrines also heals the player, but non-boss enemies will respawn.
+- **Combat & Progression:** Defeat enemies to earn experience points, which can be used at shrines to enhance player stats. Resting at shrines also heals the player, but non-boss enemies will respawn.
 
 ### Procedural Game World
 The game world is procedurally generated using a custom Landscape Generator Tool that I developed. Although the parameters are fixed, resulting in a consistent environment for each playthrough, this highlights my capability in procedural generation and tool development.
