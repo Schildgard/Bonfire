@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/b40b9f36-c92e-468c-988d-a7c535fdc963)
+
 # About
 
 Bonfire is a 3D-Action RPG inspired by the Soulslike genre. Its purpose is to showcase my proficency to code general features and complex mechanics for Videogames.  
@@ -10,7 +12,6 @@ Bonfire is a 3D-Action RPG inspired by the Soulslike genre. Its purpose is to sh
 2.The other one is non-aggressive but will aggro when another enemy in his alarm radius (which is quite big).  
 He then alarms every enemy in a large radius.
 
-#### Combat System
 ##### XP-System
 Defeating enemies rewards the player with exp which can be used to increase stats while resting at a shrine.  
 However unspent exp will be dropped when the player dies.
@@ -18,7 +19,6 @@ However unspent exp will be dropped when the player dies.
 The map is a proceduraly generated plane, shaped by a noise with customizable settings and a falloff on the edges.
 #### Engine-Tool Development
 #### Shaders
-Terrain Shader: A Terrain Shader takes up to two textures and blends them depending on customizable parameters like normal-direction height.
-Water Shader: The Water Shader takes a normal-texture
+Terrain, Water and other elemental surfaces are made with unitys Shader Graph.
 #### Visual Effects
 
